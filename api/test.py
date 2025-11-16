@@ -1,8 +1,8 @@
 # Minimal test function to verify Python works on Vercel
-def handler(event, context):
-    return {
-        'statusCode': 200,
-        'headers': {'Content-Type': 'application/json'},
-        'body': '{"status": "ok", "message": "Python function works!"}'
-    }
+# Vercel Python functions receive (req, res) not (event, context)
+def handler(req, res):
+    res.status(200).json({
+        'status': 'ok',
+        'message': 'Python function works!'
+    })
 
