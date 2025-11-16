@@ -274,14 +274,13 @@ def analytics_by_genre():
     return jsonify(results)
 
 # Vercel serverless function handler
-# For Vercel, serverless-wsgi wraps the Flask app
-# The handler function receives (event, context) from Vercel
-if SERVERLESS_WSGI_AVAILABLE:
-    # serverless-wsgi creates a handler function
-    handler = handle_request(app)
-else:
-    # Fallback handler
-    def handler(event, context):
+# Vercel Python runtime passes (event, context) to the handler
+def handler(event, context):
+    if SERVERLESS_WSGI_AVAILABLE and handle_request:
+        # serverless-wsgi handles the WSGI conversion
+        return handle_request(app, event, context)
+    else:
+        # Fallback - should not happen in Vercel
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'application/json'},
