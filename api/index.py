@@ -15,31 +15,33 @@ CORS(app)
 
 # Use absolute path for database
 # In Vercel, the working directory is the project root
-try:
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    DATABASE = os.path.join(BASE_DIR, 'backend', 'films.db')
-    
-    # Fallback: try relative path if absolute doesn't work
-    if not os.path.exists(DATABASE):
-        # Try alternative paths
-        alt_paths = [
-            os.path.join(os.path.dirname(os.path.dirname(__file__)), 'backend', 'films.db'),
-            os.path.join('/var/task', 'backend', 'films.db'),  # Vercel's function directory
-            'backend/films.db',  # Simple relative path
-        ]
-        for alt_path in alt_paths:
-            if os.path.exists(alt_path):
-                DATABASE = alt_path
-                break
-except Exception as e:
-    # If path resolution fails, set a default
-    DATABASE = 'backend/films.db'
+# Don't check if file exists at import time - do it lazily when needed
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATABASE = os.path.join(BASE_DIR, 'backend', 'films.db')
 
 def get_db():
     """Get database connection"""
-    if not os.path.exists(DATABASE):
-        raise FileNotFoundError(f"Database file not found at: {DATABASE}. Current working directory: {os.getcwd()}")
-    conn = sqlite3.connect(DATABASE)
+    # Try multiple paths in case the database is in a different location
+    db_paths = [
+        DATABASE,
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'backend', 'films.db'),
+        os.path.join('/var/task', 'backend', 'films.db'),  # Vercel's function directory
+        'backend/films.db',  # Simple relative path
+    ]
+    
+    db_file = None
+    for path in db_paths:
+        if os.path.exists(path):
+            db_file = path
+            break
+    
+    if not db_file:
+        # Try to use the first path anyway - SQLite will create if needed, but we want existing
+        db_file = DATABASE
+        if not os.path.exists(db_file):
+            raise FileNotFoundError(f"Database file not found. Tried: {db_paths}. Current working directory: {os.getcwd()}")
+    
+    conn = sqlite3.connect(db_file)
     conn.row_factory = sqlite3.Row
     return conn
 
