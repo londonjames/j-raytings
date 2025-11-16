@@ -335,5 +335,5 @@ def get_analytics_by_genre():
 
 if __name__ == '__main__':
     init_db()
-    port = int(os.getenv('FLASK_RUN_PORT', 5001))
+    port = int(os.getenv('PORT', os.getenv('FLASK_RUN_PORT', 5001)))
     app.run(debug=True, port=port)
