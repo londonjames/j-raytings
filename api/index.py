@@ -20,10 +20,21 @@ DATABASE = os.path.join(BASE_DIR, 'backend', 'films.db')
 
 # Fallback: try relative path if absolute doesn't work
 if not os.path.exists(DATABASE):
-    DATABASE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'backend', 'films.db')
+    # Try alternative paths
+    alt_paths = [
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'backend', 'films.db'),
+        os.path.join('/var/task', 'backend', 'films.db'),  # Vercel's function directory
+        'backend/films.db',  # Simple relative path
+    ]
+    for alt_path in alt_paths:
+        if os.path.exists(alt_path):
+            DATABASE = alt_path
+            break
 
 def get_db():
     """Get database connection"""
+    if not os.path.exists(DATABASE):
+        raise FileNotFoundError(f"Database file not found at: {DATABASE}. Current working directory: {os.getcwd()}")
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
     return conn
@@ -263,11 +274,14 @@ def analytics_by_genre():
     return jsonify(results)
 
 # Vercel serverless function handler
-# Vercel Python runtime expects a handler function that receives (event, context)
-def handler(event, context):
-    if SERVERLESS_WSGI_AVAILABLE and handle_request:
-        return handle_request(app, event, context)
-    else:
+# For Vercel, serverless-wsgi wraps the Flask app
+# The handler function receives (event, context) from Vercel
+if SERVERLESS_WSGI_AVAILABLE:
+    # serverless-wsgi creates a handler function
+    handler = handle_request(app)
+else:
+    # Fallback handler
+    def handler(event, context):
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'application/json'},
