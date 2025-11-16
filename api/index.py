@@ -7,8 +7,13 @@ app = Flask(__name__)
 CORS(app)
 
 # Use absolute path for database
+# In Vercel, the working directory is the project root
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATABASE = os.path.join(BASE_DIR, 'backend', 'films.db')
+
+# Fallback: try relative path if absolute doesn't work
+if not os.path.exists(DATABASE):
+    DATABASE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'backend', 'films.db')
 
 def get_db():
     """Get database connection"""
@@ -251,6 +256,14 @@ def analytics_by_genre():
     return jsonify(results)
 
 # Vercel serverless function handler
-def handler(request):
-    with app.request_context(request.environ):
-        return app.full_dispatch_request()
+# Vercel automatically wraps Flask apps, so we just export the app
+# For Vercel Python runtime, we need to use serverless-wsgi
+try:
+    from serverless_wsgi import handle_request
+    
+    def handler(request):
+        return handle_request(app, request.environ, request.start_response)
+except ImportError:
+    # Fallback for local development
+    def handler(request):
+        return app(request.environ, request.start_response)
