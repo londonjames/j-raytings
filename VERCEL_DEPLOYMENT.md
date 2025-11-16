@@ -62,10 +62,11 @@ You can leave these as default or enter manually if needed.
 ### 2.4 Deploy!
 
 1. Click **"Deploy"** button at the bottom
-2. Wait 2-4 minutes while Vercel builds your app
-3. You'll see logs streaming - don't worry if you see warnings
-4. When done, you'll see confetti! 🎉
-5. Click **"Visit"** to see your live site
+2. **First deployment:** Wait 2-4 minutes while Vercel builds your app from scratch
+3. **Subsequent deployments:** Usually only 5-30 seconds! Vercel uses caching and incremental builds
+4. You'll see logs streaming - don't worry if you see warnings
+5. When done, you'll see confetti! 🎉
+6. Click **"Visit"** to see your live site
 
 ---
 
@@ -111,9 +112,23 @@ Done! Your domain will point to your Vercel site.
 
 ### "Application Error" or 500 Error
 
-1. Check Vercel **Functions** tab to see serverless function logs
-2. Make sure `requirements.txt` is in the root directory
-3. Verify `api/index.py` exists and is correct
+1. **To see the actual Python error:**
+   - Go to Vercel dashboard → Your project → **Deployments** tab
+   - Click on the failed deployment
+   - Click **"Runtime Logs"** tab (NOT "Build Logs")
+   - Look for entries with red X icons
+   - **Click on a red error entry** to expand it
+   - The full Python traceback should be visible in the expanded view
+   - Copy the complete error message
+
+2. **Alternative: Check Function Logs**
+   - Go to **Logs** tab (in project, not deployment)
+   - Filter by "Error" or "Fatal"
+   - Click on error entries to see full details
+
+3. Make sure `requirements.txt` is in the root directory AND in the `api/` directory
+4. Verify `api/index.py` exists and exports a `handler` function
+5. Check that Python runtime is configured in `vercel.json`
 
 ---
 
@@ -128,7 +143,9 @@ git commit -m "Describe your changes"
 git push
 ```
 
-**That's it!** Vercel will automatically detect the push and redeploy. Changes go live in 1-2 minutes.
+**That's it!** Vercel will automatically detect the push and redeploy. 
+- **First deployment:** Takes 2-4 minutes
+- **Subsequent deployments:** Usually 5-30 seconds (thanks to Vercel's smart caching!)
 
 ---
 
