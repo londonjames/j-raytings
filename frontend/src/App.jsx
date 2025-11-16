@@ -7,7 +7,8 @@ import SortBar from './components/SortBar'
 import FilterBar from './components/FilterBar'
 import Analytics from './components/Analytics'
 
-const API_URL = 'http://localhost:5001/api'
+// Use relative path for API - works both locally (with proxy) and on Vercel
+const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:5001/api'
 
 function App() {
   const [films, setFilms] = useState([])
