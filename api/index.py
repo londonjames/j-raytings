@@ -15,21 +15,25 @@ CORS(app)
 
 # Use absolute path for database
 # In Vercel, the working directory is the project root
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATABASE = os.path.join(BASE_DIR, 'backend', 'films.db')
-
-# Fallback: try relative path if absolute doesn't work
-if not os.path.exists(DATABASE):
-    # Try alternative paths
-    alt_paths = [
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'backend', 'films.db'),
-        os.path.join('/var/task', 'backend', 'films.db'),  # Vercel's function directory
-        'backend/films.db',  # Simple relative path
-    ]
-    for alt_path in alt_paths:
-        if os.path.exists(alt_path):
-            DATABASE = alt_path
-            break
+try:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    DATABASE = os.path.join(BASE_DIR, 'backend', 'films.db')
+    
+    # Fallback: try relative path if absolute doesn't work
+    if not os.path.exists(DATABASE):
+        # Try alternative paths
+        alt_paths = [
+            os.path.join(os.path.dirname(os.path.dirname(__file__)), 'backend', 'films.db'),
+            os.path.join('/var/task', 'backend', 'films.db'),  # Vercel's function directory
+            'backend/films.db',  # Simple relative path
+        ]
+        for alt_path in alt_paths:
+            if os.path.exists(alt_path):
+                DATABASE = alt_path
+                break
+except Exception as e:
+    # If path resolution fails, set a default
+    DATABASE = 'backend/films.db'
 
 def get_db():
     """Get database connection"""
