@@ -7,8 +7,9 @@ import SortBar from './components/SortBar'
 import FilterBar from './components/FilterBar'
 import Analytics from './components/Analytics'
 
-// Use relative path for API - works both locally (with proxy) and on Vercel
-const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:5001/api'
+// Use environment variable for production API URL (Railway backend)
+// In development, use local backend
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
 
 function App() {
   const [films, setFilms] = useState([])
