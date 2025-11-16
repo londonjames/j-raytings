@@ -3,6 +3,12 @@ from flask_cors import CORS
 import sqlite3
 import os
 
+try:
+    from serverless_wsgi import handle_request
+    SERVERLESS_WSGI_AVAILABLE = True
+except ImportError:
+    SERVERLESS_WSGI_AVAILABLE = False
+
 app = Flask(__name__)
 CORS(app)
 
@@ -256,14 +262,12 @@ def analytics_by_genre():
     return jsonify(results)
 
 # Vercel serverless function handler
-# Vercel automatically wraps Flask apps, so we just export the app
-# For Vercel Python runtime, we need to use serverless-wsgi
-try:
-    from serverless_wsgi import handle_request
-    
-    def handler(request):
-        return handle_request(app, request.environ, request.start_response)
-except ImportError:
+# Vercel Python runtime expects a handler function
+if SERVERLESS_WSGI_AVAILABLE:
+    def handler(event, context):
+        return handle_request(app, event, context)
+else:
     # Fallback for local development
-    def handler(request):
-        return app(request.environ, request.start_response)
+    def handler(event, context):
+        # This won't work locally, but Vercel will use serverless-wsgi
+        return {'statusCode': 500, 'body': 'serverless-wsgi not available'}
