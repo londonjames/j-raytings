@@ -8,6 +8,7 @@ try:
     SERVERLESS_WSGI_AVAILABLE = True
 except ImportError:
     SERVERLESS_WSGI_AVAILABLE = False
+    handle_request = None
 
 app = Flask(__name__)
 CORS(app)
@@ -262,12 +263,13 @@ def analytics_by_genre():
     return jsonify(results)
 
 # Vercel serverless function handler
-# Vercel Python runtime expects a handler function
-if SERVERLESS_WSGI_AVAILABLE:
-    def handler(event, context):
+# Vercel Python runtime expects a handler function that receives (event, context)
+def handler(event, context):
+    if SERVERLESS_WSGI_AVAILABLE and handle_request:
         return handle_request(app, event, context)
-else:
-    # Fallback for local development
-    def handler(event, context):
-        # This won't work locally, but Vercel will use serverless-wsgi
-        return {'statusCode': 500, 'body': 'serverless-wsgi not available'}
+    else:
+        return {
+            'statusCode': 500,
+            'headers': {'Content-Type': 'application/json'},
+            'body': '{"error": "serverless-wsgi not available"}'
+        }
