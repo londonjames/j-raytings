@@ -45,6 +45,11 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
+@app.route('/api/test', methods=['GET'])
+def test():
+    """Simple test endpoint to verify the function works"""
+    return jsonify({'status': 'ok', 'message': 'API is working'})
+
 @app.route('/api/films', methods=['GET'])
 def get_films():
     """Get all films"""
@@ -282,13 +287,26 @@ def analytics_by_genre():
 # Vercel serverless function handler
 # Vercel Python runtime passes (event, context) to the handler
 def handler(event, context):
-    if SERVERLESS_WSGI_AVAILABLE and handle_request:
-        # serverless-wsgi handles the WSGI conversion
-        return handle_request(app, event, context)
-    else:
-        # Fallback - should not happen in Vercel
+    try:
+        if SERVERLESS_WSGI_AVAILABLE and handle_request:
+            # serverless-wsgi handles the WSGI conversion
+            return handle_request(app, event, context)
+        else:
+            # Fallback - should not happen in Vercel
+            return {
+                'statusCode': 500,
+                'headers': {'Content-Type': 'application/json'},
+                'body': '{"error": "serverless-wsgi not available"}'
+            }
+    except Exception as e:
+        # Catch any errors and return them so we can see what's wrong
+        import traceback
+        error_msg = str(e)
+        traceback_str = traceback.format_exc()
+        print(f"Handler error: {error_msg}")
+        print(f"Traceback: {traceback_str}")
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'application/json'},
-            'body': '{"error": "serverless-wsgi not available"}'
+            'body': f'{{"error": "Handler failed", "message": "{error_msg}", "traceback": "{traceback_str}"}}'
         }
