@@ -602,6 +602,7 @@ body {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 1.2rem;
   row-gap: 1rem;
+  align-items: start;
 }
 
 @media (max-width: 1400px) {
