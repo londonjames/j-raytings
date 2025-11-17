@@ -575,6 +575,22 @@ def get_analytics_by_genre():
     conn.close()
     return jsonify(data)
 
+@app.route('/api/admin/init-db', methods=['POST'])
+def init_database():
+    """Initialize database tables (admin only)"""
+    try:
+        init_db()
+        return jsonify({
+            'success': True,
+            'message': 'Database initialized successfully',
+            'database_type': 'PostgreSQL' if USE_POSTGRES else 'SQLite'
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
 @app.route('/api/admin/import-from-json', methods=['POST'])
 def import_from_json():
     """Import films from JSON file (admin only - for data migration)"""
