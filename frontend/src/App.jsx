@@ -25,16 +25,20 @@ function App() {
   })
   const [resetKey, setResetKey] = useState(0)
   const [showAnalytics, setShowAnalytics] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   // Fetch all films
   const fetchFilms = async () => {
     try {
+      setIsLoading(true)
       const response = await fetch(`${API_URL}/films`)
       const data = await response.json()
       setFilms(data)
       setFilteredFilms(data)
     } catch (error) {
       console.error('Error fetching films:', error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -313,7 +317,11 @@ function App() {
         </div>
       </div>
       <div className="container">
-        {showAnalytics ? (
+        {isLoading ? (
+          <div style={{ textAlign: 'center', padding: '100px 20px', color: '#666' }}>
+            Loading films...
+          </div>
+        ) : showAnalytics ? (
           <Analytics />
         ) : (
           <FilmList
