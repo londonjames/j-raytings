@@ -534,18 +534,18 @@ body {
 }
 
 .search-input-filtered {
-  background: #e0e0e0;
-  border-color: #e0e0e0;
-  color: #1a1a1a;
+  background: #e0e0e0 !important;
+  border-color: #e0e0e0 !important;
+  color: #1a1a1a !important;
 }
 
 .search-input-filtered::placeholder {
-  color: #1a1a1a;
+  color: #666 !important;
 }
 
 .search-input-filtered:focus {
-  background: #e0e0e0;
-  border-color: #e0e0e0;
+  background: #e0e0e0 !important;
+  border-color: #e0e0e0 !important;
 }
 
 .clear-search-btn {
