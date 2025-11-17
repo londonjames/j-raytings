@@ -118,6 +118,31 @@ def add_film():
     if not all(field in data for field in required_fields):
         return jsonify({'error': 'Missing required fields'}), 400
 
+    # Check for duplicates by title
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, title, release_year, rt_link FROM films WHERE title = ?', (data['title'],))
+    existing_films = cursor.fetchall()
+
+    # If duplicates exist and user hasn't provided RT URL to distinguish, return warning
+    if existing_films and not data.get('rt_link'):
+        duplicate_info = []
+        for film in existing_films:
+            duplicate_info.append({
+                'id': film[0],
+                'title': film[1],
+                'release_year': film[2],
+                'rt_link': film[3]
+            })
+        conn.close()
+        return jsonify({
+            'duplicate': True,
+            'message': 'A film with this title already exists. Please provide the Rotten Tomatoes URL to distinguish between versions.',
+            'existing_films': duplicate_info
+        }), 409
+
+    conn.close()
+
     # Initialize variables with user-provided data
     poster_url = data.get('poster_url')
     release_year = data.get('release_year')
@@ -155,7 +180,7 @@ def add_film():
             print(f"Error fetching TMDB data: {e}")
 
     # Generate RT link if not provided
-    rt_link = data.get('rotten_tomatoes')
+    rt_link = data.get('rt_link') or data.get('rotten_tomatoes')
     if not rt_link:
         rt_link = generate_rt_url(data['title'])
 

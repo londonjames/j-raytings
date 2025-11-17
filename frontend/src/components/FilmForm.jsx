@@ -14,6 +14,7 @@ function FilmForm({ film, onSave, onCancel }) {
     length_minutes: '',
     rotten_tomatoes: '',
     rt_per_minute: '',
+    rt_link: '',
     poster_url: '',
     genres: ''
   })
@@ -33,6 +34,7 @@ function FilmForm({ film, onSave, onCancel }) {
         length_minutes: film.length_minutes || '',
         rotten_tomatoes: film.rotten_tomatoes || '',
         rt_per_minute: film.rt_per_minute || '',
+        rt_link: film.rt_link || '',
         poster_url: film.poster_url || '',
         genres: film.genres || ''
       })
@@ -236,7 +238,7 @@ function FilmForm({ film, onSave, onCancel }) {
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="rotten_tomatoes">Rotten Tomatoes</label>
+                <label htmlFor="rotten_tomatoes">Rotten Tomatoes %</label>
                 <input
                   type="text"
                   id="rotten_tomatoes"
@@ -258,6 +260,21 @@ function FilmForm({ film, onSave, onCancel }) {
                   placeholder="Auto-calculated"
                 />
               </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="rt_link">Rotten Tomatoes URL</label>
+              <input
+                type="url"
+                id="rt_link"
+                name="rt_link"
+                value={formData.rt_link}
+                onChange={handleChange}
+                placeholder="e.g., https://www.rottentomatoes.com/m/the_godfather (for duplicates)"
+              />
+              <small style={{ color: '#999', fontSize: '0.85rem' }}>
+                Required when adding a film with the same title as an existing entry
+              </small>
             </div>
 
             <div className="form-group">
