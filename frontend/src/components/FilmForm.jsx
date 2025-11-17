@@ -3,24 +3,38 @@ import { useState, useEffect } from 'react'
 function FilmForm({ film, onSave, onCancel }) {
   const [formData, setFormData] = useState({
     title: '',
-    rating: '',
+    date_seen: '',
+    letter_rating: '',
+    format: '',
+    order_number: '',
+    score: '',
     year_watched: '',
+    location: '',
     release_year: '',
-    genre: '',
-    director: '',
-    notes: ''
+    length_minutes: '',
+    rotten_tomatoes: '',
+    rt_per_minute: '',
+    poster_url: '',
+    genres: ''
   })
 
   useEffect(() => {
     if (film) {
       setFormData({
         title: film.title || '',
-        rating: film.rating || '',
+        date_seen: film.date_seen || '',
+        letter_rating: film.letter_rating || '',
+        format: film.format || '',
+        order_number: film.order_number || '',
+        score: film.score || '',
         year_watched: film.year_watched || '',
+        location: film.location || '',
         release_year: film.release_year || '',
-        genre: film.genre || '',
-        director: film.director || '',
-        notes: film.notes || ''
+        length_minutes: film.length_minutes || '',
+        rotten_tomatoes: film.rotten_tomatoes || '',
+        rt_per_minute: film.rt_per_minute || '',
+        poster_url: film.poster_url || '',
+        genres: film.genres || ''
       })
     }
   }, [film])
@@ -31,9 +45,10 @@ function FilmForm({ film, onSave, onCancel }) {
     // Convert empty strings to null for numeric fields
     const dataToSave = {
       ...formData,
-      rating: formData.rating ? parseFloat(formData.rating) : null,
-      year_watched: formData.year_watched ? parseInt(formData.year_watched) : null,
-      release_year: formData.release_year ? parseInt(formData.release_year) : null
+      order_number: formData.order_number ? parseInt(formData.order_number) : null,
+      score: formData.score ? parseInt(formData.score) : null,
+      release_year: formData.release_year ? parseInt(formData.release_year) : null,
+      length_minutes: formData.length_minutes ? parseInt(formData.length_minutes) : null
     }
 
     onSave(dataToSave)
@@ -52,95 +67,222 @@ function FilmForm({ film, onSave, onCancel }) {
       <div className="film-form">
         <h2>{film ? 'Edit Film' : 'Add New Film'}</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="title">Title *</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-            />
-          </div>
 
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="rating">Your Rating (0-10)</label>
-              <input
-                type="number"
-                id="rating"
-                name="rating"
-                min="0"
-                max="10"
-                step="0.1"
-                value={formData.rating}
-                onChange={handleChange}
-              />
-            </div>
+          {/* Primary Fields - What you'll fill in */}
+          <div className="form-section">
+            <h3>Primary Info (Fill These In)</h3>
 
             <div className="form-group">
-              <label htmlFor="year_watched">Year Watched</label>
-              <input
-                type="number"
-                id="year_watched"
-                name="year_watched"
-                min="1900"
-                max={new Date().getFullYear()}
-                value={formData.year_watched}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="release_year">Release Year</label>
-              <input
-                type="number"
-                id="release_year"
-                name="release_year"
-                min="1900"
-                max={new Date().getFullYear()}
-                value={formData.release_year}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="genre">Genre</label>
+              <label htmlFor="title">Title *</label>
               <input
                 type="text"
-                id="genre"
-                name="genre"
-                value={formData.genre}
+                id="title"
+                name="title"
+                value={formData.title}
                 onChange={handleChange}
-                placeholder="e.g., Drama, Action, Sci-Fi"
+                required
+                placeholder="e.g., The Godfather"
+              />
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="date_seen">Date Watched *</label>
+                <input
+                  type="date"
+                  id="date_seen"
+                  name="date_seen"
+                  value={formData.date_seen}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="letter_rating">Grade *</label>
+                <select
+                  id="letter_rating"
+                  name="letter_rating"
+                  value={formData.letter_rating}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select Grade</option>
+                  <option value="A+">A+</option>
+                  <option value="A/A+">A/A+</option>
+                  <option value="A">A</option>
+                  <option value="A-/A">A-/A</option>
+                  <option value="A-">A-</option>
+                  <option value="B+/A-">B+/A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B/B+">B/B+</option>
+                  <option value="B">B</option>
+                  <option value="B-/B">B-/B</option>
+                  <option value="B-">B-</option>
+                  <option value="C+/B-">C+/B-</option>
+                  <option value="C+">C+</option>
+                  <option value="C/C+">C/C+</option>
+                  <option value="C">C</option>
+                  <option value="C-">C-</option>
+                  <option value="D+">D+</option>
+                  <option value="D">D</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="format">Format</label>
+                <select
+                  id="format"
+                  name="format"
+                  value={formData.format}
+                  onChange={handleChange}
+                >
+                  <option value="">Select Format</option>
+                  <option value="Theatre">Theatre</option>
+                  <option value="Streaming">Streaming</option>
+                  <option value="On-Demand">On-Demand</option>
+                  <option value="TV">TV</option>
+                  <option value="DVD">DVD</option>
+                  <option value="VHS">VHS</option>
+                  <option value="Plane">Plane</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Auto-filled Fields (from API) */}
+          <div className="form-section">
+            <h3>Additional Info (Auto-filled from API or Optional)</h3>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="score">Score (0-100)</label>
+                <input
+                  type="number"
+                  id="score"
+                  name="score"
+                  min="0"
+                  max="100"
+                  value={formData.score}
+                  onChange={handleChange}
+                  placeholder="Auto-calculated from grade"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="order_number">Order #</label>
+                <input
+                  type="number"
+                  id="order_number"
+                  name="order_number"
+                  value={formData.order_number}
+                  onChange={handleChange}
+                  placeholder="Sequence number"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="year_watched">Year Watched</label>
+                <input
+                  type="text"
+                  id="year_watched"
+                  name="year_watched"
+                  value={formData.year_watched}
+                  onChange={handleChange}
+                  placeholder="e.g., 2024 or Pre-2006"
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="location">Location</label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  placeholder="Where you watched it"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="release_year">Release Year</label>
+                <input
+                  type="number"
+                  id="release_year"
+                  name="release_year"
+                  min="1900"
+                  max={new Date().getFullYear() + 5}
+                  value={formData.release_year}
+                  onChange={handleChange}
+                  placeholder="From TMDB API"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="length_minutes">Length (minutes)</label>
+                <input
+                  type="number"
+                  id="length_minutes"
+                  name="length_minutes"
+                  value={formData.length_minutes}
+                  onChange={handleChange}
+                  placeholder="From TMDB API"
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="rotten_tomatoes">Rotten Tomatoes</label>
+                <input
+                  type="text"
+                  id="rotten_tomatoes"
+                  name="rotten_tomatoes"
+                  value={formData.rotten_tomatoes}
+                  onChange={handleChange}
+                  placeholder="e.g., 92%"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="rt_per_minute">RT per Minute</label>
+                <input
+                  type="text"
+                  id="rt_per_minute"
+                  name="rt_per_minute"
+                  value={formData.rt_per_minute}
+                  onChange={handleChange}
+                  placeholder="Auto-calculated"
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="genres">Genres</label>
+              <input
+                type="text"
+                id="genres"
+                name="genres"
+                value={formData.genres}
+                onChange={handleChange}
+                placeholder="e.g., Drama, Crime (from TMDB API)"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="director">Director</label>
+              <label htmlFor="poster_url">Poster URL</label>
               <input
                 type="text"
-                id="director"
-                name="director"
-                value={formData.director}
+                id="poster_url"
+                name="poster_url"
+                value={formData.poster_url}
                 onChange={handleChange}
+                placeholder="From TMDB API"
               />
             </div>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="notes">Notes</label>
-            <textarea
-              id="notes"
-              name="notes"
-              rows="3"
-              value={formData.notes}
-              onChange={handleChange}
-              placeholder="Your thoughts about this film..."
-            />
           </div>
 
           <div className="form-actions">

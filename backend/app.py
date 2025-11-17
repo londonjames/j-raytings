@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 import os
-from tmdb_service import get_poster_url
+from tmdb_service import search_movie, get_movie_details
+import re
 
 app = Flask(__name__)
 CORS(app)
@@ -100,30 +101,71 @@ def get_film(film_id):
 
     return jsonify(dict(film))
 
+def generate_rt_url(title):
+    """Generate Rotten Tomatoes URL from movie title"""
+    # Remove special characters and convert to lowercase
+    slug = re.sub(r'[^\w\s-]', '', title.lower())
+    # Replace spaces with underscores
+    slug = re.sub(r'[\s]+', '_', slug)
+    return f"https://www.rottentomatoes.com/m/{slug}"
+
 @app.route('/api/films', methods=['POST'])
 def add_film():
-    """Add a new film"""
+    """Add a new film with automatic metadata fetching from TMDB"""
     data = request.get_json()
 
     required_fields = ['title']
     if not all(field in data for field in required_fields):
         return jsonify({'error': 'Missing required fields'}), 400
 
-    # Try to fetch poster if not provided
+    # Initialize variables with user-provided data
     poster_url = data.get('poster_url')
-    if not poster_url and os.getenv('TMDB_API_KEY'):
+    release_year = data.get('release_year')
+    length_minutes = data.get('length_minutes')
+    genres = data.get('genres')
+    rotten_tomatoes = data.get('rotten_tomatoes')
+
+    # Fetch metadata from TMDB if API key is available
+    if os.getenv('TMDB_API_KEY'):
         try:
-            poster_url = get_poster_url(data['title'], data.get('release_year'))
+            # Search for the movie
+            movie_data = search_movie(data['title'], release_year)
+
+            if movie_data:
+                # Get poster if not already provided
+                if not poster_url:
+                    poster_url = movie_data.get('poster_url')
+
+                # Get genres if not already provided
+                if not genres:
+                    genres = movie_data.get('genres')
+
+                # Get detailed info (runtime, release year) if we have a TMDB ID
+                tmdb_id = movie_data.get('tmdb_id')
+                if tmdb_id:
+                    details = get_movie_details(tmdb_id)
+                    if details:
+                        if not length_minutes:
+                            length_minutes = details.get('runtime')
+                        if not release_year and details.get('release_date'):
+                            release_year = int(details['release_date'][:4])
+
+                print(f"✓ Fetched metadata for '{data['title']}'")
         except Exception as e:
-            print(f"Error fetching poster: {e}")
+            print(f"Error fetching TMDB data: {e}")
+
+    # Generate RT link if not provided
+    rt_link = data.get('rotten_tomatoes')
+    if not rt_link:
+        rt_link = generate_rt_url(data['title'])
 
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO films (order_number, date_seen, title, letter_rating, score,
                           year_watched, location, format, release_year,
-                          rotten_tomatoes, length_minutes, rt_per_minute, poster_url)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                          rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         data.get('order_number'),
         data.get('date_seen'),
@@ -133,17 +175,22 @@ def add_film():
         data.get('year_watched'),
         data.get('location'),
         data.get('format'),
-        data.get('release_year'),
-        data.get('rotten_tomatoes'),
-        data.get('length_minutes'),
+        release_year,
+        rt_link,
+        length_minutes,
         data.get('rt_per_minute'),
-        poster_url
+        poster_url,
+        genres
     ))
     conn.commit()
     film_id = cursor.lastrowid
     conn.close()
 
-    return jsonify({'id': film_id, 'message': 'Film added successfully'}), 201
+    return jsonify({
+        'id': film_id,
+        'message': 'Film added successfully',
+        'metadata_fetched': bool(poster_url or genres or length_minutes)
+    }), 201
 
 @app.route('/api/films/<int:film_id>', methods=['PUT'])
 def update_film(film_id):
