@@ -16,15 +16,25 @@ function App() {
   const [filteredFilms, setFilteredFilms] = useState([])
   const [editingFilm, setEditingFilm] = useState(null)
   const [showForm, setShowForm] = useState(false)
-  const [searchTerm, setSearchTerm] = useState('')
-  const [activeFilter, setActiveFilter] = useState({ rating: [], year: [], rt: [], genre: [] })
-  const [sortConfig, setSortConfig] = useState({ sortBy: '', direction: 'desc' })
+  const [searchTerm, setSearchTerm] = useState(() => {
+    return localStorage.getItem('searchTerm') || ''
+  })
+  const [activeFilter, setActiveFilter] = useState(() => {
+    const saved = localStorage.getItem('activeFilter')
+    return saved ? JSON.parse(saved) : { rating: [], year: [], rt: [], genre: [] }
+  })
+  const [sortConfig, setSortConfig] = useState(() => {
+    const saved = localStorage.getItem('sortConfig')
+    return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
+  })
   const [viewMode, setViewMode] = useState(() => {
     // Load from localStorage or default to 'grid'
     return localStorage.getItem('viewMode') || 'grid'
   })
   const [resetKey, setResetKey] = useState(0)
-  const [showAnalytics, setShowAnalytics] = useState(false)
+  const [showAnalytics, setShowAnalytics] = useState(() => {
+    return localStorage.getItem('showAnalytics') === 'true'
+  })
   const [isLoading, setIsLoading] = useState(true)
 
   // Fetch all films
@@ -46,10 +56,26 @@ function App() {
     fetchFilms()
   }, [])
 
-  // Save view mode to localStorage when it changes
+  // Save state to localStorage when it changes
   useEffect(() => {
     localStorage.setItem('viewMode', viewMode)
   }, [viewMode])
+
+  useEffect(() => {
+    localStorage.setItem('searchTerm', searchTerm)
+  }, [searchTerm])
+
+  useEffect(() => {
+    localStorage.setItem('activeFilter', JSON.stringify(activeFilter))
+  }, [activeFilter])
+
+  useEffect(() => {
+    localStorage.setItem('sortConfig', JSON.stringify(sortConfig))
+  }, [sortConfig])
+
+  useEffect(() => {
+    localStorage.setItem('showAnalytics', showAnalytics)
+  }, [showAnalytics])
 
   // Add or update film
   const handleSaveFilm = async (filmData) => {
@@ -247,6 +273,12 @@ function App() {
     setActiveFilter(newFilters)
     setSortConfig({ sortBy: '', direction: 'desc' })
     setShowAnalytics(false)
+
+    // Clear localStorage
+    localStorage.removeItem('searchTerm')
+    localStorage.removeItem('activeFilter')
+    localStorage.removeItem('sortConfig')
+    localStorage.removeItem('showAnalytics')
 
     // Apply the reset immediately
     applyFiltersAndSearch('', newFilters)
