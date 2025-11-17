@@ -4,50 +4,116 @@ import sqlite3
 import os
 from tmdb_service import search_movie, get_movie_details
 import re
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 CORS(app)
 
 DATABASE = 'films.db'
 
+# Detect if we should use PostgreSQL or SQLite
+DATABASE_URL = os.getenv('DATABASE_URL')
+USE_POSTGRES = DATABASE_URL is not None
+
+if USE_POSTGRES:
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+
+    # Parse DATABASE_URL for psycopg2
+    result = urlparse(DATABASE_URL)
+    DB_CONFIG = {
+        'dbname': result.path[1:],
+        'user': result.username,
+        'password': result.password,
+        'host': result.hostname,
+        'port': result.port
+    }
+
 def get_db():
-    """Get database connection"""
-    conn = sqlite3.connect(DATABASE)
-    conn.row_factory = sqlite3.Row
-    return conn
+    """Get database connection (PostgreSQL or SQLite based on environment)"""
+    if USE_POSTGRES:
+        conn = psycopg2.connect(**DB_CONFIG)
+        return conn
+    else:
+        conn = sqlite3.connect(DATABASE)
+        conn.row_factory = sqlite3.Row
+        return conn
 
 def init_db():
     """Initialize the database"""
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS films (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            order_number INTEGER,
-            date_seen TEXT,
-            title TEXT NOT NULL,
-            letter_rating TEXT,
-            score INTEGER,
-            year_watched TEXT,
-            location TEXT,
-            format TEXT,
-            release_year INTEGER,
-            rotten_tomatoes TEXT,
-            length_minutes INTEGER,
-            rt_per_minute TEXT,
-            genres TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
 
-    # Add genres column if it doesn't exist (for existing databases)
-    try:
-        cursor.execute('ALTER TABLE films ADD COLUMN genres TEXT')
-        conn.commit()
-    except:
-        pass  # Column already exists
+    if USE_POSTGRES:
+        # PostgreSQL syntax
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS films (
+                id SERIAL PRIMARY KEY,
+                order_number INTEGER,
+                date_seen TEXT,
+                title TEXT NOT NULL,
+                letter_rating TEXT,
+                score INTEGER,
+                year_watched TEXT,
+                location TEXT,
+                format TEXT,
+                release_year INTEGER,
+                rotten_tomatoes TEXT,
+                length_minutes INTEGER,
+                rt_per_minute TEXT,
+                genres TEXT,
+                poster_url TEXT,
+                rt_link TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+    else:
+        # SQLite syntax
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS films (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                order_number INTEGER,
+                date_seen TEXT,
+                title TEXT NOT NULL,
+                letter_rating TEXT,
+                score INTEGER,
+                year_watched TEXT,
+                location TEXT,
+                format TEXT,
+                release_year INTEGER,
+                rotten_tomatoes TEXT,
+                length_minutes INTEGER,
+                rt_per_minute TEXT,
+                genres TEXT,
+                poster_url TEXT,
+                rt_link TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+
+        # Add missing columns if they don't exist (for existing SQLite databases)
+        try:
+            cursor.execute('ALTER TABLE films ADD COLUMN genres TEXT')
+        except:
+            pass
+        try:
+            cursor.execute('ALTER TABLE films ADD COLUMN poster_url TEXT')
+        except:
+            pass
+        try:
+            cursor.execute('ALTER TABLE films ADD COLUMN rt_link TEXT')
+        except:
+            pass
+
     conn.commit()
     conn.close()
+
+def row_to_dict(row):
+    """Convert database row to dictionary (works for both SQLite and PostgreSQL)"""
+    if USE_POSTGRES:
+        return dict(row)
+    else:
+        return dict(row)
 
 @app.route('/api/films', methods=['GET'])
 def get_films():
@@ -58,31 +124,37 @@ def get_films():
     min_score = request.args.get('min_score', '')
 
     conn = get_db()
-    cursor = conn.cursor()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    # Use %s for PostgreSQL, ? for SQLite
+    placeholder = '%s' if USE_POSTGRES else '?'
 
     query = 'SELECT * FROM films WHERE 1=1'
     params = []
 
     if search:
-        query += ' AND title LIKE ?'
+        query += f' AND title LIKE {placeholder}'
         params.append(f'%{search}%')
 
     if location:
-        query += ' AND location LIKE ?'
+        query += f' AND location LIKE {placeholder}'
         params.append(f'%{location}%')
 
     if format_type:
-        query += ' AND format LIKE ?'
+        query += f' AND format LIKE {placeholder}'
         params.append(f'%{format_type}%')
 
     if min_score:
-        query += ' AND score >= ?'
+        query += f' AND score >= {placeholder}'
         params.append(int(min_score))
 
     query += ' ORDER BY order_number ASC'
 
     cursor.execute(query, params)
-    films = [dict(row) for row in cursor.fetchall()]
+    films = [row_to_dict(row) for row in cursor.fetchall()]
     conn.close()
 
     return jsonify(films)
@@ -91,15 +163,20 @@ def get_films():
 def get_film(film_id):
     """Get a single film by ID"""
     conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM films WHERE id = ?', (film_id,))
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT * FROM films WHERE id = %s', (film_id,))
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM films WHERE id = ?', (film_id,))
+
     film = cursor.fetchone()
     conn.close()
 
     if film is None:
         return jsonify({'error': 'Film not found'}), 404
 
-    return jsonify(dict(film))
+    return jsonify(row_to_dict(film))
 
 def generate_rt_url(title):
     """Generate Rotten Tomatoes URL from movie title"""
@@ -120,20 +197,33 @@ def add_film():
 
     # Check for duplicates by title
     conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute('SELECT id, title, release_year, rt_link FROM films WHERE title = ?', (data['title'],))
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT id, title, release_year, rt_link FROM films WHERE title = %s', (data['title'],))
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, title, release_year, rt_link FROM films WHERE title = ?', (data['title'],))
+
     existing_films = cursor.fetchall()
 
     # If duplicates exist and user hasn't provided RT URL to distinguish, return warning
     if existing_films and not data.get('rt_link'):
         duplicate_info = []
         for film in existing_films:
-            duplicate_info.append({
-                'id': film[0],
-                'title': film[1],
-                'release_year': film[2],
-                'rt_link': film[3]
-            })
+            if USE_POSTGRES:
+                duplicate_info.append({
+                    'id': film['id'],
+                    'title': film['title'],
+                    'release_year': film['release_year'],
+                    'rt_link': film['rt_link']
+                })
+            else:
+                duplicate_info.append({
+                    'id': film[0],
+                    'title': film[1],
+                    'release_year': film[2],
+                    'rt_link': film[3]
+                })
         conn.close()
         return jsonify({
             'duplicate': True,
@@ -189,30 +279,58 @@ def add_film():
 
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute('''
-        INSERT INTO films (order_number, date_seen, title, letter_rating, score,
-                          year_watched, location, format, release_year,
-                          rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ''', (
-        data.get('order_number'),
-        data.get('date_seen'),
-        data['title'],
-        data.get('letter_rating'),
-        data.get('score'),
-        data.get('year_watched'),
-        data.get('location'),
-        data.get('format'),
-        release_year,
-        rotten_tomatoes,
-        length_minutes,
-        data.get('rt_per_minute'),
-        poster_url,
-        genres,
-        rt_link
-    ))
+
+    if USE_POSTGRES:
+        cursor.execute('''
+            INSERT INTO films (order_number, date_seen, title, letter_rating, score,
+                              year_watched, location, format, release_year,
+                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING id
+        ''', (
+            data.get('order_number'),
+            data.get('date_seen'),
+            data['title'],
+            data.get('letter_rating'),
+            data.get('score'),
+            data.get('year_watched'),
+            data.get('location'),
+            data.get('format'),
+            release_year,
+            rotten_tomatoes,
+            length_minutes,
+            data.get('rt_per_minute'),
+            poster_url,
+            genres,
+            rt_link
+        ))
+        film_id = cursor.fetchone()[0]
+    else:
+        cursor.execute('''
+            INSERT INTO films (order_number, date_seen, title, letter_rating, score,
+                              year_watched, location, format, release_year,
+                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            data.get('order_number'),
+            data.get('date_seen'),
+            data['title'],
+            data.get('letter_rating'),
+            data.get('score'),
+            data.get('year_watched'),
+            data.get('location'),
+            data.get('format'),
+            release_year,
+            rotten_tomatoes,
+            length_minutes,
+            data.get('rt_per_minute'),
+            poster_url,
+            genres,
+            rt_link
+        ))
+        film_id = cursor.lastrowid
+
     conn.commit()
-    film_id = cursor.lastrowid
     conn.close()
 
     return jsonify({
@@ -228,28 +346,54 @@ def update_film(film_id):
 
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute('''
-        UPDATE films
-        SET order_number = ?, date_seen = ?, title = ?, letter_rating = ?,
-            score = ?, year_watched = ?, location = ?, format = ?,
-            release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?, rt_link = ?
-        WHERE id = ?
-    ''', (
-        data.get('order_number'),
-        data.get('date_seen'),
-        data.get('title'),
-        data.get('letter_rating'),
-        data.get('score'),
-        data.get('year_watched'),
-        data.get('location'),
-        data.get('format'),
-        data.get('release_year'),
-        data.get('rotten_tomatoes'),
-        data.get('length_minutes'),
-        data.get('rt_per_minute'),
-        data.get('rt_link'),
-        film_id
-    ))
+
+    if USE_POSTGRES:
+        cursor.execute('''
+            UPDATE films
+            SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
+                score = %s, year_watched = %s, location = %s, format = %s,
+                release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s
+            WHERE id = %s
+        ''', (
+            data.get('order_number'),
+            data.get('date_seen'),
+            data.get('title'),
+            data.get('letter_rating'),
+            data.get('score'),
+            data.get('year_watched'),
+            data.get('location'),
+            data.get('format'),
+            data.get('release_year'),
+            data.get('rotten_tomatoes'),
+            data.get('length_minutes'),
+            data.get('rt_per_minute'),
+            data.get('rt_link'),
+            film_id
+        ))
+    else:
+        cursor.execute('''
+            UPDATE films
+            SET order_number = ?, date_seen = ?, title = ?, letter_rating = ?,
+                score = ?, year_watched = ?, location = ?, format = ?,
+                release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?, rt_link = ?
+            WHERE id = ?
+        ''', (
+            data.get('order_number'),
+            data.get('date_seen'),
+            data.get('title'),
+            data.get('letter_rating'),
+            data.get('score'),
+            data.get('year_watched'),
+            data.get('location'),
+            data.get('format'),
+            data.get('release_year'),
+            data.get('rotten_tomatoes'),
+            data.get('length_minutes'),
+            data.get('rt_per_minute'),
+            data.get('rt_link'),
+            film_id
+        ))
+
     conn.commit()
 
     if cursor.rowcount == 0:
@@ -264,7 +408,12 @@ def delete_film(film_id):
     """Delete a film"""
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM films WHERE id = ?', (film_id,))
+
+    if USE_POSTGRES:
+        cursor.execute('DELETE FROM films WHERE id = %s', (film_id,))
+    else:
+        cursor.execute('DELETE FROM films WHERE id = ?', (film_id,))
+
     conn.commit()
 
     if cursor.rowcount == 0:
@@ -278,7 +427,11 @@ def delete_film(film_id):
 def get_analytics_by_year():
     """Get analytics data grouped by year watched"""
     conn = get_db()
-    cursor = conn.cursor()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
     cursor.execute('''
         SELECT year_watched, COUNT(*) as count, ROUND(AVG(score), 2) as avg_score
         FROM films
@@ -291,7 +444,7 @@ def get_analytics_by_year():
                 ELSE CAST(year_watched AS INTEGER)
             END
     ''')
-    data = [dict(row) for row in cursor.fetchall()]
+    data = [row_to_dict(row) for row in cursor.fetchall()]
     conn.close()
     return jsonify(data)
 
@@ -299,7 +452,11 @@ def get_analytics_by_year():
 def get_analytics_by_film_year():
     """Get analytics data grouped by film release year (by decade)"""
     conn = get_db()
-    cursor = conn.cursor()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
     cursor.execute('''
         SELECT
             CASE
@@ -317,7 +474,7 @@ def get_analytics_by_film_year():
                 ELSE CAST(SUBSTR(decade, 1, 4) AS INTEGER)
             END
     ''')
-    data = [dict(row) for row in cursor.fetchall()]
+    data = [row_to_dict(row) for row in cursor.fetchall()]
     conn.close()
     return jsonify(data)
 
@@ -325,7 +482,11 @@ def get_analytics_by_film_year():
 def get_analytics_by_rt_score():
     """Get analytics data grouped by Rotten Tomatoes score ranges"""
     conn = get_db()
-    cursor = conn.cursor()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
     cursor.execute('''
         SELECT
             CASE
@@ -360,7 +521,7 @@ def get_analytics_by_rt_score():
                 WHEN '0-9%' THEN 10
             END
     ''')
-    data = [dict(row) for row in cursor.fetchall()]
+    data = [row_to_dict(row) for row in cursor.fetchall()]
     conn.close()
     return jsonify(data)
 
@@ -368,7 +529,10 @@ def get_analytics_by_rt_score():
 def get_analytics_by_genre():
     """Get analytics data grouped by genre, sorted by count descending"""
     conn = get_db()
-    cursor = conn.cursor()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
 
     # Get all genres (films can have multiple genres separated by comma)
     cursor.execute('''
@@ -383,8 +547,9 @@ def get_analytics_by_genre():
     # Count occurrences of each genre and calculate average scores
     genre_stats = {}
     for row in films_with_genres:
-        genres = row['genres'].split(', ')
-        score = row['score']
+        row_dict = row_to_dict(row)
+        genres = row_dict['genres'].split(', ')
+        score = row_dict['score']
 
         for genre in genres:
             genre = genre.strip()
