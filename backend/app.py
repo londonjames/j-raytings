@@ -180,17 +180,20 @@ def add_film():
             print(f"Error fetching TMDB data: {e}")
 
     # Generate RT link if not provided
-    rt_link = data.get('rt_link') or data.get('rotten_tomatoes')
+    rt_link = data.get('rt_link')
     if not rt_link:
         rt_link = generate_rt_url(data['title'])
+
+    # Get RT percentage score (separate from link)
+    rotten_tomatoes = data.get('rotten_tomatoes')
 
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO films (order_number, date_seen, title, letter_rating, score,
                           year_watched, location, format, release_year,
-                          rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                          rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         data.get('order_number'),
         data.get('date_seen'),
@@ -201,11 +204,12 @@ def add_film():
         data.get('location'),
         data.get('format'),
         release_year,
-        rt_link,
+        rotten_tomatoes,
         length_minutes,
         data.get('rt_per_minute'),
         poster_url,
-        genres
+        genres,
+        rt_link
     ))
     conn.commit()
     film_id = cursor.lastrowid
@@ -228,7 +232,7 @@ def update_film(film_id):
         UPDATE films
         SET order_number = ?, date_seen = ?, title = ?, letter_rating = ?,
             score = ?, year_watched = ?, location = ?, format = ?,
-            release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?
+            release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?, rt_link = ?
         WHERE id = ?
     ''', (
         data.get('order_number'),
@@ -243,6 +247,7 @@ def update_film(film_id):
         data.get('rotten_tomatoes'),
         data.get('length_minutes'),
         data.get('rt_per_minute'),
+        data.get('rt_link'),
         film_id
     ))
     conn.commit()
