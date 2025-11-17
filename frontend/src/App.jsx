@@ -304,6 +304,7 @@ function App() {
                 onSearch={handleSearch}
                 totalFilms={films.length}
                 filteredFilms={filteredFilms.length}
+                initialSearchTerm={searchTerm}
               />
               <SortBar key={`sort-${resetKey}`} onSortChange={handleSortChange} />
               <FilterBar key={`filter-${resetKey}`} onFilterChange={handleFilterChange} />

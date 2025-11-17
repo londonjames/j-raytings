@@ -1,7 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-function SearchBar({ onSearch, totalFilms, filteredFilms }) {
-  const [searchTerm, setSearchTerm] = useState('')
+function SearchBar({ onSearch, totalFilms, filteredFilms, initialSearchTerm = '' }) {
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm)
+
+  // Update local state when initialSearchTerm changes (e.g., from localStorage)
+  useEffect(() => {
+    setSearchTerm(initialSearchTerm)
+  }, [initialSearchTerm])
 
   const handleSearchChange = (value) => {
     setSearchTerm(value)
