@@ -89,14 +89,14 @@ function FilmForm({ film, onSave, onCancel }) {
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="date_seen">Date Watched *</label>
+                <label htmlFor="date_seen">Date Watched</label>
                 <input
                   type="date"
                   id="date_seen"
                   name="date_seen"
                   value={formData.date_seen}
                   onChange={handleChange}
-                  required
+                  placeholder="Leave blank for pre-2006 films"
                 />
               </div>
 
