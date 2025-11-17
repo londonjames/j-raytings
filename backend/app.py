@@ -575,6 +575,106 @@ def get_analytics_by_genre():
     conn.close()
     return jsonify(data)
 
+@app.route('/api/admin/import-from-json', methods=['POST'])
+def import_from_json():
+    """Import films from JSON file (admin only - for data migration)"""
+    import json
+
+    try:
+        # Read the JSON export file
+        json_file = os.path.join(os.path.dirname(__file__), 'films_export.json')
+        with open(json_file, 'r', encoding='utf-8') as f:
+            films = json.load(f)
+
+        conn = get_db()
+        cursor = conn.cursor()
+
+        # Clear existing data
+        if USE_POSTGRES:
+            cursor.execute('DELETE FROM films')
+        else:
+            cursor.execute('DELETE FROM films')
+        conn.commit()
+
+        # Insert all films
+        inserted = 0
+        for film in films:
+            if USE_POSTGRES:
+                cursor.execute('''
+                    INSERT INTO films (
+                        order_number, date_seen, title, letter_rating, score,
+                        year_watched, location, format, release_year,
+                        rotten_tomatoes, length_minutes, rt_per_minute,
+                        poster_url, genres, rt_link, created_at
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                ''', (
+                    film.get('order_number'),
+                    film.get('date_seen'),
+                    film.get('title'),
+                    film.get('letter_rating'),
+                    film.get('score'),
+                    film.get('year_watched'),
+                    film.get('location'),
+                    film.get('format'),
+                    film.get('release_year'),
+                    film.get('rotten_tomatoes'),
+                    film.get('length_minutes'),
+                    film.get('rt_per_minute'),
+                    film.get('poster_url'),
+                    film.get('genres'),
+                    film.get('rt_link'),
+                    film.get('created_at')
+                ))
+            else:
+                cursor.execute('''
+                    INSERT INTO films (
+                        order_number, date_seen, title, letter_rating, score,
+                        year_watched, location, format, release_year,
+                        rotten_tomatoes, length_minutes, rt_per_minute,
+                        poster_url, genres, rt_link, created_at
+                    )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    film.get('order_number'),
+                    film.get('date_seen'),
+                    film.get('title'),
+                    film.get('letter_rating'),
+                    film.get('score'),
+                    film.get('year_watched'),
+                    film.get('location'),
+                    film.get('format'),
+                    film.get('release_year'),
+                    film.get('rotten_tomatoes'),
+                    film.get('length_minutes'),
+                    film.get('rt_per_minute'),
+                    film.get('poster_url'),
+                    film.get('genres'),
+                    film.get('rt_link'),
+                    film.get('created_at')
+                ))
+            inserted += 1
+
+        conn.commit()
+        conn.close()
+
+        return jsonify({
+            'success': True,
+            'message': f'Successfully imported {inserted} films',
+            'database_type': 'PostgreSQL' if USE_POSTGRES else 'SQLite'
+        })
+
+    except FileNotFoundError:
+        return jsonify({
+            'success': False,
+            'error': 'films_export.json not found'
+        }), 404
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
 if __name__ == '__main__':
     init_db()
     port = int(os.getenv('PORT', os.getenv('FLASK_RUN_PORT', 5001)))
