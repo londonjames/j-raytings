@@ -137,11 +137,20 @@ def simplify_location(location_str):
     location_lower = location_str.lower().strip()
 
     # Standardize common abbreviations and misspellings
-    location_map = {
-        'san fran': 'San Francisco',
+    # Use exact matches only for short abbreviations
+    exact_match_map = {
         'la': 'Los Angeles',
         'dc': 'Washington DC',
         'd.c.': 'Washington DC',
+    }
+
+    # Check exact match first
+    if location_lower in exact_match_map:
+        return exact_match_map[location_lower]
+
+    # Substring matches for misspellings (these are safe)
+    substring_map = {
+        'san fran': 'San Francisco',
         'new zeal': 'New Zealand',
         'famly camp': 'Family Camp',
         # Fix Peninsula misspellings
@@ -151,9 +160,9 @@ def simplify_location(location_str):
         'pensinsula': 'Peninsula',
     }
 
-    # Check for exact matches or substring matches
-    for key, value in location_map.items():
-        if location_lower == key or key in location_lower:
+    # Check for substring matches
+    for key, value in substring_map.items():
+        if key in location_lower:
             return value
 
     # Title case for proper formatting (capitalize each word)
@@ -171,9 +180,9 @@ def row_to_dict(row):
             length = int(film_dict['length_minutes'])
 
             if length > 0:
-                rt_per_min = rt_score / length
-                # Format to 2 decimal places with percentage
-                film_dict['rt_per_minute'] = f"{rt_per_min:.2f}%"
+                rt_per_min = (rt_score / length) * 100
+                # Format as whole number with percentage
+                film_dict['rt_per_minute'] = f"{rt_per_min:.0f}%"
         except (ValueError, AttributeError):
             # If parsing fails, leave rt_per_minute as is
             pass
