@@ -234,6 +234,11 @@ function App() {
         comparison = bRT - aRT // Higher RT first
       }
 
+      // If primary sort is equal, sort alphabetically by title (numbers before letters)
+      if (comparison === 0) {
+        comparison = (a.title || '').localeCompare(b.title || '', undefined, { numeric: true, sensitivity: 'base' })
+      }
+
       // For desc (best first): keep comparison as is
       // For asc (worst first): reverse it
       return direction === 'desc' ? comparison : -comparison
