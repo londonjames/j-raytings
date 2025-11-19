@@ -2,9 +2,62 @@ import React, { useState } from 'react'
 
 function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
   const [loadedImages, setLoadedImages] = useState(new Set())
+  const [flippedCards, setFlippedCards] = useState(new Set())
 
   const handleImageLoad = (filmId) => {
     setLoadedImages(prev => new Set([...prev, filmId]))
+  }
+
+  const toggleFlip = (filmId) => {
+    setFlippedCards(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(filmId)) {
+        newSet.delete(filmId)
+      } else {
+        newSet.add(filmId)
+      }
+      return newSet
+    })
+  }
+
+  // Helper function to format date as "Jan 1, 2010"
+  const formatDate = (dateSeen) => {
+    if (!dateSeen) return null
+
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+    // Parse MM/DD/YYYY format
+    if (dateSeen.includes('/')) {
+      const parts = dateSeen.split('/')
+      if (parts.length === 3) {
+        const month = parseInt(parts[0]) - 1
+        const day = parseInt(parts[1])
+        const year = parseInt(parts[2])
+        return `${months[month]} ${day}, ${year}`
+      }
+    }
+
+    // Handle "Month-YY" format (e.g., "April-08" -> "Apr 2008")
+    if (dateSeen.includes('-')) {
+      const parts = dateSeen.split('-')
+      if (parts.length === 2) {
+        const monthName = parts[0]
+        const yearPart = parts[1]
+
+        // Find month abbreviation
+        const monthIndex = monthNames.findIndex(m => m === monthName)
+        if (monthIndex !== -1) {
+          // Convert 2-digit year to 4-digit (e.g., "07" -> "2007", "98" -> "1998")
+          const year = parseInt(yearPart)
+          const fullYear = year < 50 ? `20${yearPart.padStart(2, '0')}` : `19${yearPart.padStart(2, '0')}`
+          return `${months[monthIndex]} ${fullYear}`
+        }
+      }
+    }
+
+    // If it's already in a non-date format (like "Theatre", "1990s", etc.), return as-is
+    return dateSeen
   }
 
   // Helper function to format film titles
@@ -102,54 +155,142 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
 
   return (
     <div className="film-list">
-      {films.map(film => (
-        <div key={film.id} className="film-card">
-          <div className="poster-container">
-            {film.poster_url && film.poster_url !== 'PLACEHOLDER' ? (
-              <>
-                {!loadedImages.has(film.id) && <div className="poster-skeleton"></div>}
-                <img
-                  src={film.poster_url}
-                  alt={`${film.title} poster`}
-                  className={`film-poster ${loadedImages.has(film.id) ? 'loaded' : ''}`}
-                  loading="lazy"
-                  onLoad={() => handleImageLoad(film.id)}
-                />
-              </>
-            ) : (
-              <div className="poster-placeholder">
-                <p>Sorry, too obscure to pull a poster</p>
-              </div>
-            )}
-          </div>
+      {films.map(film => {
+        const isFlipped = flippedCards.has(film.id)
+        return (
+          <div key={film.id} className={`film-card-container ${isFlipped ? 'flipped' : ''}`}>
+            <div className="film-card-flipper">
+              {/* FRONT OF CARD */}
+              <div className="film-card film-card-front" onClick={() => toggleFlip(film.id)}>
+                <div className="poster-container">
+                  {film.poster_url && film.poster_url !== 'PLACEHOLDER' ? (
+                    <>
+                      {!loadedImages.has(film.id) && <div className="poster-skeleton"></div>}
+                      <img
+                        src={film.poster_url}
+                        alt={`${film.title} poster`}
+                        className={`film-poster ${loadedImages.has(film.id) ? 'loaded' : ''}`}
+                        loading="lazy"
+                        onLoad={() => handleImageLoad(film.id)}
+                      />
+                    </>
+                  ) : (
+                    <div className="poster-placeholder">
+                      <p>Sorry, too obscure to pull a poster</p>
+                    </div>
+                  )}
+                </div>
 
-          <div className="film-content">
-            <div className="film-info-container">
-              <div className="film-info-left-column">
-                <h3 className={`film-title ${formatTitle(film.title).length > 25 ? 'film-title-long' : ''}`}>
-                  {formatTitle(film.title)}
-                </h3>
-                <div className="film-metadata">
-                  {film.release_year && (
-                    <span className="info-item">{film.release_year}</span>
-                  )}
-                  {film.length_minutes && (
-                    <span className="info-item">{film.length_minutes} min</span>
-                  )}
-                  {film.rotten_tomatoes && (
-                    <span className="info-item rt-score">🍅 {film.rotten_tomatoes}</span>
-                  )}
+                <div className="film-content">
+                  <div className="film-info-container">
+                    <div className="film-info-left-column">
+                      <h3 className={`film-title ${formatTitle(film.title).length > 25 ? 'film-title-long' : ''}`}>
+                        {formatTitle(film.title)}
+                      </h3>
+                      <div className="film-metadata">
+                        {film.release_year && (
+                          <span className="info-item">{film.release_year}</span>
+                        )}
+                        {film.length_minutes && (
+                          <span className="info-item">{film.length_minutes} min</span>
+                        )}
+                        {film.rotten_tomatoes && (
+                          <span className="info-item rt-score">🍅 {film.rotten_tomatoes}</span>
+                        )}
+                      </div>
+                    </div>
+                    {film.letter_rating && (
+                      <div className="rating-box">
+                        <span className="rating">{film.letter_rating}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-              {film.letter_rating && (
-                <div className="rating-box">
-                  <span className="rating">{film.letter_rating}</span>
+
+              {/* BACK OF CARD */}
+              <div className="film-card-back" onClick={() => toggleFlip(film.id)}>
+                <button className="close-btn" onClick={(e) => { e.stopPropagation(); toggleFlip(film.id); }}>✕</button>
+
+                <div className="card-back-header">
+                  {film.poster_url && film.poster_url !== 'PLACEHOLDER' && (
+                    <img
+                      src={film.poster_url}
+                      alt={`${film.title} poster`}
+                      className="poster-thumbnail"
+                    />
+                  )}
+                  <div className="header-text">
+                    <h3 className="film-title-back">{formatTitle(film.title)}</h3>
+                    <div className="year-duration">
+                      {film.release_year && <span>{film.release_year}</span>}
+                      {film.length_minutes && <span>• {film.length_minutes} min</span>}
+                    </div>
+                  </div>
                 </div>
-              )}
+
+                <div className="card-back-metrics">
+                  {film.letter_rating && (
+                    <div className="metric-item">
+                      <span className="metric-label">J-Rayting:</span>
+                      <span className="metric-value with-rating-box">{film.letter_rating}</span>
+                    </div>
+                  )}
+
+                  {film.rotten_tomatoes && film.rt_link && (
+                    <div className="metric-item">
+                      <span className="metric-label">Score:</span>
+                      <a
+                        href={film.rt_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rt-link"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        🍅 {film.rotten_tomatoes} ↗
+                      </a>
+                    </div>
+                  )}
+
+                  {film.rt_per_minute && (
+                    <div className="metric-item">
+                      <span className="metric-label">RT/Minute:</span>
+                      <span className="metric-value">{film.rt_per_minute}</span>
+                    </div>
+                  )}
+                </div>
+
+                {!film.date_seen && !film.format && !film.location ? (
+                  <div className="card-back-details no-data">
+                    James watched before 2006,<br />when he started officially tracking!
+                  </div>
+                ) : (
+                  <div className="card-back-details">
+                    {film.date_seen && (
+                      <div className="detail-row">
+                        <span className="detail-label">Watched:</span>
+                        <span className="detail-value">{formatDate(film.date_seen)}</span>
+                      </div>
+                    )}
+                    {film.format && (
+                      <div className="detail-row">
+                        <span className="detail-label">Format:</span>
+                        <span className="detail-value">{film.format}</span>
+                      </div>
+                    )}
+                    {film.location && (
+                      <div className="detail-row">
+                        <span className="detail-label">Location:</span>
+                        <span className="detail-value">{film.location}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }

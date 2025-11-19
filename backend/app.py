@@ -108,12 +108,85 @@ def init_db():
     conn.commit()
     conn.close()
 
+def simplify_format(format_str):
+    """Simplify format to standard categories"""
+    if not format_str:
+        return format_str
+
+    format_lower = format_str.lower()
+
+    # Streaming services
+    streaming_services = ['hbo', 'netflix', 'amazon', 'prime', 'hulu', 'disney+',
+                         'apple tv', 'peacock', 'paramount+', 'max', 'on-demand', 'ppv']
+    if any(service in format_lower for service in streaming_services):
+        return 'Streaming'
+
+    # Keep these as-is
+    standard_formats = ['theatre', 'dvd', 'vhs', 'blu-ray', 'plane']
+    for fmt in standard_formats:
+        if fmt in format_lower:
+            return fmt.title()
+
+    return format_str
+
+def simplify_location(location_str):
+    """Standardize location names and fix spelling errors"""
+    if not location_str:
+        return location_str
+
+    location_lower = location_str.lower().strip()
+
+    # Standardize common abbreviations and misspellings
+    location_map = {
+        'san fran': 'San Francisco',
+        'la': 'Los Angeles',
+        'dc': 'Washington DC',
+        'd.c.': 'Washington DC',
+        'new zeal': 'New Zealand',
+        'famly camp': 'Family Camp',
+        # Fix Peninsula misspellings
+        'peninsual': 'Peninsula',
+        'peninsulat': 'Peninsula',
+        'peninusula': 'Peninsula',
+        'pensinsula': 'Peninsula',
+    }
+
+    # Check for exact matches or substring matches
+    for key, value in location_map.items():
+        if location_lower == key or key in location_lower:
+            return value
+
+    # Title case for proper formatting (capitalize each word)
+    return location_str.title()
+
 def row_to_dict(row):
     """Convert database row to dictionary (works for both SQLite and PostgreSQL)"""
-    if USE_POSTGRES:
-        return dict(row)
-    else:
-        return dict(row)
+    film_dict = dict(row)
+
+    # Calculate RT/Minute if we have both RT score and length
+    if film_dict.get('rotten_tomatoes') and film_dict.get('length_minutes'):
+        try:
+            # Extract numeric RT score (remove % if present)
+            rt_score = int(film_dict['rotten_tomatoes'].replace('%', ''))
+            length = int(film_dict['length_minutes'])
+
+            if length > 0:
+                rt_per_min = rt_score / length
+                # Format to 2 decimal places with percentage
+                film_dict['rt_per_minute'] = f"{rt_per_min:.2f}%"
+        except (ValueError, AttributeError):
+            # If parsing fails, leave rt_per_minute as is
+            pass
+
+    # Simplify format
+    if film_dict.get('format'):
+        film_dict['format'] = simplify_format(film_dict['format'])
+
+    # Simplify location
+    if film_dict.get('location'):
+        film_dict['location'] = simplify_location(film_dict['location'])
+
+    return film_dict
 
 @app.route('/api/films', methods=['GET'])
 def get_films():

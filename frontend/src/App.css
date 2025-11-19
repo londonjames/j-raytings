@@ -1101,3 +1101,203 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Flip Card Styles */
+.film-card-container {
+  perspective: 1000px;
+  position: relative;
+  aspect-ratio: 2/3;
+  width: 100%;
+}
+
+.film-card-flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.film-card-container.flipped .film-card-flipper {
+  transform: rotateY(180deg);
+}
+
+.film-card-front,
+.film-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.film-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Card Back Header */
+.card-back-header {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding-right: 0.6rem;
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.poster-thumbnail {
+  width: 87px;
+  height: 131px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.header-text {
+  flex: 1;
+  padding-top: 26px;
+}
+
+.film-title-back {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+}
+
+.year-duration {
+  color: #999;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Card Back Metrics */
+.card-back-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 0.6rem 0.75rem 0.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.metric-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.metric-label {
+  color: #999;
+  min-width: 80px;
+}
+
+.metric-value {
+  color: #fff;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.metric-value.with-rating-box {
+  background: #fff;
+  color: #000;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.rt-link {
+  color: #FF6347;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  margin-left: 0.5rem;
+}
+
+.rt-link:hover {
+  color: #FF7F5F;
+  text-decoration: underline;
+}
+
+/* Card Back Details */
+.card-back-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 0.3rem;
+  padding-right: 0.6rem;
+}
+
+.card-back-details.no-data {
+  font-size: 0.85rem;
+  color: #999;
+  font-style: italic;
+  padding-left: 0.3rem;
+  text-align: center;
+  padding-top: 0.75rem;
+  line-height: 1.5;
+}
+
+.detail-row {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.detail-label {
+  color: #999;
+  min-width: 80px;
+}
+
+.detail-value {
+  color: #fff;
+  margin-left: 0.5rem;
+}
+
+/* Flip hint */
+.flip-hint {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
