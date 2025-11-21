@@ -137,7 +137,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                 {film.length_minutes && (
                   <span className="meta-item">{film.length_minutes} min</span>
                 )}
-                {film.rotten_tomatoes && (
+                {film.rotten_tomatoes && film.rotten_tomatoes !== 'no RT score' && (
                   <span className="meta-item rt-score">🍅 {film.rotten_tomatoes}</span>
                 )}
               </div>
@@ -161,7 +161,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
           <div key={film.id} className={`film-card-container ${isFlipped ? 'flipped' : ''}`}>
             <div className="film-card-flipper">
               {/* FRONT OF CARD */}
-              <div className="film-card film-card-front" onClick={() => toggleFlip(film.id)}>
+              <div className="film-card film-card-front" onClick={() => toggleFlip(film.id)} onDoubleClick={() => toggleFlip(film.id)}>
                 <div className="poster-container">
                   {film.poster_url && film.poster_url !== 'PLACEHOLDER' ? (
                     <>
@@ -194,7 +194,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                         {film.length_minutes && (
                           <span className="info-item">{film.length_minutes} min</span>
                         )}
-                        {film.rotten_tomatoes && (
+                        {film.rotten_tomatoes && film.rotten_tomatoes !== 'no RT score' && (
                           <span className="info-item rt-score">🍅 {film.rotten_tomatoes}</span>
                         )}
                       </div>
@@ -209,7 +209,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
               </div>
 
               {/* BACK OF CARD */}
-              <div className="film-card-back" onClick={() => toggleFlip(film.id)}>
+              <div className="film-card-back" onClick={() => toggleFlip(film.id)} onDoubleClick={() => toggleFlip(film.id)}>
                 <button className="close-btn" onClick={(e) => { e.stopPropagation(); toggleFlip(film.id); }}>✕</button>
 
                 <div className="card-back-header">

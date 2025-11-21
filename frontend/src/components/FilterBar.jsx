@@ -1,35 +1,124 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-function FilterBar({ onFilterChange }) {
+function FilterBar({ onFilterChange, onActiveFiltersChange }) {
   const [showMainDropdown, setShowMainDropdown] = useState(false)
   const [openDropdowns, setOpenDropdowns] = useState({
     rating: false,
-    year: false,
     rt: false,
+    year: false,
+    yearSeen: false,
     genre: false
   })
+  const dropdownRef = useRef(null)
   const [activeFilters, setActiveFilters] = useState({
     rating: false,
-    year: false,
     rt: false,
+    year: false,
+    yearSeen: false,
     genre: false
   })
-  const [selectedFilters, setSelectedFilters] = useState({
-    rating: [],
-    year: [],
-    rt: [],
-    genre: []
+  const [selectedFilters, setSelectedFilters] = useState(() => {
+    const saved = localStorage.getItem('activeFilter')
+    if (saved) {
+      const parsedFilters = JSON.parse(saved)
+      // Ensure all filter types exist with defaults
+      return {
+        rating: parsedFilters.rating || [],
+        rt: parsedFilters.rt || [],
+        year: parsedFilters.year || [],
+        yearSeen: parsedFilters.yearSeen || [],
+        genre: parsedFilters.genre || []
+      }
+    }
+    return {
+      rating: [],
+      rt: [],
+      year: [],
+      yearSeen: [],
+      genre: []
+    }
   })
+
+  // On mount, restore active filters from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('activeFilter')
+    if (saved) {
+      const parsedFilters = JSON.parse(saved)
+      // Ensure all filter types exist with defaults
+      const fullFilters = {
+        rating: parsedFilters.rating || [],
+        rt: parsedFilters.rt || [],
+        year: parsedFilters.year || [],
+        yearSeen: parsedFilters.yearSeen || [],
+        genre: parsedFilters.genre || []
+      }
+      setSelectedFilters(fullFilters)
+
+      // Set activeFilters based on what has selections
+      setActiveFilters({
+        rating: fullFilters.rating.length > 0,
+        rt: fullFilters.rt.length > 0,
+        year: fullFilters.year.length > 0,
+        yearSeen: fullFilters.yearSeen.length > 0,
+        genre: fullFilters.genre.length > 0
+      })
+    }
+  }, [])
+
+  // Notify parent when activeFilters changes
+  useEffect(() => {
+    if (onActiveFiltersChange) {
+      const hasAnyActive = activeFilters.rating ||
+                          activeFilters.rt ||
+                          activeFilters.year ||
+                          activeFilters.yearSeen ||
+                          activeFilters.genre
+      onActiveFiltersChange(hasAnyActive)
+    }
+  }, [activeFilters, onActiveFiltersChange])
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdowns({
+          rating: false,
+          rt: false,
+          year: false,
+          yearSeen: false,
+          genre: false
+        })
+        setShowMainDropdown(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const toggleMainDropdown = () => {
     setShowMainDropdown(!showMainDropdown)
   }
 
   const toggleDropdown = (type) => {
-    setOpenDropdowns(prev => ({
-      ...prev,
-      [type]: !prev[type]
-    }))
+    setOpenDropdowns(prev => {
+      const isCurrentlyOpen = prev[type]
+      // Close all dropdowns
+      const allClosed = {
+        rating: false,
+        rt: false,
+        year: false,
+        yearSeen: false,
+        genre: false
+      }
+      // If the clicked one was closed, open it. If it was open, keep all closed.
+      return {
+        ...allClosed,
+        [type]: !isCurrentlyOpen
+      }
+    })
   }
 
   const handleValueToggle = (type, value) => {
@@ -48,35 +137,54 @@ function FilterBar({ onFilterChange }) {
   const handleClear = () => {
     setSelectedFilters({
       rating: [],
-      year: [],
       rt: [],
+      year: [],
+      yearSeen: [],
       genre: []
     })
     setActiveFilters({
       rating: false,
-      year: false,
       rt: false,
+      year: false,
+      yearSeen: false,
       genre: false
     })
     onFilterChange({
       rating: [],
-      year: [],
       rt: [],
+      year: [],
+      yearSeen: [],
       genre: []
     })
   }
 
+  const handleRemoveFilter = (type, value) => {
+    const newSelectedFilters = { ...selectedFilters }
+    newSelectedFilters[type] = newSelectedFilters[type].filter(v => v !== value)
+    setSelectedFilters(newSelectedFilters)
+    onFilterChange(newSelectedFilters)
+  }
+
   const hasActiveFilters = () => {
+    return activeFilters.rating ||
+           activeFilters.rt ||
+           activeFilters.year ||
+           activeFilters.yearSeen ||
+           activeFilters.genre
+  }
+
+  const hasSelectedValues = () => {
     return selectedFilters.rating.length > 0 ||
-           selectedFilters.year.length > 0 ||
            selectedFilters.rt.length > 0 ||
+           selectedFilters.year.length > 0 ||
+           selectedFilters.yearSeen.length > 0 ||
            selectedFilters.genre.length > 0
   }
 
   // Rating options: A+, A, A-, B+, B, B-, C+, C, C-, D+, D
   const ratingOptions = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D']
 
-  // Year ranges
+  // Year ranges (for film release year)
   const yearRanges = [
     '2020s',
     '2010s',
@@ -87,6 +195,14 @@ function FilterBar({ onFilterChange }) {
     '1960s',
     '1950s',
     'Pre-1950'
+  ]
+
+  // Year seen ranges (for year watched)
+  const yearSeenRanges = [
+    '2020s',
+    '2010s',
+    '2000s',
+    'Pre-2000'
   ]
 
   // RT score ranges
@@ -125,8 +241,17 @@ function FilterBar({ onFilterChange }) {
     'Western'
   ]
 
+  const getFilterLabel = (type, value) => {
+    if (type === 'rt') {
+      const range = rtRanges.find(r => r.value === value)
+      return range ? range.label : value
+    }
+    return value
+  }
+
   return (
-    <div className="filter-bar">
+    <div ref={dropdownRef} style={{ display: 'contents' }}>
+      {/* Filter icon button - stays on top row */}
       <div className="filter-dropdown">
         <button
           className={`filter-button ${hasActiveFilters() ? 'active' : ''}`}
@@ -148,14 +273,18 @@ function FilterBar({ onFilterChange }) {
 
         {/* Main dropdown to add filters */}
         {showMainDropdown && (
-          <>
-            <div className="filter-dropdown-overlay" onClick={() => setShowMainDropdown(false)}></div>
             <div className="filter-main-dropdown">
               <button
                 className="filter-add-option"
                 onClick={() => {
                   setActiveFilters(prev => ({ ...prev, rating: true }))
-                  setOpenDropdowns(prev => ({ ...prev, rating: true }))
+                  setOpenDropdowns({
+                    rating: true,
+                    rt: false,
+                    year: false,
+                    yearSeen: false,
+                    genre: false
+                  })
                   setShowMainDropdown(false)
                 }}
               >
@@ -164,18 +293,14 @@ function FilterBar({ onFilterChange }) {
               <button
                 className="filter-add-option"
                 onClick={() => {
-                  setActiveFilters(prev => ({ ...prev, year: true }))
-                  setOpenDropdowns(prev => ({ ...prev, year: true }))
-                  setShowMainDropdown(false)
-                }}
-              >
-                By Film Year
-              </button>
-              <button
-                className="filter-add-option"
-                onClick={() => {
                   setActiveFilters(prev => ({ ...prev, rt: true }))
-                  setOpenDropdowns(prev => ({ ...prev, rt: true }))
+                  setOpenDropdowns({
+                    rating: false,
+                    rt: true,
+                    year: false,
+                    yearSeen: false,
+                    genre: false
+                  })
                   setShowMainDropdown(false)
                 }}
               >
@@ -184,45 +309,110 @@ function FilterBar({ onFilterChange }) {
               <button
                 className="filter-add-option"
                 onClick={() => {
+                  setActiveFilters(prev => ({ ...prev, year: true }))
+                  setOpenDropdowns({
+                    rating: false,
+                    rt: false,
+                    year: true,
+                    yearSeen: false,
+                    genre: false
+                  })
+                  setShowMainDropdown(false)
+                }}
+              >
+                By Film Year
+              </button>
+              <button
+                className="filter-add-option"
+                onClick={() => {
+                  setActiveFilters(prev => ({ ...prev, yearSeen: true }))
+                  setOpenDropdowns({
+                    rating: false,
+                    rt: false,
+                    year: false,
+                    yearSeen: true,
+                    genre: false
+                  })
+                  setShowMainDropdown(false)
+                }}
+              >
+                By Year Seen
+              </button>
+              <button
+                className="filter-add-option"
+                onClick={() => {
                   setActiveFilters(prev => ({ ...prev, genre: true }))
-                  setOpenDropdowns(prev => ({ ...prev, genre: true }))
+                  setOpenDropdowns({
+                    rating: false,
+                    rt: false,
+                    year: false,
+                    yearSeen: false,
+                    genre: true
+                  })
                   setShowMainDropdown(false)
                 }}
               >
                 By Genre
               </button>
             </div>
-          </>
         )}
       </div>
 
-      {/* By J-Rayting Filter - Show if active */}
-      {activeFilters.rating && (
+      {/* All active filter buttons - stacked vertically */}
+      {hasActiveFilters() && (
+        <div className="filter-buttons-stack">
+          {/* By J-Rayting Filter - Show if active */}
+          {activeFilters.rating && (
+            <div className="filter-dropdown">
+              <button
+                className="filter-type-button active"
+                onClick={() => toggleDropdown('rating')}
+              >
+                By J-Rayting ({selectedFilters.rating.length})
+              </button>
+
+              {openDropdowns.rating && (
+                  <div className="filter-checkbox-dropdown">
+                    {ratingOptions.map(rating => (
+                      <label key={rating} className="filter-checkbox-label">
+                        <input
+                          type="checkbox"
+                          checked={selectedFilters.rating.includes(rating)}
+                          onChange={() => handleValueToggle('rating', rating)}
+                          className="filter-checkbox"
+                        />
+                        <span>{rating}</span>
+                      </label>
+                    ))}
+                  </div>
+              )}
+            </div>
+          )}
+
+          {/* By Rotten Tomatoes Filter - Show if active */}
+          {activeFilters.rt && (
         <div className="filter-dropdown">
           <button
             className="filter-type-button active"
-            onClick={() => toggleDropdown('rating')}
+            onClick={() => toggleDropdown('rt')}
           >
-            By J-Rayting ({selectedFilters.rating.length})
+            By RT ({selectedFilters.rt.length})
           </button>
 
-          {openDropdowns.rating && (
-            <>
-              <div className="filter-dropdown-overlay" onClick={() => toggleDropdown('rating')}></div>
+          {openDropdowns.rt && (
               <div className="filter-checkbox-dropdown">
-                {ratingOptions.map(rating => (
-                  <label key={rating} className="filter-checkbox-label">
+                {rtRanges.map(range => (
+                  <label key={range.value} className="filter-checkbox-label">
                     <input
                       type="checkbox"
-                      checked={selectedFilters.rating.includes(rating)}
-                      onChange={() => handleValueToggle('rating', rating)}
+                      checked={selectedFilters.rt.includes(range.value)}
+                      onChange={() => handleValueToggle('rt', range.value)}
                       className="filter-checkbox"
                     />
-                    <span>{rating}</span>
+                    <span>{range.label}</span>
                   </label>
                 ))}
               </div>
-            </>
           )}
         </div>
       )}
@@ -238,8 +428,6 @@ function FilterBar({ onFilterChange }) {
           </button>
 
           {openDropdowns.year && (
-            <>
-              <div className="filter-dropdown-overlay" onClick={() => toggleDropdown('year')}></div>
               <div className="filter-checkbox-dropdown">
                 {yearRanges.map(range => (
                   <label key={range} className="filter-checkbox-label">
@@ -253,38 +441,34 @@ function FilterBar({ onFilterChange }) {
                   </label>
                 ))}
               </div>
-            </>
           )}
         </div>
       )}
 
-      {/* By Rotten Tomatoes Filter - Show if active */}
-      {activeFilters.rt && (
+      {/* By Year Seen Filter - Show if active */}
+      {activeFilters.yearSeen && (
         <div className="filter-dropdown">
           <button
             className="filter-type-button active"
-            onClick={() => toggleDropdown('rt')}
+            onClick={() => toggleDropdown('yearSeen')}
           >
-            By RT ({selectedFilters.rt.length})
+            By Year Seen ({selectedFilters.yearSeen.length})
           </button>
 
-          {openDropdowns.rt && (
-            <>
-              <div className="filter-dropdown-overlay" onClick={() => toggleDropdown('rt')}></div>
+          {openDropdowns.yearSeen && (
               <div className="filter-checkbox-dropdown">
-                {rtRanges.map(range => (
-                  <label key={range.value} className="filter-checkbox-label">
+                {yearSeenRanges.map(range => (
+                  <label key={range} className="filter-checkbox-label">
                     <input
                       type="checkbox"
-                      checked={selectedFilters.rt.includes(range.value)}
-                      onChange={() => handleValueToggle('rt', range.value)}
+                      checked={selectedFilters.yearSeen.includes(range)}
+                      onChange={() => handleValueToggle('yearSeen', range)}
                       className="filter-checkbox"
                     />
-                    <span>{range.label}</span>
+                    <span>{range}</span>
                   </label>
                 ))}
               </div>
-            </>
           )}
         </div>
       )}
@@ -300,8 +484,6 @@ function FilterBar({ onFilterChange }) {
           </button>
 
           {openDropdowns.genre && (
-            <>
-              <div className="filter-dropdown-overlay" onClick={() => toggleDropdown('genre')}></div>
               <div className="filter-checkbox-dropdown">
                 {genreOptions.map(genre => (
                   <label key={genre} className="filter-checkbox-label">
@@ -315,14 +497,16 @@ function FilterBar({ onFilterChange }) {
                   </label>
                 ))}
               </div>
-            </>
           )}
+        </div>
+            )}
         </div>
       )}
 
-      {hasActiveFilters() && (
-        <button className="clear-filter-btn" onClick={handleClear}>
-          Clear All Filters
+      {/* Clear Filters button - stays on top row */}
+      {hasSelectedValues() && (
+        <button className="clear-all-filters-btn" onClick={handleClear}>
+          Clear Filters
         </button>
       )}
     </div>

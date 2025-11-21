@@ -21,7 +21,7 @@ function App() {
   })
   const [activeFilter, setActiveFilter] = useState(() => {
     const saved = localStorage.getItem('activeFilter')
-    return saved ? JSON.parse(saved) : { rating: [], year: [], rt: [], genre: [] }
+    return saved ? JSON.parse(saved) : { rating: [], rt: [], year: [], yearSeen: [], genre: [] }
   })
   const [sortConfig, setSortConfig] = useState(() => {
     const saved = localStorage.getItem('sortConfig')
@@ -36,6 +36,7 @@ function App() {
     return localStorage.getItem('showAnalytics') === 'true'
   })
   const [isLoading, setIsLoading] = useState(true)
+  const [hasActiveFilters, setHasActiveFilters] = useState(false)
 
   // Fetch all films
   const fetchFilms = async () => {
@@ -201,6 +202,24 @@ function App() {
       })
     }
 
+    // Apply year seen filter
+    if (filterConfig.yearSeen && filterConfig.yearSeen.length > 0) {
+      filtered = filtered.filter(film => {
+        if (!film.year_watched) return false
+        const yearWatched = parseInt(film.year_watched)
+
+        return filterConfig.yearSeen.some(selectedRange => {
+          if (selectedRange === 'Pre-2000') {
+            return yearWatched < 2000
+          } else {
+            const decade = selectedRange.replace('s', '')
+            const decadeStart = parseInt(decade)
+            return yearWatched >= decadeStart && yearWatched < decadeStart + 10
+          }
+        })
+      })
+    }
+
     // Apply sorting
     filtered = sortFilms(filtered, sortConfig)
 
@@ -273,7 +292,7 @@ function App() {
   // Reset to home experience
   const handleReset = () => {
     // Clear all filters and search
-    const newFilters = { rating: [], year: [], rt: [], genre: [] }
+    const newFilters = { rating: [], rt: [], year: [], yearSeen: [], genre: [] }
     setSearchTerm('')
     setActiveFilter(newFilters)
     setSortConfig({ sortBy: '', direction: 'desc' })
@@ -297,36 +316,54 @@ function App() {
     setShowAnalytics(!showAnalytics)
   }
 
+  // Check if any filter values are selected
+  const hasSelectedFilterValues = () => {
+    return activeFilter.rating.length > 0 ||
+           activeFilter.rt.length > 0 ||
+           activeFilter.year.length > 0 ||
+           activeFilter.yearSeen.length > 0 ||
+           activeFilter.genre.length > 0
+  }
+
   return (
     <div className="app">
       <div className="sticky-header">
         <div className="container">
           <div className="header-controls">
-            <div className="site-title" onClick={handleReset} style={{ cursor: 'pointer' }}>J-RAYTINGS</div>
-            <div className="search-and-filter">
-              <SearchBar
-                key={`search-${resetKey}`}
-                onSearch={handleSearch}
-                totalFilms={films.length}
-                filteredFilms={filteredFilms.length}
-                initialSearchTerm={searchTerm}
-              />
-              <SortBar key={`sort-${resetKey}`} onSortChange={handleSortChange} />
-              <FilterBar key={`filter-${resetKey}`} onFilterChange={handleFilterChange} />
-              <button
-                className={`analytics-button ${showAnalytics ? 'active' : ''}`}
-                onClick={handleAnalyticsToggle}
-                title="Analytics"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <rect x="2" y="15" width="3.5" height="6" rx="0.5"></rect>
-                  <rect x="7.5" y="10" width="3.5" height="11" rx="0.5"></rect>
-                  <rect x="13" y="6" width="3.5" height="15" rx="0.5"></rect>
-                  <rect x="18.5" y="3" width="3.5" height="18" rx="0.5"></rect>
-                </svg>
-              </button>
-            </div>
-            <div className="view-controls">
+            <div className={`header-top-row ${hasActiveFilters ? 'filters-active' : ''}`}>
+              {!hasActiveFilters && (
+                <div className="site-title" onClick={handleReset} style={{ cursor: 'pointer' }}>J-RAYTINGS</div>
+              )}
+              <div className="search-and-filter">
+                <SearchBar
+                  key={`search-${resetKey}`}
+                  onSearch={handleSearch}
+                  totalFilms={films.length}
+                  filteredFilms={filteredFilms.length}
+                  initialSearchTerm={searchTerm}
+                  hasActiveFilters={hasSelectedFilterValues()}
+                />
+                <SortBar key={`sort-${resetKey}`} onSortChange={handleSortChange} />
+                <FilterBar
+                  key={`filter-${resetKey}`}
+                  onFilterChange={handleFilterChange}
+                  activeFilter={activeFilter}
+                  onActiveFiltersChange={setHasActiveFilters}
+                />
+                <button
+                  className={`analytics-button ${showAnalytics ? 'active' : ''}`}
+                  onClick={handleAnalyticsToggle}
+                  title="Analytics"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="2" y="15" width="3.5" height="6" rx="0.5"></rect>
+                    <rect x="7.5" y="10" width="3.5" height="11" rx="0.5"></rect>
+                    <rect x="13" y="6" width="3.5" height="15" rx="0.5"></rect>
+                    <rect x="18.5" y="3" width="3.5" height="18" rx="0.5"></rect>
+                  </svg>
+                </button>
+              </div>
+              <div className="view-controls">
               <button
                 className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
                 onClick={() => setViewMode('grid')}
@@ -350,6 +387,7 @@ function App() {
                   <rect x="2" y="15" width="16" height="2" rx="1"/>
                 </svg>
               </button>
+              </div>
             </div>
           </div>
         </div>
