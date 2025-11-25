@@ -64,6 +64,7 @@ def init_db():
                 genres TEXT,
                 poster_url TEXT,
                 rt_link TEXT,
+                a_grade_rank INTEGER,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
@@ -87,6 +88,7 @@ def init_db():
                 genres TEXT,
                 poster_url TEXT,
                 rt_link TEXT,
+                a_grade_rank INTEGER,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
@@ -366,8 +368,8 @@ def add_film():
         cursor.execute('''
             INSERT INTO films (order_number, date_seen, title, letter_rating, score,
                               year_watched, location, format, release_year,
-                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, a_grade_rank)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
         ''', (
             data.get('order_number'),
@@ -384,15 +386,16 @@ def add_film():
             data.get('rt_per_minute'),
             poster_url,
             genres,
-            rt_link
+            rt_link,
+            data.get('a_grade_rank')
         ))
         film_id = cursor.fetchone()[0]
     else:
         cursor.execute('''
             INSERT INTO films (order_number, date_seen, title, letter_rating, score,
                               year_watched, location, format, release_year,
-                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, a_grade_rank)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             data.get('order_number'),
             data.get('date_seen'),
@@ -408,7 +411,8 @@ def add_film():
             data.get('rt_per_minute'),
             poster_url,
             genres,
-            rt_link
+            rt_link,
+            data.get('a_grade_rank')
         ))
         film_id = cursor.lastrowid
 
@@ -434,7 +438,7 @@ def update_film(film_id):
             UPDATE films
             SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
                 score = %s, year_watched = %s, location = %s, format = %s,
-                release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s
+                release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s, a_grade_rank = %s
             WHERE id = %s
         ''', (
             data.get('order_number'),
@@ -450,6 +454,7 @@ def update_film(film_id):
             data.get('length_minutes'),
             data.get('rt_per_minute'),
             data.get('rt_link'),
+            data.get('a_grade_rank'),
             film_id
         ))
     else:
@@ -457,7 +462,7 @@ def update_film(film_id):
             UPDATE films
             SET order_number = ?, date_seen = ?, title = ?, letter_rating = ?,
                 score = ?, year_watched = ?, location = ?, format = ?,
-                release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?, rt_link = ?
+                release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?, rt_link = ?, a_grade_rank = ?
             WHERE id = ?
         ''', (
             data.get('order_number'),
@@ -473,6 +478,7 @@ def update_film(film_id):
             data.get('length_minutes'),
             data.get('rt_per_minute'),
             data.get('rt_link'),
+            data.get('a_grade_rank'),
             film_id
         ))
 

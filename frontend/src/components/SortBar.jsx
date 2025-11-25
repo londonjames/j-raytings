@@ -1,9 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-function SortBar({ onSortChange }) {
-  const [sortBy, setSortBy] = useState('')
-  const [sortDirection, setSortDirection] = useState('desc') // desc = best first, asc = worst first
-  const [showDirectionToggle, setShowDirectionToggle] = useState(false)
+function SortBar({ onSortChange, initialSortConfig }) {
+  // Initialize from prop or localStorage, defaulting to rating sort
+  const getInitialSort = () => {
+    if (initialSortConfig) {
+      return initialSortConfig
+    }
+    const saved = localStorage.getItem('sortConfig')
+    return saved ? JSON.parse(saved) : { sortBy: 'rating', direction: 'desc' }
+  }
+
+  const initialSort = getInitialSort()
+  const initialSortBy = initialSort.sortBy || 'rating'
+  const [sortBy, setSortBy] = useState(initialSortBy)
+  const [sortDirection, setSortDirection] = useState(initialSort.direction || 'desc')
+  const [showDirectionToggle, setShowDirectionToggle] = useState(!!initialSortBy) // Show toggle if sortBy is set
+
+  // Sync with prop changes
+  useEffect(() => {
+    if (initialSortConfig) {
+      const newSortBy = initialSortConfig.sortBy || 'rating'
+      setSortBy(newSortBy)
+      setSortDirection(initialSortConfig.direction || 'desc')
+      setShowDirectionToggle(!!newSortBy)
+    }
+  }, [initialSortConfig])
 
   const handleSortChange = (newSortBy) => {
     if (!newSortBy) {

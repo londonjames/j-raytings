@@ -25,7 +25,7 @@ function App() {
   })
   const [sortConfig, setSortConfig] = useState(() => {
     const saved = localStorage.getItem('sortConfig')
-    return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
+    return saved ? JSON.parse(saved) : { sortBy: 'rating', direction: 'desc' }
   })
   const [viewMode, setViewMode] = useState(() => {
     // Load from localStorage or default to 'grid'
@@ -206,15 +206,13 @@ function App() {
     if (filterConfig.yearSeen && filterConfig.yearSeen.length > 0) {
       filtered = filtered.filter(film => {
         if (!film.year_watched) return false
-        const yearWatched = parseInt(film.year_watched)
 
-        return filterConfig.yearSeen.some(selectedRange => {
-          if (selectedRange === 'Pre-2000') {
-            return yearWatched < 2000
+        return filterConfig.yearSeen.some(selectedYear => {
+          if (selectedYear === 'Pre-2006') {
+            return film.year_watched === 'Pre-2006'
           } else {
-            const decade = selectedRange.replace('s', '')
-            const decadeStart = parseInt(decade)
-            return yearWatched >= decadeStart && yearWatched < decadeStart + 10
+            // Match exact year (as string since year_watched can be "Pre-2006")
+            return film.year_watched === selectedYear
           }
         })
       })
@@ -238,11 +236,37 @@ function App() {
       const actualSortBy = sortBy || 'rating'
 
       if (actualSortBy === 'rating') {
-        // Use numeric score field (20 = A+, 19 = A/A+, etc.)
-        // Higher score = better rating
-        const aScore = a.score || 0
-        const bScore = b.score || 0
-        comparison = bScore - aScore // Higher score first
+        // Special handling for A-grade movies: use custom ranking if available
+        const aIsA = a.letter_rating === 'A'
+        const bIsA = b.letter_rating === 'A'
+        
+        if (aIsA && bIsA) {
+          // Both are A-grade: use custom ranking
+          const aRank = a.a_grade_rank
+          const bRank = b.a_grade_rank
+          
+          if (aRank !== null && aRank !== undefined && bRank !== null && bRank !== undefined) {
+            // Both have ranks: lower rank number = better (rank 1 is best)
+            comparison = aRank - bRank
+          } else if (aRank !== null && aRank !== undefined) {
+            // Only a has rank: a comes first
+            comparison = -1
+          } else if (bRank !== null && bRank !== undefined) {
+            // Only b has rank: b comes first
+            comparison = 1
+          } else {
+            // Neither has rank: fall back to score, then alphabetical
+            const aScore = a.score || 0
+            const bScore = b.score || 0
+            comparison = bScore - aScore
+          }
+        } else {
+          // Not both A-grade: use numeric score field (20 = A+, 19 = A/A+, etc.)
+          // Higher score = better rating
+          const aScore = a.score || 0
+          const bScore = b.score || 0
+          comparison = bScore - aScore // Higher score first
+        }
       } else if (actualSortBy === 'year') {
         const aYear = parseInt(a.release_year) || 0
         const bYear = parseInt(b.release_year) || 0
@@ -295,7 +319,7 @@ function App() {
     const newFilters = { rating: [], rt: [], year: [], yearSeen: [], genre: [] }
     setSearchTerm('')
     setActiveFilter(newFilters)
-    setSortConfig({ sortBy: '', direction: 'desc' })
+    setSortConfig({ sortBy: 'rating', direction: 'desc' })
     setShowAnalytics(false)
 
     // Clear localStorage
@@ -343,7 +367,7 @@ function App() {
                   initialSearchTerm={searchTerm}
                   hasActiveFilters={hasSelectedFilterValues()}
                 />
-                <SortBar key={`sort-${resetKey}`} onSortChange={handleSortChange} />
+                <SortBar key={`sort-${resetKey}`} onSortChange={handleSortChange} initialSortConfig={sortConfig} />
                 <FilterBar
                   key={`filter-${resetKey}`}
                   onFilterChange={handleFilterChange}
