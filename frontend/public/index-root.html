@@ -19,7 +19,12 @@
             background: #fff;
             color: #000;
             line-height: 1.6;
-            padding: 2rem;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .page-wrapper {
+            padding: 0 10px;
         }
         
         /* Header */
@@ -28,6 +33,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 4rem;
+            padding-top: 2rem;
         }
         
         .site-name {
@@ -128,15 +134,12 @@
         
         /* Responsive: 1 column on mobile */
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-            
             header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1.5rem;
                 margin-bottom: 2rem;
+                padding-top: 1rem;
             }
             
             .header-right {
@@ -166,37 +169,39 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="site-name">JAMES RAYBOULD</div>
-        <div class="header-right">
-            <nav>
-                <a href="/about">ABOUT</a>
-                <a href="/newsletter">NEWSLETTER</a>
-                <a href="/contact">CONTACT</a>
-            </nav>
-            <a href="https://www.linkedin.com/in/jamesraybould" target="_blank" rel="noopener noreferrer" class="linkedin-link">in</a>
-        </div>
-    </header>
-    
-    <div class="container">
-        <div class="grid">
-            <a href="/films" class="block">
-                <div class="block-content">Films</div>
-            </a>
-            <a href="/books" class="block">
-                <div class="block-content">Books</div>
-            </a>
-            <a href="/whats-the-so-what-newsletter" class="block">
-                <div class="block-content">What's the So What Newsletter</div>
-            </a>
-            <div class="block" style="cursor: default; opacity: 0.5;">
-                <div class="block-content">Coming Soon</div>
+    <div class="page-wrapper">
+        <header>
+            <div class="site-name">JAMES RAYBOULD</div>
+            <div class="header-right">
+                <nav>
+                    <a href="/about">ABOUT</a>
+                    <a href="/newsletter">NEWSLETTER</a>
+                    <a href="/contact">CONTACT</a>
+                </nav>
+                <a href="https://www.linkedin.com/in/jamesraybould" target="_blank" rel="noopener noreferrer" class="linkedin-link">in</a>
             </div>
-            <div class="block" style="cursor: default; opacity: 0.5;">
-                <div class="block-content">Coming Soon</div>
-            </div>
-            <div class="block" style="cursor: default; opacity: 0.5;">
-                <div class="block-content">Coming Soon</div>
+        </header>
+        
+        <div class="container">
+            <div class="grid">
+                <a href="/films" class="block">
+                    <div class="block-content">Films</div>
+                </a>
+                <a href="/books" class="block">
+                    <div class="block-content">Books</div>
+                </a>
+                <a href="/whats-the-so-what-newsletter" class="block">
+                    <div class="block-content">What's the So What Newsletter</div>
+                </a>
+                <div class="block" style="cursor: default; opacity: 0.5;">
+                    <div class="block-content">Coming Soon</div>
+                </div>
+                <div class="block" style="cursor: default; opacity: 0.5;">
+                    <div class="block-content">Coming Soon</div>
+                </div>
+                <div class="block" style="cursor: default; opacity: 0.5;">
+                    <div class="block-content">Coming Soon</div>
+                </div>
             </div>
         </div>
     </div>
