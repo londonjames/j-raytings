@@ -23,17 +23,18 @@
             margin: 0;
         }
         
-        .page-wrapper {
-            padding: 0 10px;
-        }
-        
         /* Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 4rem;
-            padding-top: 2rem;
+            padding: 2rem 50px 0 50px;
+        }
+        
+        /* Grid wrapper - full bleed with 10px padding */
+        .grid-wrapper {
+            padding: 0 10px;
         }
         
         .site-name {
@@ -81,18 +82,11 @@
             opacity: 0.6;
         }
         
-        /* Main Content */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        /* Grid Layout */
+        /* Grid Layout - full bleed */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-top: 2rem;
         }
         
         /* Block/Card */
@@ -132,6 +126,13 @@
             }
         }
         
+        /* Responsive: 2 columns on medium screens */
+        @media (max-width: 1024px) {
+            header {
+                padding: 2rem 30px 0 30px;
+            }
+        }
+        
         /* Responsive: 1 column on mobile */
         @media (max-width: 768px) {
             header {
@@ -139,7 +140,7 @@
                 align-items: flex-start;
                 gap: 1.5rem;
                 margin-bottom: 2rem;
-                padding-top: 1rem;
+                padding: 1rem 20px 0 20px;
             }
             
             .header-right {
@@ -155,7 +156,6 @@
             .grid {
                 grid-template-columns: 1fr;
                 gap: 10px;
-                margin-top: 1rem;
             }
             
             .block {
@@ -169,39 +169,37 @@
     </style>
 </head>
 <body>
-    <div class="page-wrapper">
-        <header>
-            <div class="site-name">JAMES RAYBOULD</div>
-            <div class="header-right">
-                <nav>
-                    <a href="/about">ABOUT</a>
-                    <a href="/newsletter">NEWSLETTER</a>
-                    <a href="/contact">CONTACT</a>
-                </nav>
-                <a href="https://www.linkedin.com/in/jamesraybould" target="_blank" rel="noopener noreferrer" class="linkedin-link">in</a>
+    <header>
+        <div class="site-name">JAMES RAYBOULD</div>
+        <div class="header-right">
+            <nav>
+                <a href="/about">ABOUT</a>
+                <a href="/newsletter">NEWSLETTER</a>
+                <a href="/contact">CONTACT</a>
+            </nav>
+            <a href="https://www.linkedin.com/in/jamesraybould" target="_blank" rel="noopener noreferrer" class="linkedin-link">in</a>
+        </div>
+    </header>
+    
+    <div class="grid-wrapper">
+        <div class="grid">
+            <a href="/films" class="block">
+                <div class="block-content">Films</div>
+            </a>
+            <a href="/books" class="block">
+                <div class="block-content">Books</div>
+            </a>
+            <a href="/whats-the-so-what-newsletter" class="block">
+                <div class="block-content">What's the So What Newsletter</div>
+            </a>
+            <div class="block" style="cursor: default; opacity: 0.5;">
+                <div class="block-content">Coming Soon</div>
             </div>
-        </header>
-        
-        <div class="container">
-            <div class="grid">
-                <a href="/films" class="block">
-                    <div class="block-content">Films</div>
-                </a>
-                <a href="/books" class="block">
-                    <div class="block-content">Books</div>
-                </a>
-                <a href="/whats-the-so-what-newsletter" class="block">
-                    <div class="block-content">What's the So What Newsletter</div>
-                </a>
-                <div class="block" style="cursor: default; opacity: 0.5;">
-                    <div class="block-content">Coming Soon</div>
-                </div>
-                <div class="block" style="cursor: default; opacity: 0.5;">
-                    <div class="block-content">Coming Soon</div>
-                </div>
-                <div class="block" style="cursor: default; opacity: 0.5;">
-                    <div class="block-content">Coming Soon</div>
-                </div>
+            <div class="block" style="cursor: default; opacity: 0.5;">
+                <div class="block-content">Coming Soon</div>
+            </div>
+            <div class="block" style="cursor: default; opacity: 0.5;">
+                <div class="block-content">Coming Soon</div>
             </div>
         </div>
     </div>
