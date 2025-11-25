@@ -107,6 +107,34 @@ def init_db():
             cursor.execute('ALTER TABLE films ADD COLUMN rt_link TEXT')
         except:
             pass
+    else:
+        # Add missing columns if they don't exist (for existing PostgreSQL databases)
+        # Check and add date_seen if missing
+        cursor.execute("""
+            SELECT column_name 
+            FROM information_schema.columns 
+            WHERE table_name='films' AND column_name='date_seen'
+        """)
+        if not cursor.fetchone():
+            try:
+                cursor.execute('ALTER TABLE films ADD COLUMN date_seen TEXT')
+                print("Added date_seen column to PostgreSQL database")
+            except Exception as e:
+                print(f"Error adding date_seen column: {e}")
+        
+        # Check and add other missing columns
+        for column_name, column_type in [('genres', 'TEXT'), ('poster_url', 'TEXT'), ('rt_link', 'TEXT'), ('a_grade_rank', 'INTEGER')]:
+            cursor.execute("""
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name='films' AND column_name=%s
+            """, (column_name,))
+            if not cursor.fetchone():
+                try:
+                    cursor.execute(f'ALTER TABLE films ADD COLUMN {column_name} {column_type}')
+                    print(f"Added {column_name} column to PostgreSQL database")
+                except Exception as e:
+                    print(f"Error adding {column_name} column: {e}")
 
     conn.commit()
     conn.close()
@@ -976,7 +1004,9 @@ def import_from_json():
             'error': str(e)
         }), 500
 
+# Initialize database on app startup (runs every time app starts)
+init_db()
+
 if __name__ == '__main__':
-    init_db()
     port = int(os.getenv('PORT', os.getenv('FLASK_RUN_PORT', 5001)))
     app.run(debug=True, port=port)
