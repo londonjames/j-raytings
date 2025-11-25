@@ -525,66 +525,75 @@ def update_film(film_id):
     # Use the value from data (which may have been updated above)
     rotten_tomatoes = data.get('rotten_tomatoes')
 
-    conn = get_db()
-    cursor = conn.cursor()
+    conn = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
 
-    if USE_POSTGRES:
-        cursor.execute('''
-            UPDATE films
-            SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
-                score = %s, year_watched = %s, location = %s, format = %s,
-                release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s, a_grade_rank = %s
-            WHERE id = %s
-        ''', (
-            data.get('order_number'),
-            data.get('date_seen'),
-            data.get('title'),
-            data.get('letter_rating'),
-            data.get('score'),
-            data.get('year_watched'),
-            data.get('location'),
-            data.get('format'),
-            data.get('release_year'),
-            rotten_tomatoes,
-            data.get('length_minutes'),
-            data.get('rt_per_minute'),
-            data.get('rt_link'),
-            data.get('a_grade_rank'),
-            film_id
-        ))
-    else:
-        cursor.execute('''
-            UPDATE films
-            SET order_number = ?, date_seen = ?, title = ?, letter_rating = ?,
-                score = ?, year_watched = ?, location = ?, format = ?,
-                release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?, rt_link = ?, a_grade_rank = ?
-            WHERE id = ?
-        ''', (
-            data.get('order_number'),
-            data.get('date_seen'),
-            data.get('title'),
-            data.get('letter_rating'),
-            data.get('score'),
-            data.get('year_watched'),
-            data.get('location'),
-            data.get('format'),
-            data.get('release_year'),
-            rotten_tomatoes,
-            data.get('length_minutes'),
-            data.get('rt_per_minute'),
-            data.get('rt_link'),
-            data.get('a_grade_rank'),
-            film_id
-        ))
+        if USE_POSTGRES:
+            cursor.execute('''
+                UPDATE films
+                SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
+                    score = %s, year_watched = %s, location = %s, format = %s,
+                    release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s, a_grade_rank = %s
+                WHERE id = %s
+            ''', (
+                data.get('order_number'),
+                data.get('date_seen'),
+                data.get('title'),
+                data.get('letter_rating'),
+                data.get('score'),
+                data.get('year_watched'),
+                data.get('location'),
+                data.get('format'),
+                data.get('release_year'),
+                rotten_tomatoes,
+                data.get('length_minutes'),
+                data.get('rt_per_minute'),
+                data.get('rt_link'),
+                data.get('a_grade_rank'),
+                film_id
+            ))
+        else:
+            cursor.execute('''
+                UPDATE films
+                SET order_number = ?, date_seen = ?, title = ?, letter_rating = ?,
+                    score = ?, year_watched = ?, location = ?, format = ?,
+                    release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?, rt_link = ?, a_grade_rank = ?
+                WHERE id = ?
+            ''', (
+                data.get('order_number'),
+                data.get('date_seen'),
+                data.get('title'),
+                data.get('letter_rating'),
+                data.get('score'),
+                data.get('year_watched'),
+                data.get('location'),
+                data.get('format'),
+                data.get('release_year'),
+                rotten_tomatoes,
+                data.get('length_minutes'),
+                data.get('rt_per_minute'),
+                data.get('rt_link'),
+                data.get('a_grade_rank'),
+                film_id
+            ))
 
-    conn.commit()
+        conn.commit()
 
-    if cursor.rowcount == 0:
+        if cursor.rowcount == 0:
+            conn.close()
+            return jsonify({'error': 'Film not found'}), 404
+
         conn.close()
-        return jsonify({'error': 'Film not found'}), 404
-
-    conn.close()
-    return jsonify({'message': 'Film updated successfully'})
+        return jsonify({'message': 'Film updated successfully'})
+    except Exception as e:
+        if conn:
+            conn.close()
+        print(f"Error updating film: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'Error updating film: {str(e)}'}), 500
 
 @app.route('/api/films/<int:film_id>', methods=['DELETE'])
 def delete_film(film_id):

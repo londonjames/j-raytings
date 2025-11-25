@@ -80,11 +80,20 @@ function AdminPanel({ onLogout }) {
         setDuplicateWarning(result)
         setMessage('')
       } else {
-        setMessage('Error saving film')
+        // Try to get error message from response
+        let errorMessage = 'Error saving film'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorData.message || errorMessage
+        } catch (e) {
+          errorMessage = `Error saving film (${response.status}: ${response.statusText})`
+        }
+        setMessage(errorMessage)
+        console.error('Error response:', response.status, errorMessage)
       }
     } catch (error) {
       console.error('Error:', error)
-      setMessage('Error saving film')
+      setMessage(`Error saving film: ${error.message}`)
     }
   }
 
