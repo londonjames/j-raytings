@@ -25,7 +25,8 @@ function App() {
   })
   const [sortConfig, setSortConfig] = useState(() => {
     const saved = localStorage.getItem('sortConfig')
-    return saved ? JSON.parse(saved) : { sortBy: 'rating', direction: 'desc' }
+    // Default to empty sortBy so UI doesn't show as selected, but sorting still defaults to rating
+    return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
   })
   const [viewMode, setViewMode] = useState(() => {
     // Load from localStorage or default to 'grid'
@@ -319,7 +320,7 @@ function App() {
     const newFilters = { rating: [], rt: [], year: [], yearSeen: [], genre: [] }
     setSearchTerm('')
     setActiveFilter(newFilters)
-    setSortConfig({ sortBy: 'rating', direction: 'desc' })
+    setSortConfig({ sortBy: '', direction: 'desc' })
     setShowAnalytics(false)
 
     // Clear localStorage

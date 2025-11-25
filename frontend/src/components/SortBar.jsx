@@ -1,28 +1,28 @@
 import { useState, useEffect } from 'react'
 
 function SortBar({ onSortChange, initialSortConfig }) {
-  // Initialize from prop or localStorage, defaulting to rating sort
+  // Initialize from prop or localStorage, defaulting to empty (no visual selection)
   const getInitialSort = () => {
     if (initialSortConfig) {
       return initialSortConfig
     }
     const saved = localStorage.getItem('sortConfig')
-    return saved ? JSON.parse(saved) : { sortBy: 'rating', direction: 'desc' }
+    return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
   }
 
   const initialSort = getInitialSort()
-  const initialSortBy = initialSort.sortBy || 'rating'
+  const initialSortBy = initialSort.sortBy || ''
   const [sortBy, setSortBy] = useState(initialSortBy)
   const [sortDirection, setSortDirection] = useState(initialSort.direction || 'desc')
-  const [showDirectionToggle, setShowDirectionToggle] = useState(!!initialSortBy) // Show toggle if sortBy is set
+  const [showDirectionToggle, setShowDirectionToggle] = useState(!!initialSortBy) // Only show if user explicitly selected a sort
 
   // Sync with prop changes
   useEffect(() => {
     if (initialSortConfig) {
-      const newSortBy = initialSortConfig.sortBy || 'rating'
+      const newSortBy = initialSortConfig.sortBy || ''
       setSortBy(newSortBy)
       setSortDirection(initialSortConfig.direction || 'desc')
-      setShowDirectionToggle(!!newSortBy)
+      setShowDirectionToggle(!!newSortBy) // Only show toggle if sort is explicitly selected
     }
   }, [initialSortConfig])
 
