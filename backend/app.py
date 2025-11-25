@@ -420,31 +420,70 @@ def add_film():
     conn = get_db()
     cursor = conn.cursor()
 
+    # Check if a_grade_rank column exists (for PostgreSQL)
+    include_a_grade_rank = True
     if USE_POSTGRES:
-        cursor.execute('''
-            INSERT INTO films (order_number, date_seen, title, letter_rating, score,
-                              year_watched, location, format, release_year,
-                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, a_grade_rank)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            RETURNING id
-        ''', (
-            data.get('order_number'),
-            data.get('date_seen'),
-            data['title'],
-            data.get('letter_rating'),
-            data.get('score'),
-            data.get('year_watched'),
-            data.get('location'),
-            data.get('format'),
-            release_year,
-            rotten_tomatoes,
-            length_minutes,
-            data.get('rt_per_minute'),
-            poster_url,
-            genres,
-            rt_link,
-            data.get('a_grade_rank')
-        ))
+        try:
+            cursor.execute('''
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name='films' AND column_name='a_grade_rank'
+            ''')
+            include_a_grade_rank = cursor.fetchone() is not None
+        except:
+            include_a_grade_rank = False
+
+    if USE_POSTGRES:
+        if include_a_grade_rank:
+            cursor.execute('''
+                INSERT INTO films (order_number, date_seen, title, letter_rating, score,
+                                  year_watched, location, format, release_year,
+                                  rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, a_grade_rank)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+            ''', (
+                data.get('order_number'),
+                data.get('date_seen'),
+                data['title'],
+                data.get('letter_rating'),
+                data.get('score'),
+                data.get('year_watched'),
+                data.get('location'),
+                data.get('format'),
+                release_year,
+                rotten_tomatoes,
+                length_minutes,
+                data.get('rt_per_minute'),
+                poster_url,
+                genres,
+                rt_link,
+                data.get('a_grade_rank')
+            ))
+        else:
+            # Insert without a_grade_rank column
+            cursor.execute('''
+                INSERT INTO films (order_number, date_seen, title, letter_rating, score,
+                                  year_watched, location, format, release_year,
+                                  rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+            ''', (
+                data.get('order_number'),
+                data.get('date_seen'),
+                data['title'],
+                data.get('letter_rating'),
+                data.get('score'),
+                data.get('year_watched'),
+                data.get('location'),
+                data.get('format'),
+                release_year,
+                rotten_tomatoes,
+                length_minutes,
+                data.get('rt_per_minute'),
+                poster_url,
+                genres,
+                rt_link
+            ))
         film_id = cursor.fetchone()[0]
     else:
         cursor.execute('''
@@ -553,54 +592,61 @@ def update_film(film_id):
                 include_a_grade_rank = False
 
         if USE_POSTGRES:
-            if include_a_grade_rank:
-                cursor.execute('''
-                    UPDATE films
-                    SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
-                        score = %s, year_watched = %s, location = %s, format = %s,
-                        release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s, a_grade_rank = %s
-                    WHERE id = %s
-                ''', (
-                    data.get('order_number'),
-                    data.get('date_seen'),
-                    data.get('title'),
-                    data.get('letter_rating'),
-                    data.get('score'),
-                    data.get('year_watched'),
-                    data.get('location'),
-                    data.get('format'),
-                    data.get('release_year'),
-                    rotten_tomatoes,
-                    data.get('length_minutes'),
-                    data.get('rt_per_minute'),
-                    data.get('rt_link'),
-                    data.get('a_grade_rank'),
-                    film_id
-                ))
-            else:
-                # Update without a_grade_rank column (for databases that don't have it yet)
-                cursor.execute('''
-                    UPDATE films
-                    SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
-                        score = %s, year_watched = %s, location = %s, format = %s,
-                        release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s
-                    WHERE id = %s
-                ''', (
-                    data.get('order_number'),
-                    data.get('date_seen'),
-                    data.get('title'),
-                    data.get('letter_rating'),
-                    data.get('score'),
-                    data.get('year_watched'),
-                    data.get('location'),
-                    data.get('format'),
-                    data.get('release_year'),
-                    rotten_tomatoes,
-                    data.get('length_minutes'),
-                    data.get('rt_per_minute'),
-                    data.get('rt_link'),
-                    film_id
-                ))
+            # Try with a_grade_rank first if we think it exists, fallback if it fails
+            try:
+                if include_a_grade_rank:
+                    cursor.execute('''
+                        UPDATE films
+                        SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
+                            score = %s, year_watched = %s, location = %s, format = %s,
+                            release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s, a_grade_rank = %s
+                        WHERE id = %s
+                    ''', (
+                        data.get('order_number'),
+                        data.get('date_seen'),
+                        data.get('title'),
+                        data.get('letter_rating'),
+                        data.get('score'),
+                        data.get('year_watched'),
+                        data.get('location'),
+                        data.get('format'),
+                        data.get('release_year'),
+                        rotten_tomatoes,
+                        data.get('length_minutes'),
+                        data.get('rt_per_minute'),
+                        data.get('rt_link'),
+                        data.get('a_grade_rank'),
+                        film_id
+                    ))
+                else:
+                    raise Exception("Column doesn't exist")
+            except Exception as e:
+                # If it fails (column doesn't exist), retry without a_grade_rank
+                if 'a_grade_rank' in str(e) or include_a_grade_rank:
+                    cursor.execute('''
+                        UPDATE films
+                        SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
+                            score = %s, year_watched = %s, location = %s, format = %s,
+                            release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s
+                        WHERE id = %s
+                    ''', (
+                        data.get('order_number'),
+                        data.get('date_seen'),
+                        data.get('title'),
+                        data.get('letter_rating'),
+                        data.get('score'),
+                        data.get('year_watched'),
+                        data.get('location'),
+                        data.get('format'),
+                        data.get('release_year'),
+                        rotten_tomatoes,
+                        data.get('length_minutes'),
+                        data.get('rt_per_minute'),
+                        data.get('rt_link'),
+                        film_id
+                    ))
+                else:
+                    raise
         else:
             cursor.execute('''
                 UPDATE films
