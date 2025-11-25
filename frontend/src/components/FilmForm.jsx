@@ -304,15 +304,36 @@ function FilmForm({ film, onSave, onCancel }) {
             </div>
 
             <div className="form-group">
-              <label htmlFor="poster_url">Poster URL</label>
+              <label htmlFor="poster_url">Poster URL / Image URL</label>
               <input
-                type="text"
+                type="url"
                 id="poster_url"
                 name="poster_url"
                 value={formData.poster_url}
                 onChange={handleChange}
-                placeholder="From TMDB API"
+                placeholder="Paste image URL here (e.g., https://example.com/poster.jpg)"
               />
+              {formData.poster_url && (
+                <div style={{ marginTop: '10px' }}>
+                  <img 
+                    src={formData.poster_url} 
+                    alt="Preview" 
+                    style={{ 
+                      maxWidth: '200px', 
+                      maxHeight: '300px', 
+                      border: '1px solid #ddd',
+                      borderRadius: '4px'
+                    }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'block';
+                    }}
+                  />
+                  <div style={{ display: 'none', color: '#999', fontSize: '0.85rem', marginTop: '5px' }}>
+                    Image failed to load. Check URL.
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
