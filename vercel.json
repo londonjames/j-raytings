@@ -1,19 +1,18 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "buildCommand": "cd frontend && npm install && npm run build && cp public/index-root.html dist/index-root.html",
+  "outputDirectory": "frontend/dist",
   "rewrites": [
     {
       "source": "/films/(.*)",
-      "destination": "/frontend/dist/$1"
+      "destination": "/$1"
     },
     {
       "source": "/films",
-      "destination": "/frontend/dist/index.html"
-    }
-  ],
-  "routes": [
+      "destination": "/index.html"
+    },
     {
-      "src": "^/$",
-      "dest": "/index.html"
+      "source": "/",
+      "destination": "/index-root.html"
     }
   ]
 }
