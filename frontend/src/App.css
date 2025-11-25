@@ -8,16 +8,16 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Charcoal gray background - Current: #1f1f1f (RGB: 31, 31, 31) */
-  /* Options: #262626 (lighter), #2d2d2d (even lighter), #333333 (lighter still) */
-  background: #1f1f1f;
+  /* Background - Current: #1a1a1a (RGB: 26, 26, 26) - BLACK */
+  /* Charcoal options: #1f1f1f (RGB: 31, 31, 31), #262626 (RGB: 38, 38, 38), #2d2d2d (RGB: 45, 45, 45) */
+  background: #1a1a1a;
   color: #e0e0e0;
 }
 
 .app {
   min-height: 100vh;
-  /* Charcoal gray background - Current: #1f1f1f (RGB: 31, 31, 31) */
-  background: #1f1f1f;
+  /* Background - Current: #1a1a1a (RGB: 26, 26, 26) - BLACK */
+  background: #1a1a1a;
   padding-top: 100px;
 }
 
@@ -26,8 +26,8 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  /* Charcoal gray background - Current: #1f1f1f (RGB: 31, 31, 31) */
-  background: #1f1f1f;
+  /* Background - Current: #1a1a1a (RGB: 26, 26, 26) - BLACK */
+  background: #1a1a1a;
   z-index: 100;
   padding: 0.75rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -340,8 +340,8 @@ body {
 /* Analytics View */
 .analytics-container {
   min-height: 400px;
-  /* Charcoal gray background - Current: #1f1f1f (RGB: 31, 31, 31) */
-  background: #1f1f1f;
+  /* Background - Current: #1a1a1a (RGB: 26, 26, 26) - BLACK */
+  background: #1a1a1a;
   padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
@@ -845,8 +845,8 @@ body {
   width: 100%;
   aspect-ratio: 2/3;
   overflow: hidden;
-  /* Charcoal gray background - Current: #1f1f1f (RGB: 31, 31, 31) */
-  background: #1f1f1f;
+  /* Background - Current: #1a1a1a (RGB: 26, 26, 26) - BLACK */
+  background: #1a1a1a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1296,7 +1296,7 @@ body {
 
 .film-card-back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, #1f1f1f 0%, #262626 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #1f1f1f 100%);
   padding: 0.85rem;
   display: flex;
   flex-direction: column;
