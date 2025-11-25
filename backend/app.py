@@ -609,6 +609,85 @@ def update_film(film_id):
         traceback.print_exc()
         return jsonify({'error': f'Error updating film: {str(e)}'}), 500
 
+@app.route('/api/admin/films/<int:film_id>/poster', methods=['PUT'])
+def update_film_poster(film_id):
+    """Admin endpoint to update film poster URL"""
+    data = request.get_json()
+    poster_url = data.get('poster_url')
+    
+    if not poster_url:
+        return jsonify({'error': 'poster_url is required'}), 400
+    
+    conn = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        if USE_POSTGRES:
+            cursor.execute('UPDATE films SET poster_url = %s WHERE id = %s', (poster_url, film_id))
+        else:
+            cursor.execute('UPDATE films SET poster_url = ? WHERE id = ?', (poster_url, film_id))
+        
+        conn.commit()
+        
+        if cursor.rowcount == 0:
+            conn.close()
+            return jsonify({'error': 'Film not found'}), 404
+        
+        conn.close()
+        return jsonify({'message': 'Poster URL updated successfully', 'film_id': film_id})
+    except Exception as e:
+        if conn:
+            conn.close()
+        print(f"Error updating poster: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'Error updating poster: {str(e)}'}), 500
+
+@app.route('/api/admin/films/<int:film_id>/field', methods=['PUT'])
+def update_film_field(film_id):
+    """Admin endpoint to update any single field of a film"""
+    data = request.get_json()
+    field_name = data.get('field')
+    field_value = data.get('value')
+    
+    if not field_name:
+        return jsonify({'error': 'field name is required'}), 400
+    
+    # Whitelist of allowed fields to update
+    allowed_fields = ['poster_url', 'title', 'letter_rating', 'score', 'release_year', 
+                     'rotten_tomatoes', 'length_minutes', 'genres', 'rt_link', 
+                     'date_seen', 'year_watched', 'location', 'format', 'order_number']
+    
+    if field_name not in allowed_fields:
+        return jsonify({'error': f'Field "{field_name}" is not allowed. Allowed fields: {", ".join(allowed_fields)}'}), 400
+    
+    conn = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        if USE_POSTGRES:
+            cursor.execute(f'UPDATE films SET {field_name} = %s WHERE id = %s', (field_value, film_id))
+        else:
+            cursor.execute(f'UPDATE films SET {field_name} = ? WHERE id = ?', (field_value, film_id))
+        
+        conn.commit()
+        
+        if cursor.rowcount == 0:
+            conn.close()
+            return jsonify({'error': 'Film not found'}), 404
+        
+        conn.close()
+        return jsonify({'message': f'{field_name} updated successfully', 'film_id': film_id, 'field': field_name, 'value': field_value})
+    except Exception as e:
+        if conn:
+            conn.close()
+        print(f"Error updating field: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'Error updating {field_name}: {str(e)}'}), 500
+
 @app.route('/api/films/<int:film_id>', methods=['DELETE'])
 def delete_film(film_id):
     """Delete a film"""
