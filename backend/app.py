@@ -491,34 +491,39 @@ def update_film(film_id):
     release_year = data.get('release_year')
     title = data.get('title')
     
-    if not rotten_tomatoes and title:
+    # Only try to fetch RT score if it's not provided in the form data
+    if (rotten_tomatoes is None or rotten_tomatoes == '') and title:
         # Check current RT score in database
         conn = get_db()
-        if USE_POSTGRES:
-            cursor = conn.cursor(cursor_factory=RealDictCursor)
-            cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = %s', (film_id,))
-        else:
-            cursor = conn.cursor()
-            cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = ?', (film_id,))
-        
-        current_film = cursor.fetchone()
-        conn.close()
-        
-        # Only fetch if current film also doesn't have RT score
-        current_rt = current_film[0] if current_film else None
-        if not current_rt:
-            try:
-                rt_score = fetch_rt_score_from_omdb(title, release_year)
-                if rt_score:
-                    rotten_tomatoes = rt_score
-                    data['rotten_tomatoes'] = rt_score
-                    print(f"✓ Fetched RT score for '{title}': {rt_score}")
-            except Exception as e:
-                print(f"Error fetching RT score: {e}")
-        else:
-            # Keep existing RT score if not being updated
-            rotten_tomatoes = current_rt
-            data['rotten_tomatoes'] = current_rt
+        try:
+            if USE_POSTGRES:
+                cursor = conn.cursor(cursor_factory=RealDictCursor)
+                cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = %s', (film_id,))
+                current_film = cursor.fetchone()
+                current_rt = current_film['rotten_tomatoes'] if current_film else None
+            else:
+                cursor = conn.cursor()
+                cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = ?', (film_id,))
+                current_film = cursor.fetchone()
+                current_rt = current_film[0] if current_film else None
+            
+            # Only fetch if current film also doesn't have RT score
+            if not current_rt or current_rt == '':
+                try:
+                    rt_score = fetch_rt_score_from_omdb(title, release_year)
+                    if rt_score:
+                        data['rotten_tomatoes'] = rt_score
+                        print(f"✓ Fetched RT score for '{title}': {rt_score}")
+                except Exception as e:
+                    print(f"Error fetching RT score: {e}")
+            else:
+                # Keep existing RT score if not being updated
+                data['rotten_tomatoes'] = current_rt
+        finally:
+            conn.close()
+    
+    # Use the value from data (which may have been updated above)
+    rotten_tomatoes = data.get('rotten_tomatoes')
 
     conn = get_db()
     cursor = conn.cursor()
@@ -540,7 +545,7 @@ def update_film(film_id):
             data.get('location'),
             data.get('format'),
             data.get('release_year'),
-            rotten_tomatoes or data.get('rotten_tomatoes'),
+            rotten_tomatoes,
             data.get('length_minutes'),
             data.get('rt_per_minute'),
             data.get('rt_link'),
@@ -564,7 +569,7 @@ def update_film(film_id):
             data.get('location'),
             data.get('format'),
             data.get('release_year'),
-            rotten_tomatoes or data.get('rotten_tomatoes'),
+            rotten_tomatoes,
             data.get('length_minutes'),
             data.get('rt_per_minute'),
             data.get('rt_link'),
