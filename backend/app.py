@@ -685,7 +685,7 @@ def update_film_field(film_id):
     # Whitelist of allowed fields to update
     allowed_fields = ['poster_url', 'title', 'letter_rating', 'score', 'release_year', 
                      'rotten_tomatoes', 'length_minutes', 'genres', 'rt_link', 
-                     'date_seen', 'year_watched', 'location', 'format', 'order_number']
+                     'date_seen', 'year_watched', 'location', 'format', 'order_number', 'a_grade_rank']
     
     if field_name not in allowed_fields:
         return jsonify({'error': f'Field "{field_name}" is not allowed. Allowed fields: {", ".join(allowed_fields)}'}), 400
@@ -715,6 +715,83 @@ def update_film_field(film_id):
         import traceback
         traceback.print_exc()
         return jsonify({'error': f'Error updating {field_name}: {str(e)}'}), 500
+
+@app.route('/api/admin/set-a-grade-rankings', methods=['POST'])
+def set_a_grade_rankings():
+    """Admin endpoint to bulk set A-grade rankings"""
+    data = request.get_json()
+    rankings = data.get('rankings', [])  # List of {title: str, rank: int}
+    
+    if not rankings:
+        return jsonify({'error': 'rankings array is required'}), 400
+    
+    conn = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        updated = 0
+        not_found = []
+        
+        for item in rankings:
+            title = item.get('title')
+            rank = item.get('rank')
+            
+            if not title or rank is None:
+                continue
+            
+            # Find film by title (case-insensitive)
+            if USE_POSTGRES:
+                cursor.execute("""
+                    SELECT id FROM films 
+                    WHERE LOWER(title) = LOWER(%s) AND letter_rating = 'A'
+                """, (title,))
+            else:
+                cursor.execute("""
+                    SELECT id FROM films 
+                    WHERE LOWER(title) = LOWER(?) AND letter_rating = 'A'
+                """, (title,))
+            
+            film = cursor.fetchone()
+            if film:
+                film_id = film[0] if USE_POSTGRES else film[0]
+                
+                # Check if a_grade_rank column exists
+                if USE_POSTGRES:
+                    cursor.execute("""
+                        SELECT column_name 
+                        FROM information_schema.columns 
+                        WHERE table_name='films' AND column_name='a_grade_rank'
+                    """)
+                    if not cursor.fetchone():
+                        conn.close()
+                        return jsonify({'error': 'a_grade_rank column does not exist'}), 500
+                
+                # Update the ranking
+                if USE_POSTGRES:
+                    cursor.execute('UPDATE films SET a_grade_rank = %s WHERE id = %s', (rank, film_id))
+                else:
+                    cursor.execute('UPDATE films SET a_grade_rank = ? WHERE id = ?', (rank, film_id))
+                
+                updated += 1
+            else:
+                not_found.append(title)
+        
+        conn.commit()
+        conn.close()
+        
+        return jsonify({
+            'message': f'Successfully updated {updated} rankings',
+            'updated': updated,
+            'not_found': not_found
+        })
+    except Exception as e:
+        if conn:
+            conn.close()
+        print(f"Error setting A-grade rankings: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'Error setting rankings: {str(e)}'}), 500
 
 @app.route('/api/films/<int:film_id>', methods=['DELETE'])
 def delete_film(film_id):
