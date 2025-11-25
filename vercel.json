@@ -1,3 +1,19 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "rewrites": [
+    {
+      "source": "/films/(.*)",
+      "destination": "/frontend/dist/$1"
+    },
+    {
+      "source": "/films",
+      "destination": "/frontend/dist/index.html"
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/$",
+      "dest": "/index.html"
+    }
+  ]
 }

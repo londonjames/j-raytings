@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import FilmList from './components/FilmList'
 import FilmForm from './components/FilmForm'
@@ -12,18 +13,74 @@ import Analytics from './components/Analytics'
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
 
 function App() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  
+  // Helper function to parse URL query parameters
+  const parseQueryParams = () => {
+    const params = new URLSearchParams(location.search)
+    const search = params.get('search') || ''
+    const filters = {
+      rating: params.get('rating') ? params.get('rating').split(',') : [],
+      rt: params.get('rt') ? params.get('rt').split(',') : [],
+      year: params.get('year') ? params.get('year').split(',') : [],
+      yearSeen: params.get('yearSeen') ? params.get('yearSeen').split(',') : [],
+      genre: params.get('genre') ? params.get('genre').split(',') : [],
+    }
+    const sortBy = params.get('sortBy') || ''
+    const sortDirection = params.get('sortDirection') || 'desc'
+    const analytics = params.get('analytics') === 'true'
+    
+    return { search, filters, sortBy, sortDirection, analytics }
+  }
+  
+  // Helper function to update URL with current state
+  const updateURL = (search, filters, sortConfig, showAnalytics) => {
+    const params = new URLSearchParams()
+    
+    if (search) params.set('search', search)
+    if (filters.rating.length > 0) params.set('rating', filters.rating.join(','))
+    if (filters.rt.length > 0) params.set('rt', filters.rt.join(','))
+    if (filters.year.length > 0) params.set('year', filters.year.join(','))
+    if (filters.yearSeen.length > 0) params.set('yearSeen', filters.yearSeen.join(','))
+    if (filters.genre.length > 0) params.set('genre', filters.genre.join(','))
+    if (sortConfig.sortBy) {
+      params.set('sortBy', sortConfig.sortBy)
+      params.set('sortDirection', sortConfig.direction)
+    }
+    if (showAnalytics) params.set('analytics', 'true')
+    
+    const newSearch = params.toString()
+    const newURL = newSearch ? `?${newSearch}` : ''
+    navigate(newURL, { replace: true })
+  }
+  
   const [films, setFilms] = useState([])
   const [filteredFilms, setFilteredFilms] = useState([])
   const [editingFilm, setEditingFilm] = useState(null)
   const [showForm, setShowForm] = useState(false)
+  
+  // Initialize state from URL params or localStorage
+  const urlParams = parseQueryParams()
   const [searchTerm, setSearchTerm] = useState(() => {
-    return localStorage.getItem('searchTerm') || ''
+    return urlParams.search || localStorage.getItem('searchTerm') || ''
   })
   const [activeFilter, setActiveFilter] = useState(() => {
+    const hasUrlFilters = urlParams.filters.rating.length > 0 || 
+                         urlParams.filters.rt.length > 0 ||
+                         urlParams.filters.year.length > 0 ||
+                         urlParams.filters.yearSeen.length > 0 ||
+                         urlParams.filters.genre.length > 0
+    if (hasUrlFilters) {
+      return urlParams.filters
+    }
     const saved = localStorage.getItem('activeFilter')
     return saved ? JSON.parse(saved) : { rating: [], rt: [], year: [], yearSeen: [], genre: [] }
   })
   const [sortConfig, setSortConfig] = useState(() => {
+    if (urlParams.sortBy) {
+      return { sortBy: urlParams.sortBy, direction: urlParams.sortDirection }
+    }
     const saved = localStorage.getItem('sortConfig')
     // Default to empty sortBy so UI doesn't show as selected, but sorting still defaults to rating
     return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
@@ -34,10 +91,20 @@ function App() {
   })
   const [resetKey, setResetKey] = useState(0)
   const [showAnalytics, setShowAnalytics] = useState(() => {
-    return localStorage.getItem('showAnalytics') === 'true'
+    return urlParams.analytics || localStorage.getItem('showAnalytics') === 'true'
   })
   const [isLoading, setIsLoading] = useState(true)
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
+  
+  // Update URL when state changes (but skip initial mount to avoid overwriting URL params)
+  const [isInitialMount, setIsInitialMount] = useState(true)
+  useEffect(() => {
+    if (isInitialMount) {
+      setIsInitialMount(false)
+      return
+    }
+    updateURL(searchTerm, activeFilter, sortConfig, showAnalytics)
+  }, [searchTerm, activeFilter, sortConfig, showAnalytics])
 
   // Fetch all films
   const fetchFilms = async () => {
@@ -295,6 +362,7 @@ function App() {
   const handleSearch = (newSearchTerm) => {
     setSearchTerm(newSearchTerm)
     applyFiltersAndSearch(newSearchTerm, activeFilter)
+    // URL will be updated by useEffect
   }
 
   // Handle filter change
@@ -329,6 +397,9 @@ function App() {
     localStorage.removeItem('sortConfig')
     localStorage.removeItem('showAnalytics')
 
+    // Clear URL parameters
+    navigate('', { replace: true })
+
     // Apply the reset immediately
     applyFiltersAndSearch('', newFilters)
 
@@ -339,7 +410,15 @@ function App() {
   // Toggle analytics view
   const handleAnalyticsToggle = () => {
     setShowAnalytics(!showAnalytics)
+    // URL will be updated by useEffect
   }
+  
+  // Check URL for analytics route
+  useEffect(() => {
+    if (location.pathname === '/analytics') {
+      setShowAnalytics(true)
+    }
+  }, [location.pathname])
 
   // Check if any filter values are selected
   const hasSelectedFilterValues = () => {

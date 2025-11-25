@@ -7,10 +7,11 @@ import Admin from './Admin.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/films">
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/admin-secret-panel" element={<Admin />} />
+        <Route path="/analytics" element={<App />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
