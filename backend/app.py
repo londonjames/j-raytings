@@ -5,6 +5,7 @@ import os
 from tmdb_service import search_movie, get_movie_details
 import re
 from urllib.parse import urlparse
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -270,6 +271,51 @@ def generate_rt_url(title):
     slug = re.sub(r'[\s]+', '_', slug)
     return f"https://www.rottentomatoes.com/m/{slug}"
 
+def fetch_rt_score_from_omdb(title, year=None):
+    """Fetch Rotten Tomatoes score from OMDb API"""
+    # Get OMDb API key from environment or use default
+    omdb_api_key = os.getenv('OMDB_API_KEY', '4e9616c3')
+    omdb_base_url = 'http://www.omdbapi.com/'
+    
+    # Handle titles in "Last, First" format (e.g., "Fugitive, The" -> "The Fugitive")
+    search_title = title
+    if ',' in title:
+        parts = title.split(',', 1)
+        if len(parts) == 2:
+            search_title = f"{parts[1].strip()} {parts[0].strip()}"
+    
+    params = {
+        'apikey': omdb_api_key,
+        't': search_title,
+        'type': 'movie'
+    }
+    
+    # Only include year if we have it
+    if year:
+        params['y'] = year
+    
+    try:
+        response = requests.get(omdb_base_url, params=params, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        
+        if data.get('Response') == 'True':
+            # Get Rotten Tomatoes score from Ratings array
+            ratings = data.get('Ratings', [])
+            for rating in ratings:
+                if rating.get('Source') == 'Rotten Tomatoes':
+                    rt_value = rating.get('Value', '')
+                    # OMDb returns RT score as "85%" or "85"
+                    if rt_value:
+                        # Ensure it has % sign
+                        if '%' not in rt_value:
+                            rt_value = f"{rt_value}%"
+                        return rt_value
+        return None
+    except Exception as e:
+        print(f"Error fetching RT score from OMDb: {e}")
+        return None
+
 @app.route('/api/films', methods=['POST'])
 def add_film():
     """Add a new film with automatic metadata fetching from TMDB"""
@@ -323,6 +369,7 @@ def add_film():
     length_minutes = data.get('length_minutes')
     genres = data.get('genres')
     rotten_tomatoes = data.get('rotten_tomatoes')
+    metadata_fetched = False
 
     # Fetch metadata from TMDB if API key is available
     if os.getenv('TMDB_API_KEY'):
@@ -349,17 +396,26 @@ def add_film():
                         if not release_year and details.get('release_date'):
                             release_year = int(details['release_date'][:4])
 
+                metadata_fetched = True
                 print(f"✓ Fetched metadata for '{data['title']}'")
         except Exception as e:
             print(f"Error fetching TMDB data: {e}")
+
+    # Fetch Rotten Tomatoes score from OMDb if not already provided
+    if not rotten_tomatoes:
+        try:
+            rt_score = fetch_rt_score_from_omdb(data['title'], release_year)
+            if rt_score:
+                rotten_tomatoes = rt_score
+                metadata_fetched = True
+                print(f"✓ Fetched RT score for '{data['title']}': {rt_score}")
+        except Exception as e:
+            print(f"Error fetching RT score: {e}")
 
     # Generate RT link if not provided
     rt_link = data.get('rt_link')
     if not rt_link:
         rt_link = generate_rt_url(data['title'])
-
-    # Get RT percentage score (separate from link)
-    rotten_tomatoes = data.get('rotten_tomatoes')
 
     conn = get_db()
     cursor = conn.cursor()
@@ -422,13 +478,47 @@ def add_film():
     return jsonify({
         'id': film_id,
         'message': 'Film added successfully',
-        'metadata_fetched': bool(poster_url or genres or length_minutes)
+        'metadata_fetched': metadata_fetched
     }), 201
 
 @app.route('/api/films/<int:film_id>', methods=['PUT'])
 def update_film(film_id):
     """Update an existing film"""
     data = request.get_json()
+
+    # Fetch RT score if not provided and film doesn't have one
+    rotten_tomatoes = data.get('rotten_tomatoes')
+    release_year = data.get('release_year')
+    title = data.get('title')
+    
+    if not rotten_tomatoes and title:
+        # Check current RT score in database
+        conn = get_db()
+        if USE_POSTGRES:
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+            cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = %s', (film_id,))
+        else:
+            cursor = conn.cursor()
+            cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = ?', (film_id,))
+        
+        current_film = cursor.fetchone()
+        conn.close()
+        
+        # Only fetch if current film also doesn't have RT score
+        current_rt = current_film[0] if current_film else None
+        if not current_rt:
+            try:
+                rt_score = fetch_rt_score_from_omdb(title, release_year)
+                if rt_score:
+                    rotten_tomatoes = rt_score
+                    data['rotten_tomatoes'] = rt_score
+                    print(f"✓ Fetched RT score for '{title}': {rt_score}")
+            except Exception as e:
+                print(f"Error fetching RT score: {e}")
+        else:
+            # Keep existing RT score if not being updated
+            rotten_tomatoes = current_rt
+            data['rotten_tomatoes'] = current_rt
 
     conn = get_db()
     cursor = conn.cursor()
@@ -450,7 +540,7 @@ def update_film(film_id):
             data.get('location'),
             data.get('format'),
             data.get('release_year'),
-            data.get('rotten_tomatoes'),
+            rotten_tomatoes or data.get('rotten_tomatoes'),
             data.get('length_minutes'),
             data.get('rt_per_minute'),
             data.get('rt_link'),
@@ -474,7 +564,7 @@ def update_film(film_id):
             data.get('location'),
             data.get('format'),
             data.get('release_year'),
-            data.get('rotten_tomatoes'),
+            rotten_tomatoes or data.get('rotten_tomatoes'),
             data.get('length_minutes'),
             data.get('rt_per_minute'),
             data.get('rt_link'),

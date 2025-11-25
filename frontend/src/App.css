@@ -1171,9 +1171,39 @@ body {
   overflow-y: auto;
 }
 
-.film-form h2 {
+.film-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
+}
+
+.film-form h2 {
+  margin: 0;
   color: #333;
+}
+
+.film-form-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.film-form-close-btn:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.film-form-close-btn:active {
+  background: #e0e0e0;
 }
 
 .form-group {
@@ -1232,6 +1262,7 @@ body {
   position: relative;
   aspect-ratio: 2/3;
   width: 100%;
+  z-index: 1;
 }
 
 .film-card-flipper {
