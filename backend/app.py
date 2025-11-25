@@ -540,12 +540,13 @@ def update_film(film_id):
         cursor = conn.cursor()
 
         if USE_POSTGRES:
-            # Don't include a_grade_rank in UPDATE for production (column doesn't exist yet)
+            # Update only the core columns that definitely exist in production
+            # Exclude rt_per_minute as it might be calculated/derived
             cursor.execute('''
                 UPDATE films
                 SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
                     score = %s, year_watched = %s, location = %s, format = %s,
-                    release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, rt_link = %s
+                    release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_link = %s
                 WHERE id = %s
             ''', (
                 data.get('order_number'),
@@ -559,7 +560,6 @@ def update_film(film_id):
                 data.get('release_year'),
                 rotten_tomatoes,
                 data.get('length_minutes'),
-                data.get('rt_per_minute'),
                 data.get('rt_link'),
                 film_id
             ))
