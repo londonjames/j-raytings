@@ -540,29 +540,34 @@ def update_film(film_id):
         cursor = conn.cursor()
 
         if USE_POSTGRES:
-            # Update only the core columns that definitely exist in production
-            # Exclude rt_per_minute as it might be calculated/derived
-            cursor.execute('''
-                UPDATE films
-                SET order_number = %s, date_seen = %s, title = %s, letter_rating = %s,
-                    score = %s, year_watched = %s, location = %s, format = %s,
-                    release_year = %s, rotten_tomatoes = %s, length_minutes = %s, rt_link = %s
-                WHERE id = %s
-            ''', (
-                data.get('order_number'),
-                data.get('date_seen'),
-                data.get('title'),
-                data.get('letter_rating'),
-                data.get('score'),
-                data.get('year_watched'),
-                data.get('location'),
-                data.get('format'),
-                data.get('release_year'),
-                rotten_tomatoes,
-                data.get('length_minutes'),
-                data.get('rt_link'),
-                film_id
-            ))
+            # Build UPDATE dynamically - only update fields that are provided
+            # This avoids errors if columns don't exist
+            updates = []
+            values = []
+            
+            if 'order_number' in data: updates.append('order_number = %s'); values.append(data.get('order_number'))
+            if 'date_seen' in data: updates.append('date_seen = %s'); values.append(data.get('date_seen'))
+            if 'title' in data: updates.append('title = %s'); values.append(data.get('title'))
+            if 'letter_rating' in data: updates.append('letter_rating = %s'); values.append(data.get('letter_rating'))
+            if 'score' in data: updates.append('score = %s'); values.append(data.get('score'))
+            if 'year_watched' in data: updates.append('year_watched = %s'); values.append(data.get('year_watched'))
+            if 'location' in data: updates.append('location = %s'); values.append(data.get('location'))
+            if 'format' in data: updates.append('format = %s'); values.append(data.get('format'))
+            if 'release_year' in data: updates.append('release_year = %s'); values.append(data.get('release_year'))
+            if rotten_tomatoes is not None: updates.append('rotten_tomatoes = %s'); values.append(rotten_tomatoes)
+            if 'length_minutes' in data: updates.append('length_minutes = %s'); values.append(data.get('length_minutes'))
+            if 'rt_link' in data: updates.append('rt_link = %s'); values.append(data.get('rt_link'))
+            if 'genres' in data: updates.append('genres = %s'); values.append(data.get('genres'))
+            if 'poster_url' in data: updates.append('poster_url = %s'); values.append(data.get('poster_url'))
+            
+            if updates:
+                values.append(film_id)
+                query = f'UPDATE films SET {", ".join(updates)} WHERE id = %s'
+                cursor.execute(query, values)
+            else:
+                # No fields to update
+                conn.close()
+                return jsonify({'error': 'No fields to update'}), 400
         else:
             cursor.execute('''
                 UPDATE films
