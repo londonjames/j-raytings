@@ -37,6 +37,12 @@
             color: #000;
         }
         
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
         nav {
             display: flex;
             gap: 2rem;
@@ -52,6 +58,20 @@
         }
         
         nav a:hover {
+            opacity: 0.6;
+        }
+        
+        .linkedin-link {
+            color: #000;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            letter-spacing: -0.02em;
+            transition: opacity 0.2s;
+        }
+        
+        .linkedin-link:hover {
             opacity: 0.6;
         }
         
@@ -119,6 +139,12 @@
                 margin-bottom: 2rem;
             }
             
+            .header-right {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
             nav {
                 gap: 1.5rem;
             }
@@ -142,11 +168,14 @@
 <body>
     <header>
         <div class="site-name">JAMES RAYBOULD</div>
-        <nav>
-            <a href="/about">ABOUT</a>
-            <a href="/newsletter">NEWSLETTER</a>
-            <a href="/contact">CONTACT</a>
-        </nav>
+        <div class="header-right">
+            <nav>
+                <a href="/about">ABOUT</a>
+                <a href="/newsletter">NEWSLETTER</a>
+                <a href="/contact">CONTACT</a>
+            </nav>
+            <a href="https://www.linkedin.com/in/jamesraybould" target="_blank" rel="noopener noreferrer" class="linkedin-link">in</a>
+        </div>
     </header>
     
     <div class="container">
