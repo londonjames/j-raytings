@@ -9,12 +9,12 @@
     {
       "source": "/films",
       "destination": "/index.html"
-    },
-    {
-      "source": "/",
-      "destination": "/index-root.html"
     }
   ],
-  "cleanUrls": false,
-  "trailingSlash": false
+  "routes": [
+    {
+      "src": "^/$",
+      "dest": "/index-root.html"
+    }
+  ]
 }
