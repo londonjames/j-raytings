@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>James Raybould</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,26 +15,39 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Crimson Text', Georgia, serif;
             background: #fff;
             color: #000;
             line-height: 1.6;
             padding: 2rem;
         }
         
-        /* Navigation */
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .site-name {
+            font-size: 1.25rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: #000;
+        }
+        
         nav {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 100;
+            display: flex;
+            gap: 2rem;
         }
         
         nav a {
             color: #000;
             text-decoration: none;
             font-size: 1rem;
-            margin-left: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
             transition: opacity 0.2s;
         }
         
@@ -43,7 +59,6 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding-top: 4rem;
         }
         
         /* Grid Layout */
@@ -51,7 +66,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
         
         /* Block/Card */
@@ -97,24 +112,21 @@
                 padding: 1rem;
             }
             
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
             nav {
-                top: 1rem;
-                right: 1rem;
-            }
-            
-            nav a {
-                margin-left: 1.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .container {
-                padding-top: 3rem;
+                gap: 1.5rem;
             }
             
             .grid {
                 grid-template-columns: 1fr;
                 gap: 10px;
-                margin-top: 2rem;
+                margin-top: 1rem;
             }
             
             .block {
@@ -128,10 +140,14 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="/films">films</a>
-        <!-- Add more nav items here as needed -->
-    </nav>
+    <header>
+        <div class="site-name">JAMES RAYBOULD</div>
+        <nav>
+            <a href="/about">ABOUT</a>
+            <a href="/newsletter">NEWSLETTER</a>
+            <a href="/contact">CONTACT</a>
+        </nav>
+    </header>
     
     <div class="container">
         <div class="grid">
