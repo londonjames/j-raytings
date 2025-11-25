@@ -487,43 +487,52 @@ def update_film(film_id):
     data = request.get_json()
 
     # Fetch RT score if not provided and film doesn't have one
+    # Make this non-blocking - if it fails, just use what was provided
     rotten_tomatoes = data.get('rotten_tomatoes')
     release_year = data.get('release_year')
     title = data.get('title')
     
     # Only try to fetch RT score if it's not provided in the form data
     if (rotten_tomatoes is None or rotten_tomatoes == '') and title:
-        # Check current RT score in database
-        conn = get_db()
         try:
-            if USE_POSTGRES:
-                cursor = conn.cursor(cursor_factory=RealDictCursor)
-                cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = %s', (film_id,))
-                current_film = cursor.fetchone()
-                current_rt = current_film['rotten_tomatoes'] if current_film else None
-            else:
-                cursor = conn.cursor()
-                cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = ?', (film_id,))
-                current_film = cursor.fetchone()
-                current_rt = current_film[0] if current_film else None
-            
-            # Only fetch if current film also doesn't have RT score
-            if not current_rt or current_rt == '':
-                try:
-                    rt_score = fetch_rt_score_from_omdb(title, release_year)
-                    if rt_score:
-                        data['rotten_tomatoes'] = rt_score
-                        print(f"✓ Fetched RT score for '{title}': {rt_score}")
-                except Exception as e:
-                    print(f"Error fetching RT score: {e}")
-            else:
-                # Keep existing RT score if not being updated
-                data['rotten_tomatoes'] = current_rt
-        finally:
-            conn.close()
+            # Check current RT score in database
+            check_conn = get_db()
+            try:
+                if USE_POSTGRES:
+                    check_cursor = check_conn.cursor(cursor_factory=RealDictCursor)
+                    check_cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = %s', (film_id,))
+                    current_film = check_cursor.fetchone()
+                    current_rt = current_film['rotten_tomatoes'] if current_film else None
+                else:
+                    check_cursor = check_conn.cursor()
+                    check_cursor.execute('SELECT rotten_tomatoes FROM films WHERE id = ?', (film_id,))
+                    current_film = check_cursor.fetchone()
+                    current_rt = current_film[0] if current_film else None
+                
+                # Only fetch if current film also doesn't have RT score
+                if not current_rt or current_rt == '':
+                    try:
+                        rt_score = fetch_rt_score_from_omdb(title, release_year)
+                        if rt_score:
+                            data['rotten_tomatoes'] = rt_score
+                            rotten_tomatoes = rt_score
+                            print(f"✓ Fetched RT score for '{title}': {rt_score}")
+                    except Exception as e:
+                        print(f"Error fetching RT score (non-blocking): {e}")
+                        # Continue without RT score
+                else:
+                    # Keep existing RT score if not being updated
+                    data['rotten_tomatoes'] = current_rt
+                    rotten_tomatoes = current_rt
+            finally:
+                check_conn.close()
+        except Exception as e:
+            print(f"Error checking RT score (non-blocking): {e}")
+            # Continue - use whatever was provided
     
-    # Use the value from data (which may have been updated above)
-    rotten_tomatoes = data.get('rotten_tomatoes')
+    # Use the value from data (which may have been updated above, or use original)
+    if rotten_tomatoes is None:
+        rotten_tomatoes = data.get('rotten_tomatoes')
 
     conn = None
     try:
