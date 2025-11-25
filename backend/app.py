@@ -736,23 +736,32 @@ def set_a_grade_rankings():
         for item in rankings:
             title = item.get('title')
             rank = item.get('rank')
+            alternatives = item.get('alternatives', [])
             
             if not title or rank is None:
                 continue
             
-            # Find film by title (case-insensitive)
-            if USE_POSTGRES:
-                cursor.execute("""
-                    SELECT id FROM films 
-                    WHERE LOWER(title) = LOWER(%s) AND letter_rating = 'A'
-                """, (title,))
-            else:
-                cursor.execute("""
-                    SELECT id FROM films 
-                    WHERE LOWER(title) = LOWER(?) AND letter_rating = 'A'
-                """, (title,))
+            # Try main title first, then alternatives
+            titles_to_try = [title] + alternatives
+            film = None
             
-            film = cursor.fetchone()
+            for try_title in titles_to_try:
+                # Find film by title (case-insensitive)
+                if USE_POSTGRES:
+                    cursor.execute("""
+                        SELECT id FROM films 
+                        WHERE LOWER(title) = LOWER(%s) AND letter_rating = 'A'
+                    """, (try_title,))
+                else:
+                    cursor.execute("""
+                        SELECT id FROM films 
+                        WHERE LOWER(title) = LOWER(?) AND letter_rating = 'A'
+                    """, (try_title,))
+                
+                film = cursor.fetchone()
+                if film:
+                    break  # Found it, stop trying alternatives
+            
             if film:
                 film_id = film[0] if USE_POSTGRES else film[0]
                 
