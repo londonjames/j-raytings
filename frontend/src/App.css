@@ -340,7 +340,8 @@ body {
 /* Analytics View */
 .analytics-container {
   min-height: 400px;
-  background: #1a1a1a;
+  /* Charcoal gray background - Current: #2d2d2d (RGB: 45, 45, 45) */
+  background: #2d2d2d;
   padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
@@ -844,7 +845,8 @@ body {
   width: 100%;
   aspect-ratio: 2/3;
   overflow: hidden;
-  background: #1a1a1a;
+  /* Charcoal gray background - Current: #2d2d2d (RGB: 45, 45, 45) */
+  background: #2d2d2d;
   display: flex;
   align-items: center;
   justify-content: center;
