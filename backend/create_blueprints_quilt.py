@@ -17,16 +17,17 @@ CELL_HEIGHT = 188  # Height of each grid cell (4:3 aspect ratio - landscape)
 PADDING = 0  # No padding - seamless images with no borders
 
 # Image URLs - All 9 Blueprints images
+# Grid order: 0=top-left, 1=top-middle, 2=top-right, 3=middle-left, 4=middle-middle, 5=middle-right, 6=bottom-left, 7=bottom-middle, 8=bottom-right
 BLUEPRINTS_IMAGES = [
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/56bd863b-ec44-4054-8dc6-13e42789b980/Untitled_Artwork_58/w=1920,quality=90,fit=scale-down',
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/27e2c3b5-02ec-4c8c-9533-d31d55a94cae/Untitled_Artwork_60/w=1920,quality=90,fit=scale-down',
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/14d4fdbb-b35b-4c62-ac49-676efed97ed7/Untitled_Artwork_9/w=1920,quality=90,fit=scale-down',
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/83118d4d-c080-4482-8223-1bf51787efd0/IMG_0890/w=1920,quality=90,fit=scale-down',
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/29abc44f-a827-4918-b226-cf918bc19b89/Untitled_Artwork_83/w=1920,quality=90,fit=scale-down',
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/34030e28-f77e-4cd5-b856-36d9e13a7e14/Untitled_Artwork_6/w=1920,quality=90,fit=scale-down',
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/b32cc9fc-fd01-4422-8b49-08af46cd6f21/Untitled_Artwork_19/w=1920,quality=90,fit=scale-down',
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/0c9a8b96-e591-42f2-b456-2726d0f9984c/Untitled_Artwork_24/w=1920,quality=90,fit=scale-down',
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/c43fe8f7-fff1-4cff-bfef-55024199d217/Untitled_Artwork_11/w=750,quality=90,fit=scale-down',
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/c43fe8f7-fff1-4cff-bfef-55024199d217/Untitled_Artwork_11/w=750,quality=90,fit=scale-down',  # 0: bottom-right → top-left
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/27e2c3b5-02ec-4c8c-9533-d31d55a94cae/Untitled_Artwork_60/w=1920,quality=90,fit=scale-down',  # 1: top-middle (unchanged)
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/56bd863b-ec44-4054-8dc6-13e42789b980/Untitled_Artwork_58/w=1920,quality=90,fit=scale-down',  # 2: top-left → top-right
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/14d4fdbb-b35b-4c62-ac49-676efed97ed7/Untitled_Artwork_9/w=1920,quality=90,fit=scale-down',  # 3: middle-left (unchanged)
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/83118d4d-c080-4482-8223-1bf51787efd0/IMG_0890/w=1920,quality=90,fit=scale-down',  # 4: middle-middle (unchanged)
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/29abc44f-a827-4918-b226-cf918bc19b89/Untitled_Artwork_83/w=1920,quality=90,fit=scale-down',  # 5: middle-right (unchanged)
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/34030e28-f77e-4cd5-b856-36d9e13a7e14/Untitled_Artwork_6/w=1920,quality=90,fit=scale-down',  # 6: bottom-left (unchanged)
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/b32cc9fc-fd01-4422-8b49-08af46cd6f21/Untitled_Artwork_19/w=1920,quality=90,fit=scale-down',  # 7: bottom-middle (unchanged)
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/0c9a8b96-e591-42f2-b456-2726d0f9984c/Untitled_Artwork_24/w=1920,quality=90,fit=scale-down',  # 8: bottom-right (was top-left, now needs to be filled)
 ]
 
 # Special handling for images that need different crop positioning
