@@ -113,18 +113,24 @@
         .newsletter-block-content {
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
-            justify-content: flex-end;
+            align-items: center;
+            justify-content: space-between;
             height: 100%;
             width: 100%;
             padding: 1rem;
-            padding-bottom: 25%;
             box-sizing: border-box;
+            position: relative;
         }
         
         .newsletter-block-content > div:first-child {
-            margin-bottom: auto;
             align-self: center;
+        }
+        
+        .libutton {
+            position: absolute;
+            bottom: 25%;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         /* Grid Layout - full bleed */
