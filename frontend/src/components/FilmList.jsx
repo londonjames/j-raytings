@@ -110,7 +110,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
   const formatFormat = (format) => {
     if (!format) return ''
     
-    // Capitalize VHS and DVD regardless of case
+    // Capitalize VHS and DVD regardless of case (case-insensitive replacement)
     let formatted = format
     formatted = formatted.replace(/\bvhs\b/gi, 'VHS')
     formatted = formatted.replace(/\bdvd\b/gi, 'DVD')
