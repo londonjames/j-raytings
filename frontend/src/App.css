@@ -21,6 +21,18 @@ body {
   padding-top: 100px;
 }
 
+@media (max-width: 768px) {
+  .app {
+    padding-top: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding-top: 140px;
+  }
+}
+
 .sticky-header {
   position: fixed;
   top: 0;
@@ -53,11 +65,45 @@ body {
   transition: none;
 }
 
+@media (max-width: 768px) {
+  .header-top-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .header-top-row.filters-active {
+    grid-template-columns: 1fr;
+  }
+  
+  .site-title {
+    justify-self: start;
+    font-size: 1rem;
+  }
+  
+  .search-and-filter {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
+  }
+  
+  .view-controls {
+    justify-self: start;
+  }
+}
+
 .search-and-filter {
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
   flex-wrap: nowrap;
+}
+
+@media (max-width: 768px) {
+  .search-and-filter {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 }
 
 .filter-buttons-stack {
@@ -70,6 +116,19 @@ body {
   display: flex;
   gap: 0.75rem;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .active-filters-row {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .active-filters-row {
+    gap: 0.4rem;
+  }
 }
 
 .site-title {
@@ -100,6 +159,18 @@ body {
   max-width: 2000px;
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
 }
 
 .film-count {
@@ -198,6 +269,26 @@ body {
   width: 200px;
 }
 
+@media (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+    min-width: 200px;
+    flex: 1 1 auto;
+  }
+  
+  .search-bar-compact {
+    width: 100%;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
 /* Sort Bar */
 .sort-bar {
   display: flex;
@@ -222,6 +313,23 @@ body {
   transition: all 0.2s ease;
   width: 36px;
   height: 36px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .sort-button {
+    width: 32px;
+    height: 32px;
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sort-button {
+    width: 30px;
+    height: 30px;
+    padding: 0.35rem;
+  }
 }
 
 .sort-button:hover {
@@ -324,6 +432,7 @@ body {
   transition: all 0.2s ease;
   width: 36px;
   height: 36px;
+  flex-shrink: 0;
 }
 
 .analytics-button:hover {
@@ -335,6 +444,32 @@ body {
   background: #e0e0e0;
   color: #1a1a1a;
   border-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .analytics-button {
+    width: 32px;
+    height: 32px;
+    padding: 0.4rem;
+  }
+  
+  .analytics-button svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-button {
+    width: 30px;
+    height: 30px;
+    padding: 0.35rem;
+  }
+  
+  .analytics-button svg {
+    width: 14px;
+    height: 14px;
+  }
 }
 
 /* Analytics View */
@@ -583,6 +718,20 @@ body {
   flex-shrink: 0;
 }
 
+@media (max-width: 480px) {
+  .filter-chip {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.75rem;
+    gap: 0.3rem;
+  }
+  
+  .filter-chip-remove {
+    width: 16px;
+    height: 16px;
+    font-size: 1rem;
+  }
+}
+
 .filter-chip-label {
   white-space: nowrap;
 }
@@ -619,6 +768,13 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .clear-all-filters-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
 
 .clear-all-filters-btn:hover {
@@ -757,8 +913,13 @@ body {
     gap: 0.5rem;
   }
 
+  .header-top-row {
+    gap: 0.75rem;
+  }
+
   .site-title {
-    display: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
   }
 
   .film-count-header {
@@ -767,24 +928,38 @@ body {
 
   .search-and-filter {
     width: 100%;
-    padding: 0 1rem;
     flex-wrap: wrap;
+    gap: 0.4rem;
   }
 
   .search-bar {
     width: 100%;
+    min-width: 0;
   }
 
-  .search-bar input {
-    min-width: 0;
-    flex: 1;
+  .search-input {
+    font-size: 0.85rem;
+    padding: 0.4rem 2.25rem 0.4rem 0.85rem;
+  }
+
+  .sort-button {
+    width: 32px;
+    height: 32px;
+    padding: 0.4rem;
   }
 
   .view-controls {
-    padding: 0 1rem;
-    justify-self: center;
-    width: 100%;
-    justify-content: center;
+    justify-self: start;
+    width: auto;
+  }
+
+  .view-btn {
+    padding: 0.3rem;
+  }
+
+  .view-btn svg {
+    width: 14px;
+    height: 14px;
   }
 
   /* Analytics mobile optimization */
@@ -806,17 +981,18 @@ body {
   /* Filter mobile optimization */
   .filter-bar {
     flex-wrap: wrap;
+    gap: 0.4rem;
   }
 
   .filter-type-button {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.5rem;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.45rem;
     white-space: nowrap;
   }
 
   .clear-filter-btn {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.5rem;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.45rem;
   }
 }
 
@@ -837,8 +1013,14 @@ body {
 }
 
 .film-card:hover .film-poster {
-  transform: scale(1.05);
+  transform: translateY(-50%) scale(1.1);
   filter: brightness(1.1);
+  left: 0;
+  right: 0;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  max-height: 100% !important;
 }
 
 .poster-container {
@@ -847,26 +1029,40 @@ body {
   overflow: hidden;
   /* Background - Current: #1c1c1c (RGB: 28, 28, 28) */
   background: #1c1c1c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
 }
 
+.film-card:hover .poster-container {
+  overflow: hidden;
+}
+
 .film-poster {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: all 0.3s ease;
-  opacity: 0;
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
+  right: 0;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  display: block;
+  transform: translateY(-50%);
+  transform-origin: center center;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+  opacity: 0;
 }
 
 .film-poster.loaded {
-  opacity: 1;
+  opacity: 1 !important;
+  left: 0;
+  right: 0;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
 }
 
 .poster-skeleton {
@@ -882,6 +1078,7 @@ body {
     #2a2a2a 100%
   );
   background-size: 200% 100%;
+}
   animation: shimmer 1.5s ease-in-out infinite;
 }
 
