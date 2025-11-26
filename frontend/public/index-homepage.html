@@ -286,33 +286,10 @@
         /* Responsive: background-size: cover works well on all devices */
         /* The 4x3 grid (800x600px) will scale nicely with cover */
         
-        .block:hover {
+        /* White blocks (Books, Coming Soon) get hover background change */
+        .block:not(.films-block):not(.newsletter-block):not(.blueprints-block):hover {
             background: #e8e8e8;
             transform: translateY(-2px);
-        }
-        
-        .block.films-block:hover {
-            background-image: url('/films-quilt.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.9) saturate(0.75);
-            -webkit-filter: brightness(0.9) saturate(0.75);
-        }
-        
-        .block.blueprints-block:hover {
-            background-image: url('/blueprints-quilt.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.9) saturate(0.75);
-            -webkit-filter: brightness(0.9) saturate(0.75);
-        }
-        
-        .block.newsletter-block:hover {
-            background-image: url('/newsletter-quilt.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.9) saturate(0.75);
-            -webkit-filter: brightness(0.9) saturate(0.75);
         }
         
         .block[style*="cursor: default"]:hover {
