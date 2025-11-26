@@ -16,7 +16,7 @@ OUTPUT_FILE = 'films_quilt.jpg'
 GRID_COLUMNS = 4  # 4 columns = 3 rows for 12 films
 GRID_ROWS = 3
 CELL_SIZE = 200  # Size of each grid cell
-PADDING = 15  # White space padding around each image
+PADDING = 0  # No padding - images fill cells completely
 
 def get_top_films(limit=12):
     """Get top films with The Godfather and Hoop Dreams first, then A-grade ranking"""
@@ -75,24 +75,24 @@ def create_quilt(films, output_file=OUTPUT_FILE):
     """Create a patchwork quilt from film posters with maintained aspect ratios"""
     print(f"Creating quilt from {len(films)} films...")
     
-    # Create a blank canvas with white background
+    # Create a blank canvas with dark background (matches site theme)
     quilt_width = GRID_COLUMNS * CELL_SIZE
     quilt_height = GRID_ROWS * CELL_SIZE
-    quilt = Image.new('RGB', (quilt_width, quilt_height), color='white')
+    quilt = Image.new('RGB', (quilt_width, quilt_height), color='#1c1c1c')  # Dark charcoal to match site
     
     downloaded = 0
     failed = 0
     
-    # Calculate image size (cell size minus padding on both sides)
-    image_size = CELL_SIZE - (PADDING * 2)
+    # Image size fills the entire cell (no padding)
+    image_size = CELL_SIZE
     
     for idx, film in enumerate(films):
         row = idx // GRID_COLUMNS
         col = idx % GRID_COLUMNS
         
-        # Calculate position with padding
-        x = col * CELL_SIZE + PADDING
-        y = row * CELL_SIZE + PADDING
+        # Calculate position (no padding)
+        x = col * CELL_SIZE
+        y = row * CELL_SIZE
         
         print(f"[{idx+1}/{len(films)}] Processing: {film['title']}")
         
@@ -104,15 +104,16 @@ def create_quilt(films, output_file=OUTPUT_FILE):
             if poster_img.mode != 'RGB':
                 poster_img = poster_img.convert('RGB')
             
-            # Maintain aspect ratio - resize to fit within the padded area
+            # Fill the cell completely while maintaining aspect ratio
             original_width, original_height = poster_img.size
             aspect_ratio = original_width / original_height
             
-            # Calculate new dimensions maintaining aspect ratio
-            if aspect_ratio > 1:  # Wider than tall
+            # Calculate dimensions to fill the cell (maintain aspect ratio)
+            # Use the larger dimension to fill the cell
+            if aspect_ratio > 1:  # Wider than tall - fill width, crop height
                 new_width = image_size
                 new_height = int(image_size / aspect_ratio)
-            else:  # Taller than wide or square
+            else:  # Taller than wide or square - fill height, crop width
                 new_height = image_size
                 new_width = int(image_size * aspect_ratio)
             
@@ -127,8 +128,8 @@ def create_quilt(films, output_file=OUTPUT_FILE):
             quilt.paste(poster_img, (x + offset_x, y + offset_y))
             downloaded += 1
         else:
-            # Create a placeholder with padding
-            placeholder = Image.new('RGB', (image_size, image_size), color='#e0e0e0')
+            # Create a dark placeholder
+            placeholder = Image.new('RGB', (image_size, image_size), color='#2a2a2a')
             quilt.paste(placeholder, (x, y))
             failed += 1
     
@@ -138,7 +139,7 @@ def create_quilt(films, output_file=OUTPUT_FILE):
     print(f"   Downloaded: {downloaded}")
     print(f"   Failed: {failed}")
     print(f"   Size: {quilt_width}x{quilt_height}px")
-    print(f"   Padding: {PADDING}px around each image")
+    print(f"   Grid: {GRID_COLUMNS} columns × {GRID_ROWS} rows")
     
     return output_file
 
