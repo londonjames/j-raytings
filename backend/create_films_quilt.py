@@ -106,28 +106,35 @@ def create_quilt(films, output_file=OUTPUT_FILE):
             if poster_img.mode != 'RGB':
                 poster_img = poster_img.convert('RGB')
             
-            # Crop and resize to fill the square cell completely (no gaps)
+            # Crop and resize to fill the 4:3 landscape cell
+            # Favor the top portion (where titles are) by cropping more from bottom
             original_width, original_height = poster_img.size
-            aspect_ratio = original_width / original_height
+            original_aspect = original_width / original_height
+            target_aspect = image_width / image_height  # 4:3 = 1.33
             
-            # Calculate crop to make it square, then resize to fill cell
-            if aspect_ratio > 1:  # Wider than tall - crop width to make square
-                # Crop to center square
-                crop_size = original_height
-                left = (original_width - crop_size) // 2
+            # Crop to match 4:3 aspect ratio, favoring top portion
+            if original_aspect > target_aspect:  # Original is wider - crop width
+                # Crop to center 4:3 rectangle (horizontal crop)
+                crop_height = original_height
+                crop_width = int(crop_height * target_aspect)
+                left = (original_width - crop_width) // 2
                 top = 0
-                right = left + crop_size
+                right = left + crop_width
                 bottom = original_height
                 poster_img = poster_img.crop((left, top, right, bottom))
-            elif aspect_ratio < 1:  # Taller than wide - crop height to make square
-                # Crop to center square
-                crop_size = original_width
+            elif original_aspect < target_aspect:  # Original is taller - crop height
+                # Crop to 4:3 rectangle, but favor top (crop 85% from bottom, 15% from top)
+                crop_width = original_width
+                crop_height = int(crop_width / target_aspect)
                 left = 0
-                top = (original_height - crop_size) // 2
+                # Shift crop up: take 15% from top, 85% from bottom
+                crop_amount = original_height - crop_height
+                top_crop = int(crop_amount * 0.15)  # Only 15% from top
+                top = top_crop
                 right = original_width
-                bottom = top + crop_size
+                bottom = top + crop_height
                 poster_img = poster_img.crop((left, top, right, bottom))
-            # If already square, no crop needed
+            # If already matching aspect ratio, no crop needed
             
             # Resize to fill the cell exactly (4:3 landscape)
             poster_img = poster_img.resize((image_width, image_height), Image.Resampling.LANCZOS)
