@@ -13,8 +13,8 @@ from urllib.parse import urlparse
 
 DATABASE = 'films.db'
 OUTPUT_FILE = 'films_quilt.jpg'
-GRID_COLUMNS = 4  # 4 columns = 3 rows for 12 films
-GRID_ROWS = 3
+GRID_COLUMNS = 3  # 3 columns = 4 rows for 12 films (more horizontal space per poster)
+GRID_ROWS = 4
 CELL_SIZE = 200  # Size of each grid cell
 PADDING = 0  # No padding - images fill cells completely
 
