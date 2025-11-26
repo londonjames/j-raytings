@@ -110,28 +110,7 @@
             background-color: #004182;
         }
         
-        .newsletter-block-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            width: 100%;
-            padding: 1rem;
-            box-sizing: border-box;
-            position: relative;
-        }
-        
-        .newsletter-block-content > div:first-child {
-            align-self: center;
-        }
-        
-        .libutton {
-            position: absolute;
-            bottom: 25%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+        /* Newsletter block content - now simplified, no longer needed */
         
         /* Grid Layout - full bleed */
         .grid {
@@ -171,6 +150,32 @@
             font-weight: 600;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
             font-size: 1.1rem; /* Same font size as before */
+        }
+        
+        /* Newsletter block: seamless newsletter quilt with no borders */
+        .block.newsletter-block {
+            background-image: url('/newsletter-quilt.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #1c1c1c; /* Fallback color matching quilt background */
+        }
+        
+        .block.newsletter-block .block-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            font-size: 1.1rem;
+            white-space: nowrap; /* Try to keep on one line */
+        }
+        
+        /* Allow wrapping on smaller screens */
+        @media (max-width: 768px) {
+            .block.newsletter-block .block-content {
+                white-space: normal;
+            }
         }
         
         /* Responsive: background-size: cover works well on all devices */
@@ -277,11 +282,8 @@
             <a href="/books" class="block">
                 <div class="block-content">Books</div>
             </a>
-            <div class="block" style="cursor: default;">
-                <div class="block-content newsletter-block-content">
-                    <div>What's the So What Newsletter</div>
-                    <a class="libutton" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6767254695498014720" target="_blank" rel="noopener noreferrer">Subscribe on LinkedIn</a>
-                </div>
+            <div class="block newsletter-block" style="cursor: default;">
+                <div class="block-content">What's the So What?</div>
             </div>
             <div class="block" style="cursor: default; opacity: 0.5;">
                 <div class="block-content">Coming Soon</div>
