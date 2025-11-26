@@ -102,12 +102,20 @@
             text-decoration: none;
             transition: opacity 0.2s;
             line-height: 0;
+            background: none !important;
+        }
+        
+        .linkedin-link::before,
+        .linkedin-link::after {
+            display: none !important;
+            content: none !important;
         }
         
         .linkedin-link img {
             height: 1.1rem;
             width: auto;
             display: block;
+            max-width: 100%;
         }
         
         .linkedin-link:hover {
@@ -456,7 +464,7 @@
                 <a href="/contact">CONTACT</a>
             </nav>
             <a href="https://www.linkedin.com/in/raybould" target="_blank" rel="noopener noreferrer" class="linkedin-link">
-                <img src="/linkedin-logo.png" alt="LinkedIn" style="display: block;" />
+                <img src="/linkedin-logo.png?v=2" alt="LinkedIn" />
             </a>
         </div>
     </header>
