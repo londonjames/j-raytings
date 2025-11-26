@@ -140,9 +140,9 @@
             gap: 10px;
         }
         
-        /* Block/Card */
+        /* Block/Card - All blocks use 4:3 aspect ratio (landscape) */
         .block {
-            aspect-ratio: 1;
+            aspect-ratio: 4 / 3;
             background: #f5f5f5;
             display: flex;
             align-items: center;
@@ -155,29 +155,13 @@
             overflow: hidden;
         }
         
-        /* Films block: 4:3 landscape aspect ratio (wider than tall) */
+        /* Films block: seamless poster quilt with no borders */
         .block.films-block {
-            aspect-ratio: 4 / 3;
             background-image: url('/films-quilt.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-color: #1c1c1c; /* Fallback color matching quilt background */
-        }
-        
-        /* Ensure image loads properly */
-        .block.films-block::before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/films-quilt.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
         }
         
         .block.films-block .block-content {

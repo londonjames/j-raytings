@@ -17,7 +17,7 @@ GRID_COLUMNS = 3  # 3 columns × 3 rows for 9 films (more space per poster)
 GRID_ROWS = 3
 CELL_WIDTH = 250  # Width of each grid cell (larger for better visibility)
 CELL_HEIGHT = 188  # Height of each grid cell (4:3 aspect ratio - landscape)
-PADDING = 4  # Minimal padding
+PADDING = 0  # No padding - seamless posters with no borders
 
 def get_top_films(limit=9):
     """Get top films with The Godfather and Hoop Dreams first, then A-grade ranking"""
@@ -84,17 +84,17 @@ def create_quilt(films, output_file=OUTPUT_FILE):
     downloaded = 0
     failed = 0
     
-    # Image size with small padding to show more of edge posters
-    image_width = CELL_WIDTH - (PADDING * 2)
-    image_height = CELL_HEIGHT - (PADDING * 2)
+    # Image size fills cells completely (no padding - seamless)
+    image_width = CELL_WIDTH
+    image_height = CELL_HEIGHT
     
     for idx, film in enumerate(films):
         row = idx // GRID_COLUMNS
         col = idx % GRID_COLUMNS
         
-        # Calculate position with padding
-        x = col * CELL_WIDTH + PADDING
-        y = row * CELL_HEIGHT + PADDING
+        # Calculate position (no padding - seamless)
+        x = col * CELL_WIDTH
+        y = row * CELL_HEIGHT
         
         print(f"[{idx+1}/{len(films)}] Processing: {film['title']}")
         
