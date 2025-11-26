@@ -160,7 +160,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #000; /* Fallback color */
+            background-color: #1c1c1c; /* Fallback color matching quilt background */
         }
         
         .block.films-block .block-content {
@@ -168,23 +168,11 @@
             padding: 0.75rem 1.5rem;
             border-radius: 4px;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
         
-        /* Responsive adjustments for mobile */
-        @media (max-width: 768px) {
-            .block.films-block {
-                background-size: cover;
-                background-position: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .block.films-block {
-                background-size: cover;
-                background-position: center;
-            }
-        }
+        /* Responsive: background-size: cover works well on all devices */
+        /* The 4x3 grid (800x600px) will scale nicely with cover */
         
         .block:hover {
             background: #e8e8e8;
