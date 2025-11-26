@@ -462,5 +462,18 @@
             </div>
         </div>
     </div>
+    <script>
+        // Ensure no React app scripts load on homepage
+        if (document.getElementById('root')) {
+            document.getElementById('root').style.display = 'none';
+        }
+        // Remove any React app CSS that might have loaded
+        const links = document.querySelectorAll('link[rel="stylesheet"]');
+        links.forEach(link => {
+            if (link.href && link.href.includes('index-') && link.href.includes('.css') && !link.href.includes('fonts')) {
+                link.remove();
+            }
+        });
+    </script>
 </body>
 </html>
