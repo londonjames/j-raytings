@@ -139,6 +139,12 @@ def create_quilt(films, output_file=OUTPUT_FILE):
             # Resize to fill the cell exactly (4:3 landscape)
             poster_img = poster_img.resize((image_width, image_height), Image.Resampling.LANCZOS)
             
+            # Slightly desaturate to make it feel more in the background (subtle effect)
+            # Convert to grayscale and blend back with original for subtle desaturation
+            gray = poster_img.convert('L').convert('RGB')
+            # Blend: 85% original color, 15% grayscale for subtle desaturation
+            poster_img = Image.blend(poster_img, gray, 0.15)
+            
             # Paste directly - no offset needed since it fills the cell
             quilt.paste(poster_img, (x, y))
             downloaded += 1
