@@ -14,13 +14,18 @@
             box-sizing: border-box;
         }
         
+        html {
+            background: #f5f5f5 !important;
+        }
+        
         body {
-            font-family: 'Crimson Text', Georgia, serif;
-            background: #f5f5f5;
-            color: #000;
+            font-family: 'Crimson Text', Georgia, serif !important;
+            background: #f5f5f5 !important;
+            color: #000 !important;
             line-height: 1.6;
             padding: 0;
             margin: 0;
+            min-height: 100vh;
         }
         
         /* Header */
@@ -143,6 +148,7 @@
             background-color: #1c1c1c; /* Fallback color matching quilt background */
             /* Color desaturation and darkening - adjust values (brightness: 0-1, saturate: 0 = grayscale, 1 = full color) */
             filter: brightness(0.9) saturate(0.75);
+            -webkit-filter: brightness(0.9) saturate(0.75);
         }
         
         .block.films-block .block-content {
@@ -169,6 +175,7 @@
             background-color: #1c1c1c; /* Fallback color matching quilt background */
             /* Color desaturation and darkening - adjust values (brightness: 0-1, saturate: 0 = grayscale, 1 = full color) */
             filter: brightness(0.9) saturate(0.75);
+            -webkit-filter: brightness(0.9) saturate(0.75);
         }
         
         .block.newsletter-block .block-content {
@@ -197,6 +204,7 @@
             background-color: #1c1c1c; /* Fallback color matching quilt background */
             /* Color desaturation and darkening - adjust values (brightness: 0-1, saturate: 0 = grayscale, 1 = full color) */
             filter: brightness(0.9) saturate(0.75);
+            -webkit-filter: brightness(0.9) saturate(0.75);
         }
         
         .block.blueprints-block .block-content {
@@ -229,6 +237,7 @@
             background-size: cover;
             background-position: center;
             filter: brightness(0.9) saturate(0.75);
+            -webkit-filter: brightness(0.9) saturate(0.75);
         }
         
         .block.blueprints-block:hover {
@@ -236,6 +245,7 @@
             background-size: cover;
             background-position: center;
             filter: brightness(0.9) saturate(0.75);
+            -webkit-filter: brightness(0.9) saturate(0.75);
         }
         
         .block.newsletter-block:hover {
@@ -243,6 +253,7 @@
             background-size: cover;
             background-position: center;
             filter: brightness(0.9) saturate(0.75);
+            -webkit-filter: brightness(0.9) saturate(0.75);
         }
         
         .block[style*="cursor: default"]:hover {
