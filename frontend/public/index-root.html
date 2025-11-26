@@ -151,11 +151,33 @@
             color: #000;
             transition: background 0.2s, transform 0.2s;
             border: 1px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .block.films-block {
+            background-image: url('/films-quilt.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .block.films-block .block-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
         }
         
         .block:hover {
             background: #e8e8e8;
             transform: translateY(-2px);
+        }
+        
+        .block.films-block:hover {
+            background-image: url('/films-quilt.jpg');
+            background-size: cover;
+            background-position: center;
         }
         
         .block[style*="cursor: default"]:hover {
@@ -242,7 +264,7 @@
     
     <div class="grid-wrapper">
         <div class="grid">
-            <a href="https://jamesraybould.me/films" class="block">
+            <a href="https://jamesraybould.me/films" class="block films-block">
                 <div class="block-content">Films</div>
             </a>
             <a href="/books" class="block">
