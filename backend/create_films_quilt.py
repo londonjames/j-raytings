@@ -104,28 +104,34 @@ def create_quilt(films, output_file=OUTPUT_FILE):
             if poster_img.mode != 'RGB':
                 poster_img = poster_img.convert('RGB')
             
-            # Fill the cell completely while maintaining aspect ratio
+            # Crop and resize to fill the square cell completely (no gaps)
             original_width, original_height = poster_img.size
             aspect_ratio = original_width / original_height
             
-            # Calculate dimensions to fill the cell (maintain aspect ratio)
-            # Use the larger dimension to fill the cell
-            if aspect_ratio > 1:  # Wider than tall - fill width, crop height
-                new_width = image_size
-                new_height = int(image_size / aspect_ratio)
-            else:  # Taller than wide or square - fill height, crop width
-                new_height = image_size
-                new_width = int(image_size * aspect_ratio)
+            # Calculate crop to make it square, then resize to fill cell
+            if aspect_ratio > 1:  # Wider than tall - crop width to make square
+                # Crop to center square
+                crop_size = original_height
+                left = (original_width - crop_size) // 2
+                top = 0
+                right = left + crop_size
+                bottom = original_height
+                poster_img = poster_img.crop((left, top, right, bottom))
+            elif aspect_ratio < 1:  # Taller than wide - crop height to make square
+                # Crop to center square
+                crop_size = original_width
+                left = 0
+                top = (original_height - crop_size) // 2
+                right = original_width
+                bottom = top + crop_size
+                poster_img = poster_img.crop((left, top, right, bottom))
+            # If already square, no crop needed
             
-            # Resize maintaining aspect ratio
-            poster_img = poster_img.resize((new_width, new_height), Image.Resampling.LANCZOS)
+            # Resize the square image to fill the cell exactly
+            poster_img = poster_img.resize((image_size, image_size), Image.Resampling.LANCZOS)
             
-            # Center the image in the cell
-            offset_x = (image_size - new_width) // 2
-            offset_y = (image_size - new_height) // 2
-            
-            # Paste onto quilt
-            quilt.paste(poster_img, (x + offset_x, y + offset_y))
+            # Paste directly - no offset needed since it fills the cell
+            quilt.paste(poster_img, (x, y))
             downloaded += 1
         else:
             # Create a dark placeholder
