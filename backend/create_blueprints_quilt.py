@@ -27,7 +27,7 @@ BLUEPRINTS_IMAGES = [
     'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/29abc44f-a827-4918-b226-cf918bc19b89/Untitled_Artwork_83/w=1920,quality=90,fit=scale-down',  # 5: middle-right (unchanged)
     None,  # Position 6 (bottom-left) - deleted, will use placeholder
     'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/639297ad-1844-4591-98eb-2e9bc295b0fc/Untitled_Artwork_59/w=1920,quality=90,fit=scale-down',  # 7: bottom-middle (new image)
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/0c9a8b96-e591-42f2-b456-2726d0f9984c/Untitled_Artwork_24/w=1920,quality=90,fit=scale-down',  # 8: bottom-right (unchanged)
+    None,  # Position 8 (bottom-right) - deleted, will use placeholder
 ]
 
 # Special handling for images that need different crop positioning
