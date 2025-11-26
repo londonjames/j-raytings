@@ -37,13 +37,6 @@ SPECIAL_CROP_IMAGES = {
     7: {'top_crop_ratio': 0.05}  # Only crop 5% from top, 95% from bottom (to show header)
 }
 
-# Images that should be "zoomed out" (scaled down) to show more content
-# These will be resized to 90% of cell size and centered
-ZOOM_OUT_IMAGES = {
-    2: 0.90,  # top-right: scale to 90% of cell size
-    5: 0.90,  # middle-right: scale to 90% of cell size
-}
-
 def download_image(url_or_path):
     """Download an image from URL or load from local file"""
     try:
@@ -135,23 +128,8 @@ def create_quilt(image_sources, output_file=OUTPUT_FILE):
                 img = img.crop((left, top, right, bottom))
             # If already matching aspect ratio, no crop needed
             
-            # Check if this image should be "zoomed out" (scaled down to show more content)
-            zoom_scale = ZOOM_OUT_IMAGES.get(idx, 1.0)
-            
-            if zoom_scale < 1.0:
-                # Scale down the image to show more of the original content
-                scaled_width = int(image_width * zoom_scale)
-                scaled_height = int(image_height * zoom_scale)
-                img = img.resize((scaled_width, scaled_height), Image.Resampling.LANCZOS)
-                
-                # Calculate offset to center the smaller image in the cell
-                offset_x = (image_width - scaled_width) // 2
-                offset_y = (image_height - scaled_height) // 2
-            else:
-                # Resize to fill the cell exactly (4:3 landscape)
-                img = img.resize((image_width, image_height), Image.Resampling.LANCZOS)
-                offset_x = 0
-                offset_y = 0
+            # Resize to fill the cell exactly (4:3 landscape)
+            img = img.resize((image_width, image_height), Image.Resampling.LANCZOS)
             
             # Slightly desaturate to make it feel more in the background (subtle effect)
             # Convert to grayscale and blend back with original for subtle desaturation
@@ -159,8 +137,8 @@ def create_quilt(image_sources, output_file=OUTPUT_FILE):
             # Blend: 85% original color, 15% grayscale for subtle desaturation
             img = Image.blend(img, gray, 0.15)
             
-            # Paste with offset (centered if zoomed out)
-            quilt.paste(img, (x + offset_x, y + offset_y))
+            # Paste directly - no offset needed since it fills the cell
+            quilt.paste(img, (x, y))
             downloaded += 1
         else:
             # Create a dark placeholder
