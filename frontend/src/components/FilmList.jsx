@@ -106,6 +106,18 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
     return dateSeen
   }
 
+  // Helper function to format format field (capitalize VHS and DVD)
+  const formatFormat = (format) => {
+    if (!format) return ''
+    
+    // Capitalize VHS and DVD regardless of case
+    let formatted = format
+    formatted = formatted.replace(/\bvhs\b/gi, 'VHS')
+    formatted = formatted.replace(/\bdvd\b/gi, 'DVD')
+    
+    return formatted
+  }
+
   if (films.length === 0) {
     return (
       <div className="empty-state">
@@ -275,7 +287,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                     {film.format && (
                       <div className="detail-row">
                         <span className="detail-label">Format:</span>
-                        <span className="detail-value">{film.format}</span>
+                        <span className="detail-value">{formatFormat(film.format)}</span>
                       </div>
                     )}
                     {film.location && (
