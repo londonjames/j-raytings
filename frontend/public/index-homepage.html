@@ -177,16 +177,21 @@
             border-radius: 3px; /* 99% rectangular - very subtle rounding */
         }
         
-        /* Films block: seamless poster quilt with no borders */
+        /* Films block: solid color initially, quilt appears on hover/tap */
         .block.films-block {
-            background-image: url('/films-quilt.jpg');
+            background-color: #E8E6E0; /* Initial sparse background - can be customized */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #1c1c1c; /* Fallback color matching quilt background */
-            /* Color desaturation and darkening - adjust values (brightness: 0-1, saturate: 0 = grayscale, 1 = full color) */
+            transition: background-image 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+        }
+        
+        .block.films-block:hover,
+        .block.films-block:active {
+            background-image: url('/films-quilt.jpg');
             filter: brightness(0.9) saturate(0.75);
             -webkit-filter: brightness(0.9) saturate(0.75);
+            transform: scale(1.01);
         }
         
         .block.films-block .block-content {
@@ -206,16 +211,21 @@
             backdrop-filter: blur(4px);
         }
         
-        /* Newsletter block: seamless newsletter quilt with no borders */
+        /* Newsletter block: solid color initially, quilt appears on hover/tap */
         .block.newsletter-block {
-            background-image: url('/newsletter-quilt.jpg');
+            background-color: #E8E6E0; /* Initial sparse background - can be customized */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #1c1c1c; /* Fallback color matching quilt background */
-            /* Color desaturation and darkening - adjust values (brightness: 0-1, saturate: 0 = grayscale, 1 = full color) */
+            transition: background-image 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+        }
+        
+        .block.newsletter-block:hover,
+        .block.newsletter-block:active {
+            background-image: url('/newsletter-quilt.jpg');
             filter: brightness(0.9) saturate(0.75);
             -webkit-filter: brightness(0.9) saturate(0.75);
+            transform: scale(1.01);
         }
         
         .block.newsletter-block .block-content {
@@ -237,16 +247,21 @@
             backdrop-filter: blur(4px);
         }
         
-        /* Blueprints block: seamless blueprints quilt with no borders */
+        /* Blueprints block: solid color initially, quilt appears on hover/tap */
         .block.blueprints-block {
-            background-image: url('/blueprints-quilt.jpg');
+            background-color: #E8E6E0; /* Initial sparse background - can be customized */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #1c1c1c; /* Fallback color matching quilt background */
-            /* Color desaturation and darkening - adjust values (brightness: 0-1, saturate: 0 = grayscale, 1 = full color) */
+            transition: background-image 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+        }
+        
+        .block.blueprints-block:hover,
+        .block.blueprints-block:active {
+            background-image: url('/blueprints-quilt.jpg');
             filter: brightness(0.9) saturate(0.75);
             -webkit-filter: brightness(0.9) saturate(0.75);
+            transform: scale(1.01);
         }
         
         .block.blueprints-block .block-content {
