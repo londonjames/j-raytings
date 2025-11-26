@@ -13,10 +13,11 @@ from urllib.parse import urlparse
 
 DATABASE = 'films.db'
 OUTPUT_FILE = 'films_quilt.jpg'
-GRID_COLUMNS = 4  # 4 columns × 3 rows for 12 films (landscape matches square block)
+GRID_COLUMNS = 4  # 4 columns × 3 rows for 12 films
 GRID_ROWS = 3
-CELL_SIZE = 200  # Size of each grid cell
-PADDING = 8  # Small padding to show more of edge posters
+CELL_WIDTH = 200  # Width of each grid cell
+CELL_HEIGHT = 150  # Height of each grid cell (4:3 aspect ratio - landscape)
+PADDING = 6  # Small padding to show more of edge posters
 
 def get_top_films(limit=12):
     """Get top films with The Godfather and Hoop Dreams first, then A-grade ranking"""
@@ -72,27 +73,28 @@ def download_image(url):
         return None
 
 def create_quilt(films, output_file=OUTPUT_FILE):
-    """Create a patchwork quilt from film posters with maintained aspect ratios"""
+    """Create a patchwork quilt from film posters with 4:3 landscape cells"""
     print(f"Creating quilt from {len(films)} films...")
     
     # Create a blank canvas with dark background (matches site theme)
-    quilt_width = GRID_COLUMNS * CELL_SIZE
-    quilt_height = GRID_ROWS * CELL_SIZE
+    quilt_width = GRID_COLUMNS * CELL_WIDTH
+    quilt_height = GRID_ROWS * CELL_HEIGHT
     quilt = Image.new('RGB', (quilt_width, quilt_height), color='#1c1c1c')  # Dark charcoal to match site
     
     downloaded = 0
     failed = 0
     
     # Image size with small padding to show more of edge posters
-    image_size = CELL_SIZE - (PADDING * 2)
+    image_width = CELL_WIDTH - (PADDING * 2)
+    image_height = CELL_HEIGHT - (PADDING * 2)
     
     for idx, film in enumerate(films):
         row = idx // GRID_COLUMNS
         col = idx % GRID_COLUMNS
         
         # Calculate position with padding
-        x = col * CELL_SIZE + PADDING
-        y = row * CELL_SIZE + PADDING
+        x = col * CELL_WIDTH + PADDING
+        y = row * CELL_HEIGHT + PADDING
         
         print(f"[{idx+1}/{len(films)}] Processing: {film['title']}")
         
@@ -127,15 +129,15 @@ def create_quilt(films, output_file=OUTPUT_FILE):
                 poster_img = poster_img.crop((left, top, right, bottom))
             # If already square, no crop needed
             
-            # Resize the square image to fill the cell exactly
-            poster_img = poster_img.resize((image_size, image_size), Image.Resampling.LANCZOS)
+            # Resize to fill the cell exactly (4:3 landscape)
+            poster_img = poster_img.resize((image_width, image_height), Image.Resampling.LANCZOS)
             
             # Paste directly - no offset needed since it fills the cell
             quilt.paste(poster_img, (x, y))
             downloaded += 1
         else:
             # Create a dark placeholder
-            placeholder = Image.new('RGB', (image_size, image_size), color='#2a2a2a')
+            placeholder = Image.new('RGB', (image_width, image_height), color='#2a2a2a')
             quilt.paste(placeholder, (x, y))
             failed += 1
     
