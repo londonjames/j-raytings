@@ -165,6 +165,21 @@
             background-color: #1c1c1c; /* Fallback color matching quilt background */
         }
         
+        /* Ensure image loads properly */
+        .block.films-block::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/films-quilt.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        
         .block.films-block .block-content {
             background: rgba(255, 255, 255, 0.95);
             padding: 0.75rem 1.5rem;

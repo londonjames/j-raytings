@@ -13,13 +13,13 @@ from urllib.parse import urlparse
 
 DATABASE = 'films.db'
 OUTPUT_FILE = 'films_quilt.jpg'
-GRID_COLUMNS = 4  # 4 columns × 3 rows for 12 films
+GRID_COLUMNS = 3  # 3 columns × 3 rows for 9 films (more space per poster)
 GRID_ROWS = 3
-CELL_WIDTH = 200  # Width of each grid cell
-CELL_HEIGHT = 150  # Height of each grid cell (4:3 aspect ratio - landscape)
-PADDING = 6  # Small padding to show more of edge posters
+CELL_WIDTH = 250  # Width of each grid cell (larger for better visibility)
+CELL_HEIGHT = 188  # Height of each grid cell (4:3 aspect ratio - landscape)
+PADDING = 4  # Minimal padding
 
-def get_top_films(limit=12):
+def get_top_films(limit=9):
     """Get top films with The Godfather and Hoop Dreams first, then A-grade ranking"""
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
@@ -163,8 +163,8 @@ if __name__ == '__main__':
         print("Install it with: pip install Pillow")
         exit(1)
     
-    # Get top films (12 total)
-    films = get_top_films(12)
+    # Get top films (9 total)
+    films = get_top_films(9)
     
     if not films:
         print("No films found with posters!")
