@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = 3000;
-const HOMEPAGE_PATH = path.join(__dirname, 'frontend', 'public', 'index-root.html');
+const HOMEPAGE_PATH = path.join(__dirname, 'frontend', 'public', 'index-homepage.html');
 
 const server = http.createServer((req, res) => {
   // Serve the homepage at root

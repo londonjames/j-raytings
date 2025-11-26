@@ -20,19 +20,25 @@ PADDING = 0  # No padding - seamless images with no borders
 # Grid order: 0=top-left, 1=top-middle, 2=top-right, 3=middle-left, 4=middle-middle, 5=middle-right, 6=bottom-left, 7=bottom-middle, 8=bottom-right
 BLUEPRINTS_IMAGES = [
     'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/14d4fdbb-b35b-4c62-ac49-676efed97ed7/Untitled_Artwork_9/w=1920,quality=90,fit=scale-down',  # 0: top-left (was middle-left)
-    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/27e2c3b5-02ec-4c8c-9533-d31d55a94cae/Untitled_Artwork_60/w=1920,quality=90,fit=scale-down',  # 1: top-middle (unchanged)
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/f34dba1a-6189-4b50-969d-a8974339c254/IMG_0872/w=1920,quality=90,fit=scale-down',  # 1: top-middle (replaced)
     'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/83118d4d-c080-4482-8223-1bf51787efd0/IMG_0890/w=1920,quality=90,fit=scale-down',  # 2: top-right (was middle-middle)
     'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/56bd863b-ec44-4054-8dc6-13e42789b980/Untitled_Artwork_58/w=1920,quality=90,fit=scale-down',  # 3: top-right → middle-left
     'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/c43fe8f7-fff1-4cff-bfef-55024199d217/Untitled_Artwork_11/w=750,quality=90,fit=scale-down',  # 4: top-left → middle-middle
     'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/29abc44f-a827-4918-b226-cf918bc19b89/Untitled_Artwork_83/w=1920,quality=90,fit=scale-down',  # 5: middle-right (unchanged)
-    None,  # Position 6 (bottom-left) - deleted, will use placeholder
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/b32cc9fc-fd01-4422-8b49-08af46cd6f21/Untitled_Artwork_19/w=1920,quality=90,fit=scale-down',  # 6: bottom-left (swapped from bottom-right)
     'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/639297ad-1844-4591-98eb-2e9bc295b0fc/Untitled_Artwork_59/w=1920,quality=90,fit=scale-down',  # 7: bottom-middle (new image)
-    None,  # Position 8 (bottom-right) - deleted, will use placeholder
+    'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/acd654fb-ebdc-4fcf-b4fb-7da49303d4d8/Untitled_Artwork_17/w=1920,quality=90,fit=scale-down',  # 8: bottom-right (swapped from bottom-left)
 ]
 
 # Special handling for images that need different crop positioning
-SPECIAL_CROP_IMAGES = {
-    # Add any special crop requirements here if needed
+# Key is the index in BLUEPRINTS_IMAGES list
+SPECIAL_IMAGE_SETTINGS = {
+    2: {'horizontal_offset': 0.75},  # Position 2 (top-right): slightly more to the right (between center and full right)
+    3: {'horizontal_crop': 'right'},  # Position 3 (middle-left): show more of right side
+    5: {'horizontal_crop': 'right'},  # Position 5 (middle-right): show more of right side
+    6: {'horizontal_crop': 'right'},   # Position 6 (bottom-left, swapped): show more of right side
+    7: {'horizontal_offset': 0.6},  # Position 7 (bottom-middle): very slightly to the right
+    8: {'horizontal_crop': 'left'},  # Position 8 (bottom-right, swapped): show more of left side
 }
 
 def download_image(url_or_path):
@@ -101,15 +107,32 @@ def create_quilt(image_sources, output_file=OUTPUT_FILE):
             target_aspect = image_width / image_height  # 4:3 = 1.33
             
             # Check if this image needs special crop handling
-            special_crop = SPECIAL_CROP_IMAGES.get(idx)
-            top_crop_ratio = special_crop['top_crop_ratio'] if special_crop else 0.15
+            settings = SPECIAL_IMAGE_SETTINGS.get(idx, {})
+            top_crop_ratio = settings.get('top_crop_ratio', 0.15)
+            horizontal_crop = settings.get('horizontal_crop', 'center')  # 'left', 'center', or 'right'
+            horizontal_offset = settings.get('horizontal_offset', None)  # 0.0-1.0 for fine control (0.0=left, 0.5=center, 1.0=right)
             
             # Crop to match 4:3 aspect ratio, favoring top portion
             if original_aspect > target_aspect:  # Original is wider - crop width
-                # Crop to center 4:3 rectangle (horizontal crop)
+                # Crop to 4:3 rectangle (horizontal crop)
                 crop_height = original_height
                 crop_width = int(crop_height * target_aspect)
-                left = (original_width - crop_width) // 2
+                crop_amount = original_width - crop_width
+                
+                # Adjust horizontal position based on settings
+                if horizontal_offset is not None:
+                    # Use numeric offset for fine control (0.0=left, 0.5=center, 1.0=right)
+                    left = int(crop_amount * horizontal_offset)
+                elif horizontal_crop == 'left':
+                    # Show more of left side - crop from right
+                    left = 0
+                elif horizontal_crop == 'right':
+                    # Show more of right side - crop from left
+                    left = crop_amount
+                else:  # 'center'
+                    # Center the crop
+                    left = crop_amount // 2
+                
                 top = 0
                 right = left + crop_width
                 bottom = original_height
@@ -136,6 +159,13 @@ def create_quilt(image_sources, output_file=OUTPUT_FILE):
             gray = img.convert('L').convert('RGB')
             # Blend: 85% original color, 15% grayscale for subtle desaturation
             img = Image.blend(img, gray, 0.15)
+            
+            # Add darker shading behind middle-middle image (index 4)
+            if idx == 4:  # middle-middle position
+                # Create a darker overlay/shadow effect
+                overlay = Image.new('RGB', (image_width, image_height), color='#1a1a1a')  # Very dark background
+                # Blend the overlay with the image (30% overlay, 70% image for subtle darkening)
+                img = Image.blend(img, overlay, 0.3)
             
             # Paste directly - no offset needed since it fills the cell
             quilt.paste(img, (x, y))

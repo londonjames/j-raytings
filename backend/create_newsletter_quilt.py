@@ -24,17 +24,17 @@ NEWSLETTER_IMAGES = [
     'https://media.licdn.com/dms/image/v2/C4D12AQHnDo8h3A4E6A/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1613420047799?e=1766016000&v=beta&t=WZ7YN4N6QUrD5JZqP3sozgjNa_saac2er92OHCIHyoM',  # 1: top-middle (unchanged)
     'https://media.licdn.com/dms/image/v2/D4D12AQE6uIQ7lAQANg/article-cover_image-shrink_423_752/article-cover_image-shrink_423_752/0/1721802722911?e=1766016000&v=beta&t=LjAFubKnf-dUZD1DpL9QHFnj3Pv-GAbEvRnaG3CLDCo',  # 2: Split screen man (was middle-right)
     'https://media.licdn.com/dms/image/v2/C4D12AQHBut1nEY4gMg/article-cover_image-shrink_423_752/article-cover_image-shrink_423_752/0/1620883418698?e=1766016000&v=beta&t=SG5G79yf2i2keBm3ga1C0I6N7elQNclI3c4ciCeEQLM',  # 3: middle-middle → middle-left (swapped)
-    'https://media.licdn.com/dms/image/v2/C4D12AQHSxRvbXh4FfA/article-cover_image-shrink_423_752/article-cover_image-shrink_423_752/0/1618970691405?e=1766016000&v=beta&t=huEiPaY0SYYlEjwnSIBKDe-ZDRanDd36PfndhD_GX0U',  # 4: middle-left → middle-middle (swapped)
+    'https://media.licdn.com/dms/image/v2/C4D12AQE0sgTMyXwx1g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1624510314269?e=1766016000&v=beta&t=FnGQIk3pPQIeVQd1k7bCgi93TZOCvKYANccYVph2HkU',  # 4: bottom-middle → middle-middle (swapped) - needs special crop
     'https://media.licdn.com/dms/image/v2/C4D12AQFWBG8cBN60pg/article-cover_image-shrink_423_752/article-cover_image-shrink_423_752/0/1614450089861?e=1766016000&v=beta&t=Y8WyE4ldH60sYqf0iq7qNqmBDHRy8tUiFe9UeHQQ3zw',  # 5: Was top-right, now middle-right
     'https://media.licdn.com/dms/image/v2/D4D12AQEdMrndn8NEDw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1702529171871?e=1766016000&v=beta&t=Oa087wensXhDx8QkYtwZ2jQga5HhBmkPXHadbgdgwZI',  # 6: bottom-middle → bottom-left (swapped)
-    'https://media.licdn.com/dms/image/v2/C4D12AQE0sgTMyXwx1g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1624510314269?e=1766016000&v=beta&t=FnGQIk3pPQIeVQd1k7bCgi93TZOCvKYANccYVph2HkU',  # 7: Andy Grove → bottom-middle (swapped) - needs special crop
+    'https://media.licdn.com/dms/image/v2/C4D12AQHSxRvbXh4FfA/article-cover_image-shrink_423_752/article-cover_image-shrink_423_752/0/1618970691405?e=1766016000&v=beta&t=huEiPaY0SYYlEjwnSIBKDe-ZDRanDd36PfndhD_GX0U',  # 7: middle-middle → bottom-middle (swapped)
     'https://media.licdn.com/dms/image/v2/D4D12AQFFaGrrDK1eTw/article-cover_image-shrink_423_752/article-cover_image-shrink_423_752/0/1729720825647?e=1766016000&v=beta&t=L3LqpgzthONbqk3k0NQj3UVoIl7fMbXCrysWEu7Mpfc',  # 8: bottom-right (unchanged)
 ]
 
 # Special handling for images that need different crop positioning
-# Image at position 7 (Andy Grove) needs to show more of the top (less crop from top)
+# Image at position 4 (Andy Grove, now in middle-middle) needs to show more of the top (less crop from top)
 SPECIAL_CROP_IMAGES = {
-    7: {'top_crop_ratio': 0.05}  # Only crop 5% from top, 95% from bottom (to show header)
+    4: {'top_crop_ratio': 0.05}  # Only crop 5% from top, 95% from bottom (to show header)
 }
 
 def download_image(url_or_path):
