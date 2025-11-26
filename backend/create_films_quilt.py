@@ -13,12 +13,12 @@ from urllib.parse import urlparse
 
 DATABASE = 'films.db'
 OUTPUT_FILE = 'films_quilt.jpg'
-GRID_COLUMNS = 5  # 5 columns = 3 rows for 15 films
+GRID_COLUMNS = 4  # 4 columns = 3 rows for 12 films
 GRID_ROWS = 3
 CELL_SIZE = 200  # Size of each grid cell
 PADDING = 15  # White space padding around each image
 
-def get_top_films(limit=15):
+def get_top_films(limit=12):
     """Get top films with The Godfather and Hoop Dreams first, then A-grade ranking"""
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
@@ -39,7 +39,7 @@ def get_top_films(limit=15):
             score DESC,
             title ASC
         LIMIT ?
-    ''', (limit + 2,))  # Get a few extra in case we need to filter
+    ''', (limit + 3,))  # Get a few extra in case we need to filter
     
     films = cursor.fetchall()
     conn.close()
@@ -154,8 +154,8 @@ if __name__ == '__main__':
         print("Install it with: pip install Pillow")
         exit(1)
     
-    # Get top films (15 total)
-    films = get_top_films(15)
+    # Get top films (12 total)
+    films = get_top_films(12)
     
     if not films:
         print("No films found with posters!")
