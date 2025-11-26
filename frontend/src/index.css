@@ -15,6 +15,11 @@ body {
   min-height: 100vh;
 }
 
+/* Don't apply React app styles to homepage */
+html[data-homepage="true"] body {
+  background: transparent !important;
+}
+
 #root {
   width: 100%;
 }

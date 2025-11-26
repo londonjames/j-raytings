@@ -3,18 +3,16 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/index-root.html"
+    },
+    {
       "source": "/films/(.*)",
       "destination": "/$1"
     },
     {
       "source": "/films",
       "destination": "/index.html"
-    }
-  ],
-  "routes": [
-    {
-      "src": "^/$",
-      "dest": "/index-root.html"
     }
   ]
 }
