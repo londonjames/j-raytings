@@ -183,7 +183,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: background-image 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+            transition: background-image 0.8s ease, filter 0.8s ease, transform 0.4s ease;
         }
         
         .block.films-block:hover,
@@ -195,12 +195,12 @@
         }
         
         .block.films-block .block-content {
-            background: #F5F4F0;
+            background: none;
             color: #000;
             padding: 0.5rem 1rem;
-            border-radius: 5px; /* 98% rectangular - slightly more rounded than boxes */
+            border-radius: 0;
             font-weight: 500;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: none;
             text-shadow: none;
             font-size: 1.1rem;
             position: absolute;
@@ -208,7 +208,13 @@
             left: 50%;
             transform: translateX(-50%);
             text-transform: none !important;
-            backdrop-filter: blur(4px);
+            transition: color 0.6s ease, text-shadow 0.6s ease;
+        }
+        
+        .block.films-block:hover .block-content,
+        .block.films-block:active .block-content {
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
         
         /* Newsletter block: solid color initially, quilt appears on hover/tap */
@@ -217,7 +223,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: background-image 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+            transition: background-image 0.8s ease, filter 0.8s ease, transform 0.4s ease;
         }
         
         .block.newsletter-block:hover,
@@ -229,12 +235,12 @@
         }
         
         .block.newsletter-block .block-content {
-            background: #F5F4F0;
+            background: none;
             color: #000;
             padding: 0.5rem 1rem;
-            border-radius: 5px; /* 98% rectangular - slightly more rounded than boxes */
+            border-radius: 0;
             font-weight: 500;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: none;
             text-shadow: none;
             font-size: 1.1rem;
             text-align: center;
@@ -244,7 +250,13 @@
             left: 50%;
             transform: translateX(-50%);
             text-transform: none !important;
-            backdrop-filter: blur(4px);
+            transition: color 0.6s ease, text-shadow 0.6s ease;
+        }
+        
+        .block.newsletter-block:hover .block-content,
+        .block.newsletter-block:active .block-content {
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
         
         /* Blueprints block: solid color initially, quilt appears on hover/tap */
@@ -253,7 +265,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: background-image 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+            transition: background-image 0.8s ease, filter 0.8s ease, transform 0.4s ease;
         }
         
         .block.blueprints-block:hover,
@@ -265,12 +277,12 @@
         }
         
         .block.blueprints-block .block-content {
-            background: #F5F4F0;
+            background: none;
             color: #000;
             padding: 0.5rem 1rem;
-            border-radius: 5px; /* 98% rectangular - slightly more rounded than boxes */
+            border-radius: 0;
             font-weight: 500;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: none;
             text-shadow: none;
             font-size: 1.1rem;
             text-align: center;
@@ -280,7 +292,13 @@
             left: 50%;
             transform: translateX(-50%);
             text-transform: none !important;
-            backdrop-filter: blur(4px);
+            transition: color 0.6s ease, text-shadow 0.6s ease;
+        }
+        
+        .block.blueprints-block:hover .block-content,
+        .block.blueprints-block:active .block-content {
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
         
         /* Responsive: background-size: cover works well on all devices */
