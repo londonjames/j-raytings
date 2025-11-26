@@ -13,10 +13,10 @@ from urllib.parse import urlparse
 
 DATABASE = 'films.db'
 OUTPUT_FILE = 'films_quilt.jpg'
-GRID_COLUMNS = 3  # 3 columns = 4 rows for 12 films (more horizontal space per poster)
-GRID_ROWS = 4
+GRID_COLUMNS = 4  # 4 columns × 3 rows for 12 films (landscape matches square block)
+GRID_ROWS = 3
 CELL_SIZE = 200  # Size of each grid cell
-PADDING = 0  # No padding - images fill cells completely
+PADDING = 8  # Small padding to show more of edge posters
 
 def get_top_films(limit=12):
     """Get top films with The Godfather and Hoop Dreams first, then A-grade ranking"""
@@ -83,16 +83,16 @@ def create_quilt(films, output_file=OUTPUT_FILE):
     downloaded = 0
     failed = 0
     
-    # Image size fills the entire cell (no padding)
-    image_size = CELL_SIZE
+    # Image size with small padding to show more of edge posters
+    image_size = CELL_SIZE - (PADDING * 2)
     
     for idx, film in enumerate(films):
         row = idx // GRID_COLUMNS
         col = idx % GRID_COLUMNS
         
-        # Calculate position (no padding)
-        x = col * CELL_SIZE
-        y = row * CELL_SIZE
+        # Calculate position with padding
+        x = col * CELL_SIZE + PADDING
+        y = row * CELL_SIZE + PADDING
         
         print(f"[{idx+1}/{len(films)}] Processing: {film['title']}")
         
