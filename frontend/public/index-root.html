@@ -84,6 +84,35 @@
             opacity: 0.6;
         }
         
+        /* LinkedIn Newsletter Button */
+        .libutton {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 7px;
+            text-align: center;
+            outline: none;
+            text-decoration: none !important;
+            color: #ffffff !important;
+            width: 200px;
+            height: 32px;
+            border-radius: 16px;
+            background-color: #0A66C2;
+            font-family: "SF Pro Text", Helvetica, sans-serif;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+        
+        .libutton:hover {
+            background-color: #004182;
+        }
+        
+        .newsletter-block-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
         /* Grid Layout - full bleed */
         .grid {
             display: grid;
@@ -191,9 +220,12 @@
             <a href="/books" class="block">
                 <div class="block-content">Books</div>
             </a>
-            <a href="/whats-the-so-what-newsletter" class="block">
-                <div class="block-content">What's the So What Newsletter</div>
-            </a>
+            <div class="block" style="cursor: default;">
+                <div class="block-content newsletter-block-content">
+                    <div>What's the So What Newsletter</div>
+                    <a class="libutton" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6767254695498014720" target="_blank" rel="noopener noreferrer">Subscribe on LinkedIn</a>
+                </div>
+            </div>
             <div class="block" style="cursor: default; opacity: 0.5;">
                 <div class="block-content">Coming Soon</div>
             </div>
