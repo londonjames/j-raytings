@@ -37,6 +37,8 @@ SPECIAL_CROP_IMAGES = {
 
 def download_image(url_or_path):
     """Download an image from URL or load from local file"""
+    if url_or_path is None:
+        return None
     try:
         if url_or_path.startswith('http://') or url_or_path.startswith('https://'):
             # Download from URL
