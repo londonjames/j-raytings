@@ -89,18 +89,21 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 7px;
+            padding: 8px 16px;
             text-align: center;
             outline: none;
             text-decoration: none !important;
             color: #ffffff !important;
-            width: 200px;
-            height: 32px;
-            border-radius: 16px;
+            width: 240px;
+            min-width: 200px;
+            height: 36px;
+            border-radius: 18px;
             background-color: #0A66C2;
             font-family: "SF Pro Text", Helvetica, sans-serif;
+            font-size: 0.85rem;
             margin-top: 1rem;
             transition: background-color 0.2s;
+            white-space: nowrap;
         }
         
         .libutton:hover {
@@ -195,6 +198,14 @@
             
             .block-content {
                 font-size: 1.25rem;
+            }
+            
+            .libutton {
+                width: 100%;
+                max-width: 280px;
+                font-size: 0.8rem;
+                padding: 6px 12px;
+                height: 32px;
             }
         }
     </style>
