@@ -225,14 +225,13 @@
             text-shadow: none;
             position: relative;
             text-transform: none !important;
-            transition: color 0.6s ease, text-shadow 0.6s ease;
+            transition: opacity 0.3s ease;
             z-index: 2;
         }
         
         .block.films-block:hover .block-content,
         .block.films-block:active .block-content {
-            color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+            opacity: 0;
         }
         
         /* Newsletter block: solid color initially, quilt appears on hover/tap */
@@ -273,6 +272,11 @@
             transform: scale(1.01);
         }
         
+        .block.newsletter-block:hover .block-content,
+        .block.newsletter-block:active .block-content {
+            opacity: 0;
+        }
+        
         .block.newsletter-block .block-content {
             background: none;
             color: #000;
@@ -285,15 +289,10 @@
             line-height: 1.4;
             position: relative;
             text-transform: none !important;
-            transition: color 0.6s ease, text-shadow 0.6s ease;
+            transition: color 0.6s ease, text-shadow 0.6s ease, opacity 0.3s ease;
             z-index: 2;
         }
         
-        .block.newsletter-block:hover .block-content,
-        .block.newsletter-block:active .block-content {
-            color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-        }
         
         /* Blueprints block: solid color initially, quilt appears on hover/tap */
         .block.blueprints-block {
@@ -333,6 +332,11 @@
             transform: scale(1.01);
         }
         
+        .block.blueprints-block:hover .block-content,
+        .block.blueprints-block:active .block-content {
+            opacity: 0;
+        }
+        
         .block.blueprints-block .block-content {
             background: none;
             color: #000;
@@ -345,15 +349,10 @@
             line-height: 1.4;
             position: relative;
             text-transform: none !important;
-            transition: color 0.6s ease, text-shadow 0.6s ease;
+            transition: color 0.6s ease, text-shadow 0.6s ease, opacity 0.3s ease;
             z-index: 2;
         }
         
-        .block.blueprints-block:hover .block-content,
-        .block.blueprints-block:active .block-content {
-            color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-        }
         
         /* Responsive: background-size: cover works well on all devices */
         /* The 4x3 grid (800x600px) will scale nicely with cover */
