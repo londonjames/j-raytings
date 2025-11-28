@@ -21,12 +21,13 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
   const getCoverProxyUrl = (coverUrl, googleBooksId) => {
     if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
     const bookId = googleBooksId || getGoogleBooksId(coverUrl)
-    // Add cache-busting parameter to force refresh when URLs change
-    const cacheBuster = `&_t=${Date.now()}`
+    // Add cache-busting parameter based on the URL itself (so it only changes when URL changes)
+    // Use a hash of the URL instead of Date.now() to avoid constant reloading
+    const urlHash = coverUrl.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 1000000
     if (bookId) {
-      return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(bookId)}&url=${encodeURIComponent(coverUrl)}${cacheBuster}`
+      return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(bookId)}&url=${encodeURIComponent(coverUrl)}&_v=${urlHash}`
     }
-    return `${API_URL}/books/cover-proxy?url=${encodeURIComponent(coverUrl)}${cacheBuster}`
+    return `${API_URL}/books/cover-proxy?url=${encodeURIComponent(coverUrl)}&_v=${urlHash}`
   }
 
   const handleImageLoad = (bookId) => {
@@ -101,7 +102,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
           <div key={book.id} className="film-row">
             {book.cover_url && (
               <img
-                src={book.cover_url.startsWith('http') ? `${API_URL}/books/cover-proxy?url=${encodeURIComponent(book.cover_url)}` : book.cover_url}
+                src={book.cover_url.startsWith('http') ? getCoverProxyUrl(book.cover_url, book.google_books_id) : book.cover_url}
                 alt={`${book.book_name} cover`}
                 className="film-poster-small"
                 loading="lazy"
@@ -213,7 +214,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                 <div className="card-back-header">
                   {book.cover_url && book.cover_url !== 'PLACEHOLDER' && (
                     <img
-                      src={book.cover_url.startsWith('http') ? `${API_URL}/books/cover-proxy?url=${encodeURIComponent(book.cover_url)}` : book.cover_url}
+                      src={book.cover_url.startsWith('http') ? getCoverProxyUrl(book.cover_url, book.google_books_id) : book.cover_url}
                       alt={`${book.book_name} cover`}
                       className="poster-thumbnail"
                       onError={(e) => {
