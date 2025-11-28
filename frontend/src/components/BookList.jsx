@@ -20,9 +20,10 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
   // Helper function to get proxy URL for cover image
   const getCoverProxyUrl = (coverUrl, googleBooksId) => {
     if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
-    const bookId = googleBooksId || getGoogleBooksId(coverUrl)
+    
+    // Always use the cover_url directly - don't prioritize google_books_id
+    // This ensures custom URLs (like Amazon/Goodreads) are used when set
     // Create a simple hash from the URL for cache-busting
-    // This ensures different URLs get different cache keys
     let hash = 0
     for (let i = 0; i < coverUrl.length; i++) {
       const char = coverUrl.charCodeAt(i)
@@ -30,8 +31,11 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
       hash = hash & hash // Convert to 32bit integer
     }
     const urlHash = Math.abs(hash).toString(36).slice(0, 10)
-    if (bookId) {
-      return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(bookId)}&url=${encodeURIComponent(coverUrl)}&_cb=${urlHash}`
+    
+    // Always use the cover_url directly, only include book_id if it's a Google Books URL
+    const isGoogleBooksUrl = coverUrl.includes('books.google.com') || coverUrl.includes('googleapis.com')
+    if (isGoogleBooksUrl && googleBooksId) {
+      return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(googleBooksId)}&url=${encodeURIComponent(coverUrl)}&_cb=${urlHash}`
     }
     return `${API_URL}/books/cover-proxy?url=${encodeURIComponent(coverUrl)}&_cb=${urlHash}`
   }
