@@ -108,8 +108,21 @@ function BooksApp() {
   const fetchBooks = async () => {
     try {
       setIsLoading(true)
-      const response = await fetch(`${API_URL}/books`)
+      // Add cache-busting to ensure fresh data
+      const response = await fetch(`${API_URL}/books?_t=${Date.now()}`, {
+        cache: 'no-store'
+      })
       const data = await response.json()
+      // Debug: log the three books we're tracking
+      const trackedBooks = data.filter(b => 
+        ['The Right Stuff', 'Animal Farm', 'Confessions of an Advertising Man'].includes(b.book_name)
+      )
+      if (trackedBooks.length > 0) {
+        console.log('Fetched books with updated URLs:', trackedBooks.map(b => ({
+          name: b.book_name,
+          cover_url: b.cover_url
+        })))
+      }
       setBooks(data)
       setFilteredBooks(data)
     } catch (error) {
