@@ -21,10 +21,12 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
   const getCoverProxyUrl = (coverUrl, googleBooksId) => {
     if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
     const bookId = googleBooksId || getGoogleBooksId(coverUrl)
+    // Add cache-busting parameter to force refresh when URLs change
+    const cacheBuster = `&_t=${Date.now()}`
     if (bookId) {
-      return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(bookId)}&url=${encodeURIComponent(coverUrl)}`
+      return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(bookId)}&url=${encodeURIComponent(coverUrl)}${cacheBuster}`
     }
-    return `${API_URL}/books/cover-proxy?url=${encodeURIComponent(coverUrl)}`
+    return `${API_URL}/books/cover-proxy?url=${encodeURIComponent(coverUrl)}${cacheBuster}`
   }
 
   const handleImageLoad = (bookId) => {
