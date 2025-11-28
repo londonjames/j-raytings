@@ -1,0 +1,1876 @@
+,,,,,,,,,,,,
+,Order,Date Film Seen,Film,J-Rayting,Score,Year,Location Seen,Film Format,Film Year,Rotten Tomatoes,Film Length,RT% per minute
+,1,1990s,"Godfather, The",A+,20,Pre-2006,London,VHS,1972,100%,175,57%
+,2,1990s,Hoop Dreams,A+,20,Pre-2006,Boston,VHS,1994,98%,171,57%
+,3,2000s,Almost Famous,A/A+,19,Pre-2006,Palo Alto,DVD,2000,88%,122,72%
+,4,1980s,Jaws,A,18,Pre-2006,London,VHS,1975,100%,130,77%
+,5,1990s,Goodfellas,A,18,Pre-2006,London,VHS,1990,96%,128,75%
+,6,October-10,"Social Network, The",A,18,2010,Peninsula,Theatre,2010,96%,120,80%
+,7,February-20,Parasite,A,18,2020,San Fran,Theatre,2019,99%,132,75%
+,8,1980s,Stand By Me,A,18,Pre-2006,London,VHS,1986,91%,88,103%
+,9,1980s,Ferris Bueller's Day Off,A,18,Pre-2006,London,VHS,1986,84%,103,82%
+,10,1980s,Back to the Future,A,18,Pre-2006,London,Theatre,1985,95%,118,81%
+,11,1990s,12 Angry Men,A,18,Pre-2006,London,VHS,1957,100%,96,104%
+,12,June-02,About A Boy,A,18,Pre-2006,London,Theatre,2002,94%,102,92%
+,13,January-08,All About Eve,A,18,2008,Boston,DVD,1950,100%,140,71%
+,14,1990s,"American President, The",A,18,Pre-2006,Stanford,Theatre,1995,89%,116,77%
+,15,December-01,"Beautiful Mind, A",A,18,Pre-2006,Florida,Theatre,2001,78%,136,57%
+,16,April-97,Braveheart,A,18,Pre-2006,Stanford,VHS,1995,76%,177,43%
+,17,August-94,Forrest Gump,A,18,Pre-2006,Boston,Theatre,1994,72%,157,46%
+,18,October-06,Mystic River,A,18,2006,Boston,DVD,2003,87%,137,64%
+,19,1990s,"Philadelphia Story, The",A,18,Pre-2006,London,VHS,1940,100%,176,57%
+,20,1990s,"Shawshank Redemption, The",A,18,Pre-2006,Peninsula,DVD,1994,89%,145,61%
+,21,1990s,"Sting, The",A,18,Pre-2006,London,VHS,1974,91%,130,70%
+,22,September-08,Burn After Reading,A-/A,17,2008,Lafayette,Theatre,2008,78%,96,81%
+,23,1990s,"Deer Hunter,The",A-/A,17,Pre-2006,Fresno,VHS,1978,91%,183,50%
+,24,1990s,"Godfather II, The",A-/A,17,Pre-2006,London,VHS,1974,98%,200,49%
+,25,1990s,"Grapes of Wrath, The",A-/A,17,Pre-2006,London,VHS,1940,100%,129,78%
+,26,March-06,In Good Company,A-/A,17,2006,San Fran,DVD,2004,83%,110,75%
+,27,July-10,Inception,A-/A,17,2010,Peninsula,Theatre,2010,86%,148,58%
+,28,1980s,Indiana Jones and the Last Crusade,A-/A,17,Pre-2006,London,Theatre,1989,89%,126,71%
+,29,March-07,"Last King of Scotland, The",A-/A,17,2007,Boston,Theatre,2006,87%,123,71%
+,30,1990s,Patton,A-/A,17,Pre-2006,London,VHS,1970,97%,171,57%
+,31,1980s,Star Wars II: The Empire Strikes Back,A-/A,17,Pre-2006,London,Theatre,1980,97%,124,78%
+,32,May-09,Up,A-/A,17,2009,San Fran,On-Demand/PPV,2009,98%,96,102%
+,33,1980s,Adventures in Babysitting,A-,16,Pre-2006,London,Theatre,1987,77%,102,75%
+,34,1990s,American History X,A-,16,Pre-2006,London,VHS,1998,81%,118,69%
+,35,December-13,American Hustle,A-,16,2013,Florida,Theatre,2013,93%,139,67%
+,36,2000s,Batman Begins,A-,16,Pre-2006,San Fran,Theatre,2005,85%,140,61%
+,37,1990s,Bedroom Window,A-,16,Pre-2006,London,VHS,1987,86%,113,76%
+,38,1980s,Big,A-,16,Pre-2006,Theatre,Boston,1988,96%,98,98%
+,39,February-16,"Big Short, The",A-,16,2016,Theatre,Peninsula,2015,88%,130,68%
+,40,May-11,Black Swan,A-,16,2011,Peninsula,On-Demand/PPV,2010,87%,108,81%
+,41,August-07,"Bourne Ultimatum, The",A-,16,2007,Boston,Theatre,2007,94%,115,82%
+,42,July-14,Boyhood,A-,16,2014,San Fran,Theatre,2014,99%,165,60%
+,43,November-06,Casino Royale,A-,16,2006,Boston,Theatre,2006,94%,144,65%
+,44,5/5/2016,City of God,A-,16,2016,Portola Valley,On-Demand/PPV,2003,90%,130,69%
+,45,1990s,Clueless,A-,16,Pre-2006,Boston,Theatre,1995,81%,97,84%
+,46,1980s,Crocodile Dundee I,A-,16,Pre-2006,London,Theatre,1986,87%,97,90%
+,47,July-08,"Dark Knight, The",A-,16,2008,Hong Kong,Theatre,2008,94%,152,62%
+,48,1990s,Dazed and Confused,A-,16,Pre-2006,London,Theatre,1993,93%,103,90%
+,49,1980s,Dirty Rotten Scoundrels,A-,16,Pre-2006,London,Theatre,1988,88%,112,79%
+,50,November-16,"Edge of Seventeen, The",A-,16,2016,Peninsula,Theatre,2016,94%,98,96%
+,51,1990s,Election,A-,16,Pre-2006,Canada,On-Demand/PPV,1999,93%,102,91%
+,52,July-15,Ex Machina,A-,16,2015,Peninsula,On-Demand/PPV,2015,92%,108,85%
+,53,1990s,"Few Good Men, A",A-,16,Pre-2006,London,Theatre,,,,NA
+,54,1980s,"Fish Called Wanda, The",A-,16,Pre-2006,London,Theatre,,,,NA
+,55,December-08,Frost/Nixon,A-,16,2008,Florida,Theatre,2008,90%,122,74%
+,56,December-14,Frozen,A-,16,2014,Peninsula,Theatre,2013,89%,102,87%
+,57,1990s,"Fugitive, The",A-,16,Pre-2006,Boston,Theatre,,,,NA
+,58,1990s,Home Alone I,A-,16,Pre-2006,Boston,On-Demand/PPV,,,,NA
+,59,1990s,In the Line of Fire,A-,16,Pre-2006,Boston,Theatre,,,,NA
+,60,1990s,In The Name of the Father,A-,16,Pre-2006,London,Theatre,,,,NA
+,61,February-07,"Inconvenient Truth, An",A-,16,2007,Boston,DVD,,,,NA
+,62,July-08,Into The Wild,A-,16,2008,London,DVD,2007,83%,148,56%
+,63,March-12,"King of Kong, The",A-,16,2012,London,Netflix,2007,96%,82,117%
+,64,February-17,La La Land,A-,16,2017,Peninsula,Theatre,2016,93%,128,73%
+,65,February-07,Letters from Iwo Jima,A-,16,2007,Boston,Theatre,,,,NA
+,66,April-07,"Lives of Others, The",A-,16,2007,Boston,DVD,,,,NA
+,67,2000s,Lord of the Rings I,A-,16,Pre-2006,Steamboat,Theatre,,,,NA
+,68,January-17,Mustang,A-,16,2017,Portola Valley,Amazon Instant,2015,98%,97,101%
+,69,1980s,No Way Out,A-,16,Pre-2006,London,VHS,,,,NA
+,70,1990s,Notting Hill,A-,16,Pre-2006,London,Theatre,,,,NA
+,71,7/9/2020,Once Upon A Time In Hollywood,A-,16,2020,Portola Valley,On-Demand/PPV,2019,85%,159,53%
+,72,6/1/2015,Paddington,A-,16,2015,Peninsula,On-Demand/PPV,2015,98%,96,102%
+,73,1990s,Patriot Games,A-,16,Pre-2006,Boston,Theatre,,,,NA
+,74,1980s,Raiders of the Lost Ark,A-,16,Pre-2006,London,VHS,,,,NA
+,75,1990s,Rear Window,A-,16,Pre-2006,London,VHS,,,,NA
+,76,March-08,"Remains of the Day, The",A-,16,2008,Boston,Netflix,1993,97%,134,72%
+,77,January-09,Revolutionary Road,A-,16,2009,San Fran,Theatre,2008,68%,119,57%
+,78,2000s,Spider-Man I,A-,16,Pre-2006,Pensinsula,Theatre,,,,NA
+,79,1980s,"Spy Who Loved Me, The",A-,16,Pre-2006,London,VHS,,,,NA
+,80,1980s,Star Wars I,A-,16,Pre-2006,London,VHS,,,,NA
+,81,1990s,"Thomas Crown Affair, The",A-,16,Pre-2006,Canada,Theatre,,,,NA
+,82,February-18,"Three Billboards outside Ebbing, Missouri",A-,16,2018,Portola Valley,On-Demand/PPV,2017,92%,115,80%
+,83,1990s,To Kill a Mockingbird,A-,16,Pre-2006,London,VHS,,,,NA
+,84,May-22,Top Gun: Maverick,A-,16,2022,Sunnyvale,Theatre,2022,97%,131,74%
+,85,July-10,Toy Story III,A-,16,2010,Peninsula,Theatre,2010,99%,103,96%
+,86,1990s,Toy Story I,A-,16,Pre-2006,Peninsula,DVD,,,,NA
+,87,2000s,Toy Story II,A-,16,Pre-2006,Peninsula,DVD,,,,NA
+,88,1990s,True Lies,A-,16,Pre-2006,Boston,Theatre,1994,72%,141,51%
+,89,December-09,Up In The Air,A-,16,2009,Florida,Theatre,2009,88%,109,81%
+,90,August-07,"Woodsman, The",A-,16,2007,Iceland,On-Demand/PPV,2004,88%,85,104%
+,91,January-09,"Wrestler, The",A-,16,2009,San Fran,Theatre,2008,98%,105,93%
+,92,,American Beauty,B+/A-,15,Pre-2006,,Theatre,,,,NA
+,93,November-07,American Gangster,B+/A-,15,2007,Boston,Theatre,,,,NA
+,94,,American Graffiti,B+/A-,15,Pre-2006,London,VHS,,,,NA
+,95,,Apollo 13,B+/A-,15,Pre-2006,,,,,,NA
+,96,,Austin Powers I,B+/A-,15,Pre-2006,,,,,,NA
+,97,August-07,"Aviator, The",B+/A-,15,2007,London,DVD,,,,NA
+,98,February-07,Bastards of the Party,B+/A-,15,2007,,,,,,NA
+,99,,Best in Show,B+/A-,15,Pre-2006,Peninsula,Theatre,,,,NA
+,100,,Beverly Hills Cop I,B+/A-,15,Pre-2006,,,,,,NA
+,101,June-08,"Bigger, Stronger, Faster*",B+/A-,15,2008,Boston,Theatre,2008,100%,106,94%
+,102,December-06,Blood Diamond,B+/A-,15,2006,Theatre,Peninsula,,,,NA
+,103,October-22,Blue Jasmine,B+/A-,15,2022,Portola Valley,Netflix,2013,91%,98,93%
+,104,,Boyz N The Hood,B+/A-,15,Pre-2006,London,VHS,,,,NA
+,105,,Breaking Away,B+/A-,15,Pre-2006,London,VHS,,,,NA
+,106,November-15,Bridge of Spies,B+/A-,15,2015,Peninsula,Theatre,2015,91%,135,67%
+,107,May-16,"Bridge on the River Kwai, The",B+/A-,15,2016,Portola Valley,On-Demand/PPV,1957,94%,161,58%
+,108,1999,Can't Hardly Wait,B+/A-,15,Pre-2006,Seattle,VHS,,,,NA
+,109,,Carlito's Way,B+/A-,15,Pre-2006,,,,,,NA
+,110,June-06,Cars,B+/A-,15,2006,,,,,,NA
+,111,December-07,Charlie Wilson's War,B+/A-,15,2007,East Bay,Theatre,2007,82%,,NA
+,112,,Chicago,B+/A-,15,Pre-2006,,,,,,NA
+,113,October-22,Coda,B+/A-,15,2022,Plane,On-Demand/PPV,2021,94%,111,85%
+,114,February-06,"Constant Gardener, The",B+/A-,15,2006,,,,,,NA
+,115,,Contact,B+/A-,15,Pre-2006,,,,,,NA
+,116,,Cool Runnings,B+/A-,15,Pre-2006,,,,,,NA
+,117,April-07,Crash,B+/A-,15,2007,,,,,,NA
+,118,November-15,Creed,B+/A-,15,2015,Peninsula,Theatre,2015,93%,132,70%
+,119,,"Day of the Jackal, The",B+/A-,15,Pre-2006,,,,,,NA
+,120,February-92,Dead Again,B+/A-,15,Pre-2006,London,Theatre,,,,NA
+,121,November-06,"Departed, The",B+/A-,15,2006,,,,,,NA
+,122,June-07,Double Indemnity,B+/A-,15,2007,,,,,,NA
+,123,November-15,"End of the Tour, The",B+/A-,15,2015,Portola Valley,On-Demand/PPV,2015,91%,105,87%
+,124,July-14,Exit Through The Gift Shop,B+/A-,15,2010,San Fran,Theatre,2010,96%,86,112%
+,125,,Fatal Attraction,B+/A-,15,Pre-2006,,,,,,NA
+,126,,Finding Nemo,B+/A-,15,Pre-2006,,,,,,NA
+,127,,Four Weddings and a Funeral,B+/A-,15,Pre-2006,,,,,,NA
+,128,December-18,Free Solo,B+/A-,15,2018,Palo Alto,Theatre,2018,98%,97,101%
+,129,,"Full Monty, The",B+/A-,15,Pre-2006,Peninsula,Theatre,,,,NA
+,130,October-08,Ghost Town,B+/A-,15,2008,San Fran,Theatre,2008,84%,102,82%
+,131,February-08,"Gone, Baby, Gone",B+/A-,15,2008,Boston,DVD,2007,93%,115,81%
+,132,,"Good, the Bad, and the Ugly, The",B+/A-,15,Pre-2006,,,,,,NA
+,133,,Grease,B+/A-,15,Pre-2006,,,,,,NA
+,134,January-19,Green Book,B+/A-,15,2019,Redwood City,Theatre,2018,81%,130,62%
+,135,July-07,Harry Potter V,B+/A-,15,2007,,,,,,NA
+,136,June-14,Her,B+/A-,15,2014,Plane,Plane,2013,94%,126,75%
+,137,December-06,"History Boys, The",B+/A-,15,2006,,,,,,NA
+,138,November-13,"Hunger Games 2: Catching Fire, The",B+/A-,15,2013,Pensinula,Theatre,2013,89%,146,61%
+,139,December-14,Hugo,B+/A-,15,2011,Pensinula,On-Demand/PPV,2011,94%,126,75%
+,140,October-16,"Hunt for the Wilderpeople, The",B+/A-,15,2016,Portola Valley,On-Demand/PPV,2016,98%,101,97%
+,141,March-18,Icarus,B+/A-,15,2018,Portola Valley,Netflix,2017,93%,110,85%
+,142,,"Incredibles, The",B+/A-,15,Pre-2006,,,,,,NA
+,143,October-22,Inglorious Basterds,B+/A-,15,2022,Portola Valley,On-Demand/PPV,2009,89%,152,59%
+,144,February-07,"Insider, The",B+/A-,15,2007,,,,,,NA
+,145,May-08,Iron Man,B+/A-,15,2008,San Fran,Theatre,2008,93%,126,74%
+,146,February-08,It Happened One Night,B+/A-,15,2008,Boston,On-Demand/PPV,1934,96%,105,91%
+,147,July-13,Jiro Dreams of Sushi,B+/A-,15,2013,Peninsula,On-Demand/PPV,2012,99%,81,122%
+,148,October-19,Joker,B+/A-,15,2019,Denver,Theatre,2019,69%,122,57%
+,149,July-08,Kung Fu Panda,B+/A-,15,2008,ATWT,Theatre,2008,88%,88,100%
+,150,,"Last of the Mohicans, The",B+/A-,15,Pre-2006,,,,,,NA
+,151,,Lethal Weapon I,B+/A-,15,Pre-2006,,,,,,NA
+,152,,Lethal Weapon II,B+/A-,15,Pre-2006,,,,,,NA
+,153,12/29/2015,Locke,B+/A-,15,2015,Peninsula,Amazon Instant,2014,91%,85,107%
+,154,,Major League I,B+/A-,15,Pre-2006,,,,,,NA
+,155,July-08,Mamma Mia,B+/A-,15,2008,London,Theatre,2008,52%,108,48%
+,156,October-07,"Man for  All Seasons, A",B+/A-,15,2007,Boston,DVD,,,,NA
+,157,November-08,"Manchurian Candidate, The (original)",B+/A-,15,2008,San Fran,On-Demand/PPV,1962,98%,126,78%
+,158,February-07,Memento,B+/A-,15,2007,,,,,,NA
+,159,November-07,Michael Clayton,B+/A-,15,2007,Boston,Theatre,,,,NA
+,160,July-20,Moonlight,B+/A-,15,2020,Portola Valley,On-Demand/PPV,2016,98%,111,88%
+,161,,Murderball,B+/A-,15,Pre-2006,,,,,,NA
+,162,,Naked Gun I,B+/A-,15,Pre-2006,,,,,,NA
+,163,,Narrow Margin,B+/A-,15,Pre-2006,,,,,,NA
+,164,March-15,Nightcrawler,B+/A-,15,2015,Pensinsula,On-Demand/PPV,2014,95%,117,81%
+,165,,Ocean's Eleven,B+/A-,15,Pre-2006,,,,,,NA
+,166,October-16,O.J. Simpson: Made in America,B+/A-,15,2016,Peninsula,On-Demand/PPV,2016,100%,464,NA
+,167,May-16,On the Waterfront,B+/A-,15,2016,Peninsula,On-Demand/PPV,19,98%,108,91%
+,168,July-23,Oppenheimer,B+/A-,15,2023,Redwood City,Theatre,2023,93%,180,52%
+,169,April-18,Paddington 2,B+/A-,15,2018,Portola Valley,On-Demand/PPV,2018,100%,105,95%
+,170,,Pirates of the Caribbean,B+/A-,15,Pre-2006,,,,,,NA
+,171,April-13,"Place Beyond the Pines, The",B+/A-,15,2013,Peninsula,Theatre,2013,81%,140,58%
+,172,October-06,"Prestige, The",B+/A-,15,2006,,,,,,NA
+,173,,Private Parts,B+/A-,15,Pre-2006,,,,,,NA
+,174,,Pulp Fiction,B+/A-,15,Pre-2006,,,,,,NA
+,175,April-18,"Quiet Place, A",B+/A-,15,2018,Peninsula,Theatre,2018,95%,90,106%
+,176,,"Rock, The",B+/A-,15,Pre-2006,,,,,,NA
+,177,,Rocky IV,B+/A-,15,Pre-2006,,,,,,NA
+,178,,Romancing The Stone,B+/A-,15,Pre-2006,,,,,,NA
+,179,February-14,Rush,B+/A-,15,2013,Peninsula,Theatre,2013,89%,123,72%
+,180,,"Silence of the Lambs, The",B+/A-,15,Pre-2006,,,,,,NA
+,181,July-16,Sing Street,B+/A-,15,2016,Portola Valley,On-Demand/PPV,2016,97%,106,92%
+,182,November-08,Slumdog Millionaire,B+/A-,15,2008,San Fran,Theatre,2008,92%,120,77%
+,183,February-14,"Spectacular Now, The",B+/A-,15,2014,Peninsula,On-Demand/PPV,2013,92%,95,97%
+,184,,Speed,B+/A-,15,Pre-2006,,,,,,NA
+,185,,Spider-Man II,B+/A-,15,Pre-2006,,,,,,NA
+,186,May-16,Spotlight,B+/A-,15,2016,Peninsula,On-Demand/PPV,2015,96%,129,74%
+,187,October-18,A Star is Born,B+/A-,15,2018,Los Angeles,Theatre,2018,90%,135,67%
+,188,May-09,Star Trek,B+/A-,15,2009,San Fran,Theatre,2009,95%,127,75%
+,189,,Star Wars III (Return of the Jedi),B+/A-,15,Pre-2006,,,,,,NA
+,190,12/17/2015,Star Wars Episode VII: The Force Awakens,B+/A-,15,2015,Theatre,Peninsula,2015,94%,136,69%
+,191,10/17/2015,Steve Jobs,B+/A-,15,2015,Peninsula,Theatre,2015,85%,122,70%
+,192,,Superman II,B+/A-,15,Pre-2006,,,,,,NA
+,193,December-16,Oasis: Supersonic,B+/A-,15,2016,Portola Valley,Amazon Instant,2016,83%,122,68%
+,194,September-07,Syriana,B+/A-,15,2007,Boston,On-Demand/PPV,,,,NA
+,195,,Terms of Endearment,B+/A-,15,Pre-2006,,,,,,NA
+,196,,Thank You For Smoking,B+/A-,15,Pre-2006,,,,,,NA
+,197,December-10,The Kids Are All Right,B+/A-,15,2010,Peninsula,On-Demand/PPV,2010,93%,104,89%
+,198,,There's Something About Mary,B+/A-,15,Pre-2006,,,,,,NA
+,199,5/8/2016,"Third Man, The",B+/A-,15,2016,Portola Valley,On-Demand/PPV,1949,100%,104,96%
+,200,4/7/2019,Three Identical Strangers,B+/A-,15,2019,Portola Valley,On-Demand/PPV,2018,96%,96,100%
+,201,,Traffic ,B+/A-,15,Pre-2006,,,,,,NA
+,202,September-08,Vicky Cristina Barcelona,B+/A-,15,2008,San Fran,Theatre,2008,81%,96,84%
+,203,July-08,"Visitor, The",B+/A-,15,2008,London,Theatre,2008,92%,103,89%
+,204,April-06,Walk the Line,B+/A-,15,2006,,,,,,NA
+,205,,While You Were Sleeping,B+/A-,15,Pre-2006,,,,,,NA
+,206,October-14,Whiplash,B+/A-,15,2014,San Fran,Theatre,2014,96%,106,91%
+,207,,Wonder Boys,B+/A-,15,Pre-2006,,,,,,NA
+,208,August-17,Wonder Woman,B+/A-,15,2017,Jackson Hole,Theatre,2017,92%,141,65%
+,209,September-11,X-Men: First Class,B+/A-,15,2011,Peninsula,On-Demand/PPV,2011,87%,131,66%
+,210,January-20,1917,B+,14,2020,Peninsula,Theatre,2020,90%,119,76%
+,211,January-12,50/50,B+,14,2011,Peninsula,On-Demand/PPV,2011,93%,100,93%
+,212,,10 Things I Hate About You,B+,14,Pre-2006,,,,,,NA
+,213,,21 Grams,B+,14,Pre-2006,,,,,,NA
+,214,November-14,22 Jump Street,B+,14,2014,Peninsula,On-Demand/PPV,2014,84%,110,76%
+,215,July-09,500 Days of Summer,B+,14,2009,San Fran,Theatre,2009,87%,95,92%
+,216,,A Time to Kill,B+,14,Pre-2006,,,,,,NA
+,217,,About Schmidt,B+,14,Pre-2006,,,,,,NA
+,218,May-23,Air,B+,14,2023,Portola Valley,HBO,2023,92%,112,82%
+,219,,Air Force One,B+,14,Pre-2006,,,,,,NA
+,220,May-22,"Alpinist, The",B+,14,2022,Portola Valley,Netflix,2021,93%,93,100%
+,221,,Amadeus,B+,14,Pre-2006,,,,,,NA
+,222,August-07,Amazing Grace,B+,14,2007,London,DVD,,,,NA
+,223,,American Pie,B+,14,Pre-2006,,,,,,NA
+,224,August-15,American Sniper,B+,14,2015,Portola Valley,On-Demand/PPV,2015,73%,134,54%
+,225,,Anger Management,B+,14,Pre-2006,,,,,,NA
+,226,,Annie Hall,B+,14,Pre-2006,,,,,,NA
+,227,November-17,Ant-Man,B+,14,2017,Portola Valley,On-Demand/PPV,2015,82%,115,71%
+,228,February-06,"Aristrocrats, The",B+,14,2006,,,,,,NA
+,229,April-14,"Armstrong Lie, The",B+,14,2014,Dubai,On-Demand/PPV,2013,83%,122,68%
+,230,September-23,Arnold,B+,14,2023,Portola Valley,Netflix,2023,73%,165,44%
+,231,,As Good As it Gets,B+,14,Pre-2006,,,,,,NA
+,232,December-07,Atonement,B+,14,2007,East Bay,Theatre,2007,85%,,NA
+,233,February-07,Babel,B+,14,2007,,,,,,NA
+,234,January-20,Bad Boys for Life,B+,14,2020,Redwood City,Theatre,2020,77%,123,63%
+,235,August-14,Bad Words,B+,14,2014,Plane,On-Demand/PPV,2014,64%,89,72%
+,236,,Bambi,B+,14,Pre-2006,,,,,,NA
+,237,August-08,"Bank Job, The",B+,14,2008,ATWT,Theatre,2008,79%,110,72%
+,238,July-23,Barbie,B+,14,2023,Redwood City,Theatre,2008,88%,114,77%
+,239,,Basic Instinct,B+,14,Pre-2006,,,,,,NA
+,240,October-23,Beckham,B+,14,2023,East Coast,Netflix,2023,91%,220,41%
+,241,July-13,Before Midnight,B+,14,2013,Peninsula,Theatre,2013,98%,108,91%
+,242,July-09,Before Sunrise,B+,14,2009,San Fran,On-Demand/PPV,1995,100%,101,99%
+,243,,Bill and Ted's Excellent Adventure I,B+,14,Pre-2006,,,,,,NA
+,244,July-20,Birdman,B+,14,2020,Portola Valley,On-Demand/PPV,2014,91%,119,76%
+,245,,Black Hawk Down,B+,14,Pre-2006,,,,,,NA
+,246,March-07,Blades of Glory,B+,14,2007,,,,,,NA
+,247,,Blood Sport,B+,14,Pre-2006,,,,,,NA
+,248,10/11/2016,Blue Jay,B+,14,2016,Portola Valley,On-Demand/PPV,2016,93%,85,109%
+,249,1/4/2022,Bolt,B+,14,2022,Portola Valley,Disney Plus,2008,89%,96,93%
+,250,,Boogie Nights,B+,14,Pre-2006,,,,,,NA
+,251,7/1/2019,Booksmart,B+,14,2019,Peninsula,Theatre,2019,97%,105,92%
+,252,,"Bourne Identity, The",B+,14,Pre-2006,,,,,,NA
+,253,,Bowfinger,B+,14,Pre-2006,,,,,,NA
+,254,,"Breakfast Club, The",B+,14,Pre-2006,,,,,,NA
+,255,,Bull Durham,B+,14,Pre-2006,,,,,,NA
+,256,,Bulworth,B+,14,Pre-2006,,,,,,NA
+,257,February-09,Bus 174,B+,14,2009,San Fran,On-Demand/PPV,2003,100%,122,82%
+,258,,Butch Cassidy and the Sundance Kid,B+,14,Pre-2006,,,,,,NA
+,259,,Can't Buy Me Love,B+,14,Pre-2006,,,,,,NA
+,260,2/24/2019,Can you ever forgive me?,B+,14,2019,Portola Valley,On-Demand/PPV,2018,98%,107,92%
+,261,,Cape Fear (DeNiro),B+,14,Pre-2006,,,,,,NA
+,262,November-16,Captain Fantastic,B+,14,2016,Portola Valley,On-Demand/PPV,2016,82%,119,69%
+,263,,Catch Me if You Can,B+,14,Pre-2006,,,,,,NA
+,264,,Chariots of Fire,B+,14,Pre-2006,,,,,,NA
+,265,February-07,Charlie and the Chocolate Factory,B+,14,2007,,,,,,NA
+,266,July-15,Chef,B+,14,2015,Peninusula,On-Demand/PPV,2014,86%,115,75%
+,267,,"Cider House Rules, The",B+,14,Pre-2006,,,,,,NA
+,268,,Cinderella Man,B+,14,Pre-2006,,,,,,NA
+,269,,Cliffhanger,B+,14,Pre-2006,,,,,,NA
+,270,,Collateral,B+,14,Pre-2006,,,,,,NA
+,271,,"Color of Money, The",B+,14,Pre-2006,,,,,,NA
+,272,June-07,Control Room,B+,14,2007,,,,,,NA
+,273,,Deliverance,B+,14,Pre-2006,,,,,,NA
+,274,,Demolition Man,B+,14,Pre-2006,,,,,,NA
+,275,December-11,"Descendants, The",B+,14,2011,Florida,Theatre,2011,89%,110,81%
+,276,July-06,"Devil Wears Prada, The",B+,14,2006,,,,,,NA
+,277,,Die Another Day,B+,14,Pre-2006,,,,,,NA
+,278,,Die Hard I,B+,14,Pre-2006,,,,,,NA
+,279,,Die Hard II,B+,14,Pre-2006,,,,,,NA
+,280,,Diner,B+,14,2018,Portola Valley,On-Demand/PPV,1982,92%,110,84%
+,281,,Dirty Dancing,B+,14,Pre-2006,,,,,,NA
+,282,,Disclosure,B+,14,Pre-2006,,,,,,NA
+,283,,Donnie Brasco,B+,14,Pre-2006,,,,,,NA
+,284,,Dr. No,B+,14,Pre-2006,,,,,,NA
+,285,,Dumb & Dumber,B+,14,Pre-2006,,,,,,NA
+,286,February-18,Dunkirk,B+,14,2018,Portola Valley,On-Demand/PPV,2017,92%,107,86%
+,287,September-07,Eastern Promises,B+,14,2007,Boston,Theatre,,,,NA
+,288,June-14,Edge of Tomorrow,B+,14,2014,London,Theatre,2014,90%,113,80%
+,289,February-22,Encanto,B+,14,2022,Portola Valley,Disney +,2021,90%,109,83%
+,290,,"English Patient, The",B+,14,Pre-2006,,,,,,NA
+,291,,Enron: The Smartest Guys in the Room,B+,14,Pre-2006,,,,,,NA
+,292,January-15,"Equalizer, The",B+,14,2015,Peninsula,On-Demand/PPV,2014,61%,131,47%
+,293,,Escape From Alcatraz,B+,14,Pre-2006,,,,,,NA
+,294,7/22/2016,Everybody Wants Some!!,B+,14,2016,Portola Valley,On-Demand/PPV,2016,87%,117,74%
+,295,7/10/2016,Eye in the Sky,B+,14,2016,Portola Valley,On-Demand/PPV,2016,95%,102,93%
+,296,,Falling Down,B+,14,Pre-2006,,,,,,NA
+,297,,"Family Man, The",B+,14,Pre-2006,,,,,,NA
+,298,,Father of the Bride,B+,14,Pre-2006,,,,,,NA
+,299,March-11,"Fighter, The",B+,14,2011,Peninsula,On-Demand/PPV,2010,91%,115,79%
+,300,,Final Analysis,B+,14,Pre-2006,,,,,,NA
+,301,,Fletch,B+,14,Pre-2006,,,,,,NA
+,302,,Fletch Lives,B+,14,Pre-2006,,,,,,NA
+,303,January-12,Footloose,B+,14,2012,Peninsula,On-Demand/PPV,1984,57%,107,53%
+,304,November-08,For Your Eyes Only,B+,14,2008,San Fran,DVR,1981,74%,127,58%
+,305,November-21,Ford  vs. Ferrari,B+,14,2021,Portola Valley,Amazon Prime,2019,92%,152,61%
+,306,July-23,Frances Ha,B+,14,2023,Portola Valley,Netflix,2012,93%,92,101%
+,307,,Freaky Friday,B+,14,Pre-2006,,,,,,NA
+,308,,"French Connection, The",B+,14,Pre-2006,,,,,,NA
+,309,,Friday Night Lights,B+,14,Pre-2006,,,,,,NA
+,310,7/6/2016,"Fundamentals of Caring, The",B+,14,2016,Portola Valley,Netflix,2016,78%,93,84%
+,311,,"Game, The",B+,14,Pre-2006,,,,,,NA
+,312,,Garden State,B+,14,Pre-2006,,,,,,NA
+,313,July-07,Gattaca,B+,14,2007,,,,,,NA
+,314,3/3/2017,Get Out,B+,14,2017,Peninsula,Theatre,2017,99%,104,95%
+,315,,Get Shorty,B+,14,Pre-2006,,,,,,NA
+,316,October-15,"Gift, The",B+,14,2015,Portola Valley,On-Demand/PPV,2015,94%,108,87%
+,317,December-11,"Girl With the Dragon Tattoo, The",B+,14,2011,Florida,Theatre,2011,86%,157,55%
+,318,,Gladiator,B+,14,Pre-2006,,,,,,NA
+,319,,Goldfinger,B+,14,Pre-2006,,,,,,NA
+,320,,Gone With the Wind,B+,14,Pre-2006,,,,,,NA
+,321,,"Graduate, The",B+,14,Pre-2006,,,,,,NA
+,322,October-13,Gravity,B+,14,2013,Peninsula,Theatre,2013,97%,91,107%
+,323,,Gremlins,B+,14,Pre-2006,,,,,,NA
+,324,December-07,Hairspray,B+,14,2007,Plane,Plane,,,,NA
+,325,7/4/2020,Hamilton,B+,14,2020,Portola Valley,Netflix,2020,98%,160,61%
+,326,,Happy Gilmore,B+,14,Pre-2006,,,,,,NA
+,327,,Hard to Kill,B+,14,Pre-2006,,,,,,NA
+,328,May-13,Harry Potter and the Deathly Hallows - Part 1 ,B+,14,2013,Plane,Plane,2010,78%,146,53%
+,329,February-23,Harry Potter and the Deathly Hallows: Part 2,B+,14,2023,Portola Valley,On-Demand/PPV,2011,96%,133,72%
+,330,August-09,Harry Potter and the Half-Blood Prince,B+,14,2009,,Theatre,2009,84%,153,55%
+,331,November-16,Hell or High Water,B+,14,2016,Portola Valley,On-Demand/PPV,2016,98%,102,96%
+,332,,"Honey, I Shrunk the Kids",B+,14,Pre-2006,,,,,,NA
+,333,January-16,Hot Fuzz,B+,14,2017,Portola Valley,Netflix,2007,91%,121,75%
+,334,October-22,"Hunt for Red October, The",B+,14,2022,Portola Valley,Netflix,1990,88%,137,64%
+,335,April-13,"Hurt Locker, The",B+,14,2013,Peninsula,On-Demand/PPV,2009,97%,131,74%
+,336,March-22,"Ice Storm, The",B+,14,2022,Portola Valley,On-Demand/PPV,1997,86%,113,76%
+,337,November-11,"Ides of March, The",B+,14,2011,London,Theatre,2011,85%,98,87%
+,338,July-18,"Incredibles 2, The",B+,14,2018,Redwood City,Theatre,2018,93%,118,79%
+,339,April-06,"Inside Man, The",B+,14,2006,,,,,,NA
+,340,November-15,Inside Out,B+,14,2015,Portola Valley,On-Demand/PPV,2015,98%,94,104%
+,341,March-19,Instant Family,B+,14,2018,Portola Valley,On-Demand/PPV,2018,81%,117,69%
+,342,October-22,Interstellar,B+,14,2022,Portola Valley,On-Demand/PPV,2022,73%,165,44%
+,343,September-06,Invincible,B+,14,2006,,,,,,NA
+,344,,"Italian Job, The",B+,14,Pre-2006,,,,,,NA
+,345,December-12,Jack Reacher,B+,14,2012,Peninsula,Theatre,2012,63%,130,48%
+,346,,Jagged Edge,B+,14,Pre-2006,,,,,,NA
+,347,,Jaws II,B+,14,Pre-2006,,,,,,NA
+,348,,Jerry Maguire,B+,14,Pre-2006,,,,,,NA
+,349,,Joe Dirt,B+,14,Pre-2006,,,,,,NA
+,350,February-17,John Wick,B+,14,2017,Portola Valley,On-Demand/PPV,2014,85%,96,89%
+,351,November-07,Jonestown: The Life and Death of Peoples Temple,B+,14,2007,Boston,DVD,,,,NA
+,352,July-23,Joy Ride,B+,14,2023,Peninsula,Theatre,2023,91%,95,96%
+,353,,"Jungle Book, The",B+,14,Pre-2006,,,,,,NA
+,354,,"Karate Kid I, The",B+,14,Pre-2006,,,,,,NA
+,355,,Kindergarten Cop,B+,14,Pre-2006,,,,,,NA
+,356,December-13,"Kings of Summer, The",B+,14,2013,Peninsula,On-Demand/PPV,2013,76%,95,80%
+,357,September-17,"King's Speech, The",B+,14,2017,Portola Valley,On-Demand/PPV,2010,95%,118,81%
+,358,,"Knight's Tale, A",B+,14,Pre-2006,,,,,,NA
+,359,June-07,Knocked Up,B+,14,2007,,,,,,NA
+,360,March-08,Kramer vs. Kramer,B+,14,2008,Boston,DVD,1979,88%,105,84%
+,361,,L.A. Confidential,B+,14,Pre-2006,,,,,,NA
+,362,April-06,League of Ordinary Gentlemen,B+,14,2006,,,,,,NA
+,363,,"League of Their Own, A",B+,14,Pre-2006,,,,,,NA
+,364,February-14,"Lego Movie, The",B+,14,2014,Peninsula,Theatre,2014,96%,101,95%
+,365,,Lethal Weapon III,B+,14,Pre-2006,,,,,,NA
+,366,,Liar Liar,B+,14,Pre-2006,,,,,,NA
+,367,March-11,"Lincoln Lawyer, The",B+,14,2011,Peninsula,Theatre,2011,83%,119,70%
+,368,August-17,Lion,B+,14,2017,Jackson Hole,Netflix,2016,85%,120,71%
+,369,,"Lion King, The",B+,14,Pre-2006,,,,,,NA
+,370,,"Lock, Stock, and Two Smoking Barrels",B+,14,Pre-2006,,,,,,NA
+,371,,Look Whose Talking I,B+,14,Pre-2006,,,,,,NA
+,372,,"Lost Boys, The",B+,14,Pre-2006,,,,,,NA
+,373,July-22,"Lost City, The",B+,14,2022,Portola Valley,Netflix,2022,79%,112,71%
+,374,November-08,M*A*S*H,B+,14,2008,San Fran,DVR,1970,91%,116,78%
+,375,November-14,Maidentrip,B+,14,2014,Peninsula,On-Demand/PPV,2014,82%,82,100%
+,376,,"Man With the Golden Gun, The",B+,14,Pre-2006,,,,,,NA
+,377,10/10/2015,The Martian,B+,14,2015,Redwood City,Theatre,2015,93%,134,69%
+,378,,"Mask of Zorro I, The",B+,14,Pre-2006,,,,,,NA
+,379,,Matilda,B+,14,Pre-2006,,,,,,NA
+,380,,Men In Black I,B+,14,Pre-2006,,,,,,NA
+,381,December-08,Milk,B+,14,2008,San Fran,Theatre,2008,93%,128,73%
+,382,,Million Dollar Baby,B+,14,Pre-2006,,,,,,NA
+,383,,Misery,B+,14,Pre-2006,,,,,,NA
+,384,,Mission Impossible I,B+,14,Pre-2006,,,,,,NA
+,385,December-15,Mission Impossible V,B+,14,2015,Peninsula,Amazon Instant,2015,93%,131,71%
+,386,July-23,Mission Impossible VII,B+,14,2023,Redwood City,Theatre,2023,96%,164,59%
+,387,,Monsters Inc. ,B+,14,Pre-2006,,,,,,NA
+,388,January-15,Monsters University,B+,14,2015,Peninsula,On-Demand/PPV,2013,78%,95,82%
+,389,,Moonraker,B+,14,Pre-2006,,,,,,NA
+,390,,Mr. Smith Goes to Washington,B+,14,Pre-2006,,,,,,NA
+,391,,Mrs. Doubtfire,B+,14,Pre-2006,,,,,,NA
+,392,April-14,Mud,B+,14,2014,Peninsula,On-Demand/PPV,2013,98%,131,75%
+,393,,My Cousin Vinny,B+,14,Pre-2006,,,,,,NA
+,394,April-07,"Namesake, The",B+,14,2007,,,,,,NA
+,395,,National Lampoon's Vacation,B+,14,Pre-2006,,,,,,NA
+,396,September-14,Neighbors,B+,14,2014,Portola Valley,On-Demand/PPV,2014,73%,97,75%
+,397,,New Jack City,B+,14,Pre-2006,,,1991,79%,101,78%
+,398,December-07,No Country for Old Men,B+,14,2007,East Bay,Theatre,,,,NA
+,399,October-22,Nomadland,B+,14,2022,Plane,On-Demand/PPV,2020,93%,108,86%
+,400,May-06,North Country,B+,14,2006,,,,,,NA
+,401,June-07,Ocean's Thirteen,B+,14,2007,,,,,,NA
+,402,January-19,On the Basis of Sex,B+,14,2019,Palo Alto,Theatre,2018,71%,120,59%
+,403,,One Flew Over the Cuckoo's Nest,B+,14,Pre-2006,,,,,,NA
+,404,April-20,Onward,B+,14,2020,Portola Valley,Disney+,2020,88%,103,85%
+,405,,Parenthood,B+,14,Pre-2006,,,,,,NA
+,406,October-12,"Perks of being a Wallflower, The",B+,14,2012,Redwood City,Theatre,2012,84%,103,82%
+,407,,Point Break,B+,14,Pre-2006,,,,,,NA
+,408,April-22,"Power of the Dog, The",B+,14,2022,Portola Valley,Netflix,2021,93%,128,73%
+,409,,Prefontaine,B+,14,Pre-2006,,,,,,NA
+,410,,Pretty Woman,B+,14,Pre-2006,,,,,,NA
+,411,July-15,"Princess Bride, The",B+,14,2015,Portola Valley,Amazon Instant,1987,97%,98,99%
+,412,,Primal Fear,B+,14,Pre-2006,,,,,,NA
+,413,,"Professional, The",B+,14,Pre-2006,,,,,,NA
+,414,,Punch-Drunk Love,B+,14,Pre-2006,,,,,,NA
+,415,November-08,Quantum of Solace,B+,14,2008,San Fran,Theatre,2008,66%,106,62%
+,416,,Raging Bull,B+,14,Pre-2006,,,,,,NA
+,417,4/6/2025,"Real Pain, A",B+,14,2025,Plane,On-Demand/PPV,2024,96%,89,108%
+,418,,Rain Man,B+,14,Pre-2006,,,,,,NA
+,419,October-22,"Redeem Team, The",B+,14,2022,Portola Valley,Netflix,2022,92,NA,NA
+,420,June-06,Ray,B+,14,2006,,,,,,NA
+,421,July-20,"Revenant, The",B+,14,2020,Portola Valley,On-Demand/PPV,2015,78%,156,50%
+,422,January-08,Reversal of Fortune,B+,14,2008,Boston,DVD,1990,96%,109,88%
+,423,,Risky Business,B+,14,Pre-2006,,,,,,NA
+,424,March-06,"Road to Perdition, The",B+,14,2006,,,,,,NA
+,425,,Robin Hood (cartoon),B+,14,Pre-2006,,,,,,NA
+,426,,Rocky III,B+,14,Pre-2006,,,,,,NA
+,427,July-20,Roma,B+,14,2020,Portola Valley,On-Demand/PPV,2018,96%,135,71%
+,428,,"Royal Tennenbaums, The",B+,14,Pre-2006,,,,,,NA
+,429,,"Running Man, The",B+,14,Pre-2006,,,,,,NA
+,430,April-13,Safety Not Guaranteed,B+,14,2013,Peninsula,On-Demand/PPV,2012,91%,86,106%
+,431,,Saturday Night Fever,B+,14,Pre-2006,,,,,,NA
+,432,,Scarface,B+,14,Pre-2006,,,,,,NA
+,433,October-22,School Ties,B+,14,2022,Portola Valley,On-Demand/PPV,1992,60%,107,56%
+,434,,Scream I,B+,14,Pre-2006,,,,,,NA
+,435,,Searching for Bobby Fischer,B+,14,Pre-2006,,,,,,NA
+,436,August-14,Senna,B+,14,2014,Portland,On-Demand/PPV,2011,92%,104,88%
+,437,January-08,Sense and Sensibility,B+,14,2008,Plane,Plane,1995,100%,137,73%
+,438,,Shakespeare in Love,B+,14,Pre-2006,,,,,,NA
+,439,,Shoot to Kill (Deadly Pursuit),B+,14,Pre-2006,,,,,,NA
+,440,April-18,Shot Caller,B+,14,2018,Portola Valley,On-Demand/PPV,2017,63%,121,52%
+,441,,Shrek ,B+,14,Pre-2006,,,,,,NA
+,442,July-22,Crimson Tide,B+,14,2022,Portland,On-Demand/PPV,1995,88%,115,77%
+,443,,Sleeping with the Enemy,B+,14,Pre-2006,,,,,,NA
+,444,November-15,Spectre,B+,14,2015,Redwood City,Theatre,2015,63%,150,42%
+,445,,Spider-man: Homecoming,B+,14,2017,Mountain View,Theatre,2017,92%,133,69%
+,446,September-15,Spy,B+,14,2015,Plane,Plane,2015,93%,117,79%
+,447,,"Squid and the Whale, The",B+,14,Pre-2006,,,,,,NA
+,448,January-20,Star Wars: The Rise of Skywalker,B+,14,2020,Redwood City,Theatre,2020,52%,155,34%
+,449,,Stakeout,B+,14,Pre-2006,,,,,,NA
+,450,May-16,Straight Outta Compton,B+,14,2016,Peninsula,On-Demand/PPV,2015,88%,147,60%
+,451,,Super Size Me,B+,14,Pre-2006,,,,,,NA
+,452,,Superman I,B+,14,Pre-2006,,,,,,NA
+,453,January-08,Sweeney Todd: The Demon Barber of Fleet St,B+,14,2008,Boston,Theatre,2007,86%,117,74%
+,454,,"Talented Mr. Ripley, The",B+,14,Pre-2006,,,,,,NA
+,455,August-12,Taken,B+,14,2012,Peninsula,On-Demand/PPV,2008,58%,91,64%
+,456,,Tango & Cash,B+,14,Pre-2006,,,,,,NA
+,457,,Thelma & Louise,B+,14,Pre-2006,,,,,,NA
+,458,May-16,"Third Man, The",B+,14,2016,Portola Valley,On-Demand/PPV,1949,100%,104,96%
+,459,,Thirteen,B+,14,Pre-2006,Portola Valley,Netflix,2016,97%,100,97%
+,460,June-20,13th,B+,14,2020,Portola Valley,,,,,
+,461,October-07,This is England,B+,14,2007,Boston,On-Demand/PPV,,,,NA
+,462,May-11,Thor,B+,14,2011,Peninsula,Theatre,2011,77%,115,67%
+,463,May-18,Thor: Raganok,B+,14,2018,Plane,On-Demand/PPV,2017,92%,130,71%
+,464,January-18,"Theory of Everything, The",B+,14,2018,Peninsula,On-Demand/PPV,2014,78%,123,63%
+,465,,Three Kings,B+,14,Pre-2006,,,,,,NA
+,466,,Three Men and a Baby,B+,14,Pre-2006,,,,,,NA
+,467,,Tootsie,B+,14,Pre-2006,,,,,,NA
+,468,,Top Gun,B+,14,Pre-2006,,,,,,NA
+,469,,Top Secret!,B+,14,Pre-2006,,,,,,NA
+,470,,Total Recall,B+,14,Pre-2006,,,,,,NA
+,471,April-11,"Town, The",B+,14,2011,Peninsula,On-Demand,2010,94%,124,76%
+,472,July-19,Toy Story 4,B+,14,2019,Peninsula,Theatre,2019,97%,90,108%
+,473,September-08,Tropic Thunder,B+,14,2008,Lafayette,Theatre,2008,83%,107,78%
+,474,February-09,Two Lovers,B+,14,2009,San Fran,On-Demand/PPV,2009,83%,110,75%
+,475,,Unforgiven,B+,14,Pre-2006,,,,,,NA
+,476,,"Untouchables, The",B+,14,Pre-2006,,,,,,NA
+,477,,"Usual Suspects, The",B+,14,Pre-2006,,,,,,NA
+,478,January-07,V for Vendetta,B+,14,2007,,,,,,NA
+,479,,"View to a Kill, A",B+,14,Pre-2006,,,,,,NA
+,480,,Wall St,B+,14,Pre-2006,,,,,,NA
+,481,June-08,Wanted,B+,14,2008,London,Theatre,2008,83%,110,75%
+,482,,"War of the Roses, The",B+,14,Pre-2006,,,,,,NA
+,483,,When Harry Met Sally,B+,14,Pre-2006,,,,,,NA
+,484,August-23,"Whole Nine Yards, The",B+,14,2023,Dover,Netflix,2000,43%,101,43%
+,485,,White Men Can't Jump,B+,14,Pre-2006,,,,,,NA
+,486,,Without Limits,B+,14,Pre-2006,,,,,,NA
+,487,,Witness,B+,14,Pre-2006,,,,,,NA
+,488,,"Wizard of Oz, The",B+,14,Pre-2006,,,,,,NA
+,489,December-13,"Wolf of Wall Stret, The",B+,14,2013,LA,Theatre,2013,75%,179,42%
+,490,,Working Girl,B+,14,Pre-2006,,,,,,NA
+,491,,X-Men I,B+,14,Pre-2006,,,,,,NA
+,492,,X-Men II,B+,14,Pre-2006,,,,,,NA
+,493,January-08,"4 Months, 3 Days, 2 Hours",B/B+,13,2008,Boston,On-Demand/PPV,2008,95%,113,84%
+,494,,"Accused, The",B/B+,13,Pre-2006,,,,,,NA
+,495,October-18,Adam Sandler: 100% Fresh,B/B+,13,2018,Portola Valley,Netflix,2018,88%,73,121%
+,496,September-09,Adventureland,B/B+,13,2009,San Fran,On-Demand/PPV,2009,89%,107,83%
+,497,,All the President's Men,B/B+,13,Pre-2006,,,,,,NA
+,498,January-07,American Dreamz,B/B+,13,2007,,,,,,NA
+,499,January-18,American Made,B/B+,13,2018,Portola Valley,On-Demand/PPV,2017,86%,115,75%
+,500,March-07,American Splendor,B/B+,13,2007,,,,,,NA
+,501,April-18,Andre The Giant,B/B+,13,2018,Portola Valley,HBO,2018,92%,85,108%
+,502,February-19,Ant-Man and the Wasp,B/B+,13,2019,Portola Valley,Netflix,2018,88%,118,75%
+,503,June-14,"Armstrong Lie, The",B/B+,13,2014,Plane,Plane,2013,84%,122,69%
+,504,July-08,"Assassination of Jesse James, The",B/B+,13,2008,ATWT,DVD,2007,75%,160,47%
+,505,,Austin Powers II,B/B+,13,Pre-2006,,,,,,NA
+,506,May-16,"Avengers, The: Civil War",B/B+,13,2016,Peninsula,Theatre,2016,91%,146,62%
+,507,April-22,Awakenings,B/B+,13,2022,Portola Valley,Netflix,1990,89%,121,74%
+,508,,Bad Boys,B/B+,13,Pre-2006,,,,,,NA
+,509,December-22,"Banshees of Inisherin, The",B/B+,13,2022,Pensinula,HBO,2022,97%,109,89%
+,510,,"Beach, The",B/B+,13,Pre-2006,,,,,,NA
+,511,,Bean,B/B+,13,Pre-2006,,,,,,NA
+,512,,Beautiful Girls,B/B+,13,Pre-2006,,,,,,NA
+,513,,Beauty & The Beast,B/B+,13,Pre-2006,,,,,,NA
+,514,June-20,Becoming,B/B+,13,2020,Portola Valley,Netflix,2020,93%,89,104%
+,515,July-09,Before Sunset,B/B+,13,2009,San Fran,On-Demand/PPV,2004,94%,80,118%
+,516,April-19,Bohemian Rhapsody,B/B+,13,2019,Portola Valley,On-Demand/PPV,2018,61%,134,46%
+,517,,Billy Madison,B/B+,13,Pre-2006,,,,,,NA
+,518,,Bird on a Wire,B/B+,13,Pre-2006,,,,,,NA
+,519,April-18,Black Panther,B/B+,13,2018,Mountain View,Theatre,2018,96%,135,71%
+,520,,Black Rain,B/B+,13,Pre-2006,,,,,,NA
+,521,,"Blair Witch Project, The",B/B+,13,Pre-2006,,,,,,NA
+,522,December-09,"Blind Side, The",B/B+,13,2009,Florida,Theatre,2009,72%,128,56%
+,523,,Blow Out,B/B+,13,Pre-2006,,,,,,NA
+,524,,Boiler Room,B/B+,13,Pre-2006,,,,,,NA
+,525,,Bonnie and Clyde,B/B+,13,Pre-2006,,,,,,NA
+,526,February-07,"Bourne Supremacy, The",B/B+,13,2007,,,,,,NA
+,527,February-07,Breach,B/B+,13,2007,,,,,,NA
+,528,April-14,Captain America: The Winter Soldier,B/B+,13,2014,Monterey,Theatre,2014,89%,136,65%
+,529,August-07,Capturing the Friedmans,B/B+,13,2007,London,DVD,,,,NA
+,530,August-15,Casting By,B/B+,13,2015,Portola Valley,Netflix,2013,93%,89,104%
+,531,June-15,Champs,B/B+,13,2015,Peninsulat,Netflix,2015,56%,85,66%
+,532,January-07,Children of Men,B/B+,13,2007,,,,,,NA
+,533,,Chocolat,B/B+,13,Pre-2006,,,,,,NA
+,534,,City Slickers,B/B+,13,Pre-2006,,,,,,NA
+,535,,"Civil Action, A",B/B+,13,Pre-2006,,,,,,NA
+,536,,Clear and Present Danger,B/B+,13,Pre-2006,,,,,,NA
+,537,,Close Encounters of the Third Kind,B/B+,13,Pre-2006,,,,,,NA
+,538,March-08,Cocaine Cowboys,B/B+,13,2008,Boston,On-Demand/PPV,2006,70%,118,59%
+,539,,Cocktail,B/B+,13,Pre-2006,,,,,,NA
+,540,October-22,"Confess, Fletch",B/B+,13,2022,Plane,On-Demand,2022,86%,98,88%
+,541,November-11,"Crazy, Stupid, Love",B/B+,13,2011,Peninsula,On-Demand,2011,78%,117,67%
+,542,,Cruel Intentions,B/B+,13,Pre-2006,,,,,,NA
+,543,January-09,"Curious Case of Benjamin Button, The",B/B+,13,2009,San Fran,Theatre,2008,72%,166,43%
+,544,,"Curse of the Were-Rabbit, The",B/B+,13,Pre-2006,,,,,,NA
+,545,July-12,"Dark Knight Rises, The",B/B+,13,2012,Redwood City,Theatre,2012,87%,165,53%
+,546,,Dave,B/B+,13,Pre-2006,,,,,,NA
+,547,,Dick Tracy,B/B+,13,Pre-2006,,,,,,NA
+,548,,"Distinguished Gentleman, The",B/B+,13,Pre-2006,,,,,,NA
+,549,February-08,"Diving Bell and the Butterfly, The",B/B+,13,2008,Boston,Theatre,2007,93%,112,83%
+,550,December-12,Django Unchained,B/B+,13,2012,Miami,Theatre,2012,89%,166,54%
+,551,January-08,Dodgeball,B/B+,13,2008,Boston,On-Demand/PPV,2004,69%,96,72%
+,552,September-07,Dr. Strangelove,B/B+,13,2007,Boston,On-Demand/PPV,,,,NA
+,553,February-14,Don Jon,B/B+,13,2014,Peninsula,On-Demand/PPV,2013,81%,90,90%
+,554,November-16,Don't Think Twice,B/B+,13,2016,Portola Valley,On-Demand/PPV,2016,99%,92,108%
+,555,,Dragnet,B/B+,13,Pre-2006,,,,,,NA
+,556,March-15,"Drop, The",B/B+,13,2015,Peninsula,On-Demand/PPV,2014,89%,106,84%
+,557,April-22,Dune,B/B+,13,2022,Portola Valley,HBO Max,2021,83%,135,61%
+,558,,"Edge, The",B/B+,13,Pre-2006,,,,,,NA
+,559,November-18,Eight Grade,B/B+,13,2018,Portola Valley,On-Demand/PPV,2018,99%,94,105%
+,560,October-19,El Camino: A Breaking Bad movie,B/B+,13,2019,Portola Valley,Netflix,2019,91%,122,75%
+,561,September-23,"Equalizer 3, The",B/B+,13,2023,Mountain View,Theatre,2023,75%,109,69%
+,562,,Erin Brockovich,B/B+,13,Pre-2006,,,,,,NA
+,563,July-21,F9 The Fast Saga,B/B+,13,2021,Santa Cruz,Theatre,2021,59%,145,41%
+,564,May-24,"Fall Guy, The",B/B+,13,2024,Redwood City,Theatre,2024,81%,126,64%
+,565,April-16,Fantastic Lies,B/B+,13,2016,Portola Valley,On-Demand/PPV,NA,NA,NA,NA
+,566,November-09,Fantastic Mr. Fox,B/B+,13,2009,Boston,Theatre,2009,92%,93,99%
+,567,,Fargo,B/B+,13,Pre-2006,,,,,,NA
+,568,January-14,Fast and the Furious 6: The,B/B+,13,2014,Peninsula,On-Demand/PPV,2013,70%,130,54%
+,569,June-14,"Fault In Our Stars, The",B/B+,13,2014,Redwood City,Theatre,2014,82%,125,66%
+,570,,Field of Dreams,B/B+,13,Pre-2006,,,,,,NA
+,571,,"Fifth Element, The",B/B+,13,Pre-2006,,,,,,NA
+,572,December-16,Finding Traction,B/B+,13,2016,Portola Valley,Neflix,2014,NA,60,NA
+,573,,"Firm, The",B/B+,13,Pre-2006,,,,,,NA
+,574,July-07,Flags of our Fathers,B/B+,13,2007,,,,,,NA
+,575,April-08,Forgetting Sarah Marshall,B/B+,13,2008,Boston,Theatre,2008,85%,112,76%
+,576,August-17,"Founder, The",B/B+,13,2017,Jackson Hole,Netflix,2017,84%,115,73%
+,577,April-16,Team Foxcatcher,B/B+,13,2016,Portola Valley,On-Demand/PPV,2016,NA,90,NA
+,578,December-17,Foxcatcher,B/B+,13,2017,Portola Valley,On-Demand/PPV,2014,88%,130,68%
+,579,December-11,Friends with Benefits,B/B+,13,2011,Portola Valley,On-Demand/PPV,2011,71%,107,66%
+,580,May-17,Furious 7,B/B+,13,2017,Portola Valley,On-Demand/PPV,2015,79%,140,56%
+,581,August-15,Fury,B/B+,13,2015,Portola Valley,On-Demand/PPV,2014,77%,135,57%
+,582,,Gangs of New York,B/B+,13,Pre-2006,,,,,,NA
+,583,2/15/2020,"Gentlemen,The",B/B+,13,2020,Redwood City,Theatre,2020,74%,103,72%
+,584,,Ghost,B/B+,13,Pre-2006,,,,,,NA
+,585,,Ghostbusters,B/B+,13,Pre-2006,,,,,,NA
+,586,August-09,Glengarry Glen Ross,B/B+,13,2009,Plane,On-Demand/PPV,1992,98%,100,98%
+,587,,Go,B/B+,13,Pre-2006,,,,,,NA
+,588,November-95,GoldenEye,B/B+,13,Pre-2006,,,,,,NA
+,589,October-22,Gone Girl,B/B+,13,2015,Portola Valley,On-Demand/PPV,2014,88%,145,61%
+,590,October-22,Gosford Park,B/B+,13,2022,Plane,On-Demand/PPV,2001,87%,137,64%
+,591,,"Great Escape, The",B/B+,13,Pre-2006,,,,,,NA
+,592,,Groundhog Day,B/B+,13,Pre-2006,,,,,,NA
+,593,August-14,Guardian of the Galaxy,B/B+,13,2014,Redwood City,Theatre,2014,92%,121,76%
+,594,,"Hand That Rocks The Cradle, The",B/B+,13,Pre-2006,,,,,,NA
+,595,,Harry Potter I,B/B+,13,Pre-2006,,,,,,NA
+,596,,Harry Potter II,B/B+,13,Pre-2006,,,,,,NA
+,597,,Harry Potter III,B/B+,13,Pre-2006,,,,,,NA
+,598,,Harry Potter IV,B/B+,13,Pre-2006,,,,,,NA
+,599,,High Fidelity,B/B+,13,Pre-2006,,,,,,NA
+,600,June-24,Hit Man,B/B+,13,2024,Portola Valley,Netflix,2024,95%,113,84%
+,601,November-08,"Hoax, The",B/B+,13,2008,San Fran,DVR,2007,85%,115,74%
+,602,August-15,An Honest Liar,B/B+,13,2015,Portola Valley,Netflix,2015,97%,90,108%
+,603,,Hoosiers,B/B+,13,Pre-2006,,,,,,NA
+,604,,"Human Stain, The",B/B+,13,Pre-2006,,,,,,NA
+,605,August-24,"Hunchback of Notre Dame, The",B/B+,13,2024,Portola Valley,Disney Plus,1996,72%,86,84%
+,606,July-16,"Hunter, The",B/B+,13,2016,Portola Valley,Netflix,2012,70%,101,69%
+,607,June-22,Hustle,B/B+,13,2022,Portola Valley,Netflix,2022,92%,118,78%
+,608,,I Know What You Did Last Summer,B/B+,13,Pre-2006,,,,,,NA
+,609,December-16,"Iceman, The",B/B+,13,2016,Portola Valley,Netflix,2013,66%,105,63%
+,610,January-07,"Illusionist, The",B/B+,13,2007,,,,,,NA
+,611,December-99,"Imitation Game, The",B/B+,13,2014,Portola Valley,On-Demand/PPV,2014,92%,114,81%
+,612,,Indiana Jones and the Temple of Doom,B/B+,13,Pre-2006,,,,,,NA
+,613,October-22,In the Loop,B/B+,13,2022,Dover,On-Demand/PPV,2009,94%,106,89%
+,614,April-16,Inspired to Ride,B/B+,13,2016,Portola Valley,On-Demand/PPV,2015,NA,88,NA
+,615,November-19,"Irishman, The",B/B+,13,2019,"Plane
+",Netflix,2019,96%,209,NA
+,616,,James & The Giant Peach,B/B+,13,Pre-2006,,,,,,NA
+,617,November-17,Jim and Andy: The Great Beyond,B/B+,13,2017,Portola Valley,Netflix,2017,100%,94,106%
+,618,December-07,Juno,B/B+,13,2007,San Fran,Theatre,,,,NA
+,619,July-16,King Jack,B/B+,13,2016,Portola Valley,Netflix,2016,97%,80,121%
+,620,,Kissing Jessica Stein,B/B+,13,Pre-2006,San Fran,TV,,,,NA
+,621,December-19,Knives Out,B/B+,13,2019,Palo Alto,Theatre,2019,97%,130,75%
+,622,April-22,Kodachrome,B/B+,13,2022,Portola Valley,Netflix,2022,71%,100,71%
+,623,December-12,Les Miserables,B/B+,13,2012,Miami,Theatre,2012,71%,158,45%
+,624,,Legally Blonde,B/B+,13,Pre-2006,,,,,,NA
+,625,,"Limey, The",B/B+,13,Pre-2006,,,,,,NA
+,626,February-07,Little Children,B/B+,13,2007,,,,,,NA
+,627,,Live and Let Die,B/B+,13,Pre-2006,,,,,,NA
+,628,,Lolita,B/B+,13,Pre-2006,,,,,,NA
+,629,,Love Actually,B/B+,13,Pre-2006,,,,,,NA
+,630,October-22,Magnolia,B/B+,13,2022,Portola Valley,On-Demand/PPV,1999,83%,188,44%
+,631,,"Man in the Iron Mask, The",B/B+,13,Pre-2006,,,,,,NA
+,632,,"Man Without a Face, The",B/B+,13,Pre-2006,,,,,,NA
+,633,April-22,Marriage Story,B/B+,13,2022,Portola Valley,Netflix,2019,94%,136,69%
+,634,,Mars Attacks!,B/B+,13,Pre-2006,,,,,,NA
+,635,,"Matador, The",B/B+,13,Pre-2006,,,,,,NA
+,636,,Match Point,B/B+,13,Pre-2006,,,,,,NA
+,637,,"Me, Myself, and Irene",B/B+,13,Pre-2006,,,,,,NA
+,638,July-17,Midnight in Paris,B/B+,13,2017,Portola Valley,Netflix,2011,93%,94,99%
+,639,September-08,Midnight Run,B/B+,13,2008,Lafayette,On-Demand/PPV,1988,100%,126,79%
+,640,,Millions,B/B+,13,Pre-2006,,,,,,NA
+,641,,Minority Report,B/B+,13,Pre-2006,,,,,,NA
+,642,,Miracle ,B/B+,13,Pre-2006,,,,,,NA
+,643,December-11,Mission Impossible 4,B/B+,13,2011,Florida,Theatre,2011,93%,133,70%
+,644,April-20,Moana,B/B+,13,2020,Portola Valley,On-Demand/PPV,2017,95%,113,84%
+,645,December-17,Molly's Game,B/B+,13,2017,Mountain View,Theatre,2017,81%,140,58%
+,646,,"Money Pit, The",B/B+,13,Pre-2006,,,,,,NA
+,647,,Mr. Deeds,B/B+,13,Pre-2006,,,,,,NA
+,648,December-21,Mr.Saturday Night,B/B+,13,2021,Portola Valley,HBO Max,2021,NA,80,NA
+,649,May-16,My Beautiful Broken Brain,B/B+,13,2016,Peninsula,On-Demand/PPV,2016,NA,NA,NA
+,650,,My Fair Lady,B/B+,13,Pre-2006,,,,,,NA
+,651,April-08,My Kid Could Paint That,B/B+,13,2008,Boston,DVD,2007,93%,83,112%
+,652,,No Man's Land,B/B+,13,Pre-2006,,,,,,NA
+,653,,"Nutty Professor, The",B/B+,13,Pre-2006,,,,,,NA
+,654,,October Sky,B/B+,13,Pre-2006,,,,,,NA
+,655,,"Officer and a Gentleman, An",B/B+,13,Pre-2006,,,,,,NA
+,656,,Oliver Twist,B/B+,13,Pre-2006,,,,,,NA
+,657,August-06,On Her Majesty's Secret Service,B/B+,13,2006,,,,,,NA
+,658,July-14,Once Brothers (ESPN 30 for 30),B/B+,13,2014,Portland,On-Demand/PPV,NA,NA,80,NA
+,659,,Out of Sight,B/B+,13,Pre-2006,,,,,,NA
+,660,December-17,"Overnight, The",B/B+,13,2017,Portola Valley,Netflix,2015,82%,80,103%
+,661,,"Patriot, The",B/B+,13,Pre-2006,,,,,,NA
+,662,,"Perfect Murder, A",B/B+,13,Pre-2006,,,,,,NA
+,663,,"Perfect Storm, The",B/B+,13,Pre-2006,,,,,,NA
+,664,,Peter's Friends,B/B+,13,Pre-2006,,,,,,NA
+,665,,Platoon,B/B+,13,Pre-2006,,,,,,NA
+,666,,Point of No Return,B/B+,13,Pre-2006,,,,,,NA
+,667,,"Power of One, The",B/B+,13,Pre-2006,,,,,,NA
+,668,August-07,Pride & Prejudice,B/B+,13,2007,London,DVD,,,,NA
+,669,,Primary Colors,B/B+,13,Pre-2006,,,,,,NA
+,670,,Prizzi's Honor,B/B+,13,Pre-2006,,,,,,NA
+,671,November-06,"Queen, The",B/B+,13,2006,,,,,,NA
+,672,November-08,Rachel Getting Married,B/B+,13,2008,San Fran,Theatre,2008,87%,114,76%
+,673,,"Rainmaker, The",B/B+,13,Pre-2006,,,,,,NA
+,674,,Rambo: First Blood,B/B+,13,Pre-2006,,,,,,NA
+,675,February-09,"Reader, The",B/B+,13,2009,San Fran,Theatre,2008,60%,123,49%
+,676,,Remember the Titans,B/B+,13,Pre-2006,,,,,,NA
+,677,July-07,Rescue Dawn,B/B+,13,2007,,,,,,NA
+,678,July-07,"Right Stuff, The",B/B+,13,2007,,,,,,NA
+,679,,"River Wild, The",B/B+,13,Pre-2006,,,,,,NA
+,680,,Road House,B/B+,13,Pre-2006,,,,,,NA
+,681,,Rocky I,B/B+,13,Pre-2006,,,,,,NA
+,682,,Rocky VI,B/B+,13,Pre-2006,,,,,,NA
+,683,May-09,Role Models,B/B+,13,2009,San Fran,On-Demand/PPV,2008,76%,102,75%
+,684,,Roman Holiday,B/B+,13,Pre-2006,,,,,,NA
+,685,,Romeo and Juliet,B/B+,13,Pre-2006,,,,,,NA
+,686,February-09,"Rookie, The",B/B+,13,2009,San Fran,DVR,2002,82%,128,64%
+,687,,Rudy,B/B+,13,Pre-2006,,,,,,NA
+,688,,"Runaway Jury, The",B/B+,13,Pre-2006,,,,,,NA
+,689,,"Saint, The",B/B+,13,Pre-2006,,,,,,NA
+,690,,Saving Private Ryan,B/B+,13,Pre-2006,,,,,,NA
+,691,,Scary Movie,B/B+,13,Pre-2006,,,,,,NA
+,692,May-14,"Secret Life of Walter Mitty, The",B/B+,13,2013,Sydney,On-Demand/PPV,2013,51%,114,45%
+,693,February-07,School Ties,B/B+,13,2007,,,,,,NA
+,694,,Sea of Love,B/B+,13,Pre-2006,,,,,,NA
+,695,,"Secret of My Success, The",B/B+,13,Pre-2006,,,,,,NA
+,696,March-07,Shut Up and Sing,B/B+,13,2007,,,,,,NA
+,697,July-18,Sicario,B/B+,13,2018,Portola Valley,On-Demand/PPV,2015,92%,121,76%
+,698,,Sideways,B/B+,13,Pre-2006,,,,,,NA
+,699,February-13,Side Effects,B/B+,13,2013,Peninsula,Theatre,2013,85%,106,80%
+,700,December-12,Silver Linings Playbook,B/B+,13,2012,Peninsula,Theatre,2012,91%,120,76%
+,701,December-14,"Skeleton Twins, The",B/B+,13,2014,Peninsula,On-Demand/PPV,2014,87%,93,94%
+,702,November-12,Skyfall,B/B+,13,2012,Peninsula,Theatre,2012,92%,145,63%
+,703,,Snatch,B/B+,13,Pre-2006,,,,,,NA
+,704,11/1/2015,Sole Man,B/B+,13,2015,Portola Valley,On-Demand/PPV,2015,NA,77,NA
+,705,,Some Like It Hot,B/B+,13,Pre-2006,,,,,,NA
+,706,,Something's Gotta Give,B/B+,13,Pre-2006,,,,,,NA
+,707,September-11,Source Code,B/B+,13,2011,Peninsula,On-Demand/PPV,2011,92%,87,106%
+,708,August-07,Starter for 10,B/B+,13,2007,London,DVD,,,,NA
+,709,,Startup.com,B/B+,13,Pre-2006,,,,,,NA
+,710,October-07,Still of the Night,B/B+,13,2007,Boston,On-Demand/PPV,,,,NA
+,711,November-14,Stuck In Love,B/B+,13,2014,Peninsula,On-Demand/PPV,2013,58%,96,60%
+,712,,Sunset Boulevard,B/B+,13,Pre-2006,,,,,,NA
+,713,August-06,Superman Returns,B/B+,13,2006,,,,,,NA
+,714,,Swingers,B/B+,13,Pre-2006,,,,,,NA
+,715,March-23,Tar,B/B+,13,2023,Peninsula,Theatre,2022,90%,158,57%
+,716,,Taxi Driver,B/B+,13,Pre-2006,,,,,,NA
+,717,,Teen Wolf I,B/B+,13,Pre-2006,,,,,,NA
+,718,April-06,The 40-Year-Old Virgin,B/B+,13,2006,,,,,,NA
+,719,November-22,Ticket to Paradise,B/B+,13,2022,Redwood City,Theatre,2022,57%,104,55%
+,720,November-15,"Tinker, Taylor, Soldier, Spy",B/B+,13,2015,Peninsula,On-Demand/PPV,2012,83%,128,65%
+,721,January-08,There Will be Blood,B/B+,13,2008,Boston,Theatre,2007,90%,158,57%
+,722,January-14,Thor: The Dark World,B/B+,13,2014,Peninsula,Theatre,2013,66%,112,59%
+,723,December-18,To All The Boys I've Loved Before,B/B+,13,2018,Portola Valley,Netflix,2018,96%,120,80%
+,724,,To Catch a Thief,B/B+,13,Pre-2006,,,,,,NA
+,725,July-16,Top Spin,B/B+,13,2016,Portola Valley,Netflix,2015,100%,80,125%
+,726,April-08,Training Day,B/B+,13,2008,Boston,DVD,2001,72%,122,59%
+,727,,Trainspotting,B/B+,13,Pre-2006,,,,,,NA
+,728,,True Romance,B/B+,13,Pre-2006,,,,,,NA
+,729,,"Truman Show, The",B/B+,13,Pre-2006,,,,,,NA
+,730,August-18,Tully,B/B+,13,2018,Portola Valley,On-Demand/PPV,2018,85%,94,90%
+,731,April-22,Turning Red,B/B+,13,2022,Portola Valley,Disney Plus,2022,94%,100,94%
+,732,,Twins,B/B+,13,Pre-2006,,,,,,NA
+,733,July-24,Twisters,B/B+,13,2024,San Fran,Theatre,2024,76%,122,62%
+,734,November-09,Tyson,B/B+,13,2009,San Fran,On-Demand/PPV,2009,86%,90,96%
+,735,,Under Siege,B/B+,13,Pre-2006,,,,,,NA
+,736,5/19/2016,Valley Uprising,B/B+,13,2016,Portola Valley,On-Demand/PPV,2014,NA,99,NA
+,737,,Wayne's World I,B/B+,13,Pre-2006,,,,,,NA
+,738,,Willy Wonka & The Chocolate Factory,B/B+,13,Pre-2006,,,,,,NA
+,739,,X-Men III,B/B+,13,Pre-2006,,,,,,NA
+,740,April-22,Warrior,B/B+,13,2022,Portola Valley,Netflix,2011,84%,139,60%
+,741,July-23,"War Room, The",B/B+,13,2023,Portola Valley,HBO Max,1993,96%,94,102%
+,742,June-18,Won't You Be My Neighbor?,B/B+,13,2018,Palo Alto,Theatre,2018,99%,94,105%
+,743,December-11,Young Adult,B/B+,13,2011,Florida,Theatre,2011,79%,93,85%
+,744,6/5/2016,Zero Dark Thirty,B/B+,13,2016,Portola Valley,On-Demand/PPV,2013,92%,157,59%
+,745,,Zoolander,B/B+,13,Pre-2006,,,,,,NA
+,746,,15 Minutes,B,12,Pre-2006,,,,,,NA
+,747,July-08,3:10 to Yuma,B,12,2008,ATWT,DVD,2007,89%,122,73%
+,748,,48 Hours,B,12,Pre-2006,,,,,,NA
+,749,October-22,About Last Night,B,12,2022,Portola Valley,On-Demand/PPV,2022,61%,113,54%
+,750,October-16,"Accountant, The",B,12,2016,Redwood City,Theatre,2016,51%,128,40%
+,751,,"African Queen, The",B,12,Pre-2006,,,,,,NA
+,752,,Aladdin,B,12,Pre-2006,,,,,,NA
+,753,December-22,Alien,B,12,2022,Peninsula,On-Demand/PPV,1979,98%,117,84%
+,754,,Along Came Polly,B,12,Pre-2006,,,,,,NA
+,755,October-16,Amanda Knox,B,12,2016,Portola Valley,Netflix,2016,88%,92,96%
+,756,July-12,"Amazing Spider-Man, The",B,12,2012,Redwood City,Theatre,2012,73%,137,53%
+,757,,American Flyers,B,12,Pre-2006,,,,,,NA
+,758,,Analyze That,B,12,Pre-2006,,,,,,NA
+,759,,Analyze This,B,12,Pre-2006,,,,,,NA
+,760,,Animal House,B,12,Pre-2006,,,,,,NA
+,761,,Annie,B,12,Pre-2006,,,,,,NA
+,762,March-24,Anyone But You,B,12,2024,Portola Valley,Netflix,2024,52%,103,50%
+,763,,"Apartment, The",B,12,Pre-2006,,,,,,NA
+,764,,Armageddon,B,12,Pre-2006,,,,,,NA
+,765,,Au Revoir Les Enfants,B,12,Pre-2006,,,,,,NA
+,766,,Austin Powers III,B,12,Pre-2006,,,,,,NA
+,767,6/9/2017,"BFG, The",B,12,2017,Peninsula,On-Demand/PPV,2016,74%,115,64%
+,768,,Back to the Future II,B,12,Pre-2006,,,,,,NA
+,769,,Backdraft,B,12,Pre-2006,,,,,,NA
+,770,,Bad Santa,B,12,Pre-2006,,,,,,NA
+,771,12/31/2023,Barbie,B,12,2023,Portola Valley,On-Demand/PPV,2023,89%,114,78%
+,772,,Batman,B,12,Pre-2006,,,,,,NA
+,773,,Batman Forever,B,12,Pre-2006,,,,,,NA
+,774,,Batman Returns,B,12,Pre-2006,,,,,,NA
+,775,May-08,Before the Devil Knows You're Dead,B,12,2008,Boston,DVD,2007,88%,123,72%
+,776,July-14,Begin Again,B,12,2014,Seattle,Theatre,2014,82%,101,81%
+,777,,Better Off Dead,B,12,Pre-2006,,,,,,NA
+,778,,Beverly Hills Cop II,B,12,Pre-2006,,,,,,NA
+,779,June-12,"Big Chill, The",B,12,2012,Plane,Plane,1983,68%,103,66%
+,780,,Big Daddy,B,12,Pre-2006,,,,,,NA
+,781,,Billy Elliott,B,12,Pre-2006,,,,,,NA
+,782,,"Bodyguard, The",B,12,Pre-2006,,,,,,NA
+,783,,"Bone Collector, The",B,12,Pre-2006,,,,,,NA
+,784,December-06,Borat,B,12,2006,,,,,,NA
+,785,,Breakdown,B,12,Pre-2006,,,,,,NA
+,786,,Brewster's Millions,B,12,Pre-2006,,,,,,NA
+,787,,Bridget Jones's Diary,B,12,Pre-2006,,,2001,81%,94,86%
+,788,,Brokedown Palace,B,12,Pre-2006,,,,,,NA
+,789,,"Brothers McMullen, The",B,12,Pre-2006,,,,,,NA
+,790,,Caddyshack,B,12,Pre-2006,,,,,,NA
+,791,,"Cannonball Run I, The",B,12,Pre-2006,,,,,,NA
+,792,,"Cannonball Run II, The",B,12,Pre-2006,,,,,,NA
+,793,May-16,Captain America: Civil War,B,12,2016,Peninsula,On-Demand/PPV,2016,90%,146,62%
+,794,,Casablanca,B,12,Pre-2006,,,,,,NA
+,795,September-12,Celeste and Jesse Forever,B,12,2012,Campbell,Theatre,2012,68%,89,76%
+,796,,Charlie's Angels I,B,12,Pre-2006,,,,,,NA
+,797,April-16,Champs,B,12,2016,Portola Valley,On-Demand/PPV,2015,53%,85,62%
+,798,June-22,Cha Cha Real Smooth,B,12,2022,Portola Valley,On-Demand/PPV,2022,86%,107,80%
+,799,August-10,Changeling,B,12,2010,Peninsula,On-Demand/PPV,2008,62%,141,44%
+,800,,Chinatown,B,12,Pre-2006,,,,,,NA
+,801,June-14,"Class of 92, The",B,12,2014,Plane,Plane,2014,NA,98,NA
+,802,January-07,Click,B,12,2007,,,,,,NA
+,803,,"Clockwork Orange, A",B,12,Pre-2006,,,,,,NA
+,804,,Cobra,B,12,Pre-2006,,,,,,NA
+,805,,Commando,B,12,Pre-2006,,,,,,NA
+,806,,Cop Land,B,12,Pre-2006,,,,,,NA
+,807,,Copycat,B,12,Pre-2006,,,,,,NA
+,808,,Crocodile Dundee II,B,12,Pre-2006,,,,,,NA
+,809,October-22,Cruella,B,12,2022,Portola Valley,Disney +,2021,75%,134,56%
+,810,,Dead Calm,B,12,Pre-2006,,,,,,NA
+,811,,Dead Poet's Society,B,12,Pre-2006,,,,,,NA
+,812,,Death Warrant,B,12,Pre-2006,,,,,,NA
+,813,December-14,Desert Runners,B,12,2014,Peninsula,On-Demand/PPV,2014,NA,99,NA
+,814,,Devil's Advocate,B,12,Pre-2006,,,,,,NA
+,815,July-07,Die Hard IV,B,12,2007,,,,,,NA
+,816,,Do The Right Thing,B,12,Pre-2006,,,,,,NA
+,817,,Doctor Zhivago,B,12,Pre-2006,,,,,,NA
+,818,,Dr. Dolittle,B,12,Pre-2006,,,,,,NA
+,819,,Dragonheart,B,12,Pre-2006,,,,,,NA
+,820,October-22,Driving Miss Daisy,B,12,2022,Portola Valley,On-Demand/PPV,1989,84%,109,77%
+,821,December-10,Easy A,B,12,2010,Florida,iTunes,2010,86%,92,93%
+,822,,Easy Rider,B,12,Pre-2006,,,,,,NA
+,823,December-16,Eddie Strongman,B,12,2016,Portola Valley,Netflix,2015,NA,98,NA
+,824,,EdTV,B,12,Pre-2006,,,,,,NA
+,825,,Edward Scissorhands,B,12,Pre-2006,,,,,,NA
+,826,,Enemy of the State,B,12,Pre-2006,,,,,,NA
+,827,September-20,Enola Holmes,B,12,2020,Portola Valley,Netflix,2020,92%,123,75%
+,828,,Entrapment,B,12,Pre-2006,,,,,,NA
+,829,December-18,"Equalizer 2, The",B,12,2018,Portola Valley,On-Demand/PPV,2018,51%,129,40%
+,830,,Executive Decision,B,12,Pre-2006,,,,,,NA
+,831,,"Fabulous Baker Boys, The",B,12,Pre-2006,,,,,,NA
+,832,,Fahrenheit 9/11,B,12,Pre-2006,,,,,,NA
+,833,May-17,Fast Five,B,12,2017,Portola Valley,On-Demand/PPV,2011,75%,135,56%
+,834,May-19,Field of Dreams,B,12,2019,Portola Valley,On-Demand/PPV,1989,86%,104,83%
+,835,,Fierce Creatures,B,12,Pre-2006,,,,,,NA
+,836,,Finding Forrester,B,12,Pre-2006,,,,,,NA
+,837,,Flash Gordon,B,12,Pre-2006,,,,,,NA
+,838,June-09,Food Inc.,B,12,2009,San Fran,Theatre,2009,97%,94,103%
+,839,,For Your Eyes Only,B,12,Pre-2006,,,,,,NA
+,840,6/27/2024,Federer: 12 Final Days,B,12,2024,Portola Valley,Amazon Prime,2024,58%,100,58%
+,841,,Frankie and Johnny,B,12,Pre-2006,,,,,,NA
+,842,December-21,Free Guy,B,12,2021,Portola Valley,HBO Max,2021,80%,115,70%
+,843,,Friday the 13th,B,12,Pre-2006,,,,,,NA
+,844,,From Russia With Love,B,12,Pre-2006,,,,,,NA
+,845,April-07,Full Metal Jacket,B,12,2007,,,,,,NA
+,846,July-09,Funny People,B,12,2009,San Fran,Theatre,2009,65%,140,46%
+,847,November-08,Get Smart,B,12,2008,San Fran,On-Demand/PPV,2008,53%,110,48%
+,848,April-13,"Giant Mechanical Man, The",B,12,2013,Peninsula,On-Demand/PPV,2012,71%,94,76%
+,849,February-18,Girls Trip,B,12,2018,Portola Valley,On-Demand/PPV,2017,90%,122,74%
+,850,December-22,Glass Onion: A Knives Out Mystery,B,12,2022,Tahoe,Netflix,2022,93%,140,66%
+,851,,Gleaming the Cube,B,12,Pre-2006,,,,,,NA
+,852,,"Godfather III, The",B,12,Pre-2006,,,,,,NA
+,853,,"Good Son, The",B,12,Pre-2006,,,,,,NA
+,854,January-09,Gran Torino,B,12,2009,San Fran,Theatre,2008,76%,116,66%
+,855,February-24,"Greatest Night in Pop, The",B,12,2024,Portola Valley,Netflix,2024,98%,96,102%
+,856,,Grosse Point Blank,B,12,Pre-2006,,,,,,NA
+,857,,Halloween,B,12,Pre-2006,,,,,,NA
+,858,September-08,Hamlet 2,B,12,2008,Lafayette,Theatre,2008,62%,92,67%
+,859,June-09,"Hangover, The",B,12,2009,San Fran,Theatre,2009,78%,100,78%
+,860,April-11,Hanna,B,12,2011,Peninsula,Theatre,2011,71%,111,64%
+,861,,"Hard Way, The",B,12,Pre-2006,,,,,,NA
+,862,,Harry and the Hendersons,B,12,Pre-2006,,,,,,NA
+,863,,Heat,B,12,Pre-2006,,,,,,NA
+,864,August-14,Helvetica,B,12,2014,Peninsula,On-Demand/PPV,2007,89%,80,111%
+,865,,High Noon,B,12,Pre-2006,,,,,,NA
+,866,October-06,Hitch,B,12,2006,,,,,,NA
+,867,October-22,Hope Springs,B,12,2022,Dover,Netflix,2022,75%,100,75%
+,868,,"Horse Whisperer, The",B,12,Pre-2006,,,,,,NA
+,869,,Hot Shots,B,12,Pre-2006,,,,,,NA
+,870,,House Party ,B,12,Pre-2006,,,,,,NA
+,871,,How The Grinch Stole Christmas,B,12,Pre-2006,,,,,,NA
+,872,December-15,"Hunger Games, The; The Mockingjay Part 2)",B,12,2015,Peninsula,Theatre,2015,70%,136,51%
+,873,December-16,"Iceman, The",B,12,2016,Portola Valley,Netflix,2013,66%,105,63%
+,874,February-14,In A World,B,12,2013,Peninsula,On-Demand/PPV,2013,92%,91,101%
+,875,,In & Out,B,12,Pre-2006,,,,,,NA
+,876,July-08,In Search of a Midnight Kiss,B,12,2008,London,Theatre,2008,100%,90,111%
+,877,,Indecent Proposal,B,12,Pre-2006,,,,,,NA
+,878,,Independence Day,B,12,Pre-2006,,,,,,NA
+,879,May-08,Indiana Jones and the Kingdom of the Crystal Skull,B,12,2008,Boston,Theatre,2008,77%,124,62%
+,880,January-17,"Infiltrator, The",B,12,2017,Portola Valley,On-Demand/PPV,2016,69%,127,54%
+,881,February-10,"Informant, The",B,12,2010,London,On-Demand/PPV,2009,77%,108,71%
+,882,February-16,"Intern, The",B,12,2016,Peninsula,On-Demand/PPV,2015,60%,121,50%
+,883,October-13,"Internship, The",B,12,2013,Plane,On-Demand/PPV,2013,35%,119,29%
+,884,,Interview with the Vampire,B,12,Pre-2006,,,1989,21%,,NA
+,885,November-14,I Know That Voice,B,12,2014,Peninsula,On-Demand/PPV,2014,NA,90,NA
+,886,,"January Man, The",B,12,Pre-2006,London,VHS,,,,NA
+,887,,JFK,B,12,Pre-2006,,,,,,NA
+,888,,Johnny English,B,12,Pre-2006,,,,,,NA
+,889,June-18,Jumanji: Welcome to the Jungle,B,12,2018,Portola Valley,On-Demand/PPV,2017,76%,112,68%
+,890,,Jurassic Park,B,12,Pre-2006,,,,,,NA
+,891,May-19,Kim Swims,B,12,2019,Portola Valley,Netflix,2019,NA,NA,NA
+,892,March-22,"King of Staten Island,The",B,12,2022,Portola Valley,On-Demand/PPV,2020,75%,137,55%
+,893,October-22,King Richard,B,12,2022,Portola Valley,HBO,2021,90%,146,62%
+,894,,Kingpin,B,12,Pre-2006,,,,,,NA
+,895,,"Last Boy Scout, The",B,12,Pre-2006,,,,,,NA
+,896,July-19,Late Night,B,12,2019,"Peninsula
+",Theatre,2019,80%,102,78%
+,897,,Legal Eagles,B,12,Pre-2006,,,,,,NA
+,898,,License to Drive,B,12,Pre-2006,,,,,,NA
+,899,,License to Kill,B,12,Pre-2006,,,,,,NA
+,900,September-11,Limitless,B,12,2011,Peninsula,On-Demand/PPV,2011,70%,105,67%
+,901,April-22,"Little Mermaid, The",B,12,2022,Portola Valley,Disney Plus,1989,93%,82,113%
+,902,February-07,Little Miss Sunshine,B,12,2007,,,,,,NA
+,903,,Lock Up,B,12,Pre-2006,,,,,,NA
+,904,,Lone Star,B,12,Pre-2006,,,,,,NA
+,905,,Lord of the Rings II,B,12,Pre-2006,,,,,,NA
+,906,December-18,Losing Sight of Shore,B,12,2018,Portola Valley,Netflix,2017,NA,92,NA
+,907,,Lucas,B,12,Pre-2006,,,,,,NA
+,908,September-15,Mad Max: Fury Road,B,12,2015,Portola Valley,On-Demand/PPV,2015,97%,120,81%
+,909,,Major League II,B,12,Pre-2006,,,,,,NA
+,910,,"Maltese Falcon, The",B,12,Pre-2006,,,,,,NA
+,911,January-17,Manchester by the Sea,B,12,2017,Menlo Park,Theatre,2016,97%,135,72%
+,912,July-08,Married Life,B,12,2008,ATWT,On-Demand/PPV,2008,58%,91,64%
+,913,,Mary Poppins,B,12,Pre-2006,,,,,,NA
+,914,October-22,"Master, The",B,12,2022,Portola Valley,On-Demand/PPV,2012,84%,136,62%
+,915,,Master and Commander,B,12,Pre-2006,,,,,,NA
+,916,May-06,"Matador, The",B,12,2006,,,,,,NA
+,917,April-24,May December,B,12,2024,Portola Valley,Netflix,2023,91%,113,81%
+,918,March-06,Mean Girls,B,12,2006,,,,,,NA
+,919,,Meet the Parents,B,12,Pre-2006,,,,,,NA
+,920,August-07,Meet the Parents II: Meet the Fockers,B,12,2007,Iceland,On-Demand/PPV,,,,NA
+,921,,Men In Black II,B,12,Pre-2006,,,,,,NA
+,922,October-22,"Meyerowitz, Stories, The",B,12,2022,Portola Valley,Netflix,2022,93%,110,85%
+,923,,Midnight Cowboy,B,12,Pre-2006,,,,,,NA
+,924,October-22,Mid90s,B,12,2022,Portola Valley,Netflix,2018,80%,84,95%
+,925,,"Mirror Has Two Faces, The",B,12,Pre-2006,,,,,,NA
+,926,May-06,Mission Impossible III,B,12,2006,,,,,,NA
+,927,February-20,Miss Americana,B,12,2020,"Portola Valley
+",Netflix,2020,90%,86,105%
+,928,September-11,Moneyball,B,12,2011,Peninsula,Theatre,2011,95%,126,75%
+,929,October-22,Moonstruck,B,12,2022,"Portola Valley
+",On-Demand/PPV,1987,93%,101,92%
+,930,,"Mosquito Coast, The",B,12,Pre-2006,,,,,,NA
+,931,May-06,Mr. and Mrs. Smith,B,12,2006,,,,,,NA
+,932,,Much Ado About Nothing,B,12,Pre-2006,,,,,,NA
+,933,,Mulholland Drive,B,12,Pre-2006,,,,,,NA
+,934,February-07,Music & Lyrics,B,12,2007,,,,,,NA
+,935,,My Big Fat Greek Wedding,B,12,Pre-2006,,,,,,NA
+,936,,Naked Gun 2 1/2,B,12,Pre-2006,,,,,,NA
+,937,,Napoleon Dynamite,B,12,Pre-2006,,,,,,NA
+,938,,National Lampoon's European Vacation,B,12,Pre-2006,,,,,,NA
+,939,,National Treasure,B,12,Pre-2006,,,,,,NA
+,940,,"Natural, The",B,12,Pre-2006,,,,,,NA
+,941,,Network,B,12,Pre-2006,,,,,,NA
+,942,May-11,Never Say Never,B,12,2011,DC,On-Demand/PPV,2011,64%,105,61%
+,943,,Never Say Never Again,B,12,Pre-2006,,,,,,NA
+,944,,"Next Stop, Wonderland",B,12,Pre-2006,,,,,,NA
+,945,June-17,"Nice Guys, The",B,12,2017,Portola Valley,On-Demand/PPV,2016,92%,116,79%
+,946,,Nightmare on Elm St I,B,12,Pre-2006,,,,,,NA
+,947,,Not Another Teen Movie,B,12,Pre-2006,,,,,,NA
+,948,,"Object of My Affection, The",B,12,Pre-2006,,,,,,NA
+,949,,Octopussy,B,12,Pre-2006,,,,,,NA
+,950,,Office Space,B,12,Pre-2006,,,,,,NA
+,951,October-20,Once,B,12,2020,Portola Valley,On-Demand/PPV,2006,97%,86,113%
+,952,,Old School,B,12,Pre-2006,,,,,,NA
+,953,August-22,"Outfit, The",B,12,2022,Portola Valley,Netflix,2022,85%,105,81%
+,954,,Outrageous Fortune,B,12,Pre-2006,,,,,,NA
+,955,,Over The Top,B,12,Pre-2006,,,,,,NA
+,956,3/20/2025,Paddington in Peru,B,12,2025,Saratoga,Theatre,2025,93%,106,88%
+,957,,Palo Alto,B,12,Pre-2006,Portland,On-Demand/PPV,2014,71%,98,72%
+,958,,Panic Room,B,12,Pre-2006,,,,,,NA
+,959,,"Parent Trap, The",B,12,Pre-2006,,,,,,NA
+,960,,Passenger 57,B,12,Pre-2006,,,,,,NA
+,961,June-24,Past Lives,B,12,2024,Flight,On-Demand/PPV,2023,95%,106,90%
+,962,,Patch Adams,B,12,Pre-2006,,,,,,NA
+,963,,"Pelican Brief, The",B,12,Pre-2006,,,,,,NA
+,964,,"People vs. Larry Flynt, The",B,12,Pre-2006,,,,,,NA
+,965,,"Perfect World, A",B,12,Pre-2006,,,,,,NA
+,966,,Peter Pan,B,12,Pre-2006,,,,,,NA
+,967,,Phenomenon,B,12,Pre-2006,,,,,,NA
+,968,,Philadelphia,B,12,Pre-2006,,,,,,NA
+,969,,Pleasantville,B,12,Pre-2006,,,,,,NA
+,970,,"Pledge, The",B,12,Pre-2006,,,,,,NA
+,971,,Police Academy,B,12,Pre-2006,,,,,,NA
+,972,,Porky's II,B,12,Pre-2006,,,,,,NA
+,973,October-22,Postcards from the Edge,B,12,2022,Portola Valley,On-Demand/PPV,1990,83%,101,82%
+,974,,"Practice, The",B,12,Pre-2006,,,,,,NA
+,975,January-13,Premium Rush,B,12,2013,Peninsula,On-Demand/PPV,2012,76%,90,84%
+,976,,"Presidio, The",B,12,Pre-2006,,,,,,NA
+,977,,Pumping Iron,B,12,Pre-2006,,,,,,NA
+,978,,Ransom,B,12,Pre-2006,,,,,,NA
+,979,April-18,"Redeemed and the Dominant: Fittest on Earth, The",B,12,2018,Portola Valley,On-Demand/PPV,2018,NA,102,NA
+,980,,Rising Sun,B,12,Pre-2006,,,,,,NA
+,981,May-18,"Road Uphill, The",B,12,2018,Albuquerque,On-Demand/PPV,2011,N/A,80,NA
+,982,,Robin Hood: Prince of Thieves,B,12,Pre-2006,,,,,,NA
+,983,,Rocky II,B,12,Pre-2006,,,,,,NA
+,984,,Romy and Michele's High School Reunion,B,12,Pre-2006,,,,,,NA
+,985,,Rushmore,B,12,Pre-2006,,,,,,NA
+,986,,Schindler's List,B,12,Pre-2006,,,,,,NA
+,987,April-22,Schumacher,B,12,2022,Portola Valley,Netflix,2021,60%,112,54%
+,988,January-07,Scoop,B,12,2007,,,,,,NA
+,989,9/22/2024,"Sea Beast, The",B,12,2024,Portola Valley,Netflix,2022,94%,155,61%
+,990,,Shallow Hal,B,12,Pre-2006,,,,,,NA
+,991,September-10,She's Out of my League,B,12,2010,Peninsula,On-Demand/PPV,2010,58%,104,56%
+,992,,She's The One,B,12,Pre-2006,,,,,,NA
+,993,3/11/2022,Shooter,B,12,2022,Portola Valley,Netflix,2007,48%,126,38%
+,994,,Short Circuit,B,12,Pre-2006,,,,,,NA
+,995,December-14,"Short  Game, The",B,12,2014,Peninsula,On-Demand/PPV,2014,83%,100,83%
+,996,June-24,Shutter Island,B,12,2024,Flight,On-Demand/PPV,2010,69%,138,50%
+,997,,Shrek II,B,12,Pre-2006,,,,,,NA
+,998,February-19,A Simple Favor,B,12,2019,Peninsula,On-Demand/PPV,2018,85%,116,73%
+,999,December-07,"Simpsons, The",B,12,2007,East Bay,DVD,,,,NA
+,1000,,Six Degrees of Separation,B,12,Pre-2006,,,,,,NA
+,1001,,"Sixth Sense, The",B,12,Pre-2006,,,,,,NA
+,1002,November-06,Sketches of Frank Gehry,B,12,2006,,,,,,NA
+,1003,July-14,Slaying the Badger (ESPN 30 for 30),B,12,2014,Portland,On-Demand/PPV,NA,NA,NA,NA
+,1004,,Sleepers,B,12,Pre-2006,,,,,,NA
+,1005,November-23,Sly,B,12,2023,Portola Valley,Netflix,2023,78%,95,82%
+,1006,August-08,Smart People,B,12,2008,ATWT,On-Demand/PPV,2008,48%,95,51%
+,1007,,Snow White and the Seven Dwarfs,B,12,Pre-2006,,,,,,NA
+,1008,May-07,Spiderman 3,B,12,2007,,,,,,NA
+,1009,,Spy Game,B,12,Pre-2006,,,,,,NA
+,1010,,St Elmo's Fire,B,12,Pre-2006,,,,,,NA
+,1011,,Starship Troopers,B,12,Pre-2006,,,,,,NA
+,1012,October-22,Steel Magnolias,B,12,2022,Portola Valley,On-Demand/PPV,1989,68%,118,58%
+,1013,December-14,Stop At Nothing: The Lance Armstrong Story,B,12,2014,Peninsula,On-Demand/PPV,2014,NA,100,NA
+,1014,July-08,St Kings,B,12,2008,Plane,On-Demand/PPV,2008,36%,109,33%
+,1015,,"Stcar Named Desire, A",B,12,Pre-2006,,,,,,NA
+,1016,September-09,Sunshine Cleaning,B,12,2009,San Fran,On-Demand/PPV,2009,72%,102,71%
+,1017,,Sweet Home Alabama,B,12,Pre-2006,,,,,,NA
+,1018,,Tequila Sunrise,B,12,Pre-2006,,,,,,NA
+,1019,,"Terminator II, The",B,12,Pre-2006,,,,,,NA
+,1020,,"Terminator, The",B,12,Pre-2006,,,,,,NA
+,1021,,Thirteen Days,B,12,Pre-2006,,,,,,NA
+,1022,April-13,This is 40,B,12,2013,Peninsula,On-Demand/PPV,2012,52%,134,39%
+,1023,,Three Amigos,B,12,Pre-2006,,,,,,NA
+,1024,,Thunderball,B,12,Pre-2006,,,,,,NA
+,1025,,Timecop,B,12,Pre-2006,,,,,,NA
+,1026,,Tin Cup,B,12,Pre-2006,,,,,,NA
+,1027,,Tomorrow Never Dies,B,12,Pre-2006,,,,,,NA
+,1028,July-22,Tony Hawk: Until The Wheels Fall Off,B,12,2022,Portola Valley,On-Demand/PPV,2022,96%,135,71%
+,1029,,Touching the Void,B,12,Pre-2006,,Theatre,2004,93%,107,87%
+,1030,January-22,Triple Frontier,B,12,2022,Portola Valley,Netflix,2022,71%,125,57%
+,1031,,"Truth About Cats & Dogs, The",B,12,Pre-2006,,,,,,NA
+,1032,,Twister,B,12,Pre-2006,,,,,,NA
+,1033,,Uncle Buck,B,12,Pre-2006,,,,,,NA
+,1034,July-22,Unstoppable,B,12,2022,Portola Valley,On-Demand/PPV,2010,87%,94,93%
+,1035,,Untamed Heart,B,12,Pre-2006,,,,,,NA
+,1036,,Varsity Blues,B,12,Pre-2006,,,,,,NA
+,1037,August-22,Vengeance,B,12,2022,Redwood City,Theatre,2022,81%,107,76%
+,1038,,Waiting for Guffman,B,12,Pre-2006,,,,,,NA
+,1039,November-13,"Way Way Back, The",B,12,2013,Portola Valley,On-Demand/PPV,2013,85%,103,83%
+,1040,October-07,We Own the Night,B,12,2007,Boston,Theatre,,,,NA
+,1041,,Weekend at Bernie's,B,12,Pre-2006,,,,,,NA
+,1042,,West Side Story,B,12,Pre-2006,,,,,,NA
+,1043,July-23,Wham,B,12,2023,Portola Valley,Netflix,2023,93%,92,101%
+,1044,,What's Eating Gilbert Grape,B,12,Pre-2006,,,,,,NA
+,1045,,Who Framed Roger Rabbit,B,12,Pre-2006,,,,,,NA
+,1046,March-07,Who Killed The Electric Car,B,12,2007,,,,,,NA
+,1047,September-08,"Widow of St. Pierre, The",B,12,2008,Lafayette,DVD,2001,89%,108,82%
+,1048,,"Wild Bunch, The",B,12,Pre-2006,,,,,,NA
+,1049,,Willow,B,12,Pre-2006,,,,,,NA
+,1050,December-12,Winter's Bone,B,12,2012,Portola Valley,On-Demand/PPV,2010,94%,100,94%
+,1051,,Wolf,B,10,Pre-2006,,,,,,NA
+,1052,November-06,Wordplay,B,12,2006,San Fran,DVD,,,,NA
+,1053,March-22,"Yes, God, Yes",B,12,2022,Portola Valley,Netflix,2019,93%,78,119%
+,1054,November-08,You Don't Mess With the Zohan,B,12,2008,San Fran,On-Demand/PPV,2008,35%,117,30%
+,1055,May-09,Zack & Miri Make A Porno,B,12,2009,San Fran,On-Demand/PPV,2008,65%,101,64%
+,1056,June-12,21 Jump St,B-/B,11,2012,Peninsula,On-Demand/PPV,2012,85%,109,78%
+,1057,,Above The Rim,B-/B,11,Pre-2006,,,,,,NA
+,1058,5/22/2016,All Work All Play,B-/B,11,2016,Portola Valley,Netflix,2015,NA,93,#VALUE!
+,1059,,An American Tail,B-/B,11,Pre-2006,,,,,,NA
+,1060,,Any Given Sunday,B-/B,11,Pre-2006,,,,,,NA
+,1061,November-15,Back in Time,B-/B,11,2015,Portola Valley,Netflix,2015,NA,92,NA
+,1062,1/13/2019,Bird Box,B-/B,11,2019,Portola Valley,Netflix,2018,62%,117,53%
+,1063,,BMX Bandits,B-/B,11,Pre-2006,,,,,,NA
+,1064,May-18,Brave,B-/B,11,2018,Plane,On-Demand/PPV,2012,78%,93,84%
+,1065,August-08,Bullitt,B-/B,11,2008,ATWT,On-Demand/PPV,1968,97%,134,72%
+,1066,April-14,Captain America: The First Avenger,B-/B,11,2014,Portola Valley,On-Demand/PPV,2011,79%,124,64%
+,1067,5/5/2016,Chasing Tyson,B-/B,11,2016,Portola Valley,On-Demand/PPV,NA,NA,NA,NA
+,1068,5/3/2016,Cinema Paradiso,B-/B,11,2016,Portola Valley,On-Demand/PPV,1988,90%,86,105%
+,1069,December-18,Crazy Rich Asians,B-/B,11,2018,Portola Valley,On-Demand/PPV,2018,91%,120,76%
+,1070,December-18,Creed II,B-/B,11,2018,Redwood City,Theatre,2018,83%,130,64%
+,1071,,"Crouching Tiger, Hidden Dragon",B-/B,11,Pre-2006,,,,,,NA
+,1072,May-08,Dan in Real Life,B-/B,11,2008,Boston,On-Demand/PPV,2007,64%,99,65%
+,1073,June-08,"Definitely, Maybe",B-/B,11,2008,Other,Plane,2008,72%,112,64%
+,1074,January-22,Don't Look Up,B-/B,11,2022,Santa Barbara,Netflix,2021,55%,138,40%
+,1075,December-16,Don't Think Twice,B-/B,11,2016,Portola Valley,Amazon Instant,2016,99%,92,108%
+,1076,,"Door in the Floor, The",B-/B,11,Pre-2006,,,,,,NA
+,1077,December-08,Doubt,B-/B,11,2008,Florida,Theatre,2008,76%,104,73%
+,1078,May-16,Downloaded,B-/B,11,2016,Portola Valley,On-Demand/PPV,2013,67%,107,63%
+,1079,August-13,Elysium,B-/B,11,2013,Peninsula,Theatre,2013,68%,97,70%
+,1080,November-22,Enola Holmes 2,B-/B,11,2022,Portola Valley,Netflix,2022,94%,129,73%
+,1081,May-17,"Fast and the Furious I, The",B-/B,11,2017,Peninsula,On-Demand/PPV,2001,53%,107,50%
+,1082,February-07,Fever Pitch,B-/B,11,2007,,,,,,NA
+,1083,,Forever Young,B-/B,11,Pre-2006,,,,,,NA
+,1084,July-08,Freedom Writers,B-/B,11,2008,ATWT,DVD,2007,69%,160,43%
+,1085,July-12,Friends with Kids,B-/B,11,2012,Peninsula,On-Demand/PPV,2012,68%,100,68%
+,1086,February-08,From Here to Eternity,B-/B,11,2008,Boston,On-Demand/PPV,1953,89%,122,73%
+,1087,August-18,Froning: The Fittest Man in History,B-/B,11,2018,Portola Valley,Netflix,2015,NA,99,NA
+,1088,November-20,"Game Changers, The",B-/B,11,2020,Portola Valley,Netflix,2018,70%,88,80%
+,1089,,George of the Jungle,B-/B,11,Pre-2006,,,,,,NA
+,1090,,Ghost World,B-/B,11,Pre-2006,,,,,,NA
+,1091,October-08,House of Games,B-/B,11,2008,,,1987,96%,102,94%
+,1092,April-12,"Hunger Games, The",B-/B,11,2012,Redwood City,Theatre,2012,85%,122,70%
+,1093,,"Hunted, The",B-/B,11,Pre-2006,,,,,,NA
+,1094,December-07,I Am Legend,B-/B,11,2007,San Fran,Theatre,,,,NA
+,1095,July-09,"I Love You, Man",B-/B,11,2009,San Fran,On-Demand/PPV,2009,82%,100,82%
+,1096,May-24,"Idea of You, The",B-/B,11,2024,Portola Valley,Amazon Prime,2024,82%,115,71%
+,1097,February-13,"Imposter, The",B-/B,11,2013,Peninsula,On-Demand/PPV,2012,95%,95,100%
+,1098,July-23,Indiana Jones and the Dial of Destiny,B-/B,11,2023,Redwood City,Theatre,2023,69%,144,48%
+,1099,July-21,"Invisible Guest, The",B-/B,11,2021,Famly camp,On-Demand/PPV,2016,67%,106,63%
+,1100,June-16,Kidpoker,B-/B,11,2016,Portola Valley,Netflix,2015,NA,89,NA
+,1101,October-24,Land of Bad,B-/B,11,2024,Portola Valley,Netflix,2024,67%,110,61%
+,1102,February-08,Lawrence of Arabia,B-/B,11,2008,Florida,DVD,1962,98%,227,43%
+,1103,,Lethal Weapon IV,B-/B,11,Pre-2006,,,,,,NA
+,1104,,"Little Mermaid, The",B-/B,11,Pre-2006,,,,,,NA
+,1105,5/29/2016,"Lonely place to die, A",B-/B,11,2016,Portola Valley,Netflix,2011,77%,100,77%
+,1106,August-19,Long Shot,B-/B,11,2019,Portola Valley,On-Demand/PPV,2019,81%,115,70%
+,1107,July-14,Mitt,B-/B,11,2014,Portola Valley,On-Demand/PPV,2014,81%,90,90%
+,1108,April-23,Murder Mystery 2,B-/B,11,2023,Portola Valley,Netflix,2023,45%,90,50%
+,1109,,My Best Friend's Wedding,B-/B,11,Pre-2006,,,,,,NA
+,1110,,Never Been Kissed,B-/B,11,Pre-2006,Palo Alto,Theatre,,,,NA
+,1111,October-08,Nick & Nora's Infinite Playlist,B-/B,11,2008,LA,Theatre,2008,72%,90,80%
+,1112,May-16,"Night Before, The",B-/B,11,2016,Portola Valley,On-Demand/PPV,2015,66%,123,54%
+,1113,,Nixon,B-/B,11,Pre-2006,,,,,,NA
+,1114,,"O Brother, Where Art Thou?",B-/B,11,Pre-2006,,,,,,NA
+,1115,,Ocean's Twelve,B-/B,11,Pre-2006,,,,,,NA
+,1116,,"Outsiders, The",B-/B,11,Pre-2006,,,,,,NA
+,1117,October-15,Paper Towns,B-/B,11,2015,Portola Valley,On-Demand/PPV,2015,56%,109,51%
+,1118,January-25,"Princess Diaries, The",B-/B,11,2025,Portola Valley,On-Demand/PPV,2001,49%,115,43%
+,1119,June-16,"Resurrection of Jake The Snake Roberts,The",B-/B,11,2016,Portola Valley,Netflix,2015,NA,91,#VALUE!
+,1120,December-23,Robbie Williams,B-/B,11,2023,Lake Tahoe,Netflix,2023,73%,NA,NA
+,1121,,Rounders,B-/B,11,Pre-2006,,,,,,NA
+,1122,August-08,Salute,B-/B,11,2008,ATWT,Theatre,2008,N/A,120,NA
+,1123,,"School of Rock, The",B-/B,11,Pre-2006,San Fran,DVD,,,,NA
+,1124,,"Searchers, The",B-/B,11,Pre-2006,,,,,,NA
+,1125,,Shallow Grave,B-/B,11,Pre-2006,,,,,,NA
+,1126,December-09,Sherlock Holmes,B-/B,11,2009,Florida,Theatre,2009,69%,128,54%
+,1127,April-07,Singles,B-/B,11,2007,,,,,,NA
+,1128,,Snake Eyes,B-/B,11,Pre-2006,,,,,,NA
+,1129,September-12,Something Ventured,B-/B,11,2011,Portola Valley,Netflix,2011,NA,84,NA
+,1130,,Sommersby,B-/B,11,Pre-2006,,,,,,NA
+,1131,April-15,Son of a Gun,B-/B,11,2015,Portola Valley,On-Demand/PPV,2015,63%,108,58%
+,1132,December-09,"Sound of Music, The",B-/B,11,2009,Florida,Theatre,1965,81%,175,46%
+,1133,September-15,Steve Jobs: Man in the Machine,B-/B,11,2015,Portola Valley,On-Demand/PPV,2015,74%,120,62%
+,1134,August-08,Stranger Than Fiction,B-/B,11,2008,ATWT,On-Demand/PPV,2006,73%,113,65%
+,1135,September-07,Superbad,B-/B,11,2007,Boston,Theatre,,,,NA
+,1136,December-11,Super 8,B-/B,11,2011,Peninsula,On-Demand/PPV,2011,82%,111,74%
+,1137,3/15/2025,Trap,B-/B,11,2025,Portola Valley,Netflix,2024,57%,105,54%
+,1137,,Twelve Monkeys,B-/B,11,Pre-2006,,,,,,NA
+,1138,,Two Weeks Notice,B-/B,11,Pre-2006,,,,,,NA
+,1139,,Unlawful Entry,B-/B,11,Pre-2006,,,,,,NA
+,1140,,Up Close & Personal,B-/B,11,Pre-2006,,,,,,NA
+,1141,May-07,Waitress,B-/B,11,2007,Boston,Theatre,2007,77%,,NA
+,1142,December-07,Walk Hard: The Dewey Cox Story,B-/B,11,2007,East Bay,Theatre,,,,NA
+,1143,May-15,Welcome to Me,B-/B,11,2015,Portola Valley,On-Demand/PPV,2015,71%,87,82%
+,1144,May-08,What Happens in Vegas,B-/B,11,2008,Boston,Theatre,2008,26%,99,26%
+,1145,,"Whole Nine Yards, The",B-/B,11,Pre-2006,,,,,,NA
+,1146,,Y Tu Mama Tambien,B-/B,11,Pre-2006,Boston,DVD,,,,NA
+,1147,,Young Guns I,B-/B,11,Pre-2006,,,,,,NA
+,1148,,Youngblood,B-/B,11,Pre-2006,,,,,,NA
+,1149,,You've Got Mail,B-/B,11,Pre-2006,,,,,,NA
+,1150,,2001: A Space Odyssey,B-,10,Pre-2006,,,,,,NA
+,1151,December-22,21 Bridges,B-,10,2023,Portola Valley,Netflix,2019,%,109,NA
+,1152,,6 Days and 7 Nights,B-,10,Pre-2006,,,,,,NA
+,1153,,61*,B-,10,Pre-2006,,,,,,NA
+,1154,,8 Mile,B-,10,Pre-2006,Palo Alto,On-Demand/PPV,,,,NA
+,1155,,Above the Law,B-,10,Pre-2006,,,,,,NA
+,1156,,Absolute Power,B-,10,Pre-2006,,,,,,NA
+,1157,,"Abyss, The",B-,10,Pre-2006,London,Theatre,,,,NA
+,1158,November-14,About Alex,B-,10,2014,Peninsula,On-Demand/PPV,2014,47%,96,49%
+,1159,,Ace Ventura I: Pet Detective,B-,10,Pre-2006,,,,,,NA
+,1160,,Ace Ventura II: When Nature Calls,B-,10,Pre-2006,,,,,,NA
+,1161,March-22,"Adam Project, The",B-,10,2022,Portola Valley,Netflix,2022,68%,106,64%
+,1162,December-21,Against The Tides,B-,10,2021,Portola Valley,Amazon Prime,2017,NA,87,NA
+,1163,,All The Pretty Horses,B-,10,Pre-2006,,,,,,NA
+,1164,,All The Right Moves,B-,10,Pre-2006,,,,,,NA
+,1165,,Along Came a Spider,B-,10,Pre-2006,,,,,,NA
+,1166,October-06,Along Came Polly,B-,10,2006,,,,,,NA
+,1167,May-14,"Amazing Spider-Man 2, The",B-,10,2014,Redwood City,Theatre,2014,53%,142,37%
+,1168,,American Pie II,B-,10,Pre-2006,,,,,,NA
+,1169,,Apocalypse Now,B-,10,Pre-2006,,,,,,NA
+,1170,August-23,"Are you there god? It's me, Margaret",B-,10,2023,Flight,On-Demand PPV,2023,99%,105,94%
+,1171,,"Arrival, The",B-,10,Pre-2006,,,,,,NA
+,1172,May-16,Ashby,B-,10,2016,Portola Valley,Netflix,2015,53%,100,53%
+,1173,,Assassins,B-,10,Pre-2006,,,,,,NA
+,1174,May-12,"Avengers, The",B-,10,2012,Redwood City,Theatre,2012,93%,142,65%
+,1175,May-15,"Avengers, The: Age of Ultron",B-,10,2015,Redwood City,Theatre,2015,74%,141,52%
+,1176,July-24,Beverly Hills Cop: Axel F,B-,10,2024,Portola Valley,Netflix,2024,66%,115,57%
+,1177,,Bachelor Party,B-,10,Pre-2006,,,,,,NA
+,1178,,Back to the Future III,B-,10,Pre-2006,,,,,,NA
+,1179,,Bad Boys II,B-,10,Pre-2006,,,,,,NA
+,1180,,"Basketball Diaries, The",B-,10,Pre-2006,London,VHS,,,,NA
+,1181,May-18,Baywatch,B-,10,2018,Portola Valley,On-Demand/PPV,2017,18%,116,16%
+,1182,,Batman & Robin,B-,10,Pre-2006,,,,,,NA
+,1183,,Batteries Not Included,B-,10,Pre-2006,,,,,,NA
+,1184,,Behind Enemy Lines,B-,10,Pre-2006,,,,,,NA
+,1185,,Being John Malkovich,B-,10,Pre-2006,,,,,,NA
+,1186,,Bernard and the Genie,B-,10,Pre-2006,,,,,,NA
+,1187,December-14,Beside Still Waters,B-,10,2014,Pensinsula,On-Demand/PPV,2014,64%,76,84%
+,1188,,Beverly Hills Cop III,B-,10,Pre-2006,,,,,,NA
+,1189,,Big Momma's House,B-,10,Pre-2006,,,,,,NA
+,1190,,Big Trouble in Little China,B-,10,Pre-2006,,,,,,NA
+,1191,,Bill and Ted's Excellent Adventure II,B-,10,Pre-2006,,,,,,NA
+,1192,,"Birdcage, The",B-,10,Pre-2006,,,,,,NA
+,1193,,Black Widow,B-,10,Pre-2006,,,,,,NA
+,1194,,Blade,B-,10,Pre-2006,,,,,,NA
+,1195,,Bladerunner,B-,10,Pre-2006,,,,,,NA
+,1196,November-18,Born Strong,B-,10,2018,Portola Valley,Netflix,2017,NA,85,NA
+,1197,,Blown Away,B-,10,Pre-2006,,,,,,NA
+,1198,December-12,"Bourne Legacy, The",B-,10,2012,Peninsula,On-Demand/PPV,2012,56%,135,41%
+,1199,May-17,Bridget Jones's Baby,B-,10,2017,Portola Valley,Netflix,2016,76%,122,62%
+,1200,,Bring It On,B-,10,Pre-2006,,,,,,NA
+,1201,,Bringing Down The House,B-,10,Pre-2006,,,,,,NA
+,1202,March-07,Broken Flowers,B-,10,2007,,,,,,NA
+,1203,December-15,Bronson,B-,10,2015,SoCal,Amazon Instant,2009,76%,92,83%
+,1204,,Bulletproof,B-,10,Pre-2006,,,,,,NA
+,1205,,"Burbs, The",B-,10,Pre-2006,,,,,,NA
+,1206,June-19,Captain Marvel,B-,10,2019,Portola Valley,On-Demand/PPV,2019,78%,128,61%
+,1207,December-22,Carrie Pilby,B-,10,2022,Newark,Netflix,2016,63%,98,64%
+,1208,June-18,Cars 2,B-,10,2018,Portola Valley,On-Demand/PPV,2011,39%,112,35%
+,1209,,Casino,B-,10,Pre-2006,,,,,,NA
+,1210,,Cast Away,B-,10,Pre-2006,,,,,,NA
+,1211,,Chicken Run,B-,10,Pre-2006,,,,,,NA
+,1212,,Child's Play,B-,10,Pre-2006,,,,,,NA
+,1213,,City of Angels,B-,10,Pre-2006,,,,,,NA
+,1214,,City Slickers II,B-,10,Pre-2006,,,,,,NA
+,1215,July-24,Class,B-,10,2024,Portola Valley,Amazon Prime,1983,29%,98,30%
+,1215,,Clerks,B-,10,Pre-2006,,,,,,NA
+,1216,May-08,Coach Carter,B-,10,2008,Other,TV,2005,63%,136,46%
+,1217,,Coming to America,B-,10,Pre-2006,,,,,,NA
+,1218,,"Commitments, The",B-,10,Pre-2006,,,,,,NA
+,1219,,Con Air,B-,10,Pre-2006,,,,,,NA
+,1220,,Conspiracy Theory,B-,10,Pre-2006,,,,,,NA
+,1221,August-08,Cool Hand Luke,B-,10,2008,ATWT,On-Demand/PPV,1967,100%,127,79%
+,1222,August-12,Courage Under Fire,B-,10,2022,Portola Valley,On-Demand/PPV,1996,86%,115,75%
+,1223,,Coyote Ugly,B-,10,Pre-2006,,,,,,NA
+,1224,,"Craft, The",B-,10,Pre-2006,,,,,,NA
+,1225,,"Crow, The",B-,10,Pre-2006,,,,,,NA
+,1226,,"Crying Game, The",B-,10,Pre-2006,,,,,,NA
+,1227,,"Cutting Edge, The",B-,10,Pre-2006,,,,,,NA
+,1228,July-11,Dances With Wolves,B-,10,2011,Portola Valley,On-Demand/PPV,1990,78%,181,43%
+,1229,,Dangerous Minds,B-,10,Pre-2006,,,,,,NA
+,1230,April-11,Date Night,B-,10,2011,Portola Valley,On-Demand/PPV,2010,67%,88,76%
+,1231,December-06,"DaVinci Code, The",B-,10,2006,,,,,,NA
+,1232,May-17,David Bowie: The Man Who Changed The World,B-,10,2017,Portola Valley,On-Demand/PPV,2016,NA,NA,NA
+,1233,December-21,Days of Thunder,B-,10,2021,Portola Valley,Netflix,1990,38%,107,36%
+,1234,,Death Becomes Her,B-,10,Pre-2006,,,,,,NA
+,1235,,Deuce Bigalow: Male Gigolo,B-,10,Pre-2006,,,,,,NA
+,1236,,"Devil's Own, The",B-,10,Pre-2006,,,,,,NA
+,1237,,Diamonds Are Forever,B-,10,Pre-2006,,,,,,NA
+,1238,,Die Hard III,B-,10,Pre-2006,,,,,,NA
+,1239,October-22,Do Revenge,B-,10,2022,Portola Valley,Netflix,2022,84%,118,71%
+,1240,,Doc Hollywood,B-,10,Pre-2006,,,,,,NA
+,1241,6/7/2017,Doctor Strange,B-,10,2017,Portola Valley,On-Demand/PPV,2017,90%,130,69%
+,1242,,Don't Say a Word,B-,10,Pre-2006,,,,,,NA
+,1243,,Double Jeopardy,B-,10,Pre-2006,,,,,,NA
+,1244,,Dr T and the Women,B-,10,Pre-2006,,,,,,NA
+,1245,September-14,Draft Day,B-,10,2014,Portola Valley,On-Demand/PPV,2014,62%,109,57%
+,1246,April-15,Drinking Buddies,B-,10,2015,Portola Valley,On-Demand/PPV,2013,83%,90,92%
+,1247,,Drive,B-,10,2012,Portola Valley,On-Demand/PPV,2011,93%,100,93%
+,1248,,Drive Me Crazy,B-,10,Pre-2006,,,,,,NA
+,1249,December-21,Driven,B-,10,2021,Portola Valley,On-Demand,2014,NA,80,NA
+,1250,November-15,"Duff, The",B-,10,2015,Portola Valley,On-Demand/PPV,2015,71%,100,71%
+,1251,January-24,Dumb Money,B-,10,2024,Portola Valley,Netflix,2023,84%,105,80%
+,1252,,Eddie,B-,10,Pre-2006,,,,,,NA
+,1253,,Empire Records,B-,10,Pre-2006,,,,,,NA
+,1254,January-23,Emily the Criminal,B-,10,2023,Portola Valley,Netflix,2022,94%,97,97%
+,1255,,"Englishman Who Went Up a Mountain, The",B-,10,Pre-2006,,,,,,NA
+,1256,,Ernest Goes to Camp,B-,10,Pre-2006,,,,,,NA
+,1257,,Escape from L.A.,B-,10,Pre-2006,,,,,,NA
+,1258,July-19,Escape Plan,B-,10,2019,Portola Valley,On-Demand/PPV,2013,50%,115,43%
+,1259,December-21,"Escort, The",B-,10,2021,Portola Valley,Netflix,2015,NA,85,NA
+,1260,May-13,Eurotrip,B-,10,2013,Portola Valley,TV,2003,46%,89,52%
+,1261,,Ever After,B-,10,Pre-2006,,,,,,NA
+,1262,July-22,Everything Everywhere All At Once,B-,10,2022,Redwooc City,Theatre,2022,95%,132,72%
+,1263,October-10,"Expendables, The",B-,10,2010,San Fran,On-Demand,2010,40%,103,39%
+,1264,August-14,Extract,B-,10,2014,Portola Valley,On-Demand/PPV,2009,63%,99,64%
+,1265,,Extreme Measures,B-,10,Pre-2006,,,,,,NA
+,1266,,Family Business,B-,10,Pre-2006,,,,,,NA
+,1267,,"Fan, The",B-,10,Pre-2006,,,,,,NA
+,1268,May-17,Fast & Furious (4),B-,10,2017,Portola Valley,On-Demand/PPV,2009,28%,107,26%
+,1269,,Fast Time at Ridgemont High,B-,10,Pre-2006,,,,,,NA
+,1270,,Father of the Bride II,B-,10,Pre-2006,,,,,,NA
+,1271,,Father's Day,B-,10,Pre-2006,,,,,,NA
+,1272,,Fear,B-,10,Pre-2006,,,,,,NA
+,1273,August-16,Fittest on Earth,B-,10,2016,Portola Valley,Netflix,2016,NA,105,NA
+,1274,,"First Wives Club, The",B-,10,Pre-2006,,,,,,NA
+,1275,,"Fly, The",B-,10,Pre-2006,,,,,,NA
+,1276,,For Love of the Game,B-,10,Pre-2006,,,,,,NA
+,1277,,Frantic,B-,10,Pre-2006,,,,,,NA
+,1278,,Free Willy,B-,10,Pre-2006,,,,,,NA
+,1279,,Freeway,B-,10,Pre-2006,,,,,,NA
+,1280,11/30/2019,Frozen II,B-,10,2019,"Peninsula
+",Theatre,2019,76%,104,73%
+,1281,,G.I. Jane,B-,10,Pre-2006,,,,,,NA
+,1282,,"Golden Child, The",B-,10,Pre-2006,,,,,,NA
+,1283,,Gone in 60 Seconds,B-,10,Pre-2006,,,,,,NA
+,1284,July-07,Good Morning Vietnam,B-,10,2007,,,,,,NA
+,1285,June-16,"Great Alone, The",B-,10,2016,Portola Valley,Netflix,2015,NA,80,NA
+,1286,,Gremlins II,B-,10,Pre-2006,,,,,,NA
+,1287,July-22,"Gray Man, The",B-,10,2022,Portola Valley,Netflix,2022,45%,129,35%
+,1288,,Grumpy Old Men,B-,10,Pre-2006,,,,,,NA
+,1289,December-08,Guess Who,B-,10,2008,San Fran,TV,2005,43%,105,41%
+,1290,,Hackers,B-,10,Pre-2006,,,,,,NA
+,1291,,Halloween II,B-,10,Pre-2006,,,,,,NA
+,1292,October-22,Hampstead,B-,10,2022,Portola Valley,Netflix,2017,43%,103,42%
+,1293,January-08,Hannah and her Sisters,B-,10,2008,Boston,On-Demand/PPV,1986,92%,107,86%
+,1294,November-14,Happy,B-,10,2014,Peninsula,On-Demand/PPV,2011,NA,75,NA
+,1295,,He Got Game,B-,10,Pre-2006,,,,,,NA
+,1296,April-07,"Heart of the Game, The",B-,10,2007,,,,,,NA
+,1297,,Heathers,B-,10,Pre-2006,,,,,,NA
+,1298,January-07,"Holiday, The",B-,10,2007,,,,,,NA
+,1299,,Home Alone II,B-,10,Pre-2006,,,,,,NA
+,1300,,"Honey, I Blew Up the Kids",B-,10,Pre-2006,,,,,,NA
+,1301,,Hook,B-,10,Pre-2006,,,,,,NA
+,1302,,Hope Floats,B-,10,Pre-2006,,,,,,NA
+,1303,October-11,Horrible Bosses,B-,10,2011,Peninsula,On-Demand/PPV,2011,69%,97,71%
+,1304,July-15,Horrible Bosses 2,B-,10,2015,Peninsula,HBO,2014,35%,108,32%
+,1305,July-22,Hot Girls Wanted,B-,10,2022,Portola Valley,Netflix,2015,83%,84,99%
+,1306,,Hot Shots Part Deux,B-,10,Pre-2006,,,,,,NA
+,1307,,House Party II,B-,10,Pre-2006,,,,,,NA
+,1308,,Housesitter,B-,10,Pre-2006,,,,,,NA
+,1309,,"Hudsucker Proxy, The",B-,10,Pre-2006,,,,,,NA
+,1310,December-14,"Hunger Games, The: The Mockingjay, Part 1",B-,10,2014,Peninsula,Theatre,2014,65%,125,52%
+,1311,,Hush,B-,10,Pre-2006,,,,,,NA
+,1312,August-21,Tony Robbins: I am not your guru,B-,10,2021,Portola Valley,Netflix,2016,45%,115,39%
+,1313,December-22,I used to be Famous,B-,10,2022,Newark,Netflix,2022,80%,104,77%
+,1314,January-08,I Now Pronounce You Chuck and Larry,B-,10,2008,Boston,On-Demand/PPV,2007,14%,140,10%
+,1315,October-20,Inside Llewyn Davis,B-,10,2020,Portola Valley,On-Demand/PPV,2013,92%,104,88%
+,1316,,Instinct,B-,10,Pre-2006,,,,,,NA
+,1317,,Internal Affairs,B-,10,Pre-2006,,,,,,NA
+,1318,July-10,Iron Man 2,B-,10,2010,Peninsula,Theatre,2010,74%,124,60%
+,1319,,"Island, The",B-,10,Pre-2006,,,,,,NA
+,1320,,"Jackal, The",B-,10,Pre-2006,,,,,,NA
+,1321,July-16,Jason Bourne,B-,10,2016,Vancouver,Theatre,2016,57%,123,46%
+,1322,,"Jewel of the Nile, The",B-,10,Pre-2006,,,,,,NA
+,1323,January-08,Joe Strummer: The Future is Unwritten,B-,10,2008,Boston,On-Demand/PPV,2007,86%,124,69%
+,1324,,Joe Versus the Volcano,B-,10,Pre-2006,,,,,,NA
+,1325,February-17,John Wick: Chapter 2,B-,10,2017,Peninsula,Theatre,2017,90%,122,74%
+,1326,June-06,Junebug,B-,10,2006,,,,,,NA
+,1327,,Jungle Fever,B-,10,Pre-2006,,,,,,NA
+,1328,,Junior,B-,10,Pre-2006,,,,,,NA
+,1329,,Kalifornia,B-,10,Pre-2006,,,,,,NA
+,1330,,"Karate Kid II, The",B-,10,Pre-2006,,,,,,NA
+,1331,,"Karate Kid III, The",B-,10,Pre-2006,,,,,,NA
+,1332,,Kickboxer,B-,10,Pre-2006,,,,,,NA
+,1333,December-18,Killer Elite,B-,10,2018,Portola Valley,Netflix,2011,25%,117,21%
+,1334,,Kill Bill: Volume 1,B-,10,Pre-2006,,,,,,NA
+,1335,,Kiss of Death,B-,10,Pre-2006,,,,,,NA
+,1336,,Kiss the Girls,B-,10,Pre-2006,,,,,,NA
+,1337,July-10,Knight & Day,B-,10,2010,Peninsula,Theatre,2010,53%,130,41%
+,1338,,L.A. Story,B-,10,Pre-2006,,,,,,NA
+,1339,,Last Action Hero,B-,10,Pre-2006,,,,,,NA
+,1340,,Layer Cake,B-,10,Pre-2006,,,,,,NA
+,1341,,"Legend of Bagger Vance, The",B-,10,Pre-2006,,,,,,NA
+,1342,April-22,Licorice Pizza,B-,10,2022,Portola Valley,On-Demand/PPV,2021,90%,133,68%
+,1343,,Lionheart,B-,10,Pre-2006,,,,,,NA
+,1344,April-22,"Little Mermaid, The",B-,10,2022,Portola Valley,Disney Plus,1989,93%,82,113%
+,1345,,Little Women,B-,10,Pre-2006,,,,,,NA
+,1346,,"Living Daylights, The",B-,10,Pre-2006,,,,,,NA
+,1347,May-22,London Has Fallen,B-,10,2022,Portola Valley,Netflix,2016,27%,99,27%
+,1348,December-14,Lone Survivor,B-,10,2014,Peninsula,On-Demand/PPV,2014,75%,122,61%
+,1349,,Look Whose Talking II,B-,10,Pre-2006,,,,,,NA
+,1350,January-13,Looper,B-,10,2013,Peninsula,On-Demand,2012,94%,119,79%
+,1351,,Made In America,B-,10,Pre-2006,,,,,,NA
+,1352,,Maid in Manhattan,B-,10,Pre-2006,,,,,,NA
+,1353,,"Majestic, The",B-,10,Pre-2006,,,,,,NA
+,1354,,"Manchurian Candidate, The (2004)",B-,10,Pre-2006,,,,,,NA
+,1355,May-17,Man Up,B-,10,2017,Peninsula,Netflix,2015,81%,88,92%
+,1356,December-11,Margin Call,B-,10,2011,Peninsula,On-Demand/PPV,2011,85%,109,78%
+,1357,,Marked for Death,B-,10,Pre-2006,,,,,,NA
+,1358,,"Mask, The",B-,10,Pre-2006,,,,,,NA
+,1359,,"Matrix II, The",B-,10,Pre-2006,,,,,,NA
+,1360,,Maverick,B-,10,Pre-2006,,,,,,NA
+,1361,March-07,Maxed Out,B-,10,2007,,,,,,NA
+,1362,June-24,Mean Girls: The Musical,B-,10,2024,Flight,On-Demand/PPV,2024,69%,112,62%
+,1363,,Men At Work,B-,10,Pre-2006,,,,,,NA
+,1364,February-07,Menace II Society,B-,10,2007,,,,,,NA
+,1365,June-23,"Menu, The",B-,10,2023,Portola Valley,On-Demand/PPV,2022,88%,107,82%
+,1366,January-07,Miami Vice,B-,10,2007,,,,,,NA
+,1367,November-09,Michael Jackson's This is It,B-,10,2009,San Fran,Theatre,2009,80%,97,82%
+,1368,,Mickey Blue Eyes,B-,10,Pre-2006,,,,,,NA
+,1369,,"Mighty Ducks, The",B-,10,Pre-2006,,,,,,NA
+,1370,5/10/2017,Mike and Dave need Wedding Dates,B-,10,2017,Peninsula,On-Demand/PPV,2016,35%,98,36%
+,1371,,Mission Impossible II,B-,10,Pre-2006,,,,,,NA
+,1372,,Murder at 1600,B-,10,Pre-2006,,,,,,NA
+,1373,,My Girl,B-,10,Pre-2006,,,,,,NA
+,1374,,Mystic Pizza,B-,10,Pre-2006,,,,,,NA
+,1375,,Naked Gun 33 1/3,B-,10,Pre-2006,,,,,,NA
+,1376,,National Lampoon's Christmas Vacation,B-,10,Pre-2006,,,,,,NA
+,1377,2/5/2024,Nature Boy,B-,10,2024,Portola Valley,Netflix,2017,NA,77,NA
+,1378,,Necessary Roughness,B-,10,Pre-2006,,,,,,NA
+,1379,,"Negotiator, The",B-,10,Pre-2006,,,,,,NA
+,1380,10/1/2016,Neighbors 2,B-,10,2016,Portola Valley,On-Demand/PPV,2016,62%,92,67%
+,1381,,"Net, The",B-,10,Pre-2006,,,,,,NA
+,1382,,Nightmare on Elm St II,B-,10,Pre-2006,,,,,,NA
+,1383,,Nobody's Fool,B-,10,Pre-2006,,,,,,NA
+,1384,,Nothing to Lose,B-,10,Pre-2006,,,,,,NA
+,1385,,"Nutty Professor II, The",B-,10,Pre-2006,,,,,,NA
+,1386,6/20/2018,Ocean's 8,B-,10,2018,Redwood City,Theatre,2018,67%,110,61%
+,1387,,One Crazy Summer,B-,10,Pre-2006,,,,,,NA
+,1388,,One Fine Day,B-,10,Pre-2006,,,,,,NA
+,1389,,One Wild Night (Career Opportunities),B-,10,Pre-2006,,,,,,NA
+,1390,,Pacific Heights,B-,10,Pre-2006,,,,,,NA
+,1391,February-07,Pan's Labyrinth,B-,10,2007,,,,,,NA
+,1392,,Paradise Motel,B-,10,Pre-2006,,,,,,NA
+,1393,,Payback,B-,10,Pre-2006,,,,,,NA
+,1394,,"Peacemaker, The",B-,10,Pre-2006,,,,,,NA
+,1395,,"Plains, Trains, and Automobiles",B-,10,Pre-2006,,,,,,NA
+,1396,,Poison Ivy,B-,10,Pre-2006,,,,,,NA
+,1397,,Police Academy II,B-,10,Pre-2006,,,,,,NA
+,1398,,Police Academy III,B-,10,Pre-2006,,,,,,NA
+,1399,,Police Academy IV,B-,10,Pre-2006,,,,,,NA
+,1400,,Porky's III,B-,10,Pre-2006,,,,,,NA
+,1401,,Prayer of the Rollerboys,B-,10,Pre-2006,,,,,,NA
+,1402,,Predator,B-,10,Pre-2006,,,,,,NA
+,1403,September-07,Prime,B-,10,2007,Boston,DVR,,,,NA
+,1404,July-08,"Priscilla, Queen of the Desert",B-,10,2008,ATWT,DVD,1994,93%,104,89%
+,1405,,Proof of Life,B-,10,Pre-2006,,,,,,NA
+,1406,,Psycho,B-,10,Pre-2006,,,,,,NA
+,1407,,Pump Up the Volume,B-,10,Pre-2006,,,,,,NA
+,1408,,Pump Up The Volume,B-,10,Pre-2006,,,,,,NA
+,1409,,Punchline,B-,10,Pre-2006,,,,,,NA
+,1410,,Pushing Tin,B-,10,Pre-2006,,,,,,NA
+,1411,June-07,Ratatouille,B-,10,2007,,,,,,NA
+,1412,,Raw Deal,B-,10,Pre-2006,,,,,,NA
+,1413,December-21,Ready Player One,B-,10,2021,Portola Valley,HBO Max,2018,72%,140,51%
+,1414,,Red Heat,B-,10,Pre-2006,,,,,,NA
+,1415,December-16,"Ref, The",B-,10,2016,Portola Valley,Netflix,1994,71%,93,76%
+,1416,June-15,Regarding Henry,B-,10,2015,Peninsula,Netflix,1991,44%,107,41%
+,1417,,Renaissance Man,B-,10,Pre-2006,,,,,,NA
+,1418,,Reservoir Dogs,B-,10,Pre-2006,,,,,,NA
+,1419,December-15,"Rewrite, The",B-,10,2015,Portola Valley,On-Demand/PPV,2014,64%,106,60%
+,1420,,Ricochet,B-,10,Pre-2006,,,,,,NA
+,1421,,Riding Giants,B-,10,Pre-2006,,,,,,NA
+,1422,,Riding in Cars with Boys,B-,10,Pre-2006,,,,,,NA
+,1423,May-24,Road House (2024,B-,10,2024,Portola Valley,Amazon Prime,2024,59%,114,52%
+,1424,,Road Trip,B-,10,Pre-2006,,,,,,NA
+,1425,December-06,Rocky Balboa,B-,10,2006,,,,,,NA
+,1426,,Rocky V,B-,10,Pre-2006,,,,,,NA
+,1427,,Rookie of the Year,B-,10,Pre-2006,,VHS,,,,NA
+,1428,,Rumor Has It,B-,10,Pre-2006,,,,,,NA
+,1429,,Runaway Bride,B-,10,Pre-2006,,,,,,NA
+,1430,,Rush Hour,B-,10,Pre-2006,,,,,,NA
+,1431,,"Russia House, The",B-,10,Pre-2006,,,,,,NA
+,1432,,"Score, The",B-,10,Pre-2006,,,,,,NA
+,1433,,Scream II,B-,10,Pre-2006,,,,,,NA
+,1434,,Scream III,B-,10,Pre-2006,,,,,,NA
+,1435,June-18,Set It Up,B-,10,2018,Portola Valley,Netflix,2018,94%,105,90%
+,1436,,Seven,B-,10,Pre-2006,,,,,,NA
+,1437,,She's All That,B-,10,Pre-2006,,,,,,NA
+,1438,October-22,She's Funny That Way,B-,10,2022,Portola Valley,Netflix,2014,45%,93,48%
+,1439,,"Shining, The",B-,10,Pre-2006,,,,,,NA
+,1440,December-08,Shopgirl,B-,10,2008,San Fran,DVR,2005,62%,106,58%
+,1441,November-07,Shrek The Third,B-,10,2007,D.C.,DVD,,,,NA
+,1442,,"Siege, The",B-,10,Pre-2006,,,,,,NA
+,1443,,"Simple Plan, A",B-,10,Pre-2006,,,,,,NA
+,1444,,Single White Female,B-,10,Pre-2006,,,,,,NA
+,1445,May-16,Sisters,B-,10,2016,Portola Valley,On-Demand/PPV,2015,59%,122,48%
+,1446,September-12,Sleepwalk with Me,B-,10,2012,Peninsula,On-Demand/PPV,2012,88%,90,98%
+,1447,,Sliding Doors,B-,10,Pre-2006,,,,,,NA
+,1448,,Sliver,B-,10,Pre-2006,,,,,,NA
+,1449,,Sneakers,B-,10,Pre-2006,,,,,,NA
+,1450,September-20,"Social Dilemma, The",B-,10,2020,Portola Valley,Netflix,2020,86%,94,91%
+,1451,,Space Cowboys,B-,10,Pre-2006,,,,,,NA
+,1452,August-22,"Speed Cubers, The",B-,10,2022,Portola Valley,Netflix,2020,100%,40,250%
+,1453,,"Specialist, The",B-,10,Pre-2006,,,,,,NA
+,1454,October-22,Spencer Confidential,B-,10,2022,Portola Valley,Netflix,2020,36%,111,32%
+,1455,July-19,Spider Man: Far from Home,B-,10,2019,Peninsula,Theatre,2019,90%,130,69%
+,1456,July-20,Splash,B-,10,2020,Portola Valley,On-Demand/PPV,1984,NA,111,NA
+,1457,,Stakeout II,B-,10,Pre-2006,,,,,,NA
+,1458,,Star Wars IV (new film #1),B-,10,Pre-2006,,,,,,NA
+,1459,,Star Wars V: (new film #2),B-,10,Pre-2006,,,,,,NA
+,1460,,Star Wars VI: (new film #3),B-,10,Pre-2006,,,,,,NA
+,1461,,Starsky & Hutch,B-,10,Pre-2006,,,,,,NA
+,1462,July-07,Staying Alive,B-,10,2007,,,,,,NA
+,1463,,Striking Distance,B-,10,Pre-2006,,,,,,NA
+,1464,,"Substitute, The",B-,10,Pre-2006,,,,,,NA
+,1465,,"Sum of All Fears, The",B-,10,Pre-2006,,,,,,NA
+,1466,,Summer School,B-,10,Pre-2006,,,,,,NA
+,1467,,Swordfish,B-,10,Pre-2006,,,,,,NA
+,1468,May-23,"Swimmers, The",B-,10,2023,Plane,Netlix,2022,83%,134,62%
+,1469,,"Tailor of Panama, The",B-,10,Pre-2006,,,,,,NA
+,1470,August-06,Talladega Nights: The Legend of Ricky Bobby,B-,10,2006,,,,,,NA
+,1471,July-24,Tangled,B-,10,2024,Portola Valley,Disney +,2010,89%,101,88%
+,1472,,Teenage Mutant Ninja Turtles,B-,10,Pre-2006,,,,,,NA
+,1473,January-22,"Tender Bar, The",B-,10,2022,Portola Valley,Amazon Prime,2021,52%,106,49%
+,1474,October-22,"Terminal, The",B-,10,2022,Portola Valley,Netflix,2004,61%,128,48%
+,1475,,That Thing You Do,B-,10,Pre-2006,,,,,,NA
+,1476,,Things to Do in Denver When You're Dead,B-,10,Pre-2006,,,,,,NA
+,1477,November-13,This Is The End,B-,10,2013,Peninsula,On-Demand/PPV,2013,83%,107,78%
+,1478,,Throw Momma From the Train,B-,10,Pre-2006,,,,,,NA
+,1479,,Titanic,B-,10,Pre-2006,,,,,,NA
+,1480,November-13,"To Do List, The",B-,10,2013,Peninsula,On-Demand/PPV,2013,52%,104,50%
+,1481,,Total Rebuild,B-,10,Pre-2006,,,,,,NA
+,1482,,Tough Guys,B-,10,Pre-2006,,,,,,NA
+,1483,,Trespass,B-,10,Pre-2006,,,,,,NA
+,1484,,U.S. Marshals,B-,10,Pre-2006,,,,,,NA
+,1485,,Unbreakable,B-,10,Pre-2006,,,,,,NA
+,1486,August-22,Uncharted,B-,10,2022,Portola Valley,Netflix,2022,41%,116,35%
+,1487,April-22,Uncut Gems,B-,10,2022,Portola Valley,Netflix,2019,92%,135,68%
+,1488,May-24,Unfrosted,B-,10,2024,Portola Valley,Netflix,2024,42%,93,45%
+,1489,,Universal Soldier,B-,10,Pre-2006,,,,,,NA
+,1490,March-22,Untold: Breaking Point),B-,10,2022,Portola Valley,Netlix,2021,NA,68,NA
+,1491,November-15,Vacation,B-,10,2015,Portola Valley,On-Demand/PPV,2015,26%,99,26%
+,1492,December-08,Van Wilder 2: The Rise of Taj,B-,10,2008,Florida,TV,2006,8%,97,8%
+,1493,,"Vanishing, The",B-,10,Pre-2006,,,,,,NA
+,1494,,Vice Versa,B-,10,Pre-2006,,,,,,NA
+,1495,March-24,Vision Quest,B-,10,2024,Portola Valley,Amazon Prime,1985,60%,107,56%
+,1496,,Volcano,B-,10,Pre-2006,,,,,,NA
+,1497,September-10,Waiting for Superman,B-,10,2010,Peninsula,Theatre,2010,89%,102,87%
+,1498,,War Games,B-,10,Pre-2006,,,,,,NA
+,1499,,Waterworld,B-,10,Pre-2006,,,,,,NA
+,1500,,Wayne's World II,B-,10,Pre-2006,,,,,,NA
+,1501,,Wedding Crashers,B-,10,Pre-2006,,,,,,NA
+,1502,8/15/2015,Wet Hot American Summer,B-,10,2015,Peninsula,Netflix,2001,32%,97,33%
+,1503,,What Dreams May Come,B-,10,Pre-2006,,,,,,NA
+,1504,,What Women Want,B-,10,Pre-2006,,,,,,NA
+,1505,February-18,When We First Met,B-,10,2018,Portola Valley,Netflix,2018,39%,97,40%
+,1506,September-12,White Chicks,B-,10,2012,Peninsula,PPV,2004,15%,106,14%
+,1507,,White Squall,B-,10,Pre-2006,,,,,,NA
+,1508,February-08,Why We Fight,B-,10,2008,Boston,DVD,2006,79%,99,80%
+,1509,,Wildcats,B-,10,Pre-2006,,,,,,NA
+,1510,,Winged Migration,B-,10,Pre-2006,,,,,,NA
+,1511,March-06,Word Wars,B-,10,2006,,,,,,NA
+,1512,,"World is Not Enough, The",B-,10,Pre-2006,,,,,,NA
+,1513,June-06,X-Men : The Last Stand,B-,10,2006,,,,,,NA
+,1514,July-14,X-Men: Days of Future Past,B-,10,2014,Peninsula,Theatre,2014,91%,131,69%
+,1515,,XXX,B-,10,Pre-2006,,,,,,NA
+,1516,July-19,Yesterday,B-,10,2019,"Peninsula
+",Theatre,2019,63%,112,56%
+,1517,April-23,You People,B-,10,2023,Croatia,Netflix,2023,41%,117,35%
+,1518,December-08,A Lot Like Love,C+/B-,9,2008,San Fran,TV,2005,41%,107,38%
+,1519,,Autumn in New York,C+/B-,9,Pre-2006,,,,,,NA
+,1520,May-17,Bad Moms,C+/B-,9,2017,Peninsula,On-Demand/PPV,2016,58%,101,57%
+,1521,October-18,Beetlejuice,C+/B-,9,2018,Portola Valley,On-Demand/PPV,1988,84%,93,90%
+,1522,,Beverly Hills Ninja,C+/B-,9,Pre-2006,,,,,,NA
+,1523,January-22,Black Widow,C+/B-,9,2022,Portola Valley,Disne Plus,2021,79%,133,59%
+,1524,October-13,"Bling Ring, The",C+/B-,9,2013,Plane,On-Demand/PPV,2013,60%,90,67%
+,1525,2/14/2016,Deadpool,C+/B-,9,2016,Peninsula,Theatre,2016,84%,100,84%
+,1526,May-17,2 Fast 2 Furious,C+/B-,9,2017,Peninsula,On-Demand/PPV,2003,36%,108,33%
+,1527,3/26/2025,50 First Dates,C+/B-,9,2025,Portola Valley,Netflix,2004,45%,96,47%
+,1528,,Forces of Nature,C+/B-,9,Pre-2006,,,,,,NA
+,1529,June-09,"Girl Next Door, The",C+/B-,9,2009,San Fran,On-Demand/PPV,2004,56%,110,51%
+,1530,May-18,"Girl on the Train, The",C+/B-,9,2018,,On-Demand/PPV,2016,45%,112,40%
+,1531,November-08,"Grand, The",C+/B-,9,2008,San Fran,DVR,2008,39%,106,37%
+,1532,June-07,"Guardian, The",C+/B-,9,2007,,,,,,NA
+,1533,,"Hot Chick, The",C+/B-,9,Pre-2006,,,,,,NA
+,1534,June-16,How to be Single,C+/B-,9,2016,Portola Valley,On-Demand/PPV,2016,49%,110,45%
+,1535,December-06,How to Lose a Guy in 10 Days,C+/B-,9,2006,,,,,,NA
+,1536,July-22,Kicking and Screaming,C+/B-,9,2022,Portland,On-Demand/PPV,1995,57%,96,59%
+,1537,January-22,"Longest Yard, The",C+/B-,9,2022,Portola Valley,Netflix,2005,31%,113,27%
+,1538,July-14,Lucy,C+/B-,9,2014,Seattle,Theatre,2014,61%,89,69%
+,1539,July-07,Jarhead,C+/B-,9,2007,,,,,,NA
+,1540,November-13,Jobs,C+/B-,9,2013,Peninsula,On-Demand/PPV,2013,26%,129,20%
+,1541,August-08,John Tucker Must Die,C+/B-,9,2008,ATWT,TV,2006,25%,95,26%
+,1542,August-08,Made of Honor,C+/B-,9,2008,ATWT,On-Demand/PPV,2008,12%,101,12%
+,1543,July-06,Pirates of the Caribbean 2: Dead Man's Chest,C+/B-,9,2006,,,,,,NA
+,1544,August-07,Maverick,C+/B-,9,2007,,,,,,NA
+,1545,March-06,Red Eye,C+/B-,9,2006,,,,,,NA
+,1546,,Short Circuit II,C+/B-,9,Pre-2006,,,,,,NA
+,1547,,Something to Talk About,C+/B-,9,Pre-2006,,,,,,NA
+,1548,August-16,Touch The Wall,C+/B-,9,2016,Portola Valley,Netflix,2014,NA,114,NA
+,1549,October-18,Tag,C+/B-,9,2018,Portola Valley,On-Demand/PPV,2018,57%,105,54%
+,1550,December-08,Valkyrie,C+/B-,9,2008,Florida,Theatre,2008,58%,120,48%
+,1551,June-15,Welcome to Me,C+/B-,9,2015,Peninsula,On-Demand/PPV,2015,70%,87,80%
+,1552,April-18,While We're Young,C+/B-,9,2018,Portola Valley,Netflix,2015,84%,94,89%
+,1553,January-15,Veronica Mars,C+/B-,9,2015,Portola Valley,On-Demand/PPV,2014,78%,108,72%
+,1554,November-08,You Only Live Twice,C+/B-,9,2008,San Fran,On-Demand/PPV,1967,69%,117,59%
+,1555,October-22,101 Dalmatians,C+,9,2022,Portola Valley,Disney +,1996,41%,103,40%
+,1556,December-13,Anchorman 2: The Legend Continues,C+,9,2013,Florida,Theatre,2013,74%,119,62%
+,1557,November-14,Airplane,C+,9,2014,Peninsula,On-Demand/PPV,1980,98%,88,111%
+,1558,June-19,Always Be My Maybe,C+,9,2019,Portola Valley,Netflix,2019,90%,102,88%
+,1559,September-23,Love at First Sight,C+,9,2023,Portola Valley,Netflix,2023,76%,90,84%
+,1560,February-23,Avatar: The Way of Water,C+,9,2023,Redwood City,Theatre,2022,76%,192,40%
+,1561,October-22,"Bad News Bears, The",C+,9,2022,Portola Valley,On-Demand/PPV,2022,97%,102,95%
+,1562,November-08,Baby Mama,C+,8,2008,San Fran,On-Demand/PPV,2008,61%,99,62%
+,1563,September-20,Bad Teacher,C+,8,2020,Portola Valley,Netflix,2011,45%,92,49%
+,1564,,Barbarians At The Gate,C+,8,Pre-2006,,,,,,NA
+,1565,December-99,Batman v Superman: Dawn of Justice,C+,8,2016,Portola Valley,On-Demand/PPV,2016,27%,151,18%
+,1566,May-07,"Breakup, The",C+,8,2007,,,,,,NA
+,1567,May-11,Bridesmaids,C+,8,2011,DC,Theatre,2011,90%,124,73%
+,1568,,Cable Guy,C+,8,Pre-2006,,,,,,NA
+,1569,December-24,Carry-On,C+,8,2024,Portola Valley,Netflix,2024,87%,119,73%
+,1570,June-07,Catch and Release,C+,8,2007,,,,,,NA
+,1571,,Charlies's Angels II,C+,8,Pre-2006,,,,,,NA
+,1572,,"Chase, The",C+,8,Pre-2006,,,,,,NA
+,1573,December-21,Chloe,C+,8,2021,Portola Valley,Netflix,2009,51%,96,53%
+,1574,,Citizen Kane,C+,8,Pre-2006,,,,,,NA
+,1575,,Color of Night,C+,8,Pre-2006,,,,,,NA
+,1576,December-12,Confessions of a Superhero,C+,8,2012,Peninsula,On-Demand/PPV,2007,100%,93,108%
+,1577,October-24,Couples Retreat,C+,8,2024,Portola Valley,Netflix,2009,10%,114,9%
+,1578,July-23,Creed III,C+,8,2023,Portola Valley,On-Demand/PPV,2023,88%,116,76%
+,1579,,Cyborg,C+,8,Pre-2006,,,,,,NA
+,1580,April-06,Dave Chappelle's Block Party,C+,8,2006,,,,,,NA
+,1581,October-22,DC League of Super-Pets,C+,8,2022,Redwood City,Theatre,2022,73%,106,69%
+,1582,August-11,Dinner for Schmucks,C+,8,2011,Peninsula,On-Demand/PPV,2010,43%,113,38%
+,1583,July-14,Divergent,C+,8,2014,SoCal,On-Demand/PPV,2014,41%,139,29%
+,1584,,Double Impact,C+,8,Pre-2006,,,,,,NA
+,1585,,Drop Dead Fred,C+,8,Pre-2006,,,,,,NA
+,1586,October-22,Elizabethtown,C+,8,2022,Portola Valley,On-Demand/PPV,2005,28%,123,23%
+,1587,October-15,Entourage,C+,8,2015,Peninsula,On-Demand/PPV,2015,35%,105,33%
+,1588,December-21,"Escort, The",C+,8,2021,Portola Valley,Netflix,2015,NA,85,NA
+,1589,,Face Off,C+,8,Pre-2006,,,,,,NA
+,1590,July-24,"Family Affair, A",C+,8,2024,Portola Valley,Netflix,2024,37%,111,33%
+,1591,December-22,"First Wive's Club, The",C+,8,2022,Newark,HBO,1996,50%,102,49%
+,1592,September-15,Focus,C+,8,2015,Plane,Plane,2015,57%,104,55%
+,1593,April-12,Footloose,C+,8,2012,Plane,On-Demand,2011,70%,113,62%
+,1594,August-07,Fracture,C+,8,2007,London,DVD,,,,NA
+,1595,February-11,Get Him to the Greek,C+,8,2011,Peninsula,On-Demand/PPV,2010,73%,109,67%
+,1596,,Ghostbusters II,C+,8,Pre-2006,,,,,,NA
+,1597,August-06,Goal,C+,8,2006,,,,,,NA
+,1598,February-10,"Goods, The",C+,8,2010,London,On-Demand/PPV,2009,26%,90,29%
+,1599,September-11,Hall Pass,C+,8,2011,Peninsula,On-Demand/PPV,2011,35%,106,33%
+,1600,August-23,Happiness for Beginners,C+,8,2023,Portola Valley,Nefflix,2023,26%,103,25%
+,1601,,Howard The Duck,C+,8,Pre-2006,,,,,,NA
+,1602,,Hudson Hawk,C+,8,Pre-2006,,,,,,NA
+,1603,June-18,Ibiza,C+,8,2018,Portola Valley,Netflix,2018,68%,120,57%
+,1604,July-08,"Incredible Hulk, The",C+,8,2008,London,Theatre,2008,68%,114,60%
+,1605,August-15,Insurgent,C+,8,2015,Portola Valley,On-Demand/PPV,2015,30%,119,25%
+,1606,,Jaws IV,C+,8,Pre-2006,,,,,,NA
+,1607,June-16,Just Friends,C+,8,2016,Portola Valley,Netflix,2005,42%,94,45%
+,1608,May-22,"Kid from Coney Island, A",C+,8,2022,Portola Valley,Netflix,2019,100%,95,105%
+,1609,November-07,Lars and the Real Girl,C+,8,2007,Boston,Theatre,,,,NA
+,1610,February-09,Last Chance Harvey,C+,8,2009,San Fran,On-Demand/PPV,2008,69%,92,75%
+,1611,October-18,Like Father,C+,8,2018,Portola Valley,Netflix,2018,48%,98,49%
+,1612,,Little Shop of Horrors,C+,8,Pre-2006,,,,,,NA
+,1613,,Major League III,C+,8,Pre-2006,,,,,,NA
+,1614,,"Matrix III, The",C+,8,Pre-2006,,,,,,NA
+,1615,,"Matrix, The",C+,8,Pre-2006,,,,,,NA
+,1616,6/21/2019,Murder Mystery,C+,8,2019,Portola Valley,"Netflix
+",2019,45%,100,45%
+,1617,,Nick of Time,C+,8,Pre-2006,,,,,,NA
+,1618,August-08,Night at the Museum,C+,8,2008,ATWT,TV,2006,44%,108,41%
+,1619,July-23,No Hard Feelings,C+,8,2023,Peninsula,Theatre,2023,70%,103,68%
+,1620,May-11,No Strings Attached,C+,8,2011,Peninsula,On-Demand/PPV,2011,49%,108,45%
+,1621,December-14,Now You See Me,C+,8,2013,Peninsula,On-Demand/PPV,2013,50%,115,43%
+,1622,,Out for Justice,C+,8,Pre-2006,,,,,,NA
+,1623,January-24,Pain Hustlers,C+,8,2024,Peninsula,On-Demand/PPV,2023,23%,122,19%
+,1624,December-14,"Park Avenue: Money, Power, and the American Dream",C+,8,2014,Peninsula,On-Demand/PPV,2012,NA,59,NA
+,1625,May-23,Peter Pan and Wendy,C+,8,2023,Peninsula,Disney +,2023,64%,106,60%
+,1626,December-21,Pitch Perfect,C+,8,2021,Portola Valley,HBO Max,2012,81%,112,72%
+,1627,August-09,"Proposal, The",C+,8,2009,Plane,On-Demand/PPV,2009,44%,108,41%
+,1628,July-14,Pretty In Pink,C+,8,2014,San Fran,On-Demand/PPV,1986,79%,96,82%
+,1629,February-22,Red Notice,C+,8,2022,Portola Valley,Netflix,2021,37%,107,35%
+,1630,August-07,"Recruit, The",C+,8,2007,Iceland,On-Demand/PPV,,,,NA
+,1631,October-12,Rock of Ages,C+,8,2012,Peninsula,On-Demand/PPV,2012,41%,123,33%
+,1632,March-22,Ronnie Coleman: The King,C+,8,2022,Portola Valley,Netflix,2022,NA,93,NA
+,1633,,Save The Last Dance,C+,8,Pre-2006,,,,,,NA
+,1634,March-23,Sharper,C+,8,2023,Portland,Apple TV,2023,69%,116,59%
+,1635,July-22,Slapshot,C+,8,2022,Portland,On-Demand/PPV,1977,83%,123,67%
+,1636,January-07,"Sentinel, The",C+,8,2007,Boston,DVD,,,,NA
+,1637,April-07,Sixteen Candles,C+,8,2007,Boston,TV,,,,NA
+,1638,,Stop! Or My Mom Will Shoot,C+,8,Pre-2006,,,,,,NA
+,1639,January-22,Stripes,C+,8,2022,Portola Valley,On-Demand/PPV,1981,88%,105,84%
+,1640,August-23,Studio 54: The Documentary,C+,8,2023,Portola Valley,Netflix,2018,91%,98,93%
+,1641,,Supergirl,C+,8,Pre-2006,,,1984,8%,89,9%
+,1642,,Superman IV,C+,8,Pre-2006,,,,,,NA
+,1643,May-19,"Switch, The",C+,8,2019,Portola Valley,Netflix,2010,51%,101,50%
+,1644,December-12,Ted,C+,8,2012,Peninsual,On-Demand/PPV,2012,69%,115,60%
+,1645,,Terminal Velocity,C+,8,Pre-2006,,,,,,NA
+,1646,August-22,Thanks for Sharing,C+,8,2022,Portola Valley,Netflix,2012,50%,112,45%
+,1647,,Three Men and a Little Lady,C+,8,Pre-2006,,,,,,NA
+,1648,April-21,Thunder Force,C+,8,2021,Portola Valley,Netflix,2021,25%,107,23%
+,1649,September-11,Too Big To Fail,C+,8,2011,Peninsula,On-Demand/PPV,2011,,,NA
+,1650,July-09,Trading Places,C+,8,2009,San Fran,On-Demand/PPV,1983,91%,118,77%
+,1651,July-07,Transformers,C+,8,2007,Boston,Theatre,2001,,,NA
+,1652,April-08,Twenty One,C+,8,2008,Boston,Theatre,2008,31%,123,25%
+,1653,,Vanilla Sky,C+,8,Pre-2006,San Fran,Theatre,,,,NA
+,1654,,Victory,C+,8,Pre-2006,,,,,,NA
+,1655,December-08,W.,C+,8,2008,Florida,On-Demand/PPV,2008,58%,129,45%
+,1656,June-11,Wall St 2: Money Never Sleeps,C+,8,2011,Peninsula,On-Demand/PPV,2010,%,136,NA
+,1657,,Wind,C+,8,Pre-2006,London,VHS,,,,NA
+,1658,March-22,Windfall,C+,8,2022,"Portola Valley
+",Netflix,2022,60%,92,65%
+,1659,May-19,Wine Country,C+,8,2019,"Portola Valley
+",Netflix,2019,67%,100,67%
+,1660,,"Wizard, The",C+,8,Pre-2006,London,VHS,,,,NA
+,1661,June-23,"Year I Started Masturbating, The",C+,8,2023,Portola Valley,Netflix,2022,NA,98,NA
+,1662,April-08,"You, Me, and Dupree",C+,8,2008,Boston,TV,2006,22%,110,20%
+,1663,April-23,Your Place or Mine,C+,8,2023,Croatia,Netflix,2023,37%,109,34%
+,1664,February-08,Akeelah & the Bee,C/C+,7,2008,Florida,DVD,2006,83%,112,74%
+,1665,August-12,American Pie IV: American Wedding,C/C+,7,2012,Peninsula,On-Demand/PPV,2012,43%,110,39%
+,1666,May-15,"Boy Next Door, The",C/C+,7,2015,Peninsula,On-Demand/PPV,2015,11%,91,12%
+,1667,May-07,Bridget Jones: Edge of Reason,C/C+,7,2007,Boston,TV,,,,NA
+,1668,December-09,"Invention of Lying, The",C/C+,7,2009,Florida,On-Demand/PPV,2009,57%,99,58%
+,1669,February-09,Must Love Dogs,C/C+,7,2009,San Fran,TV,2005,35%,98,36%
+,1670,July-07,Pirates of the Caribbean 3: At World's End,C/C+,7,2007,Boston,Theatre,,,,NA
+,1671,,Serendipidity,C/C+,7,Pre-2006,,,,,,NA
+,1672,August-07,Sin City,C/C+,7,2007,London,DVD,,,,NA
+,1673,May-15,5 to 7,C,7,2015,Portola Valley,On-Demand/PPV,2015,67%,95,71%
+,1674,April-07,A Good Year,C,6,2007,Boston,On-Demand/PPV,,,,NA
+,1675,,American Pie III,C,6,Pre-2006,San Fran,Theatre,,,,NA
+,1676,,Barbed Wire,C,6,Pre-2006,Palo Alto,Theatre,,,,NA
+,1677,November-23,Best. Christmas. Ever!,C,6,2023,Portola Valley,Netflix,2023,38%,80,48%
+,1678,,Closer,C,6,Pre-2006,,,,,,NA
+,1679,August-07,"Cooler, The",C,6,2007,London,DVD,,,,NA
+,1680,,"Dark Crystal, The",C,6,Pre-2006,,,,,,NA
+,1681,,Darkman,C,6,Pre-2006,,,,,,NA
+,1682,,Daylight,C,6,Pre-2006,London,Theatre,,,,NA
+,1683,December-09,Did You Hear About The Morgans,C,6,2009,Florida,Theatre,2009,14%,103,14%
+,1684,May-20,Eurovision Song Content: The Story of Fire Saga,C,6,2020,Portola Valley,Netflix,2020,64%,120,53%
+,1685,April-07,"Family Stone, The",C,6,2007,,,,,,NA
+,1686,April-07,Fantastic Four,C,6,2007,,,,,,NA
+,1687,,Fight Club,C,6,Pre-2006,Boston,VHS,,,,NA
+,1688,March-06,Flight Plan,C,6,2006,,,,,,NA
+,1689,June-07,Ghost Rider,C,6,2007,,,,,,NA
+,1690,,Halloween III,C,6,Pre-2006,,,,,,NA
+,1691,January-10,"Heartbreak Kid, The",C,6,2010,San Fran,TV,2007,30%,116,26%
+,1692,October-22,He's just not that into you,C,6,2022,Portola Valley,On-Demand/PPV,2009,41%,129,32%
+,1693,March-11,Hot Tub Time Machine,C,6,2011,Peninsula,Netflix,2010,64%,100,64%
+,1694,,Intolerable Cruelty,C,6,Pre-2006,,,,,,NA
+,1695,July-22,Just Like Heaven,C,6,2022,Portola Valley,Netflix,2005,%,95,NA
+,1696,,Message in a Bottle,C,6,Pre-2006,,,,,,NA
+,1697,,Natural Born Killers,C,6,Pre-2006,Boston,Theatre,,,,NA
+,1698,April-24,"Nice Girl Like You, A",C,6,2024,Portola Valley,Netflix,2020,10%,94,11%
+,1699,,Nightmare on Elm St III,C,6,Pre-2006,,,,,,NA
+,1700,,Nightmare on Elm St IV,C,6,Pre-2006,,,,,,NA
+,1701,,Nightmare on Elm St V,C,6,Pre-2006,,,,,,NA
+,1702,,Oscar,C,6,Pre-2006,,,,,,NA
+,1703,July-23,"Out-Laws, The",C,6,2023,Portola Valley,Netflix,2023,20%,95,21%
+,1704,December-22,Percy Jackson and the Olympians: The Lightning Thief,C,6,2022,Portola Valley,On-Demand/PPV,2010,49%,119,41%
+,1705,April-19,"Perfect Date, The",C,6,2019,Portola Valley,Netflix,2019,69%,89,78%
+,1706,March-08,Semi-Pro,C,6,2008,Boston,Theatre,2008,25%,85,29%
+,1707,4/20/2019,Sierra Burgess is a Loser,C,6,2019,Portola Valley,Netflix,2019,61%,100,61%
+,1708,,Universal Soldier: The Return,C,6,Pre-2006,Canada,Theatre,,,,NA
+,1709,November-10,Valentine's Day,C,6,2010,Portola Valley,On-Demand/PPV,2010,18%,123,15%
+,1710,,Vertigo,C,6,Pre-2006,London,VHS,,,,NA
+,1711,February-07,Wimbledon,C,6,2007,Boston,On-Demand/PPV,,,,NA
+,1712,June-13,Man of Steel,C,6,2013,Peninsula,Theatre,2013,56%,148,38%
+,1713,July-17,Baby Driver,C-,5,2017,Peninsula,Theatre,2017,97%,113,86%
+,1714,,Bend It Like Beckham,C-,5,Pre-2006,,On-Demand/PPV,,,,NA
+,1715,August-07,Bobby,C-,5,2007,London,DVD,,,,NA
+,1716,August-07,Fun with Dick & Jane,C-,5,2007,London,DVD,,,,NA
+,1717,June-08,Hollywood Homicide,C-,5,2008,ATWT,TV,2003,29%,116,25%
+,1718,December-19,Shazam,C-,5,2019,Portola Valley,"Amazon Prime
+",2019,90%,130,69%
+,1719,July-22,Spiderhead,C-,5,2022,Portola Valley,Netflix,2022,38%,107,36%
+,1720,,Superman III,C-,5,Pre-2006,,DVD,,,,NA
+,1721,,Teen Wolf II,C-,5,Pre-2006,,,,,,NA
+,1722,March-11,Unstoppable,C-,5,2011,Peninsula,On-Demand/PPV,2010,86%,98,88%
+,1723,February-07,Elektra,D+,4,2007,Boston,DVD,,,,NA
+,1724,August-02,40 Days and 40 Nights,D,3,Pre-2006,Canada,On-Demand/PPV,,,,NA
+,1725,November-06,"Ex, The",D,3,2006,,DVD,,,,NA
+,1726,July-09,Hancock,D,3,2009,San Fran,On-Demand/PPV,2009,40%,102,39%
+,1727,,Jaws III,D,3,Pre-2006,,,,,,NA
+,1728,January-07,My Super Ex-Girlfriend,D,3,2007,New Zeal,On-Demand/PPV,,,,NA
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,Total Average:,11.9,,,,,,,,,
+,,Total Films:,1725,,,,,,,,,
+,,Pre-2006 Films,876,,,,,,,,,
+,,2006,44,,,,,,,,,
+,,2007,105,,,,,,,,,
+,,2008,88,,,,,,,,,
+,,2009,38,,,,,,,,,
+,,2010,16,,,,,,,,,
+,,2011,35,,,,,,,,,
+,,2012,27,,,,,,,,,
+,,2013,31,,,,,,,,,
+,,2014,49,,,,,,,,,
+,,2015,51,,,,,,,,,
+,,2016,60,,,,,,,,,
+,,2017,33,,,,,,,,,
+,,2018,45,,,,,,,,,
+,,2019,30,,,,,,,,,
+,,2020,24,,,,,,,,,
+,,2021,15,,,,,,,,,
+,,2022,94,,,,,,,,,
+,,2023,37,,,,,,,,,
+,,2024,27,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,AFI Top 100: ,77,,,,,,,,
+,,,,,,,,,,,,
+,,,AFI Top 100 List,,,,,,,,,
+,,,,,,,,,,,,
+,,,Film,Seen,Rank,,,,,,,
+,,,1. CITIZEN KANE (1941),Yes,1,,,,,,,
+,,,2. CASABLANCA (1942),Yes,2,,,,,,,
+,,,3. THE GODFATHER (1972),Yes,3,,,,,,,
+,,,4. GONE WITH THE WIND (1939),Yes,4,,,,,,,
+,,,5. LAWRENCE OF ARABIA (1962),Yes,5,,,,,,,
+,,,6. THE WIZARD OF OZ (1939),Yes,6,,,,,,,
+,,,7. THE GRADUATE (1967),Yes,7,,,,,,,
+,,,8. ON THE WATERFRONT (19),Yes,8,,,,,,,
+,,,9. SCHINDLER'S LIST (1993),Yes,9,,,,,,,
+,,,11. IT'S A WONDERFUL LIFE (1946),Yes,11,,,,,,,
+,,,12. SUNSET BOULEVARD (1950),Yes,12,,,,,,,
+,,,13. THE BRIDGE ON THE RIVER KWAI (1957),Yes,13,,,,,,,
+,,,14. SOME LIKE IT HOT (1959),Yes,14,,,,,,,
+,,,15. STAR WARS (1977),Yes,15,,,,,,,
+,,,16. ALL ABOUT EVE (1950),Yes,16,,,,,,,
+,,,17. THE AFRICAN QUEEN (1951),Yes,17,,,,,,,
+,,,18. PSYCHO (1960),Yes,18,,,,,,,
+,,,19. CHINATOWN (1974),Yes,19,,,,,,,
+,,,20. ONE FLEW OVER THE CUCKOO'S NEST (1975),Yes,20,,,,,,,
+,,,21. THE GRAPES OF WRATH (1940),Yes,21,,,,,,,
+,,,22. 2001: A SPACE ODYSSEY (1968),Yes,22,,,,,,,
+,,,23. THE MALTESE FALCON (1941),Yes,23,,,,,,,
+,,,24. RAGING BULL (1980),Yes,24,,,,,,,
+,,,25. E.T. THE EXTRA-TERRESTRIAL (1982),Yes,25,,,,,,,
+,,,26. DR. STRANGELOVE (1964),Yes,26,,,,,,,
+,,,27. BONNIE AND CLYDE (1967),Yes,27,,,,,,,
+,,,28. APOCALYPSE NOW (1979),Yes,28,,,,,,,
+,,,29. MR. SMITH GOES TO WASHINGTON (1939),Yes,29,,,,,,,
+,,,31. ANNIE HALL (1977),Yes,31,,,,,,,
+,,,32. THE GODFATHER PART II (1974),Yes,32,,,,,,,
+,,,33. HIGH NOON (1952),Yes,33,,,,,,,
+,,,34. TO KILL A MOCKINGBIRD (1962),Yes,34,,,,,,,
+,,,35. IT HAPPENED ONE NIGHT (1934),Yes,35,,,,,,,
+,,,36. MIDNIGHT COWBOY (1969),Yes,36,,,,,,,
+,,,38. DOUBLE INDEMNITY (1944),Yes,38,,,,,,,
+,,,39. DOCTOR ZHIVAGO (1965),Yes,39,,,,,,,
+,,,40. NORTH BY NORTHWEST (1959),Yes,40,,,,,,,
+,,,41. WEST SIDE STORY (1961),Yes,41,,,,,,,
+,,,42. REAR WINDOW (19),Yes,42,,,,,,,
+,,,45. A STCAR NAMED DESIRE (1951),Yes,45,,,,,,,
+,,,46. A CLOCKWORK ORANGE (1971),Yes,46,,,,,,,
+,,,47. TAXI DRIVER (1976),Yes,47,,,,,,,
+,,,48. JAWS (1975),Yes,48,,,,,,,
+,,,49. SNOW WHITE AND THE SEVEN DWARFS (1937),Yes,49,,,,,,,
+,,,50. BUTCH CASSIDY AND THE SUNDANCE KID (1969),Yes,50,,,,,,,
+,,,51. THE PHILADELPHIA STORY (1940),Yes,51,,,,,,,
+,,,52. FROM HERE TO ETERNITY (1953),Yes,52,,,,,,,
+,,,53. AMADEUS (1984),Yes,53,,,,,,,
+,,,55. THE SOUND OF MUSIC (1965),Yes,55,,,,,,,
+,,,56. M*A*S*H (1970),Yes,56,,,,,,,
+,,,57. THE THIRD MAN (1949),Yes,57,,,,,,,
+,,,58. FANTASIA (1940),Yes,58,,,,,,,
+,,,59. REBEL WITHOUT A CAUSE (1955),Yes,59,,,,,,,
+,,,60. RAIDERS OF THE LOST ARK (1981),Yes,60,,,,,,,
+,,,61. VERTIGO (1958),Yes,61,,,,,,,
+,,,62. TOOTSIE (1982),Yes,62,,,,,,,
+,,,64. CLOSE ENCOUNTERS OF THE THIRD KIND (1977),Yes,64,,,,,,,
+,,,65. THE SILENCE OF THE LAMBS (1991),Yes,65,,,,,,,
+,,,66. NETWORK (1976),Yes,66,,,,,,,
+,,,67. THE MANCHURIAN CANDIDATE (1962),Yes,67,,,,,,,
+,,,70. THE FRENCH CONNECTION (1971),Yes,70,,,,,,,
+,,,71. FORREST GUMP (1994),Yes,71,,,,,,,
+,,,75. DANCES WITH WOLVES (1990),Yes,75,,,,,,,
+,,,77. AMERICAN GRAFFITI (1973),Yes,77,,,,,,,
+,,,78. ROCKY (1976),Yes,78,,,,,,,
+,,,79. THE DEER HUNTER (1978),Yes,79,,,,,,,
+,,,80. THE WILD BUNCH (1969),Yes,80,,,,,,,
+,,,83. PLATOON (1986),Yes,83,,,,,,,
+,,,84. FARGO (1996),Yes,84,,,,,,,
+,,,88. EASY RIDER (1969),Yes,88,,,,,,,
+,,,89. PATTON (1970),Yes,89,,,,,,,
+,,,91. MY FAIR LADY (1964),Yes,91,,,,,,,
+,,,93. THE APARTMENT (1960),Yes,93,,,,,,,
+,,,94. GOODFELLAS (1990),Yes,94,,,,,,,
+,,,95. PULP FICTION (1994),Yes,95,,,,,,,
+,,,96. THE SEARCHERS (1956),Yes,96,,,,,,,
+,,,98. UNFORGIVEN (1992),Yes,98,,,,,,,
+,,,10. SINGIN' IN THE RAIN (1952),No,10,,,,,,,
+,,,30. THE TREASURE OF THE SIERRA MADRE (1948),No,30,,,,,,,
+,,,37. THE BEST YEARS OF OUR LIVES (1946),No,37,,,,,,,
+,,,43. KING KONG (1933),No,43,,,,,,,
+,,,44. THE BIRTH OF A NATION (1915),No,44,,,,,,,
+,,,. ALL QUIET ON THE WESTERN FRONT (1930),No,,,,,,,,
+,,,63. STAGECOACH (1939),No,63,,,,,,,
+,,,68. AN AMERICAN IN PARIS (1951),No,68,,,,,,,
+,,,69. SHANE (1953),No,69,,,,,,,
+,,,72. BEN-HUR (1959),No,72,,,,,,,
+,,,73. WUTHERING HEIGHTS (1939),No,73,,,,,,,
+,,,74. THE GOLD RUSH (1925),No,74,,,,,,,
+,,,76. CITY LIGHTS (1931),No,76,,,,,,,
+,,,81. MODERN TIMES (1936),No,81,,,,,,,
+,,,82. GIANT (1956),No,82,,,,,,,
+,,,85. DUCK SOUP (1933),No,85,,,,,,,
+,,,86. MUTINY ON THE BOUNTY (1935),No,86,,,,,,,
+,,,87. FRANKENSTEIN (1931),No,87,,,,,,,
+,,,90. THE JAZZ SINGER (1927),No,90,,,,,,,
+,,,92. A PLACE IN THE SUN (1951),No,92,,,,,,,
+,,,97. BRINGING UP BABY (1938),No,97,,,,,,,
+,,,99. GUESS WHO'S COMING TO DINNER (1967),No,99,,,,,,,
+,,,100. YANKEE DOODLE DANDY (1942),No,100,,,,,,,
+,,,,,,,,,,,,
+,,,,Yes,77,,,,,,,
+,,,,No,23,,,,,,,

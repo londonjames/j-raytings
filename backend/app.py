@@ -139,6 +139,98 @@ def init_db():
     conn.commit()
     conn.close()
 
+def init_books_db():
+    """Initialize the books database"""
+    conn = get_db()
+    cursor = conn.cursor()
+
+    if USE_POSTGRES:
+        # PostgreSQL syntax
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS books (
+                id SERIAL PRIMARY KEY,
+                order_number INTEGER,
+                date_read TEXT,
+                year INTEGER,
+                book_name TEXT NOT NULL,
+                author TEXT,
+                details_commentary TEXT,
+                j_rayting TEXT,
+                score INTEGER,
+                type TEXT,
+                pages INTEGER,
+                form TEXT,
+                notes_in_notion TEXT,
+                cover_url TEXT,
+                google_books_id TEXT,
+                isbn TEXT,
+                average_rating REAL,
+                ratings_count INTEGER,
+                published_date TEXT,
+                description TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        
+        # Add missing columns if they don't exist (for existing PostgreSQL databases)
+        for column_name, column_type in [
+            ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
+            ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
+            ('published_date', 'TEXT'), ('description', 'TEXT')
+        ]:
+            cursor.execute("""
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name='books' AND column_name=%s
+            """, (column_name,))
+            if not cursor.fetchone():
+                try:
+                    cursor.execute(f'ALTER TABLE books ADD COLUMN {column_name} {column_type}')
+                    print(f"Added {column_name} column to PostgreSQL database")
+                except Exception as e:
+                    print(f"Error adding {column_name} column: {e}")
+    else:
+        # SQLite syntax
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS books (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                order_number INTEGER,
+                date_read TEXT,
+                year INTEGER,
+                book_name TEXT NOT NULL,
+                author TEXT,
+                details_commentary TEXT,
+                j_rayting TEXT,
+                score INTEGER,
+                type TEXT,
+                pages INTEGER,
+                form TEXT,
+                notes_in_notion TEXT,
+                cover_url TEXT,
+                google_books_id TEXT,
+                isbn TEXT,
+                average_rating REAL,
+                ratings_count INTEGER,
+                published_date TEXT,
+                description TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+
+        # Add missing columns if they don't exist (for existing SQLite databases)
+        for column_name, column_type in [
+            ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
+            ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
+            ('published_date', 'TEXT'), ('description', 'TEXT')
+        ]:
+            try:
+                cursor.execute(f'ALTER TABLE books ADD COLUMN {column_name} {column_type}')
+            except:
+                pass
+
+    conn.commit()
+    conn.close()
+
 def simplify_format(format_str):
     """Simplify format to standard categories"""
     if not format_str:
@@ -227,6 +319,90 @@ def row_to_dict(row):
         film_dict['location'] = simplify_location(film_dict['location'])
 
     return film_dict
+
+def book_row_to_dict(row):
+    """Convert database row to dictionary for books (works for both SQLite and PostgreSQL)"""
+    book_dict = dict(row)
+    return book_dict
+
+@app.route('/api/books', methods=['GET'])
+def get_books():
+    """Get all books with optional search/filter"""
+    search = request.args.get('search', '')
+    book_type = request.args.get('type', '')
+    form = request.args.get('form', '')
+    author = request.args.get('author', '')
+    min_score = request.args.get('min_score', '')
+    rating = request.args.get('rating', '')
+    year = request.args.get('year', '')
+
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    # Use %s for PostgreSQL, ? for SQLite
+    placeholder = '%s' if USE_POSTGRES else '?'
+
+    query = 'SELECT * FROM books WHERE 1=1'
+    params = []
+
+    if search:
+        query += f' AND (book_name LIKE {placeholder} OR author LIKE {placeholder})'
+        params.append(f'%{search}%')
+        params.append(f'%{search}%')
+
+    if book_type:
+        query += f' AND type = {placeholder}'
+        params.append(book_type)
+
+    if form:
+        query += f' AND form = {placeholder}'
+        params.append(form)
+
+    if author:
+        query += f' AND author LIKE {placeholder}'
+        params.append(f'%{author}%')
+
+    if min_score:
+        query += f' AND score >= {placeholder}'
+        params.append(int(min_score))
+
+    if rating:
+        query += f' AND j_rayting = {placeholder}'
+        params.append(rating)
+
+    if year:
+        query += f' AND year = {placeholder}'
+        params.append(int(year))
+
+    query += ' ORDER BY order_number ASC'
+
+    cursor.execute(query, params)
+    books = [book_row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+
+    return jsonify(books)
+
+@app.route('/api/books/<int:book_id>', methods=['GET'])
+def get_book(book_id):
+    """Get a single book by ID"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT * FROM books WHERE id = %s', (book_id,))
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM books WHERE id = ?', (book_id,))
+
+    book = cursor.fetchone()
+    conn.close()
+
+    if book is None:
+        return jsonify({'error': 'Book not found'}), 404
+
+    return jsonify(book_row_to_dict(book))
 
 @app.route('/api/films', methods=['GET'])
 def get_films():
@@ -822,6 +998,385 @@ def delete_film(film_id):
     conn.close()
     return jsonify({'message': 'Film deleted successfully'})
 
+@app.route('/api/books', methods=['POST'])
+def add_book():
+    """Add a new book with automatic metadata fetching from Google Books"""
+    from google_books_service import search_book
+    
+    data = request.get_json()
+
+    required_fields = ['book_name']
+    if not all(field in data for field in required_fields):
+        return jsonify({'error': 'Missing required fields'}), 400
+
+    # Check for duplicates by book name and author
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT id, book_name, author FROM books WHERE book_name = %s AND author = %s', 
+                      (data['book_name'], data.get('author', '')))
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, book_name, author FROM books WHERE book_name = ? AND author = ?', 
+                      (data['book_name'], data.get('author', '')))
+
+    existing_books = cursor.fetchall()
+
+    if existing_books:
+        duplicate_info = []
+        for book in existing_books:
+            if USE_POSTGRES:
+                duplicate_info.append({
+                    'id': book['id'],
+                    'book_name': book['book_name'],
+                    'author': book['author']
+                })
+            else:
+                duplicate_info.append({
+                    'id': book[0],
+                    'book_name': book[1],
+                    'author': book[2]
+                })
+        conn.close()
+        return jsonify({
+            'duplicate': True,
+            'message': 'A book with this name and author already exists.',
+            'existing_books': duplicate_info
+        }), 409
+
+    conn.close()
+
+    # Initialize variables with user-provided data
+    cover_url = data.get('cover_url')
+    google_books_id = data.get('google_books_id')
+    isbn = data.get('isbn')
+    average_rating = data.get('average_rating')
+    ratings_count = data.get('ratings_count')
+    published_date = data.get('published_date')
+    description = data.get('description')
+    metadata_fetched = False
+
+    # Fetch metadata from Google Books API if available
+    if os.getenv('GOOGLE_BOOKS_API_KEY') or True:  # API works without key
+        try:
+            # Search for the book
+            book_data = search_book(data['book_name'], data.get('author'), data.get('isbn'))
+
+            if book_data:
+                # Get cover if not already provided
+                if not cover_url:
+                    cover_url = book_data.get('cover_url')
+
+                # Get other metadata if not already provided
+                if not google_books_id:
+                    google_books_id = book_data.get('google_books_id')
+                if not isbn:
+                    isbn = book_data.get('isbn')
+                if average_rating is None:
+                    average_rating = book_data.get('average_rating')
+                if ratings_count is None:
+                    ratings_count = book_data.get('ratings_count')
+                if not published_date:
+                    published_date = book_data.get('published_date')
+                if not description:
+                    description = book_data.get('description')
+
+                metadata_fetched = True
+                print(f"✓ Fetched metadata for '{data['book_name']}'")
+        except Exception as e:
+            print(f"Error fetching Google Books data: {e}")
+
+    # Get max order_number to set new book's order
+    conn = get_db()
+    cursor = conn.cursor()
+    if USE_POSTGRES:
+        cursor.execute('SELECT COALESCE(MAX(order_number), 0) FROM books')
+    else:
+        cursor.execute('SELECT COALESCE(MAX(order_number), 0) FROM books')
+    result = cursor.fetchone()
+    max_order = result[0] if result else 0
+    new_order = max_order + 1
+
+    # Insert new book
+    if USE_POSTGRES:
+        cursor.execute('''
+            INSERT INTO books (
+                order_number, date_read, year, book_name, author,
+                details_commentary, j_rayting, score, type, pages,
+                form, notes_in_notion, cover_url, google_books_id,
+                isbn, average_rating, ratings_count, published_date, description
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING id
+        ''', (
+            data.get('order_number', new_order),
+            data.get('date_read'),
+            data.get('year'),
+            data['book_name'],
+            data.get('author'),
+            data.get('details_commentary'),
+            data.get('j_rayting'),
+            data.get('score'),
+            data.get('type'),
+            data.get('pages'),
+            data.get('form'),
+            data.get('notes_in_notion'),
+            cover_url,
+            google_books_id,
+            isbn,
+            average_rating,
+            ratings_count,
+            published_date,
+            description
+        ))
+        book_id = cursor.fetchone()[0]
+    else:
+        cursor.execute('''
+            INSERT INTO books (
+                order_number, date_read, year, book_name, author,
+                details_commentary, j_rayting, score, type, pages,
+                form, notes_in_notion, cover_url, google_books_id,
+                isbn, average_rating, ratings_count, published_date, description
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            data.get('order_number', new_order),
+            data.get('date_read'),
+            data.get('year'),
+            data['book_name'],
+            data.get('author'),
+            data.get('details_commentary'),
+            data.get('j_rayting'),
+            data.get('score'),
+            data.get('type'),
+            data.get('pages'),
+            data.get('form'),
+            data.get('notes_in_notion'),
+            cover_url,
+            google_books_id,
+            isbn,
+            average_rating,
+            ratings_count,
+            published_date,
+            description
+        ))
+        book_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({
+        'message': 'Book added successfully',
+        'book_id': book_id,
+        'metadata_fetched': metadata_fetched
+    }), 201
+
+@app.route('/api/books/<int:book_id>', methods=['PUT'])
+def update_book(book_id):
+    """Update an existing book"""
+    data = request.get_json()
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    # Build update query dynamically based on provided fields
+    updates = []
+    params = []
+
+    allowed_fields = [
+        'order_number', 'date_read', 'year', 'book_name', 'author',
+        'details_commentary', 'j_rayting', 'score', 'type', 'pages',
+        'form', 'notes_in_notion', 'cover_url', 'google_books_id',
+        'isbn', 'average_rating', 'ratings_count', 'published_date', 'description'
+    ]
+
+    placeholder = '%s' if USE_POSTGRES else '?'
+
+    for field in allowed_fields:
+        if field in data:
+            updates.append(f'{field} = {placeholder}')
+            params.append(data[field])
+
+    if not updates:
+        conn.close()
+        return jsonify({'error': 'No valid fields to update'}), 400
+
+    params.append(book_id)
+
+    if USE_POSTGRES:
+        query = f'UPDATE books SET {", ".join(updates)} WHERE id = %s'
+    else:
+        query = f'UPDATE books SET {", ".join(updates)} WHERE id = ?'
+
+    cursor.execute(query, params)
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        conn.close()
+        return jsonify({'error': 'Book not found'}), 404
+
+    conn.close()
+    return jsonify({'message': 'Book updated successfully'})
+
+@app.route('/api/books/<int:book_id>', methods=['DELETE'])
+def delete_book(book_id):
+    """Delete a book"""
+    conn = get_db()
+    cursor = conn.cursor()
+
+    if USE_POSTGRES:
+        cursor.execute('DELETE FROM books WHERE id = %s', (book_id,))
+    else:
+        cursor.execute('DELETE FROM books WHERE id = ?', (book_id,))
+
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        conn.close()
+        return jsonify({'error': 'Book not found'}), 404
+
+    conn.close()
+    return jsonify({'message': 'Book deleted successfully'})
+
+@app.route('/api/admin/books/<int:book_id>/cover', methods=['PUT'])
+def update_book_cover(book_id):
+    """Admin endpoint to update book cover URL"""
+    from google_books_service import search_book, get_book_details
+    
+    data = request.get_json()
+    cover_url = data.get('cover_url')
+    book_name = data.get('book_name')
+    author = data.get('author')
+    
+    conn = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # If cover_url not provided, try to fetch from Google Books
+        if not cover_url and (book_name or author):
+            book_data = search_book(book_name or '', author)
+            if book_data and book_data.get('cover_url'):
+                cover_url = book_data['cover_url']
+        
+        if not cover_url:
+            return jsonify({'error': 'cover_url is required or book_name/author needed to fetch'}), 400
+        
+        if USE_POSTGRES:
+            cursor.execute('UPDATE books SET cover_url = %s WHERE id = %s', (cover_url, book_id))
+        else:
+            cursor.execute('UPDATE books SET cover_url = ? WHERE id = ?', (cover_url, book_id))
+        
+        conn.commit()
+        conn.close()
+        return jsonify({'message': 'Cover updated successfully', 'cover_url': cover_url})
+    except Exception as e:
+        if conn:
+            conn.close()
+        print(f"Error updating cover: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'Error updating cover: {str(e)}'}), 500
+
+@app.route('/api/books/cover-proxy', methods=['GET'])
+def proxy_book_cover():
+    """Proxy endpoint to serve book cover images and avoid CORS issues"""
+    cover_url = request.args.get('url')
+    book_id = request.args.get('book_id')  # Optional: Google Books ID
+    
+    if not cover_url and not book_id:
+        return jsonify({'error': 'url or book_id parameter is required'}), 400
+    
+    # If we have a book_id, try to construct a working thumbnail URL
+    if book_id:
+        # Try the standard Google Books thumbnail URL format
+        thumbnail_urls = [
+            f"https://books.google.com/books/publisher/content/images/frontcover/{book_id}?fife=w480-h690",
+            f"https://books.google.com/books/content?id={book_id}&printsec=frontcover&img=1&zoom=1",
+            f"http://books.google.com/books/content?id={book_id}&printsec=frontcover&img=1&zoom=1"
+        ]
+    else:
+        thumbnail_urls = [cover_url]
+    
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Referer': 'https://books.google.com/'
+    }
+    
+    # Try each URL until one works
+    for url in thumbnail_urls:
+        try:
+            response = requests.get(url, timeout=10, stream=True, headers=headers, allow_redirects=True)
+            response.raise_for_status()
+            
+            # Check if it's actually an image
+            content_type = response.headers.get('Content-Type', '')
+            if 'image' not in content_type:
+                # Check first few bytes to see if it's an image
+                content_preview = response.content[:10]
+                if not (content_preview.startswith(b'\xff\xd8') or content_preview.startswith(b'\x89PNG')):
+                    continue  # Try next URL
+            
+            # Return the image with appropriate headers
+            from flask import Response
+            return Response(
+                response.content,
+                mimetype=content_type or 'image/jpeg',
+                headers={
+                    'Access-Control-Allow-Origin': '*',
+                    'Cache-Control': 'public, max-age=31536000'  # Cache for 1 year
+                }
+            )
+        except requests.exceptions.RequestException:
+            continue  # Try next URL
+    
+    # If all URLs failed, return error
+    return jsonify({'error': 'Failed to fetch cover image from all attempted URLs'}), 500
+
+@app.route('/api/admin/books/<int:book_id>/field', methods=['PUT'])
+def update_book_field(book_id):
+    """Admin endpoint to update a specific book field"""
+    data = request.get_json()
+    field_name = data.get('field')
+    field_value = data.get('value')
+    
+    if not field_name:
+        return jsonify({'error': 'field is required'}), 400
+    
+    # Validate field name
+    allowed_fields = [
+        'order_number', 'date_read', 'year', 'book_name', 'author',
+        'details_commentary', 'j_rayting', 'score', 'type', 'pages',
+        'form', 'notes_in_notion', 'cover_url', 'google_books_id',
+        'isbn', 'average_rating', 'ratings_count', 'published_date', 'description'
+    ]
+    
+    if field_name not in allowed_fields:
+        return jsonify({'error': f'Field {field_name} is not allowed'}), 400
+    
+    conn = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        placeholder = '%s' if USE_POSTGRES else '?'
+        
+        if USE_POSTGRES:
+            cursor.execute(f'UPDATE books SET {field_name} = %s WHERE id = %s', (field_value, book_id))
+        else:
+            cursor.execute(f'UPDATE books SET {field_name} = ? WHERE id = ?', (field_value, book_id))
+        
+        conn.commit()
+        conn.close()
+        return jsonify({'message': f'{field_name} updated successfully', 'book_id': book_id, 'field': field_name, 'value': field_value})
+    except Exception as e:
+        if conn:
+            conn.close()
+        print(f"Error updating field: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'Error updating {field_name}: {str(e)}'}), 500
+
 @app.route('/api/analytics/by-year', methods=['GET'])
 def get_analytics_by_year():
     """Get analytics data grouped by year watched"""
@@ -974,6 +1529,122 @@ def get_analytics_by_genre():
     conn.close()
     return jsonify(data)
 
+@app.route('/api/analytics/books/by-year', methods=['GET'])
+def get_books_analytics_by_year():
+    """Get books analytics data grouped by year read"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT year, COUNT(*) as count, ROUND(AVG(score), 2) as avg_score
+        FROM books
+        WHERE year IS NOT NULL
+        GROUP BY year
+        ORDER BY year DESC
+    ''')
+    data = [book_row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return jsonify(data)
+
+@app.route('/api/analytics/books/by-type', methods=['GET'])
+def get_books_analytics_by_type():
+    """Get books analytics data grouped by type"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT type, COUNT(*) as count, ROUND(AVG(score), 2) as avg_score
+        FROM books
+        WHERE type IS NOT NULL AND type != ''
+        GROUP BY type
+        ORDER BY count DESC
+    ''')
+    data = [book_row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return jsonify(data)
+
+@app.route('/api/analytics/books/by-form', methods=['GET'])
+def get_books_analytics_by_form():
+    """Get books analytics data grouped by form (Kindle vs Book)"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT form, COUNT(*) as count, ROUND(AVG(score), 2) as avg_score
+        FROM books
+        WHERE form IS NOT NULL AND form != ''
+        GROUP BY form
+        ORDER BY count DESC
+    ''')
+    data = [book_row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return jsonify(data)
+
+@app.route('/api/analytics/books/by-author', methods=['GET'])
+def get_books_analytics_by_author():
+    """Get books analytics data grouped by author (top authors)"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT author, COUNT(*) as count, ROUND(AVG(score), 2) as avg_score
+        FROM books
+        WHERE author IS NOT NULL AND author != ''
+        GROUP BY author
+        ORDER BY count DESC
+        LIMIT 20
+    ''')
+    data = [book_row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return jsonify(data)
+
+@app.route('/api/analytics/books/summary', methods=['GET'])
+def get_books_summary():
+    """Get overall books summary statistics"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT 
+            COUNT(*) as total_books,
+            ROUND(AVG(score), 2) as avg_score,
+            SUM(pages) as total_pages,
+            ROUND(AVG(pages), 2) as avg_pages,
+            ROUND(AVG(average_rating), 2) as avg_goodreads_rating
+        FROM books
+        WHERE pages IS NOT NULL
+    ''')
+    
+    result = cursor.fetchone()
+    if USE_POSTGRES:
+        summary = dict(result)
+    else:
+        summary = {
+            'total_books': result[0],
+            'avg_score': result[1],
+            'total_pages': result[2],
+            'avg_pages': result[3],
+            'avg_goodreads_rating': result[4]
+        }
+    
+    conn.close()
+    return jsonify(summary)
+
 @app.route('/api/admin/init-db', methods=['POST'])
 def init_database():
     """Initialize database tables (admin only)"""
@@ -1094,6 +1765,7 @@ def import_from_json():
 # Wrap in try-except to prevent deployment failures if DB isn't ready yet
 try:
     init_db()
+    init_books_db()
 except Exception as e:
     print(f"Warning: Database initialization had an issue (this is OK if DB isn't ready yet): {e}")
 

@@ -1122,6 +1122,11 @@ body {
   height: 100%;
 }
 
+/* Ensure rating box is middle-aligned for books */
+.book-content .film-info-container {
+  align-items: center;
+}
+
 .film-info-left-column {
   flex: 1;
   display: flex;
@@ -1658,4 +1663,152 @@ body {
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.85rem;
   cursor: pointer;
+}
+
+/* Book-specific styles */
+.book-content {
+  padding: 0.85rem 0.85rem; /* Slightly more padding than films (0.75rem) */
+}
+
+.book-info-left-column {
+  gap: 0.5rem !important; /* Moderate gap between title group and metadata */
+}
+
+.book-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.11rem; /* Tight spacing between title and author - minimal increase (~10%) */
+}
+
+.book-author-inline {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  line-height: 1.2;
+  margin-top: -0.05rem; /* Slight negative margin to bring closer to title */
+}
+
+.book-metadata {
+  margin-top: 0; /* No extra margin */
+}
+
+.book-author {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.book-author-back {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.film-row-author {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.card-back-commentary {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.commentary-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.commentary-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* Analytics summary */
+.analytics-summary {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.analytics-summary h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.summary-stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #4a9eff;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Author list */
+.author-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.author-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.author-rank {
+  font-weight: 600;
+  color: #4a9eff;
+  min-width: 2rem;
+}
+
+.author-name {
+  flex: 1;
+  font-weight: 500;
+  color: #fff;
+}
+
+.author-count {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.author-score {
+  color: #ff6b6b;
+  font-weight: 500;
 }

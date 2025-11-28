@@ -1,0 +1,452 @@
+================================================================================
+YEAR AND SEQUEL FIX - 2025-11-19 12:09:25
+================================================================================
+Found 317 films to check
+
+[1/317] Checking TMDB for: 1917 (2020)
+[2/317] Checking TMDB for: 21 Jump St (2012)
+[3/317] Checking TMDB for: 4 Months, 3 Weeks and 2 Days (2007)
+[4/317] Checking TMDB for: 48 Hours (2023)
+[5/317] Checking TMDB for: 5 to 7 (2015)
+[6/317] Checking TMDB for: 6 Days and 7 Nights (2022)
+[7/317] Checking TMDB for: About Last Night (2022)
+[8/317] Checking TMDB for: Akeelah & the Bee (2006)
+[9/317] Checking TMDB for: All Work All Play (2015)
+[10/317] Checking TMDB for: American Pie: The Wedding (2003)
+[11/317] Checking TMDB for: American Pie: The Wedding (2003)
+[12/317] Checking TMDB for: American Sniper (2015)
+[13/317] Checking TMDB for: Animal House (2021)
+[14/317] Checking TMDB for: Anyone But You (2024)
+[15/317] Checking TMDB for: Are you there god? It's me, Margaret (2023)
+[16/317] Checking TMDB for: Arnold (2023)
+[17/317] Austin Powers I (2002)
+  → Austin Powers: International Man of Mystery (1997)
+
+[18/317] Austin Powers II (1999)
+  → Austin Powers: The Spy Who Shagged Me (1999)
+
+[19/317] Austin Powers III (2002)
+  → Austin Powers in Goldmember (2002)
+
+[20/317] Checking TMDB for: Avengers, The: Age of Ultron (2015)
+[21/317] Checking TMDB for: Back in Time (2015)
+[22/317] Checking TMDB for: Back to the Future II (1989)
+[23/317] Checking TMDB for: Back to the Future III (1990)
+[25/317] Checking TMDB for: Bad Words (2014)
+[26/317] Checking TMDB for: Barbed Wire (1927)
+[27/317] Checking TMDB for: Barbie (2008)
+[28/317] Checking TMDB for: Bastards of the Party (2005)
+[29/317] Checking TMDB for: Batteries Not Included (2016)
+[30/317] Checking TMDB for: Beauty & The Beast (1992)
+[31/317] Checking TMDB for: Beckham (2023)
+  ⚠ Not found on TMDB
+[32/317] Checking TMDB for: Becoming (2020)
+[33/317] Checking TMDB for: Begin Again (2014)
+[34/317] Checking TMDB for: Bernard and the Genie (1991)
+[35/317] Checking TMDB for: Beside Still Waters (2014)
+[38/317] Checking TMDB for: Bigger, Stronger, Faster* (2008)
+[39/317] Bill and Ted's Excellent Adventure I (1989)
+  → Bill & Ted's Excellent Adventure (1989)
+
+[40/317] Checking TMDB for: Bladerunner (2015)
+  ⚠ Not found on TMDB
+[41/317] Checking TMDB for: Blood Sport (1973)
+[42/317] Checking TMDB for: Born Strong (2017)
+[43/317] Checking TMDB for: Bridget Jones: Edge of Reason (2004)
+[44/317] Checking TMDB for: Bronson (2009)
+[45/317] Checking TMDB for: Bus 174 (2003)
+[46/317] Checking TMDB for: Casting By (2013)
+[47/317] Checking TMDB for: Celeste and Jesse Forever (2012)
+[48/317] Checking TMDB for: Champs (2015)
+[49/317] Checking TMDB for: Champs (2015)
+[50/317] Checking TMDB for: Charlie's Angels I (2003)
+  ✓ Title updated: Charlie's Angels I → Charlie's Angels: Full Throttle
+
+[51/317] Checking TMDB for: Chasing Tyson (2015)
+[53/317] Checking TMDB for: City of Angels (1998)
+[54/317] Checking TMDB for: City of God (2003)
+[55/317] Checking TMDB for: Clueless (1995)
+[56/317] Checking TMDB for: Confess, Fletch (2022)
+[57/317] Checking TMDB for: Confessions of a Superhero (2007)
+[58/317] Checking TMDB for: Crazy, Stupid, Love (2011)
+[61/317] Crocodile Dundee I (1986)
+  → Crocodile Dundee (1986)
+
+[62/317] Crocodile Dundee II (1988)
+  → Crocodile Dundee II (1988)
+
+[63/317] Checking TMDB for: Crouching Tiger, Hidden Dragon (2016)
+[64/317] Checking TMDB for: David Bowie: The Man Who Changed The World (2016)
+[65/317] Checking TMDB for: Death Becomes Her (1992)
+[66/317] Checking TMDB for: Definitely, Maybe (2008)
+[67/317] Checking TMDB for: Desert Runners (2013)
+[68/317] Die Hard I (2007)
+  → Die Hard (1988)
+
+[69/317] Die Hard II (1995)
+  → Die Hard 2 (1990)
+
+[70/317] Die Hard III (1995)
+  → Die Hard with a Vengeance (1995)
+
+[71/317] Checking TMDB for: Die Hard IV (2007)
+  ✓ Title updated: Die Hard IV → Live Free or Die Hard
+
+[72/317] Checking TMDB for: Doctor Strange (2017)
+[73/317] Checking TMDB for: Don't Look Up (2021)
+[74/317] Checking TMDB for: Dr T and the Women (2001)
+[75/317] Checking TMDB for: Dr. Strangelove (2012)
+[76/317] Checking TMDB for: Dumb & Dumber (2014)
+[77/317] Checking TMDB for: Eddie Strongman (2015)
+[78/317] Checking TMDB for: El Camino: A Breaking Bad movie (2019)
+[79/317] Checking TMDB for: Encanto (2021)
+[80/317] Checking TMDB for: EuroTrip (2004)
+[81/317] Checking TMDB for: Ex Machina (2015)
+[82/317] Checking TMDB for: Eye in the Sky (2016)
+[83/317] Checking TMDB for: Face Off (2015)
+[84/317] Checking TMDB for: Fantastic Lies (2016)
+[85/317] Checking TMDB for: Fast & Furious (4) (2009)
+[86/317] Checking TMDB for: Fast and the Furious 6: The (2013)
+[87/317] Checking TMDB for: Father of the Bride II (1995)
+[88/317] Checking TMDB for: Federer: 12 Final Days (2024)
+[89/317] Checking TMDB for: Finding Traction (2014)
+[90/317] Checking TMDB for: Fittest on Earth (2016)
+[91/317] Checking TMDB for: Focus (2015)
+[92/317] Checking TMDB for: Food Inc. (2009)
+[93/317] Checking TMDB for: Ford  vs. Ferrari (2019)
+[94/317] Checking TMDB for: Friends with Kids (2012)
+[95/317] Checking TMDB for: Froning: The Fittest Man in History (2015)
+[97/317] Checking TMDB for: Fun with Dick & Jane (2005)
+[98/317] Checking TMDB for: Gentlemen,The (2020)
+[100/317] Checking TMDB for: Goal (2007)
+[101/317] Checking TMDB for: Gone, Baby, Gone (2007)
+[102/317] Checking TMDB for: Gremlins II (1990)
+  ✓ Title updated: Gremlins II → Gremlins 2: The New Batch
+
+[103/317] Checking TMDB for: Grosse Point Blank (1997)
+[105/317] Checking TMDB for: Halloween III (2019)
+  ⚠ Not found on TMDB
+[106/317] Checking TMDB for: Hancock (2009)
+[107/317] Checking TMDB for: Happy (2011)
+[108/317] Checking TMDB for: Harry Potter I (2001)
+  ✓ Title updated: Harry Potter I → Harry Potter and the Philosopher's Stone
+
+[109/317] Checking TMDB for: Harry Potter II (2011)
+  ✓ Title updated: Harry Potter II → Harry Potter and the Deathly Hallows: Part 2
+
+[110/317] Checking TMDB for: Hit Man (2024)
+[111/317] Checking TMDB for: Home Alone II (1992)
+  ✓ Title updated: Home Alone II → Home Alone 2: Lost in New York
+
+[112/317] Checking TMDB for: Honey, I Blew Up the Kid (1992)
+[113/317] Checking TMDB for: Honey, I Shrunk the Kids (1989)
+[114/317] Checking TMDB for: Hot Shots (1956)
+[115/317] Checking TMDB for: Hot Shots Part Deux (1993)
+[116/317] Checking TMDB for: Hunger Games, The: The Mockingjay, Part 1 (2014)
+[117/317] Checking TMDB for: Hunger Games, The; The Mockingjay Part 2) (2015)
+[118/317] Checking TMDB for: I Know That Voice (2014)
+[119/317] Checking TMDB for: I Love You, Man (2009)
+[120/317] Checking TMDB for: I Now Pronounce You Chuck and Larry (2007)
+[121/317] Checking TMDB for: In Search of a Midnight Kiss (2008)
+[122/317] Checking TMDB for: Inglorious Basterds (2009)
+[123/317] Checking TMDB for: Inspired to Ride (2015)
+[124/317] Checking TMDB for: Interstellar (2022)
+[125/317] Checking TMDB for: James & The Giant Peach (1996)
+[126/317] Checking TMDB for: Jaws II (1978)
+  ✓ Title updated: Jaws II → Jaws 2
+
+[127/317] Checking TMDB for: Jaws III (1983)
+  ✓ Title updated: Jaws III → Jaws 3-D
+
+[128/317] Checking TMDB for: Jaws IV (1987)
+  ✓ Title updated: Jaws IV → Jaws: The Revenge
+
+[129/317] Checking TMDB for: Jiro Dreams of Sushi (2012)
+[130/317] Checking TMDB for: Kidpoker (2015)
+[131/317] Checking TMDB for: Kill Bill: Volume 1 (2003)
+[132/317] Checking TMDB for: Kim Swims (2017)
+[133/317] Checking TMDB for: Knight & Day (2010)
+[134/317] Checking TMDB for: Les Miserables (2012)
+[135/317] Checking TMDB for: License to Kill (1984)
+[136/317] Checking TMDB for: Lock, Stock, and Two Smoking Barrels (1998)
+[137/317] Checking TMDB for: Locke (2014)
+[138/317] Checking TMDB for: Lone Survivor (2014)
+[139/317] Checking TMDB for: Lord of the Rings II (2003)
+  ✓ Title updated: Lord of the Rings II → The Lord of the Rings: The Return of the King
+
+[140/317] Checking TMDB for: Losing Sight of Shore (2017)
+[141/317] Checking TMDB for: Maidentrip (2014)
+[143/317] Checking TMDB for: Major League III (1998)
+  ✓ Title updated: Major League III → Major League: Back to the Minors
+
+[144/317] Checking TMDB for: Married Life (2008)
+[145/317] Checking TMDB for: Me, Myself, and Irene (2000)
+[146/317] Checking TMDB for: Mean Girls: The Musical (2024)
+[147/317] Checking TMDB for: Men In Black I (1997)
+  ✓ Title updated: Men In Black I → Men in Black
+
+[149/317] Checking TMDB for: Michael Jackson's This is It (2009)
+[150/317] Checking TMDB for: Miss Americana (2020)
+[151/317] Checking TMDB for: Mission Impossible 4 (2011)
+[152/317] Checking TMDB for: Mission Impossible I (2025)
+  ✓ Title updated: Mission Impossible I → Mission: Impossible - The Final Reckoning
+
+[153/317] Checking TMDB for: Mission Impossible II (2000)
+[155/317] Checking TMDB for: Mission Impossible V (2015)
+  ✓ Title updated: Mission Impossible V → Mission: Impossible - Rogue Nation
+
+[156/317] Checking TMDB for: Mission Impossible VII (2023)
+  ✓ Title updated: Mission Impossible VII → Mission: Impossible - Dead Reckoning Part One
+
+[157/317] Checking TMDB for: Moana (2017)
+[158/317] Checking TMDB for: Mr. Saturday Night (1992)
+[159/317] Checking TMDB for: Mr. and Mrs. Smith (2007)
+[160/317] Checking TMDB for: Mud (2013)
+[161/317] Checking TMDB for: Music & Lyrics (2020)
+  ⚠ Not found on TMDB
+[162/317] Checking TMDB for: My Beautiful Broken Brain (2016)
+[163/317] Checking TMDB for: Naked Gun 2 1/2 (1991)
+[164/317] Naked Gun I (1994)
+  → The Naked Gun: From the Files of Police Squad! (1988)
+
+[165/317] Checking TMDB for: Nature Boy (2017)
+[166/317] Checking TMDB for: Next Stop, Wonderland (1998)
+[167/317] Checking TMDB for: O Brother, Where Art Thou? (2000)
+[168/317] Checking TMDB for: O.J. Simpson: Made in America (2016)
+[169/317] Checking TMDB for: Ocean's 8 (2018)
+[170/317] Checking TMDB for: Oliver Twist (2005)
+[171/317] Checking TMDB for: On the Waterfront (19)
+[172/317] Checking TMDB for: Once Brothers (2010)
+[173/317] Checking TMDB for: One Wild Night (Career Opportunities) (1991)
+[174/317] Checking TMDB for: Paddington (2015)
+[175/317] Checking TMDB for: Paddington 2 (2018)
+[176/317] Checking TMDB for: Paddington in Peru (2025)
+[177/317] Checking TMDB for: Palo Alto (2014)
+[178/317] Checking TMDB for: Paradise Motel (1985)
+[179/317] Checking TMDB for: Park Avenue: Money, Power, and the American Dream (2012)
+[180/317] Checking TMDB for: Percy Jackson and the Olympians: The Lightning Thief (2010)
+[181/317] Checking TMDB for: Peter Pan and Wendy (2023)
+[182/317] Checking TMDB for: Pirates of the Caribbean 2: Dead Man's Chest (2006)
+[183/317] Checking TMDB for: Pirates of the Caribbean 3: At World's End (2007)
+[184/317] Checking TMDB for: Planes, Trains and Automobiles (1987)
+[185/317] Checking TMDB for: Police Academy II (1985)
+  ✓ Title updated: Police Academy II → Police Academy 2: Their First Assignment
+
+[186/317] Checking TMDB for: Police Academy III (1986)
+  ✓ Title updated: Police Academy III → Police Academy 3: Back in Training
+
+[187/317] Checking TMDB for: Police Academy IV (1987)
+  ✓ Title updated: Police Academy IV → Police Academy 4: Citizens on Patrol
+
+[189/317] Checking TMDB for: Porky's III (1985)
+  ✓ Title updated: Porky's III → Porky's Revenge
+
+[190/317] Checking TMDB for: Prayer of the Rollerboys (1990)
+[191/317] Checking TMDB for: Priscilla, Queen of the Desert (1994)
+[192/317] Checking TMDB for: Private Parts (1997)
+[193/317] Checking TMDB for: Resurrection of Jake The Snake Roberts,The (2015)
+[194/317] Checking TMDB for: Road House (2024)
+[195/317] Checking TMDB for: Road House (2024)
+[196/317] Checking TMDB for: Robbie Williams (2023)
+[197/317] Checking TMDB for: Rocky I (1976)
+  ✓ Title updated: Rocky I → Rocky Marciano Is Dead
+
+[198/317] Rocky II (1979)
+  → Rocky II (1979)
+
+[199/317] Rocky III (1982)
+  → Rocky III (1982)
+
+[200/317] Rocky IV (1985)
+  → Rocky IV (1985)
+
+[201/317] Rocky V (1990)
+  → Rocky V (1990)
+
+[202/317] Checking TMDB for: Rocky VI (2006)
+  ✓ Title updated: Rocky VI → Rocky Balboa
+
+[203/317] Checking TMDB for: Ronnie Coleman: The King (2018)
+[204/317] Checking TMDB for: Save The Last Dance (2001)
+[205/317] Checking TMDB for: Scream I (2011)
+  ✓ Title updated: Scream I → Scream: The Inside Story
+
+[206/317] Checking TMDB for: Scream II (2023)
+[207/317] Checking TMDB for: Scream III (2000)
+  ✓ Title updated: Scream III → Scream 3
+
+[208/317] Checking TMDB for: Senna (2011)
+[209/317] Checking TMDB for: Shoot to Kill (Deadly Pursuit) (1988)
+[210/317] Checking TMDB for: Short Circuit II (1988)
+  ✓ Title updated: Short Circuit II → Short Circuit 2
+
+[211/317] Checking TMDB for: Shrek II (2004)
+  ✓ Title updated: Shrek II → Shrek 2
+
+[212/317] Checking TMDB for: Shut Up and Sing (2006)
+[213/317] Checking TMDB for: Sketches of Frank Gehry (2006)
+[214/317] Checking TMDB for: Slapshot (1977)
+[215/317] Checking TMDB for: Slaying the Badger (2014)
+[216/317] Checking TMDB for: Snow White and the Seven Dwarfs (1937)
+[217/317] Checking TMDB for: Sole Man (2015)
+[218/317] Checking TMDB for: Something Ventured (2011)
+[219/317] Checking TMDB for: Son of a Gun (2015)
+[220/317] Spider-Man I (2018)
+  → Spider-Man (2002)
+
+[221/317] Spider-Man II (2019)
+  → Spider-Man 2 (2004)
+
+[222/317] Checking TMDB for: Spiderman 3 (2007)
+[223/317] Checking TMDB for: Splash (1984)
+[224/317] Checking TMDB for: Stakeout II (1993)
+  ✓ Title updated: Stakeout II → Another Stakeout
+
+[225/317] Star Wars I (2012)
+  → Star Wars: Episode I - The Phantom Menace (1999)
+
+[226/317] Checking TMDB for: Star Wars II: The Empire Strikes Back (1980)
+[227/317] Checking TMDB for: Star Wars: The Rise of Skywalker (2020)
+[228/317] Checking TMDB for: Steve Jobs: Man in the Machine (2015)
+[229/317] Checking TMDB for: Stop At Nothing: The Lance Armstrong Story (2014)
+[230/317] Checking TMDB for: Stuck In Love (2013)
+[231/317] Checking TMDB for: Studio 54: The Documentary (2018)
+[232/317] Checking TMDB for: Sunshine Cleaning (2009)
+[233/317] Checking TMDB for: Super Size Me (2004)
+[234/317] Superman II (1980)
+  → Superman II (1980)
+
+[235/317] Superman III (1983)
+  → Superman III (1983)
+
+[237/317] Checking TMDB for: Sweeney Todd: The Demon Barber of Fleet St (2007)
+[238/317] Checking TMDB for: Tar (2022)
+[239/317] Checking TMDB for: Teen Wolf I (1985)
+  ✓ Title updated: Teen Wolf I → Teen Wolf
+
+[240/317] Checking TMDB for: Teen Wolf II (1987)
+  ✓ Title updated: Teen Wolf II → Teen Wolf Too
+
+[241/317] Checking TMDB for: The Cannonball Run I (1981)
+  ✓ Title updated: The Cannonball Run I → The Cannonball Run
+
+[242/317] Checking TMDB for: The Cannonball Run II (1989)
+  ✓ Title updated: The Cannonball Run II → Speed Zone
+
+[243/317] Checking TMDB for: The Class of 92 (2014)
+[244/317] Checking TMDB for: The Englishman Who Went Up a Mountain (1995)
+[245/317] Checking TMDB for: The Escort (2015)
+[246/317] Checking TMDB for: The Escort (2015)
+[247/317] Checking TMDB for: The Fast and the Furious I (2001)
+  ✓ Title updated: The Fast and the Furious I → The Fast and the Furious
+
+[248/317] Checking TMDB for: The Founder (2017)
+[249/317] The Godfather II (1974)
+  → The Godfather Part II (1974)
+
+[250/317] The Godfather III (1990)
+  → The Godfather Part III (1990)
+
+[251/317] Checking TMDB for: The Good, the Bad, and the Ugly (1966)
+[252/317] Checking TMDB for: The Grand (2008)
+[253/317] Checking TMDB for: The Great Alone (2015)
+[254/317] Checking TMDB for: The Hunger Games 2: Catching Fire (2013)
+[255/317] Checking TMDB for: The Hunt for the Wilderpeople (2016)
+[256/317] Checking TMDB for: The Hunter (2012)
+[257/317] Checking TMDB for: The Hurt Locker (2009)
+[258/317] Checking TMDB for: The Iceman (2013)
+[259/317] Checking TMDB for: The Iceman (2013)
+[260/317] Checking TMDB for: The Incredibles (2004)
+[261/317] Checking TMDB for: The Incredibles 2 (2018)
+[262/317] Checking TMDB for: The Inside Man (2005)
+  ⚠ Not found on TMDB
+[263/317] Checking TMDB for: The Island (2005)
+[264/317] Checking TMDB for: The Karate Kid I (1989)
+[265/317] Checking TMDB for: The Karate Kid II (1989)
+[266/317] Checking TMDB for: The Karate Kid III (1989)
+[267/317] Checking TMDB for: The Mask of Zorro I (1998)
+  ✓ Title updated: The Mask of Zorro I → The Mask of Zorro
+
+[268/317] Checking TMDB for: The Matrix III (1996)
+  ✓ Title updated: The Matrix III → Armitage III: Poly Matrix
+
+[269/317] Checking TMDB for: The Negotiator (1998)
+[270/317] Checking TMDB for: The Nutty Professor II (2016)
+  ⚠ Not found on TMDB
+[271/317] Checking TMDB for: The Perfect Storm (2000)
+[272/317] Checking TMDB for: The Place Beyond the Pines (2013)
+[273/317] Checking TMDB for: The Professional (1981)
+[274/317] Checking TMDB for: The Redeemed and the Dominant: Fittest on Earth (2018)
+[275/317] Checking TMDB for: The Road Uphill (2011)
+[276/317] Checking TMDB for: The Running Man (2025)
+[277/317] Checking TMDB for: The Simpsons (2020)
+  ⚠ Not found on TMDB
+[278/317] Checking TMDB for: The Sting (1974)
+[279/317] Checking TMDB for: The Visitor (2008)
+[280/317] Checking TMDB for: The Widow of St. Pierre (2000)
+  ⚠ Not found on TMDB
+[281/317] Checking TMDB for: The Year I Started Masturbating (2022)
+[282/317] Checking TMDB for: Thirteen (2016)
+[283/317] Checking TMDB for: Three Amigos (2024)
+  ⚠ Not found on TMDB
+[284/317] Checking TMDB for: Three Billboards outside Ebbing, Missouri (2017)
+[285/317] Checking TMDB for: Tinker, Taylor, Soldier, Spy (2012)
+[286/317] Checking TMDB for: Top Spin (2015)
+[287/317] Checking TMDB for: Total Rebuild (1988)
+[288/317] Checking TMDB for: Touching the Void (2004)
+[289/317] Toy Story II (1999)
+  → Toy Story 2 (1999)
+
+[290/317] Toy Story III (2010)
+  → Toy Story 3 (2010)
+
+[291/317] Checking TMDB for: Transformers (2001)
+[292/317] Checking TMDB for: Twelve Monkeys (1996)
+[293/317] Checking TMDB for: Twenty One (2008)
+[294/317] Checking TMDB for: Two Lovers (2009)
+[295/317] Checking TMDB for: Tyson (2009)
+[296/317] Checking TMDB for: Uncharted (2022)
+[297/317] Checking TMDB for: Untold: Breaking Point) (2021)
+[298/317] Checking TMDB for: Valley Uprising (2014)
+[299/317] Checking TMDB for: Van Wilder 2: The Rise of Taj (2006)
+[300/317] Checking TMDB for: Wall St (2013)
+[301/317] Checking TMDB for: War Games (2010)
+  ⚠ Not found on TMDB
+[302/317] Checking TMDB for: Wayne's World I (1992)
+  ✓ Title updated: Wayne's World I → Wayne's World
+
+[303/317] Checking TMDB for: Wayne's World II (1993)
+  ✓ Title updated: Wayne's World II → Wayne's World 2
+
+[304/317] Checking TMDB for: Welcome to Me (2015)
+[305/317] Checking TMDB for: Welcome to Me (2015)
+[306/317] Checking TMDB for: When Harry Met Sally (2018)
+  ⚠ Not found on TMDB
+[307/317] Checking TMDB for: While We're Young (2015)
+[308/317] Checking TMDB for: Why We Fight (2006)
+[309/317] Checking TMDB for: X-Men I (2003)
+  ✓ Title updated: X-Men I → The Second Uncanny Issue of X-Men! Making 'X2'
+
+[310/317] Checking TMDB for: X-Men II (2003)
+  ✓ Title updated: X-Men II → X2
+
+[311/317] Checking TMDB for: X-Men III (2006)
+  ✓ Title updated: X-Men III → X-Men: The Last Stand
+
+[312/317] Checking TMDB for: Y Tu Mama Tambien (2012)
+  ⚠ Not found on TMDB
+[313/317] Checking TMDB for: Yes, God, Yes (2019)
+[314/317] Checking TMDB for: You, Me, and Dupree (2006)
+[315/317] Checking TMDB for: Young Guns I (1990)
+[316/317] Checking TMDB for: Zack & Miri Make A Porno (2008)
+[317/317] Checking TMDB for: Zero Dark Thirty (2013)
+================================================================================
+FIX COMPLETED
+================================================================================
+Titles fixed: 61
+Years fixed: 7
+Skipped: 0
+Errors: 0
+
+Log saved to: year_sequel_fix_log_20251119_120925.txt
+================================================================================

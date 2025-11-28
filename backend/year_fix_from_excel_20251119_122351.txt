@@ -1,0 +1,6 @@
+================================================================================
+FIXING YEARS FROM EXCEL SOURCE - 2025-11-19 12:23:51
+================================================================================
+
+Reading Excel file: /Users/jamesraybould/Downloads/@londonjames - films, books, and songs (1).xlsx
+Error reading Excel: Worksheet named 'Films' not found

@@ -12,10 +12,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/akkurat.css">
-    <script src="https://use.typekit.net/akkurat.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style id="homepage-styles">
         * {
             margin: 0;
@@ -23,15 +20,28 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --color-1: #3a6385;  /* Slate Blue */
+            --color-2: #6f9f58;  /* Sage Green */
+            --color-3: #d97b4a;  /* Terracotta */
+            --color-4: #c9a857;  /* Ochre */
+            --color-5: #9a7b8a;  /* Dusty Plum */
+            --color-6: #7a8075;  /* Warm Gray */
+            --color-7: #5a9a9a;  /* Teal */
+            --color-8: #a8856e;  /* Sienna */
+            --color-9: #8590a8;  /* Dusty Periwinkle */
+            --color-10: #6b8a6b; /* Forest Sage */
+        }
+        
         html {
-            background: #F5F4F0 !important;
-            background-color: #F5F4F0 !important;
+            background: #f5f5f4 !important;
+            background-color: #f5f5f4 !important;
         }
         
         body {
-            font-family: 'akkurat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
-            background: #F5F4F0 !important;
-            background-color: #F5F4F0 !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+            background: #f5f5f4 !important;
+            background-color: #f5f5f4 !important;
             color: #000 !important;
             line-height: 1.6;
             padding: 0 !important;
@@ -44,8 +54,8 @@
         body[class*="root"],
         html[class*="app"],
         html[class*="root"] {
-            background: #F5F4F0 !important;
-            background-color: #F5F4F0 !important;
+            background: #f5f5f4 !important;
+            background-color: #f5f5f4 !important;
         }
         
         /* Hide React app root if it exists */
@@ -53,57 +63,54 @@
             display: none !important;
         }
         
-        /* Header */
+        /* ===== HEADER - keep it simple ===== */
         header {
+            padding: 24px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4rem;
-            padding: 2rem 50px 0 50px;
-        }
-        
-        /* Grid wrapper - full bleed with 10px padding */
-        .grid-wrapper {
-            padding: 0 10px;
         }
         
         .site-name {
-            font-size: 1.45rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            color: #000;
-            font-family: 'akkurat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
         
-        .header-right {
+        .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 24px;
         }
         
-        nav {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        nav a {
-            color: #000;
-            text-decoration: none;
-            font-size: 1rem;
+        .nav-links a {
+            font-size: 0.875rem;
             font-weight: 400;
-            letter-spacing: 0.02em;
-            transition: opacity 0.2s;
-            font-family: 'akkurat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
         
-        nav a:hover {
+        .nav-links a:hover {
             opacity: 0.6;
+        }
+        
+        /* LinkedIn icon sizing */
+        .nav-links svg {
+            width: 18px;
+            height: 18px;
         }
         
         .linkedin-link {
             display: inline-block;
             text-decoration: none;
-            transition: opacity 0.2s;
+            transition: opacity 0.2s ease;
             line-height: 0;
             background: none !important;
         }
@@ -115,7 +122,7 @@
         }
         
         .linkedin-link img {
-            height: 1.21rem;
+            height: 18px;
             width: auto;
             display: block;
             max-width: 100%;
@@ -125,408 +132,192 @@
             opacity: 0.6;
         }
         
-        /* LinkedIn Newsletter Button */
-        .libutton {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 8px 16px;
-            text-align: center;
-            outline: none;
-            text-decoration: none !important;
-            color: #ffffff !important;
-            width: 240px;
-            min-width: 200px;
-            height: 36px;
-            border-radius: 18px;
-            background-color: #0A66C2;
-            font-family: 'akkurat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            font-size: 0.85rem;
-            margin-top: 1rem;
-            transition: background-color 0.2s;
-            white-space: nowrap;
+        /* ===== REMOVE the vertical centering ===== */
+        main {
+            /* Remove min-height, flexbox centering, etc. */
+            padding-top: 40px;
+            padding-bottom: 60px;
         }
         
-        .libutton:hover {
-            background-color: #004182;
-        }
-        
-        /* Newsletter block content - now simplified, no longer needed */
-        
-        /* Grid Layout - full bleed */
-        .grid {
+        /* ===== TILE GRID ===== */
+        .tile-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            column-gap: 10px;
-            row-gap: 20px; /* Double the vertical gap */
+            gap: 12px;
+            padding: 0 40px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         
-        /* Block/Card - All blocks use 4:3 aspect ratio (landscape) */
-        .block {
+        /* Tile Base Styles */
+        .tile {
+            position: relative;
             aspect-ratio: 4 / 3;
-            background: #F5F4F0; /* Match homepage background for Books and Coming Soon blocks */
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            color: #000;
-            transition: background 0.2s, transform 0.2s;
-            border: 1px solid #e0e0e0;
-            position: relative;
-            overflow: hidden;
-            border-radius: 3px; /* 99% rectangular - very subtle rounding */
+            /* no max-height */
         }
         
-        /* Films block: solid color initially, quilt appears on hover/tap */
-        .block.films-block {
-            background-color: #E8E6E0; /* Initial sparse background - can be customized */
-            background-image: url('/films-quilt.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            overflow: hidden;
-            transition: filter 3s ease, transform 0.4s ease;
-        }
-        
-        .block.films-block::before {
-            content: '';
+        .tile-background {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #E8E6E0;
-            opacity: 1;
-            transition: opacity 2s ease;
-            pointer-events: none;
-            z-index: 1;
+            inset: 0;
+            background-color: var(--tile-color);
+            transition: opacity 0.4s ease;
         }
         
-        .block.films-block:hover::before,
-        .block.films-block:active::before {
+        .tile-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             opacity: 0;
-        }
-        
-        .block.films-block:hover,
-        .block.films-block:active {
+            transform: scale(1.03);
+            transition: opacity 2s ease, transform 0.5s ease;
+            /* Apply consistent filter to quilt images for visual cohesion */
             filter: brightness(0.9) saturate(0.75);
             -webkit-filter: brightness(0.9) saturate(0.75);
-            transform: scale(1.01);
         }
         
-        .block.films-block .block-content {
-            background: none;
-            color: #000;
-            padding: 1rem;
-            border-radius: 0;
-            font-weight: 400;
-            box-shadow: none;
-            text-shadow: none;
+        /* LinkedIn Posts quilt - less muted, closer to original */
+        .tile-image--linkedin {
+            filter: brightness(0.95) saturate(0.9);
+            -webkit-filter: brightness(0.95) saturate(0.9);
+        }
+        
+        /* Hide image if it fails to load */
+        .tile-image[src=""],
+        .tile-image:not([src]) {
+            display: none;
+        }
+        
+        .tile-title {
             position: relative;
-            text-transform: none !important;
+            z-index: 2;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
             transition: opacity 0.3s ease;
-            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
         }
         
-        .block.films-block:hover .block-content,
-        .block.films-block:active .block-content {
-            opacity: 0;
+        /* Muted title style for "Coming Soon" tiles */
+        .tile-title--muted {
+            color: rgba(255, 255, 255, 0.6);
         }
         
-        /* Newsletter block: solid color initially, quilt appears on hover/tap */
-        .block.newsletter-block {
-            background-color: #E8E6E0; /* Initial sparse background - can be customized */
-            background-image: url('/newsletter-quilt.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            overflow: hidden;
-            transition: filter 3s ease, transform 0.4s ease;
-        }
-        
-        .block.newsletter-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #E8E6E0;
+        /* Hover Effect */
+        .tile:hover .tile-image {
             opacity: 1;
-            transition: opacity 2s ease;
-            pointer-events: none;
-            z-index: 1;
+            transform: scale(1);
         }
         
-        .block.newsletter-block:hover::before,
-        .block.newsletter-block:active::before {
+        .tile:hover .tile-background {
             opacity: 0;
         }
         
-        .block.newsletter-block:hover,
-        .block.newsletter-block:active {
-            filter: brightness(0.9) saturate(0.75);
-            -webkit-filter: brightness(0.9) saturate(0.75);
-            transform: scale(1.01);
-        }
-        
-        .block.newsletter-block:hover .block-content,
-        .block.newsletter-block:active .block-content {
+        .tile:hover .tile-title {
             opacity: 0;
         }
         
-        .block.newsletter-block .block-content {
-            background: none;
-            color: #000;
-            padding: 1rem;
-            border-radius: 0;
-            font-weight: 400;
-            box-shadow: none;
-            text-shadow: none;
-            text-align: center;
-            line-height: 1.4;
-            position: relative;
-            text-transform: none !important;
-            transition: color 0.6s ease, text-shadow 0.6s ease, opacity 0.3s ease;
-            z-index: 2;
+        /* "Coming Soon" tiles don't have images, so disable hover effect */
+        .tile--coming-soon {
+            cursor: default;
         }
         
-        
-        /* Blueprints block: solid color initially, quilt appears on hover/tap */
-        .block.blueprints-block {
-            background-color: #E8E6E0; /* Initial sparse background - can be customized */
-            background-image: url('/blueprints-quilt.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            overflow: hidden;
-            transition: filter 3s ease, transform 0.4s ease;
-        }
-        
-        .block.blueprints-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #E8E6E0;
+        .tile--coming-soon:hover .tile-background {
             opacity: 1;
-            transition: opacity 2s ease;
-            pointer-events: none;
-            z-index: 1;
         }
         
-        .block.blueprints-block:hover::before,
-        .block.blueprints-block:active::before {
+        .tile--coming-soon:hover .tile-title {
+            opacity: 1;
+        }
+        
+        /* Focus States for Accessibility */
+        .tile:focus {
+            outline: 2px solid var(--tile-color);
+            outline-offset: 2px;
+        }
+        
+        .tile:focus .tile-image {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .tile:focus .tile-background {
             opacity: 0;
         }
         
-        .block.blueprints-block:hover,
-        .block.blueprints-block:active {
-            filter: brightness(0.9) saturate(0.75);
-            -webkit-filter: brightness(0.9) saturate(0.75);
-            transform: scale(1.01);
-        }
-        
-        .block.blueprints-block:hover .block-content,
-        .block.blueprints-block:active .block-content {
+        .tile:focus .tile-title {
             opacity: 0;
         }
         
-        .block.blueprints-block .block-content {
-            background: none;
-            color: #000;
-            padding: 1rem;
-            border-radius: 0;
-            font-weight: 400;
-            box-shadow: none;
-            text-shadow: none;
-            text-align: center;
-            line-height: 1.4;
-            position: relative;
-            text-transform: none !important;
-            transition: color 0.6s ease, text-shadow 0.6s ease, opacity 0.3s ease;
-            z-index: 2;
-        }
-        
-        
-        /* Responsive: background-size: cover works well on all devices */
-        /* The 4x3 grid (800x600px) will scale nicely with cover */
-        
-        /* White blocks (Books, Coming Soon) get hover background change */
-        .block:not(.films-block):not(.newsletter-block):not(.blueprints-block):hover {
-            background: #e8e6e0;
-            transform: translateY(-2px);
-        }
-        
-        .block[style*="cursor: default"]:hover {
-            transform: none;
-        }
-        
-        .block-content {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 400;
-            padding: 1rem;
-            line-height: 1.4;
-            font-family: 'akkurat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            text-transform: none !important;
-            border-radius: 0 !important;
-        }
-        
-        /* Responsive: 2 columns on medium screens */
-        @media (max-width: 1024px) {
-            .grid {
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            header {
+                padding: 20px 24px;
+            }
+            
+            .tile-grid {
                 grid-template-columns: repeat(2, 1fr);
+                padding: 0 24px;
+                gap: 12px;
             }
             
-            header {
-                padding: 1.5rem 30px 0 30px;
-                margin-bottom: 3rem;
-            }
-            
-            .site-name {
-                font-size: 1.3rem;
-            }
-            
-            nav a {
-                font-size: 0.95rem;
-            }
-            
-            .linkedin-link img {
-                height: 1.1rem;
+            main {
+                padding-top: 20px;
             }
         }
         
-        /* Responsive: Tablet and smaller */
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             header {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1rem;
-                margin-bottom: 2rem;
-                padding: 1rem 20px 0 20px;
+                padding: 16px 20px;
             }
             
             .site-name {
-                font-size: 1.2rem;
-                flex-shrink: 0;
+                font-size: 0.75rem;
             }
             
-            .header-right {
-                flex-direction: row;
-                align-items: center;
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: flex-end;
-            }
-            
-            nav {
-                gap: 1rem;
-                flex-wrap: wrap;
-            }
-            
-            nav a {
-                font-size: 0.85rem;
-            }
-            
-            .linkedin-link img {
-                height: 1.045rem;
-            }
-            
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-                column-gap: 10px;
-                row-gap: 20px; /* Double the vertical gap */
-            }
-            
-            .block {
-                aspect-ratio: 4/3;
-            }
-            
-            .block-content {
-                font-size: 1.2rem;
-            }
-            
-            .block.films-block .block-content,
-            .block.newsletter-block .block-content,
-            .block.blueprints-block .block-content {
-                padding: 0.3rem 0.6rem;
-            }
-        }
-        
-        /* Responsive: Mobile phones */
-        @media (max-width: 480px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 1rem 15px 0 15px;
-                margin-bottom: 1.5rem;
-            }
-            
-            .site-name {
-                font-size: 1.1rem;
-                width: 100%;
-            }
-            
-            .header-right {
-                width: 100%;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.75rem;
-            }
-            
-            nav {
-                width: 100%;
-                flex-direction: row;
-                gap: 1rem;
-                flex-wrap: wrap;
-            }
-            
-            nav a {
-                font-size: 0.8rem;
-            }
-            
-            .linkedin-link img {
-                height: 0.99rem;
-            }
-            
-            .grid-wrapper {
-                padding: 0 10px;
-            }
-            
-            .grid {
+            .tile-grid {
                 grid-template-columns: 1fr;
-                column-gap: 10px;
-                row-gap: 20px; /* Double the vertical gap */
+                padding: 0 16px;
+                gap: 10px;
             }
             
-            .block {
-                aspect-ratio: 1.5;
+            .tile {
+                aspect-ratio: 16 / 9; /* wider on mobile for better use of space */
+            }
+        }
+        
+        /* Mobile: Always show quilt image on touch devices */
+        @media (hover: none) {
+            .tile-image {
+                opacity: 1;
+                transform: scale(1);
             }
             
-            .block-content {
-                font-size: 1.1rem;
+            .tile-background {
+                opacity: 0;
             }
             
-            .block.films-block .block-content,
-            .block.newsletter-block .block-content,
-            .block.blueprints-block .block-content {
-                padding: 0.25rem 0.5rem;
+            .tile-title {
+                opacity: 0;
             }
             
-            .libutton {
-                width: 100%;
-                max-width: 280px;
-                font-size: 0.8rem;
-                padding: 6px 12px;
-                height: 32px;
+            /* Keep Coming Soon titles visible */
+            .tile--coming-soon .tile-background {
+                opacity: 1;
+            }
+            
+            .tile--coming-soon .tile-title {
+                opacity: 1;
             }
         }
     </style>
@@ -534,43 +325,77 @@
 <body>
     <header>
         <div class="site-name">JAMES RAYBOULD</div>
-        <div class="header-right">
-            <nav>
-                <a href="/about">ABOUT</a>
-            </nav>
+        <div class="nav-links">
+            <a href="/about">ABOUT</a>
             <a href="https://www.linkedin.com/in/raybould" target="_blank" rel="noopener noreferrer" class="linkedin-link">
                 <img src="/linkedin-logo.png" alt="LinkedIn" />
             </a>
         </div>
     </header>
     
-    <div class="grid-wrapper">
-        <div class="grid">
-            <a href="https://jamesraybould.me/films" class="block films-block">
-                <div class="block-content">Films</div>
-            </a>
-            <a href="/books" class="block">
-                <div class="block-content">Books</div>
-            </a>
-            <a href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6767254695498014720" class="block newsletter-block">
-                <div class="block-content">What's the So What?</div>
-            </a>
-            <div class="block" style="cursor: default; opacity: 0.5;">
-                <div class="block-content">Coming Soon</div>
-            </div>
-            <a href="https://blueprints.guide/" class="block blueprints-block">
-                <div class="block-content">Blueprints</div>
-            </a>
-            <div class="block" style="cursor: default; opacity: 0.5;">
-                <div class="block-content">Coming Soon</div>
-            </div>
+    <main>
+        <div class="tile-grid">
+        <a href="https://jamesraybould.me/films" class="tile" style="--tile-color: var(--color-1);">
+            <div class="tile-background"></div>
+            <img 
+                src="/films-quilt.jpg" 
+                alt="Films collection" 
+                class="tile-image"
+                loading="lazy"
+            />
+            <span class="tile-title">Films</span>
+        </a>
+        
+        <a href="/books" class="tile" style="--tile-color: var(--color-2);">
+            <div class="tile-background"></div>
+            <span class="tile-title">Books</span>
+        </a>
+        
+        <a href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6767254695498014720" class="tile" style="--tile-color: var(--color-3);">
+            <div class="tile-background"></div>
+            <img 
+                src="/newsletter-quilt.jpg" 
+                alt="What's the So What? newsletter" 
+                class="tile-image"
+                loading="lazy"
+            />
+            <span class="tile-title">What's the So What?</span>
+        </a>
+        
+        <a href="https://blueprints.guide/" class="tile" style="--tile-color: var(--color-4);">
+            <div class="tile-background"></div>
+            <img 
+                src="/blueprints-quilt.jpg" 
+                alt="Blueprints collection" 
+                class="tile-image"
+                loading="lazy"
+            />
+            <span class="tile-title">Blueprints</span>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/raybould/recent-activity/all/" class="tile" style="--tile-color: var(--color-5);" target="_blank" rel="noopener noreferrer">
+            <div class="tile-background"></div>
+            <img 
+                src="/linkedin-posts-quilt.jpg?v=31" 
+                alt="LinkedIn Posts" 
+                class="tile-image tile-image--linkedin"
+                loading="lazy"
+            />
+            <span class="tile-title">LinkedIn Posts</span>
+        </a>
+        
+        <div class="tile tile--coming-soon" style="--tile-color: var(--color-6); opacity: 0.5;">
+            <div class="tile-background"></div>
+            <span class="tile-title tile-title--muted">Coming Soon</span>
         </div>
-    </div>
+        </div>
+    </main>
+    
     <script>
         (function() {
             // Immediately set background to prevent black screen
-            document.documentElement.style.backgroundColor = '#F5F4F0';
-            document.body.style.backgroundColor = '#F5F4F0';
+            document.documentElement.style.backgroundColor = '#f5f5f4';
+            document.body.style.backgroundColor = '#f5f5f4';
             
             // Hide React app root immediately
             const root = document.getElementById('root');
@@ -583,7 +408,7 @@
             const links = document.querySelectorAll('link[rel="stylesheet"]');
             links.forEach(link => {
                 const href = link.href || link.getAttribute('href') || '';
-                if (href.includes('index-') && href.includes('.css') && !href.includes('fonts') && !href.includes('Crimson')) {
+                if (href.includes('index-') && href.includes('.css') && !href.includes('fonts') && !href.includes('Inter')) {
                     link.remove();
                 }
             });
@@ -598,11 +423,11 @@
             
             // Force body background
             setInterval(function() {
-                if (document.body.style.backgroundColor !== 'rgb(245, 244, 240)') {
-                    document.body.style.backgroundColor = '#F5F4F0';
+                if (document.body.style.backgroundColor !== 'rgb(245, 245, 244)') {
+                    document.body.style.backgroundColor = '#f5f5f4';
                 }
-                if (document.documentElement.style.backgroundColor !== 'rgb(245, 244, 240)') {
-                    document.documentElement.style.backgroundColor = '#F5F4F0';
+                if (document.documentElement.style.backgroundColor !== 'rgb(245, 245, 244)') {
+                    document.documentElement.style.backgroundColor = '#f5f5f4';
                 }
             }, 100);
         })();

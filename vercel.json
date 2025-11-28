@@ -9,6 +9,14 @@
     {
       "source": "/films",
       "destination": "/films.html"
+    },
+    {
+      "source": "/books/(.*)",
+      "destination": "/$1"
+    },
+    {
+      "source": "/books",
+      "destination": "/films.html"
     }
   ]
 }

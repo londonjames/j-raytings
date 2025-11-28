@@ -1,0 +1,1233 @@
+====================================================================================================
+FILMS MISSING ROTTEN TOMATOES SCORES - 2025-11-19 12:45:01
+====================================================================================================
+
+Total films missing RT scores: 243
+  - WITH RT links: 243 films (just need to add score manually)
+  - WITHOUT RT links: 0 films (need both link and score)
+
+
+====================================================================================================
+✅ FILMS WITH RT LINKS (243 films)
+These already have links - just need to add the RT score from the link
+====================================================================================================
+
+Film: The Running Man (2025)
+Your Rating: 7
+RT Link: https://www.rottentomatoes.com/m/the_running_man
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Federer: 12 Final Days (2024)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/federer_12_final_days
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Mean Girls: The Musical (2024)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/mean_girls_the_musical
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Road House (2024)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/road_house
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Road House (2024)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/road_house
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Three Amigos (2024)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/three_amigos
+RT Score: _____%  ← ADD MANUALLY
+
+Film: 48 Hours (2023)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/48_hours
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Are you there god? It's me, Margaret (2023)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/are_you_there_god_its_me_margaret
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Arnold (2023)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/arnold
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Beckham (2023)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/beckham
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Peter Pan and Wendy (2023)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/peter_pan_and_wendy
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Robbie Williams (2023)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/robbie_williams
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Scream II (2023)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/scream_ii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: 6 Days and 7 Nights (2022)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/6_days_and_7_nights
+RT Score: _____%  ← ADD MANUALLY
+
+Film: About Last Night (2022)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/about_last_night
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Confess, Fletch (2022)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/confess_fletch
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Interstellar (2022)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/interstellar
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Ronnie Coleman: The King (2022)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/ronnie_coleman_the_king
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Tar (2022)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/tar
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Year I Started Masturbating (2022)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/the_year_i_started_masturbating
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Uncharted (2022)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/uncharted
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Animal House (2021)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/animal_house
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Don't Look Up (2021)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/dont_look_up
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Encanto (2021)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/encanto
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Untold: Breaking Point) (2021)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/untold_breaking_point
+RT Score: _____%  ← ADD MANUALLY
+
+Film: 1917 (2020)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/1917
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Becoming (2020)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/becoming
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Gentlemen,The (2020)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/gentlementhe
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Miss Americana (2020)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/miss_americana
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Music & Lyrics (2020)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/music_lyrics
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Star Wars: The Rise of Skywalker (2020)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/star_wars_the_rise_of_skywalker
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Simpsons (2020)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/the_simpsons
+RT Score: _____%  ← ADD MANUALLY
+
+Film: El Camino: A Breaking Bad movie (2019)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/el_camino_a_breaking_bad_movie
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Ford  vs. Ferrari (2019)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/ford_vs_ferrari
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Halloween III (2019)
+Your Rating: 6
+RT Link: https://www.rottentomatoes.com/m/halloween_iii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Kim Swims (2019)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/kim_swims
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Yes, God, Yes (2019)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/yes_god_yes
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Ocean's 8 (2018)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/oceans_8
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Paddington 2 (2018)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/paddington_2
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Studio 54: The Documentary (2018)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/studio_54_the_documentary
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Incredibles 2 (2018)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/the_incredibles_2
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Redeemed and the Dominant: Fittest on Earth (2018)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/the_redeemed_and_the_dominant_fittest_on_earth
+RT Score: _____%  ← ADD MANUALLY
+
+Film: When Harry Met Sally (2018)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/when_harry_met_sally
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Born Strong (2017)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/born_strong
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Doctor Strange (2017)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/doctor_strange
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Losing Sight of Shore (2017)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/losing_sight_of_shore
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Moana (2017)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/moana
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Nature Boy (2017)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/nature_boy
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Founder (2017)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/the_founder
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Three Billboards outside Ebbing, Missouri (2017)
+Your Rating: 16
+RT Link: https://www.rottentomatoes.com/m/three_billboards_outside_ebbing_missouri
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Batteries Not Included (2016)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/batteries_not_included
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Crouching Tiger, Hidden Dragon (2016)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/crouching_tiger_hidden_dragon
+RT Score: _____%  ← ADD MANUALLY
+
+Film: David Bowie: The Man Who Changed The World (2016)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/david_bowie_the_man_who_changed_the_world
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Eye in the Sky (2016)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/eye_in_the_sky
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Fantastic Lies (2016)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/fantastic_lies
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Fittest on Earth (2016)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/fittest_on_earth
+RT Score: _____%  ← ADD MANUALLY
+
+Film: My Beautiful Broken Brain (2016)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/my_beautiful_broken_brain
+RT Score: _____%  ← ADD MANUALLY
+
+Film: O.J. Simpson: Made in America (2016)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/oj_simpson_made_in_america
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Hunt for the Wilderpeople (2016)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/the_hunt_for_the_wilderpeople
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Nutty Professor II (2016)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/the_nutty_professor_ii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Thirteen (2016)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/thirteen
+RT Score: _____%  ← ADD MANUALLY
+
+Film: 5 to 7 (2015)
+Your Rating: 7
+RT Link: https://www.rottentomatoes.com/m/5_to_7
+RT Score: _____%  ← ADD MANUALLY
+
+Film: All Work All Play (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/all_work_all_play
+RT Score: _____%  ← ADD MANUALLY
+
+Film: American Sniper (2015)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/american_sniper
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Avengers, The: Age of Ultron (2015)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/avengers_the_age_of_ultron
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Back in Time (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/back_in_time
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Bladerunner (2015)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/bladerunner
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Champs (2015)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/champs
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Champs (2015)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/champs
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Chasing Tyson (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/chasing_tyson
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Eddie Strongman (2015)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/eddie_strongman
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Ex Machina (2015)
+Your Rating: 16
+RT Link: https://www.rottentomatoes.com/m/ex_machina
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Face Off (2015)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/face_off
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Focus (2015)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/focus
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Froning: The Fittest Man in History (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/froning_the_fittest_man_in_history
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Hunger Games, The; The Mockingjay Part 2) (2015)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/hunger_games_the_the_mockingjay_part_2
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Inspired to Ride (2015)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/inspired_to_ride
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Kidpoker (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/kidpoker
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Paddington (2015)
+Your Rating: 16
+RT Link: https://www.rottentomatoes.com/m/paddington
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Resurrection of Jake The Snake Roberts,The (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/resurrection_of_jake_the_snake_robertsthe
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Sole Man (2015)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/sole_man
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Son of a Gun (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/son_of_a_gun
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Steve Jobs: Man in the Machine (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/steve_jobs_man_in_the_machine
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Escort (2015)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/the_escort
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Escort (2015)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/the_escort
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Great Alone (2015)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/the_great_alone
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Top Spin (2015)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/top_spin
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Welcome to Me (2015)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/welcome_to_me
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Welcome to Me (2015)
+Your Rating: 9
+RT Link: https://www.rottentomatoes.com/m/welcome_to_me
+RT Score: _____%  ← ADD MANUALLY
+
+Film: While We're Young (2015)
+Your Rating: 9
+RT Link: https://www.rottentomatoes.com/m/while_were_young
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Bad Words (2014)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/bad_words
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Begin Again (2014)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/begin_again
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Beside Still Waters (2014)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/beside_still_waters
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Desert Runners (2014)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/desert_runners
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Dumb & Dumber (2014)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/dumb_dumber
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Finding Traction (2014)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/finding_traction
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Hunger Games, The: The Mockingjay, Part 1 (2014)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/hunger_games_the_the_mockingjay_part_1
+RT Score: _____%  ← ADD MANUALLY
+
+Film: I Know That Voice (2014)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/i_know_that_voice
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Locke (2014)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/locke
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Lone Survivor (2014)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/lone_survivor
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Maidentrip (2014)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/maidentrip
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Palo Alto (2014)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/palo_alto
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Slaying the Badger (2014)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/slaying_the_badger
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Stop At Nothing: The Lance Armstrong Story (2014)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/stop_at_nothing_the_lance_armstrong_story
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Class of 92 (2014)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/the_class_of_92
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Valley Uprising (2014)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/valley_uprising
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Casting By (2013)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/casting_by
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Fast and the Furious 6: The (2013)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/fast_and_the_furious_6_the
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Mud (2013)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/mud
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Stuck In Love (2013)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/stuck_in_love
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Hunger Games 2: Catching Fire (2013)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/the_hunger_games_2_catching_fire
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Iceman (2013)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/the_iceman
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Iceman (2013)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/the_iceman
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Place Beyond the Pines (2013)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/the_place_beyond_the_pines
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Wall St (2013)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/wall_st
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Zero Dark Thirty (2013)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/zero_dark_thirty
+RT Score: _____%  ← ADD MANUALLY
+
+Film: 21 Jump St (2012)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/21_jump_st
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Celeste and Jesse Forever (2012)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/celeste_and_jesse_forever
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Dr. Strangelove (2012)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/dr_strangelove
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Friends with Kids (2012)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/friends_with_kids
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Jiro Dreams of Sushi (2012)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/jiro_dreams_of_sushi
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Les Miserables (2012)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/les_miserables
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Park Avenue: Money, Power, and the American Dream (2012)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/park_avenue_money_power_and_the_american_dream
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Hunter (2012)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/the_hunter
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Tinker, Taylor, Soldier, Spy (2012)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/tinker_taylor_soldier_spy
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Y Tu Mama Tambien (2012)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/y_tu_mama_tambien
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Crazy, Stupid, Love (2011)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/crazy_stupid_love
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Happy (2011)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/happy
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Mission Impossible 4 (2011)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/mission_impossible_4
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Scream: The Inside Story (2011)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/scream_i
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Senna (2011)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/senna
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Something Ventured (2011)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/something_ventured
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Road Uphill (2011)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/the_road_uphill
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Knight & Day (2010)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/knight_day
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Once Brothers (2010)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/once_brothers
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Percy Jackson and the Olympians: The Lightning Thief (2010)
+Your Rating: 6
+RT Link: https://www.rottentomatoes.com/m/percy_jackson_and_the_olympians_the_lightning_thief
+RT Score: _____%  ← ADD MANUALLY
+
+Film: War Games (2010)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/war_games
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Bronson (2009)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/bronson
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Fast & Furious (4) (2009)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/fast_furious_4
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Food Inc. (2009)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/food_inc
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Hancock (2009)
+Your Rating: 3
+RT Link: https://www.rottentomatoes.com/m/hancock
+RT Score: _____%  ← ADD MANUALLY
+
+Film: I Love You, Man (2009)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/i_love_you_man
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Inglorious Basterds (2009)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/inglorious_basterds
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Michael Jackson's This is It (2009)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/michael_jacksons_this_is_it
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Sunshine Cleaning (2009)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/sunshine_cleaning
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Hurt Locker (2009)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/the_hurt_locker
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Two Lovers (2009)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/two_lovers
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Tyson (2009)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/tyson
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Bigger, Stronger, Faster* (2008)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/bigger_stronger_faster
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Definitely, Maybe (2008)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/definitely_maybe
+RT Score: _____%  ← ADD MANUALLY
+
+Film: In Search of a Midnight Kiss (2008)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/in_search_of_a_midnight_kiss
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Married Life (2008)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/married_life
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Grand (2008)
+Your Rating: 9
+RT Link: https://www.rottentomatoes.com/m/the_grand
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Visitor (2008)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/the_visitor
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Twenty One (2008)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/twenty_one
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Zack & Miri Make A Porno (2008)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/zack_miri_make_a_porno
+RT Score: _____%  ← ADD MANUALLY
+
+Film: 4 Months, 3 Weeks and 2 Days (2007)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/4_months_3_weeks_and_2_days
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Confessions of a Superhero (2007)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/confessions_of_a_superhero
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Goal (2007)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/goal
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Gone, Baby, Gone (2007)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/gone_baby_gone
+RT Score: _____%  ← ADD MANUALLY
+
+Film: I Now Pronounce You Chuck and Larry (2007)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/i_now_pronounce_you_chuck_and_larry
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Mr. and Mrs. Smith (2007)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/mr_and_mrs_smith
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Pirates of the Caribbean 3: At World's End (2007)
+Your Rating: 7
+RT Link: https://www.rottentomatoes.com/m/pirates_of_the_caribbean_3_at_worlds_end
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Spiderman 3 (2007)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/spiderman_3
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Sweeney Todd: The Demon Barber of Fleet St (2007)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/sweeney_todd_the_demon_barber_of_fleet_st
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Akeelah & the Bee (2006)
+Your Rating: 7
+RT Link: https://www.rottentomatoes.com/m/akeelah_the_bee
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Pirates of the Caribbean 2: Dead Man's Chest (2006)
+Your Rating: 9
+RT Link: https://www.rottentomatoes.com/m/pirates_of_the_caribbean_2_dead_mans_chest
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Shut Up and Sing (2006)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/shut_up_and_sing
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Sketches of Frank Gehry (2006)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/sketches_of_frank_gehry
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Van Wilder 2: The Rise of Taj (2006)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/van_wilder_2_the_rise_of_taj
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Why We Fight (2006)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/why_we_fight
+RT Score: _____%  ← ADD MANUALLY
+
+Film: You, Me, and Dupree (2006)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/you_me_and_dupree
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Bastards of the Party (2005)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/bastards_of_the_party
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Fun with Dick & Jane (2005)
+Your Rating: 5
+RT Link: https://www.rottentomatoes.com/m/fun_with_dick_jane
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Oliver Twist (2005)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/oliver_twist
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Inside Man (2005)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/the_inside_man
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Island (2005)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/the_island
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Bridget Jones: Edge of Reason (2004)
+Your Rating: 7
+RT Link: https://www.rottentomatoes.com/m/bridget_jones_edge_of_reason
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Super Size Me (2004)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/super_size_me
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Incredibles (2004)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/the_incredibles
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Touching the Void (2004)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/touching_the_void
+RT Score: _____%  ← ADD MANUALLY
+
+Film: American Pie: The Wedding (2003)
+Your Rating: 7
+RT Link: https://www.rottentomatoes.com/m/american_pie_the_wedding
+RT Score: _____%  ← ADD MANUALLY
+
+Film: American Pie: The Wedding (2003)
+Your Rating: 6
+RT Link: https://www.rottentomatoes.com/m/american_pie_the_wedding
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Bus 174 (2003)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/bus_174
+RT Score: _____%  ← ADD MANUALLY
+
+Film: City of God (2003)
+Your Rating: 16
+RT Link: https://www.rottentomatoes.com/m/city_of_god
+RT Score: _____%  ← ADD MANUALLY
+
+Film: EuroTrip (2003)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/eurotrip
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Kill Bill: Volume 1 (2003)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/kill_bill_volume_1
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Second Uncanny Issue of X-Men! Making 'X2' (2003)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/x_men_i
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Dr T and the Women (2001)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/dr_t_and_the_women
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Harry Potter and the Philosopher's Stone (2001)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/harry_potter_i
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Save The Last Dance (2001)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/save_the_last_dance
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Transformers (2001)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/transformers
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Me, Myself, and Irene (2000)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/me_myself_and_irene
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Mission Impossible II (2000)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/mission_impossible_ii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: O Brother, Where Art Thou? (2000)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/o_brother_where_art_thou
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Perfect Storm (2000)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/the_perfect_storm
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Widow of St. Pierre (2000)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/widow_of_st_pierre
+RT Score: _____%  ← ADD MANUALLY
+
+Film: City of Angels (1998)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/city_of_angels
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Lock, Stock, and Two Smoking Barrels (1998)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/lock_stock_and_two_smoking_barrels
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Next Stop, Wonderland (1998)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/next_stop_wonderland
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Negotiator (1998)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/the_negotiator
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Grosse Point Blank (1997)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/grosse_point_blank
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Private Parts (1997)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/private_parts
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Armitage III: Poly Matrix (1996)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/the_matrix_iii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: James & The Giant Peach (1996)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/james_the_giant_peach
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Twelve Monkeys (1996)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/twelve_monkeys
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Clueless (1995)
+Your Rating: 16
+RT Link: https://www.rottentomatoes.com/m/clueless
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Father of the Bride II (1995)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/father_of_the_bride_ii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Englishman Who Went Up a Mountain (1995)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/the_englishman_who_went_up_a_mountain
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Priscilla, Queen of the Desert (1994)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/priscilla_queen_of_the_desert
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Hot Shots Part Deux (1993)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/hot_shots_part_deux
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Beauty & The Beast (1992)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/beauty_the_beast
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Death Becomes Her (1992)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/death_becomes_her
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Honey, I Blew Up the Kid (1992)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/honey_i_blew_up_the_kid
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Mr. Saturday Night (1992)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/mr_saturday_night
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Bernard and the Genie (1991)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/bernard_and_the_genie
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Naked Gun 2 1/2 (1991)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/naked_gun_2_12
+RT Score: _____%  ← ADD MANUALLY
+
+Film: One Wild Night (Career Opportunities) (1991)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/one_wild_night_career_opportunities
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Back to the Future III (1990)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/back_to_the_future_iii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Prayer of the Rollerboys (1990)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/prayer_of_the_rollerboys
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Young Guns I (1990)
+Your Rating: 11
+RT Link: https://www.rottentomatoes.com/m/young_guns_i
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Back to the Future II (1989)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/back_to_the_future_ii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Honey, I Shrunk the Kids (1989)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/honey_i_shrunk_the_kids
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Karate Kid I (1989)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/the_karate_kid_i
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Karate Kid II (1989)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/the_karate_kid_ii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Karate Kid III (1989)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/the_karate_kid_iii
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Shoot to Kill (Deadly Pursuit) (1988)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/shoot_to_kill_deadly_pursuit
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Total Rebuild (1988)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/total_rebuild
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Planes, Trains and Automobiles (1987)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/planes_trains_and_automobiles
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Paradise Motel (1985)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/paradise_motel
+RT Score: _____%  ← ADD MANUALLY
+
+Film: License to Kill (1984)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/license_to_kill
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Splash (1984)
+Your Rating: 10
+RT Link: https://www.rottentomatoes.com/m/splash
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Professional (1981)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/the_professional
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Star Wars II: The Empire Strikes Back (1980)
+Your Rating: 17
+RT Link: https://www.rottentomatoes.com/m/star_wars_ii_the_empire_strikes_back
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Slapshot (1977)
+Your Rating: 8
+RT Link: https://www.rottentomatoes.com/m/slapshot
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Rocky Marciano Is Dead (1976)
+Your Rating: 13
+RT Link: https://www.rottentomatoes.com/m/rocky_i
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Sting (1974)
+Your Rating: 18
+RT Link: https://www.rottentomatoes.com/m/the_sting
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Blood Sport (1973)
+Your Rating: 14
+RT Link: https://www.rottentomatoes.com/m/blood_sport
+RT Score: _____%  ← ADD MANUALLY
+
+Film: The Good, the Bad, and the Ugly (1966)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/the_good_the_bad_and_the_ugly
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Hot Shots (1956)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/hot_shots
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Snow White and the Seven Dwarfs (1937)
+Your Rating: 12
+RT Link: https://www.rottentomatoes.com/m/snow_white_and_the_seven_dwarfs
+RT Score: _____%  ← ADD MANUALLY
+
+Film: Barbed Wire (1927)
+Your Rating: 6
+RT Link: https://www.rottentomatoes.com/m/barbed_wire
+RT Score: _____%  ← ADD MANUALLY
+
+Film: On the Waterfront (19)
+Your Rating: 15
+RT Link: https://www.rottentomatoes.com/m/on_the_waterfront
+RT Score: _____%  ← ADD MANUALLY
+
+
+====================================================================================================
+END OF LIST
+====================================================================================================

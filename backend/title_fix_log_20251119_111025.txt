@@ -1,0 +1,1319 @@
+================================================================================
+TITLE FORMAT FIX - 2025-11-19 11:10:25
+================================================================================
+Found 326 films with reversed article format
+
+[1/326] Abyss, The → The Abyss
+  Old RT: https://www.rottentomatoes.com/m/abyss_the
+  New RT: https://www.rottentomatoes.com/m/the_abyss
+
+[2/326] Accountant, The → The Accountant
+  Old RT: https://www.rottentomatoes.com/m/accountant_the
+  New RT: https://www.rottentomatoes.com/m/the_accountant
+
+[3/326] Accused, The → The Accused
+  Old RT: https://www.rottentomatoes.com/m/accused_the
+  New RT: https://www.rottentomatoes.com/m/the_accused
+
+[4/326] Adam Project, The → The Adam Project
+  Old RT: https://www.rottentomatoes.com/m/adam_project_the
+  New RT: https://www.rottentomatoes.com/m/the_adam_project
+
+[5/326] African Queen, The → The African Queen
+  Old RT: https://www.rottentomatoes.com/m/african_queen_the
+  New RT: https://www.rottentomatoes.com/m/the_african_queen
+
+[6/326] Alpinist, The → The Alpinist
+  Old RT: https://www.rottentomatoes.com/m/alpinist_the
+  New RT: https://www.rottentomatoes.com/m/the_alpinist
+
+[7/326] Amazing Spider-Man 2, The → The Amazing Spider-Man 2
+  Old RT: https://www.rottentomatoes.com/m/amazing_spider_man_2_the
+  New RT: https://www.rottentomatoes.com/m/the_amazing_spider-man_2
+
+[8/326] Amazing Spider-Man, The → The Amazing Spider-Man
+  Old RT: https://www.rottentomatoes.com/m/amazing_spider_man_the
+  New RT: https://www.rottentomatoes.com/m/the_amazing_spider-man
+
+[9/326] American President, The → The American President
+  Old RT: https://www.rottentomatoes.com/m/american_president_the
+  New RT: https://www.rottentomatoes.com/m/the_american_president
+
+[10/326] Apartment, The → The Apartment
+  Old RT: https://www.rottentomatoes.com/m/apartment_the
+  New RT: https://www.rottentomatoes.com/m/the_apartment
+
+[11/326] Aristrocrats, The → The Aristrocrats
+  Old RT: https://www.rottentomatoes.com/m/aristrocrats_the
+  New RT: https://www.rottentomatoes.com/m/the_aristrocrats
+
+[12/326] Armstrong Lie, The → The Armstrong Lie
+  Old RT: https://www.rottentomatoes.com/m/armstrong_lie_the
+  New RT: https://www.rottentomatoes.com/m/the_armstrong_lie
+
+[13/326] Armstrong Lie, The → The Armstrong Lie
+  Old RT: https://www.rottentomatoes.com/m/armstrong_lie_the
+  New RT: https://www.rottentomatoes.com/m/the_armstrong_lie
+
+[14/326] Arrival, The → The Arrival
+  Old RT: https://www.rottentomatoes.com/m/arrival_the
+  New RT: https://www.rottentomatoes.com/m/the_arrival
+
+[15/326] Assassination of Jesse James, The → The Assassination of Jesse James
+  Old RT: https://www.rottentomatoes.com/m/assassination_of_jesse_james_the
+  New RT: https://www.rottentomatoes.com/m/the_assassination_of_jesse_james
+
+[16/326] Avengers, The → The Avengers
+  Old RT: https://www.rottentomatoes.com/m/avengers_the
+  New RT: https://www.rottentomatoes.com/m/the_avengers
+
+[17/326] Aviator, The → The Aviator
+  Old RT: https://www.rottentomatoes.com/m/aviator_the
+  New RT: https://www.rottentomatoes.com/m/the_aviator
+
+[18/326] BFG, The → The BFG
+  Old RT: https://www.rottentomatoes.com/m/bfg_the
+  New RT: https://www.rottentomatoes.com/m/the_bfg
+
+[19/326] Bank Job, The → The Bank Job
+  Old RT: https://www.rottentomatoes.com/m/bank_job_the
+  New RT: https://www.rottentomatoes.com/m/the_bank_job
+
+[20/326] Banshees of Inisherin, The → The Banshees of Inisherin
+  Old RT: https://www.rottentomatoes.com/m/banshees_of_inisherin_the
+  New RT: https://www.rottentomatoes.com/m/the_banshees_of_inisherin
+
+[21/326] Basketball Diaries, The → The Basketball Diaries
+  Old RT: https://www.rottentomatoes.com/m/basketball_diaries_the
+  New RT: https://www.rottentomatoes.com/m/the_basketball_diaries
+
+[22/326] Beach, The → The Beach
+  Old RT: https://www.rottentomatoes.com/m/beach_the
+  New RT: https://www.rottentomatoes.com/m/the_beach
+
+[23/326] Beautiful Mind, A → A Beautiful Mind
+  Old RT: https://www.rottentomatoes.com/m/beautiful_mind_a
+  New RT: https://www.rottentomatoes.com/m/a_beautiful_mind
+
+[24/326] Big Chill, The → The Big Chill
+  Old RT: https://www.rottentomatoes.com/m/big_chill_the
+  New RT: https://www.rottentomatoes.com/m/the_big_chill
+
+[25/326] Big Short, The → The Big Short
+  Old RT: https://www.rottentomatoes.com/m/big_short_the
+  New RT: https://www.rottentomatoes.com/m/the_big_short
+
+[26/326] Birdcage, The → The Birdcage
+  Old RT: https://www.rottentomatoes.com/m/birdcage_the
+  New RT: https://www.rottentomatoes.com/m/the_birdcage
+
+[27/326] Blair Witch Project, The → The Blair Witch Project
+  Old RT: https://www.rottentomatoes.com/m/blair_witch_project_the
+  New RT: https://www.rottentomatoes.com/m/the_blair_witch_project
+
+[28/326] Blind Side, The → The Blind Side
+  Old RT: https://www.rottentomatoes.com/m/blind_side_the
+  New RT: https://www.rottentomatoes.com/m/the_blind_side
+
+[29/326] Bling Ring, The → The Bling Ring
+  Old RT: https://www.rottentomatoes.com/m/bling_ring_the
+  New RT: https://www.rottentomatoes.com/m/the_bling_ring
+
+[30/326] Bodyguard, The → The Bodyguard
+  Old RT: https://www.rottentomatoes.com/m/bodyguard_the
+  New RT: https://www.rottentomatoes.com/m/the_bodyguard
+
+[31/326] Bone Collector, The → The Bone Collector
+  Old RT: https://www.rottentomatoes.com/m/bone_collector_the
+  New RT: https://www.rottentomatoes.com/m/the_bone_collector
+
+[32/326] Bourne Identity, The → The Bourne Identity
+  Old RT: https://www.rottentomatoes.com/m/bourne_identity_the
+  New RT: https://www.rottentomatoes.com/m/the_bourne_identity
+
+[33/326] Bourne Legacy, The → The Bourne Legacy
+  Old RT: https://www.rottentomatoes.com/m/bourne_legacy_the
+  New RT: https://www.rottentomatoes.com/m/the_bourne_legacy
+
+[34/326] Bourne Supremacy, The → The Bourne Supremacy
+  Old RT: https://www.rottentomatoes.com/m/bourne_supremacy_the
+  New RT: https://www.rottentomatoes.com/m/the_bourne_supremacy
+
+[35/326] Bourne Ultimatum, The → The Bourne Ultimatum
+  Old RT: https://www.rottentomatoes.com/m/bourne_ultimatum_the
+  New RT: https://www.rottentomatoes.com/m/the_bourne_ultimatum
+
+[36/326] Boy Next Door, The → The Boy Next Door
+  Old RT: https://www.rottentomatoes.com/m/boy_next_door_the
+  New RT: https://www.rottentomatoes.com/m/the_boy_next_door
+
+[37/326] Breakfast Club, The → The Breakfast Club
+  Old RT: https://www.rottentomatoes.com/m/breakfast_club_the
+  New RT: https://www.rottentomatoes.com/m/the_breakfast_club
+
+[38/326] Bridge on the River Kwai, The → The Bridge on the River Kwai
+  Old RT: https://www.rottentomatoes.com/m/bridge_on_the_river_kwai_the
+  New RT: https://www.rottentomatoes.com/m/the_bridge_on_the_river_kwai
+
+[39/326] Brothers McMullen, The → The Brothers McMullen
+  Old RT: https://www.rottentomatoes.com/m/brothers_mcmullen_the
+  New RT: https://www.rottentomatoes.com/m/the_brothers_mcmullen
+
+[40/326] Burbs, The → The Burbs
+  Old RT: https://www.rottentomatoes.com/m/burbs_the
+  New RT: https://www.rottentomatoes.com/m/the_burbs
+
+[41/326] Cannonball Run I, The → The Cannonball Run I
+  Old RT: https://www.rottentomatoes.com/m/cannonball_run_i_the
+  New RT: https://www.rottentomatoes.com/m/the_cannonball_run_i
+
+[42/326] Cannonball Run II, The → The Cannonball Run II
+  Old RT: https://www.rottentomatoes.com/m/cannonball_run_ii_the
+  New RT: https://www.rottentomatoes.com/m/the_cannonball_run_ii
+
+[43/326] Chase, The → The Chase
+  Old RT: https://www.rottentomatoes.com/m/chase_the
+  New RT: https://www.rottentomatoes.com/m/the_chase
+
+[44/326] Cider House Rules, The → The Cider House Rules
+  Old RT: https://www.rottentomatoes.com/m/cider_house_rules_the
+  New RT: https://www.rottentomatoes.com/m/the_cider_house_rules
+
+[45/326] Civil Action, A → A Civil Action
+  Old RT: https://www.rottentomatoes.com/m/civil_action_a
+  New RT: https://www.rottentomatoes.com/m/a_civil_action
+
+[46/326] Class of 92, The → The Class of 92
+  Old RT: https://www.rottentomatoes.com/m/class_of_92_the
+  New RT: https://www.rottentomatoes.com/m/the_class_of_92
+
+[47/326] Clockwork Orange, A → A Clockwork Orange
+  Old RT: https://www.rottentomatoes.com/m/clockwork_orange_a
+  New RT: https://www.rottentomatoes.com/m/a_clockwork_orange
+
+[48/326] Color of Money, The → The Color of Money
+  Old RT: https://www.rottentomatoes.com/m/color_of_money_the
+  New RT: https://www.rottentomatoes.com/m/the_color_of_money
+
+[49/326] Commitments, The → The Commitments
+  Old RT: https://www.rottentomatoes.com/m/commitments_the
+  New RT: https://www.rottentomatoes.com/m/the_commitments
+
+[50/326] Constant Gardener, The → The Constant Gardener
+  Old RT: https://www.rottentomatoes.com/m/constant_gardener_the
+  New RT: https://www.rottentomatoes.com/m/the_constant_gardener
+
+[51/326] Cooler, The → The Cooler
+  Old RT: https://www.rottentomatoes.com/m/cooler_the
+  New RT: https://www.rottentomatoes.com/m/the_cooler
+
+[52/326] Craft, The → The Craft
+  Old RT: https://www.rottentomatoes.com/m/craft_the
+  New RT: https://www.rottentomatoes.com/m/the_craft
+
+[53/326] Crow, The → The Crow
+  Old RT: https://www.rottentomatoes.com/m/crow_the
+  New RT: https://www.rottentomatoes.com/m/the_crow
+
+[54/326] Crying Game, The → The Crying Game
+  Old RT: https://www.rottentomatoes.com/m/crying_game_the
+  New RT: https://www.rottentomatoes.com/m/the_crying_game
+
+[55/326] Curious Case of Benjamin Button, The → The Curious Case of Benjamin Button
+  Old RT: https://www.rottentomatoes.com/m/curious_case_of_benjamin_button_the
+  New RT: https://www.rottentomatoes.com/m/the_curious_case_of_benjamin_button
+
+[56/326] Curse of the Were-Rabbit, The → The Curse of the Were-Rabbit
+  Old RT: https://www.rottentomatoes.com/m/curse_of_the_were_rabbit_the
+  New RT: https://www.rottentomatoes.com/m/the_curse_of_the_were-rabbit
+
+[57/326] Cutting Edge, The → The Cutting Edge
+  Old RT: https://www.rottentomatoes.com/m/cutting_edge_the
+  New RT: https://www.rottentomatoes.com/m/the_cutting_edge
+
+[58/326] Dark Crystal, The → The Dark Crystal
+  Old RT: https://www.rottentomatoes.com/m/dark_crystal_the
+  New RT: https://www.rottentomatoes.com/m/the_dark_crystal
+
+[59/326] Dark Knight Rises, The → The Dark Knight Rises
+  Old RT: https://www.rottentomatoes.com/m/dark_knight_rises_the
+  New RT: https://www.rottentomatoes.com/m/the_dark_knight_rises
+
+[60/326] Dark Knight, The → The Dark Knight
+  Old RT: https://www.rottentomatoes.com/m/dark_knight_the
+  New RT: https://www.rottentomatoes.com/m/the_dark_knight
+
+[61/326] Day of the Jackal, The → The Day of the Jackal
+  Old RT: https://www.rottentomatoes.com/m/day_of_the_jackal_the
+  New RT: https://www.rottentomatoes.com/m/the_day_of_the_jackal
+
+[62/326] Descendants, The → The Descendants
+  Old RT: https://www.rottentomatoes.com/m/descendants_the
+  New RT: https://www.rottentomatoes.com/m/the_descendants
+
+[63/326] Devil Wears Prada, The → The Devil Wears Prada
+  Old RT: https://www.rottentomatoes.com/m/devil_wears_prada_the
+  New RT: https://www.rottentomatoes.com/m/the_devil_wears_prada
+
+[64/326] Devil's Own, The → The Devil's Own
+  Old RT: https://www.rottentomatoes.com/m/devils_own_the
+  New RT: https://www.rottentomatoes.com/m/the_devils_own
+
+[65/326] Distinguished Gentleman, The → The Distinguished Gentleman
+  Old RT: https://www.rottentomatoes.com/m/distinguished_gentleman_the
+  New RT: https://www.rottentomatoes.com/m/the_distinguished_gentleman
+
+[66/326] Diving Bell and the Butterfly, The → The Diving Bell and the Butterfly
+  Old RT: https://www.rottentomatoes.com/m/diving_bell_and_the_butterfly_the
+  New RT: https://www.rottentomatoes.com/m/the_diving_bell_and_the_butterfly
+
+[67/326] Door in the Floor, The → The Door in the Floor
+  Old RT: https://www.rottentomatoes.com/m/door_in_the_floor_the
+  New RT: https://www.rottentomatoes.com/m/the_door_in_the_floor
+
+[68/326] Drop, The → The Drop
+  Old RT: https://www.rottentomatoes.com/m/drop_the
+  New RT: https://www.rottentomatoes.com/m/the_drop
+
+[69/326] Duff, The → The Duff
+  Old RT: https://www.rottentomatoes.com/m/duff_the
+  New RT: https://www.rottentomatoes.com/m/the_duff
+
+[70/326] Edge of Seventeen, The → The Edge of Seventeen
+  Old RT: https://www.rottentomatoes.com/m/edge_of_seventeen_the
+  New RT: https://www.rottentomatoes.com/m/the_edge_of_seventeen
+
+[71/326] Edge, The → The Edge
+  Old RT: https://www.rottentomatoes.com/m/edge_the
+  New RT: https://www.rottentomatoes.com/m/the_edge
+
+[72/326] End of the Tour, The → The End of the Tour
+  Old RT: https://www.rottentomatoes.com/m/end_of_the_tour_the
+  New RT: https://www.rottentomatoes.com/m/the_end_of_the_tour
+
+[73/326] English Patient, The → The English Patient
+  Old RT: https://www.rottentomatoes.com/m/english_patient_the
+  New RT: https://www.rottentomatoes.com/m/the_english_patient
+
+[74/326] Englishman Who Went Up a Mountain, The → The Englishman Who Went Up a Mountain
+  Old RT: https://www.rottentomatoes.com/m/englishman_who_went_up_a_mountain_the
+  New RT: https://www.rottentomatoes.com/m/the_englishman_who_went_up_a_mountain
+
+[75/326] Equalizer 2, The → The Equalizer 2
+  Old RT: https://www.rottentomatoes.com/m/equalizer_2_the
+  New RT: https://www.rottentomatoes.com/m/the_equalizer_2
+
+[76/326] Equalizer 3, The → The Equalizer 3
+  Old RT: https://www.rottentomatoes.com/m/equalizer_3_the
+  New RT: https://www.rottentomatoes.com/m/the_equalizer_3
+
+[77/326] Equalizer, The → The Equalizer
+  Old RT: https://www.rottentomatoes.com/m/equalizer_the
+  New RT: https://www.rottentomatoes.com/m/the_equalizer
+
+[78/326] Escort, The → The Escort
+  Old RT: https://www.rottentomatoes.com/m/escort_the
+  New RT: https://www.rottentomatoes.com/m/the_escort
+
+[79/326] Escort, The → The Escort
+  Old RT: https://www.rottentomatoes.com/m/escort_the
+  New RT: https://www.rottentomatoes.com/m/the_escort
+
+[80/326] Ex, The → The Ex
+  Old RT: https://www.rottentomatoes.com/m/ex_the
+  New RT: https://www.rottentomatoes.com/m/the_ex
+
+[81/326] Expendables, The → The Expendables
+  Old RT: https://www.rottentomatoes.com/m/expendables_the
+  New RT: https://www.rottentomatoes.com/m/the_expendables
+
+[82/326] Fabulous Baker Boys, The → The Fabulous Baker Boys
+  Old RT: https://www.rottentomatoes.com/m/fabulous_baker_boys_the
+  New RT: https://www.rottentomatoes.com/m/the_fabulous_baker_boys
+
+[83/326] Fall Guy, The → The Fall Guy
+  Old RT: https://www.rottentomatoes.com/m/fall_guy_the
+  New RT: https://www.rottentomatoes.com/m/the_fall_guy
+
+[84/326] Family Affair, A → A Family Affair
+  Old RT: https://www.rottentomatoes.com/m/family_affair_a
+  New RT: https://www.rottentomatoes.com/m/a_family_affair
+
+[85/326] Family Man, The → The Family Man
+  Old RT: https://www.rottentomatoes.com/m/family_man_the
+  New RT: https://www.rottentomatoes.com/m/the_family_man
+
+[86/326] Family Stone, The → The Family Stone
+  Old RT: https://www.rottentomatoes.com/m/family_stone_the
+  New RT: https://www.rottentomatoes.com/m/the_family_stone
+
+[87/326] Fan, The → The Fan
+  Old RT: https://www.rottentomatoes.com/m/fan_the
+  New RT: https://www.rottentomatoes.com/m/the_fan
+
+[88/326] Fast and the Furious I, The → The Fast and the Furious I
+  Old RT: https://www.rottentomatoes.com/m/fast_and_the_furious_i_the
+  New RT: https://www.rottentomatoes.com/m/the_fast_and_the_furious_i
+
+[89/326] Fault In Our Stars, The → The Fault In Our Stars
+  Old RT: https://www.rottentomatoes.com/m/fault_in_our_stars_the
+  New RT: https://www.rottentomatoes.com/m/the_fault_in_our_stars
+
+[90/326] Few Good Men, A → A Few Good Men
+  Old RT: https://www.rottentomatoes.com/m/few_good_men_a
+  New RT: https://www.rottentomatoes.com/m/a_few_good_men
+
+[91/326] Fifth Element, The → The Fifth Element
+  Old RT: https://www.rottentomatoes.com/m/fifth_element_the
+  New RT: https://www.rottentomatoes.com/m/the_fifth_element
+
+[92/326] Fighter, The → The Fighter
+  Old RT: https://www.rottentomatoes.com/m/fighter_the
+  New RT: https://www.rottentomatoes.com/m/the_fighter
+
+[93/326] Firm, The → The Firm
+  Old RT: https://www.rottentomatoes.com/m/firm_the
+  New RT: https://www.rottentomatoes.com/m/the_firm
+
+[94/326] First Wives Club, The → The First Wives Club
+  Old RT: https://www.rottentomatoes.com/m/first_wives_club_the
+  New RT: https://www.rottentomatoes.com/m/the_first_wives_club
+
+[95/326] Fly, The → The Fly
+  Old RT: https://www.rottentomatoes.com/m/fly_the
+  New RT: https://www.rottentomatoes.com/m/the_fly
+
+[96/326] Founder, The → The Founder
+  Old RT: https://www.rottentomatoes.com/m/founder_the
+  New RT: https://www.rottentomatoes.com/m/the_founder
+
+[97/326] French Connection, The → The French Connection
+  Old RT: https://www.rottentomatoes.com/m/french_connection_the
+  New RT: https://www.rottentomatoes.com/m/the_french_connection
+
+[98/326] Fugitive, The → The Fugitive
+  Old RT: https://www.rottentomatoes.com/m/fugitive_the
+  New RT: https://www.rottentomatoes.com/m/the_fugitive
+
+[99/326] Full Monty, The → The Full Monty
+  Old RT: https://www.rottentomatoes.com/m/full_monty_the
+  New RT: https://www.rottentomatoes.com/m/the_full_monty
+
+[100/326] Fundamentals of Caring, The → The Fundamentals of Caring
+  Old RT: https://www.rottentomatoes.com/m/fundamentals_of_caring_the
+  New RT: https://www.rottentomatoes.com/m/the_fundamentals_of_caring
+
+[101/326] Game Changers, The → The Game Changers
+  Old RT: https://www.rottentomatoes.com/m/game_changers_the
+  New RT: https://www.rottentomatoes.com/m/the_game_changers
+
+[102/326] Game, The → The Game
+  Old RT: https://www.rottentomatoes.com/m/game_the
+  New RT: https://www.rottentomatoes.com/m/the_game
+
+[103/326] Giant Mechanical Man, The → The Giant Mechanical Man
+  Old RT: https://www.rottentomatoes.com/m/giant_mechanical_man_the
+  New RT: https://www.rottentomatoes.com/m/the_giant_mechanical_man
+
+[104/326] Girl Next Door, The → The Girl Next Door
+  Old RT: https://www.rottentomatoes.com/m/girl_next_door_the
+  New RT: https://www.rottentomatoes.com/m/the_girl_next_door
+
+[105/326] Girl With the Dragon Tattoo, The → The Girl With the Dragon Tattoo
+  Old RT: https://www.rottentomatoes.com/m/girl_with_the_dragon_tattoo_the
+  New RT: https://www.rottentomatoes.com/m/the_girl_with_the_dragon_tattoo
+
+[106/326] Girl on the Train, The → The Girl on the Train
+  Old RT: https://www.rottentomatoes.com/m/girl_on_the_train_the
+  New RT: https://www.rottentomatoes.com/m/the_girl_on_the_train
+
+[107/326] Godfather II, The → The Godfather II
+  Old RT: https://www.rottentomatoes.com/m/godfather_ii_the
+  New RT: https://www.rottentomatoes.com/m/the_godfather_ii
+
+[108/326] Godfather III, The → The Godfather III
+  Old RT: https://www.rottentomatoes.com/m/godfather_iii_the
+  New RT: https://www.rottentomatoes.com/m/the_godfather_iii
+
+[109/326] Godfather, The → The Godfather
+  Old RT: https://www.rottentomatoes.com/m/godfather_the
+  New RT: https://www.rottentomatoes.com/m/the_godfather
+
+[110/326] Golden Child, The → The Golden Child
+  Old RT: https://www.rottentomatoes.com/m/golden_child_the
+  New RT: https://www.rottentomatoes.com/m/the_golden_child
+
+[111/326] Good Son, The → The Good Son
+  Old RT: https://www.rottentomatoes.com/m/good_son_the
+  New RT: https://www.rottentomatoes.com/m/the_good_son
+
+[112/326] Good, the Bad, and the Ugly, The → The Good, the Bad, and the Ugly
+  Old RT: https://www.rottentomatoes.com/m/good_the_bad_and_the_ugly_the
+  New RT: https://www.rottentomatoes.com/m/the_good_the_bad_and_the_ugly
+
+[113/326] Goods, The → The Goods
+  Old RT: https://www.rottentomatoes.com/m/goods_the
+  New RT: https://www.rottentomatoes.com/m/the_goods
+
+[114/326] Graduate, The → The Graduate
+  Old RT: https://www.rottentomatoes.com/m/graduate_the
+  New RT: https://www.rottentomatoes.com/m/the_graduate
+
+[115/326] Grand, The → The Grand
+  Old RT: https://www.rottentomatoes.com/m/grand_the
+  New RT: https://www.rottentomatoes.com/m/the_grand
+
+[116/326] Grapes of Wrath, The → The Grapes of Wrath
+  Old RT: https://www.rottentomatoes.com/m/grapes_of_wrath_the
+  New RT: https://www.rottentomatoes.com/m/the_grapes_of_wrath
+
+[117/326] Gray Man, The → The Gray Man
+  Old RT: https://www.rottentomatoes.com/m/gray_man_the
+  New RT: https://www.rottentomatoes.com/m/the_gray_man
+
+[118/326] Great Alone, The → The Great Alone
+  Old RT: https://www.rottentomatoes.com/m/great_alone_the
+  New RT: https://www.rottentomatoes.com/m/the_great_alone
+
+[119/326] Great Escape, The → The Great Escape
+  Old RT: https://www.rottentomatoes.com/m/great_escape_the
+  New RT: https://www.rottentomatoes.com/m/the_great_escape
+
+[120/326] Greatest Night in Pop, The → The Greatest Night in Pop
+  Old RT: https://www.rottentomatoes.com/m/greatest_night_in_pop_the
+  New RT: https://www.rottentomatoes.com/m/the_greatest_night_in_pop
+
+[121/326] Guardian, The → The Guardian
+  Old RT: https://www.rottentomatoes.com/m/guardian_the
+  New RT: https://www.rottentomatoes.com/m/the_guardian
+
+[122/326] Hand That Rocks The Cradle, The → The Hand That Rocks The Cradle
+  Old RT: https://www.rottentomatoes.com/m/hand_that_rocks_the_cradle_the
+  New RT: https://www.rottentomatoes.com/m/the_hand_that_rocks_the_cradle
+
+[123/326] Hangover, The → The Hangover
+  Old RT: https://www.rottentomatoes.com/m/hangover_the
+  New RT: https://www.rottentomatoes.com/m/the_hangover
+
+[124/326] Hard Way, The → The Hard Way
+  Old RT: https://www.rottentomatoes.com/m/hard_way_the
+  New RT: https://www.rottentomatoes.com/m/the_hard_way
+
+[125/326] Heart of the Game, The → The Heart of the Game
+  Old RT: https://www.rottentomatoes.com/m/heart_of_the_game_the
+  New RT: https://www.rottentomatoes.com/m/the_heart_of_the_game
+
+[126/326] Heartbreak Kid, The → The Heartbreak Kid
+  Old RT: https://www.rottentomatoes.com/m/heartbreak_kid_the
+  New RT: https://www.rottentomatoes.com/m/the_heartbreak_kid
+
+[127/326] History Boys, The → The History Boys
+  Old RT: https://www.rottentomatoes.com/m/history_boys_the
+  New RT: https://www.rottentomatoes.com/m/the_history_boys
+
+[128/326] Hoax, The → The Hoax
+  Old RT: https://www.rottentomatoes.com/m/hoax_the
+  New RT: https://www.rottentomatoes.com/m/the_hoax
+
+[129/326] Holiday, The → The Holiday
+  Old RT: https://www.rottentomatoes.com/m/holiday_the
+  New RT: https://www.rottentomatoes.com/m/the_holiday
+
+[130/326] Horse Whisperer, The → The Horse Whisperer
+  Old RT: https://www.rottentomatoes.com/m/horse_whisperer_the
+  New RT: https://www.rottentomatoes.com/m/the_horse_whisperer
+
+[131/326] Hot Chick, The → The Hot Chick
+  Old RT: https://www.rottentomatoes.com/m/hot_chick_the
+  New RT: https://www.rottentomatoes.com/m/the_hot_chick
+
+[132/326] Hudsucker Proxy, The → The Hudsucker Proxy
+  Old RT: https://www.rottentomatoes.com/m/hudsucker_proxy_the
+  New RT: https://www.rottentomatoes.com/m/the_hudsucker_proxy
+
+[133/326] Human Stain, The → The Human Stain
+  Old RT: https://www.rottentomatoes.com/m/human_stain_the
+  New RT: https://www.rottentomatoes.com/m/the_human_stain
+
+[134/326] Hunchback of Notre Dame, The → The Hunchback of Notre Dame
+  Old RT: https://www.rottentomatoes.com/m/hunchback_of_notre_dame_the
+  New RT: https://www.rottentomatoes.com/m/the_hunchback_of_notre_dame
+
+[135/326] Hunger Games 2: Catching Fire, The → The Hunger Games 2: Catching Fire
+  Old RT: https://www.rottentomatoes.com/m/hunger_games_2_catching_fire_the
+  New RT: https://www.rottentomatoes.com/m/the_hunger_games_2_catching_fire
+
+[136/326] Hunger Games, The → The Hunger Games
+  Old RT: https://www.rottentomatoes.com/m/hunger_games_the
+  New RT: https://www.rottentomatoes.com/m/the_hunger_games
+
+[137/326] Hunt for Red October, The → The Hunt for Red October
+  Old RT: https://www.rottentomatoes.com/m/hunt_for_red_october_the
+  New RT: https://www.rottentomatoes.com/m/the_hunt_for_red_october
+
+[138/326] Hunt for the Wilderpeople, The → The Hunt for the Wilderpeople
+  Old RT: https://www.rottentomatoes.com/m/hunt_for_the_wilderpeople_the
+  New RT: https://www.rottentomatoes.com/m/the_hunt_for_the_wilderpeople
+
+[139/326] Hunted, The → The Hunted
+  Old RT: https://www.rottentomatoes.com/m/hunted_the
+  New RT: https://www.rottentomatoes.com/m/the_hunted
+
+[140/326] Hunter, The → The Hunter
+  Old RT: https://www.rottentomatoes.com/m/hunter_the
+  New RT: https://www.rottentomatoes.com/m/the_hunter
+
+[141/326] Hurt Locker, The → The Hurt Locker
+  Old RT: https://www.rottentomatoes.com/m/hurt_locker_the
+  New RT: https://www.rottentomatoes.com/m/the_hurt_locker
+
+[142/326] Ice Storm, The → The Ice Storm
+  Old RT: https://www.rottentomatoes.com/m/ice_storm_the
+  New RT: https://www.rottentomatoes.com/m/the_ice_storm
+
+[143/326] Iceman, The → The Iceman
+  Old RT: https://www.rottentomatoes.com/m/iceman_the
+  New RT: https://www.rottentomatoes.com/m/the_iceman
+
+[144/326] Iceman, The → The Iceman
+  Old RT: https://www.rottentomatoes.com/m/iceman_the
+  New RT: https://www.rottentomatoes.com/m/the_iceman
+
+[145/326] Idea of You, The → The Idea of You
+  Old RT: https://www.rottentomatoes.com/m/idea_of_you_the
+  New RT: https://www.rottentomatoes.com/m/the_idea_of_you
+
+[146/326] Ides of March, The → The Ides of March
+  Old RT: https://www.rottentomatoes.com/m/ides_of_march_the
+  New RT: https://www.rottentomatoes.com/m/the_ides_of_march
+
+[147/326] Imitation Game, The → The Imitation Game
+  Old RT: https://www.rottentomatoes.com/m/imitation_game_the
+  New RT: https://www.rottentomatoes.com/m/the_imitation_game
+
+[148/326] Imposter, The → The Imposter
+  Old RT: https://www.rottentomatoes.com/m/imposter_the
+  New RT: https://www.rottentomatoes.com/m/the_imposter
+
+[149/326] Inconvenient Truth, An → An Inconvenient Truth
+  Old RT: https://www.rottentomatoes.com/m/inconvenient_truth_an
+  New RT: https://www.rottentomatoes.com/m/an_inconvenient_truth
+
+[150/326] Incredible Hulk, The → The Incredible Hulk
+  Old RT: https://www.rottentomatoes.com/m/incredible_hulk_the
+  New RT: https://www.rottentomatoes.com/m/the_incredible_hulk
+
+[151/326] Incredibles 2, The → The Incredibles 2
+  Old RT: https://www.rottentomatoes.com/m/incredibles_2_the
+  New RT: https://www.rottentomatoes.com/m/the_incredibles_2
+
+[152/326] Incredibles, The → The Incredibles
+  Old RT: https://www.rottentomatoes.com/m/incredibles_the
+  New RT: https://www.rottentomatoes.com/m/the_incredibles
+
+[153/326] Infiltrator, The → The Infiltrator
+  Old RT: https://www.rottentomatoes.com/m/infiltrator_the
+  New RT: https://www.rottentomatoes.com/m/the_infiltrator
+
+[154/326] Informant, The → The Informant
+  Old RT: https://www.rottentomatoes.com/m/informant_the
+  New RT: https://www.rottentomatoes.com/m/the_informant
+
+[155/326] Inside Man, The → The Inside Man
+  Old RT: https://www.rottentomatoes.com/m/inside_man_the
+  New RT: https://www.rottentomatoes.com/m/the_inside_man
+
+[156/326] Insider, The → The Insider
+  Old RT: https://www.rottentomatoes.com/m/insider_the
+  New RT: https://www.rottentomatoes.com/m/the_insider
+
+[157/326] Intern, The → The Intern
+  Old RT: https://www.rottentomatoes.com/m/intern_the
+  New RT: https://www.rottentomatoes.com/m/the_intern
+
+[158/326] Internship, The → The Internship
+  Old RT: https://www.rottentomatoes.com/m/internship_the
+  New RT: https://www.rottentomatoes.com/m/the_internship
+
+[159/326] Invention of Lying, The → The Invention of Lying
+  Old RT: https://www.rottentomatoes.com/m/invention_of_lying_the
+  New RT: https://www.rottentomatoes.com/m/the_invention_of_lying
+
+[160/326] Invisible Guest, The → The Invisible Guest
+  Old RT: https://www.rottentomatoes.com/m/invisible_guest_the
+  New RT: https://www.rottentomatoes.com/m/the_invisible_guest
+
+[161/326] Irishman, The → The Irishman
+  Old RT: https://www.rottentomatoes.com/m/irishman_the
+  New RT: https://www.rottentomatoes.com/m/the_irishman
+
+[162/326] Island, The → The Island
+  Old RT: https://www.rottentomatoes.com/m/island_the
+  New RT: https://www.rottentomatoes.com/m/the_island
+
+[163/326] Italian Job, The → The Italian Job
+  Old RT: https://www.rottentomatoes.com/m/italian_job_the
+  New RT: https://www.rottentomatoes.com/m/the_italian_job
+
+[164/326] Jackal, The → The Jackal
+  Old RT: https://www.rottentomatoes.com/m/jackal_the
+  New RT: https://www.rottentomatoes.com/m/the_jackal
+
+[165/326] January Man, The → The January Man
+  Old RT: https://www.rottentomatoes.com/m/january_man_the
+  New RT: https://www.rottentomatoes.com/m/the_january_man
+
+[166/326] Jewel of the Nile, The → The Jewel of the Nile
+  Old RT: https://www.rottentomatoes.com/m/jewel_of_the_nile_the
+  New RT: https://www.rottentomatoes.com/m/the_jewel_of_the_nile
+
+[167/326] Jungle Book, The → The Jungle Book
+  Old RT: https://www.rottentomatoes.com/m/jungle_book_the
+  New RT: https://www.rottentomatoes.com/m/the_jungle_book
+
+[168/326] Karate Kid I, The → The Karate Kid I
+  Old RT: https://www.rottentomatoes.com/m/karate_kid_i_the
+  New RT: https://www.rottentomatoes.com/m/the_karate_kid_i
+
+[169/326] Karate Kid II, The → The Karate Kid II
+  Old RT: https://www.rottentomatoes.com/m/karate_kid_ii_the
+  New RT: https://www.rottentomatoes.com/m/the_karate_kid_ii
+
+[170/326] Karate Kid III, The → The Karate Kid III
+  Old RT: https://www.rottentomatoes.com/m/karate_kid_iii_the
+  New RT: https://www.rottentomatoes.com/m/the_karate_kid_iii
+
+[171/326] Kid from Coney Island, A → A Kid from Coney Island
+  Old RT: https://www.rottentomatoes.com/m/kid_from_coney_island_a
+  New RT: https://www.rottentomatoes.com/m/a_kid_from_coney_island
+
+[172/326] King of Kong, The → The King of Kong
+  Old RT: https://www.rottentomatoes.com/m/king_of_kong_the
+  New RT: https://www.rottentomatoes.com/m/the_king_of_kong
+
+[173/326] King's Speech, The → The King's Speech
+  Old RT: https://www.rottentomatoes.com/m/kings_speech_the
+  New RT: https://www.rottentomatoes.com/m/the_kings_speech
+
+[174/326] Kings of Summer, The → The Kings of Summer
+  Old RT: https://www.rottentomatoes.com/m/kings_of_summer_the
+  New RT: https://www.rottentomatoes.com/m/the_kings_of_summer
+
+[175/326] Knight's Tale, A → A Knight's Tale
+  Old RT: https://www.rottentomatoes.com/m/knights_tale_a
+  New RT: https://www.rottentomatoes.com/m/a_knights_tale
+
+[176/326] Last Boy Scout, The → The Last Boy Scout
+  Old RT: https://www.rottentomatoes.com/m/last_boy_scout_the
+  New RT: https://www.rottentomatoes.com/m/the_last_boy_scout
+
+[177/326] Last King of Scotland, The → The Last King of Scotland
+  Old RT: https://www.rottentomatoes.com/m/last_king_of_scotland_the
+  New RT: https://www.rottentomatoes.com/m/the_last_king_of_scotland
+
+[178/326] Last of the Mohicans, The → The Last of the Mohicans
+  Old RT: https://www.rottentomatoes.com/m/last_of_the_mohicans_the
+  New RT: https://www.rottentomatoes.com/m/the_last_of_the_mohicans
+
+[179/326] League of Their Own, A → A League of Their Own
+  Old RT: https://www.rottentomatoes.com/m/league_of_their_own_a
+  New RT: https://www.rottentomatoes.com/m/a_league_of_their_own
+
+[180/326] Legend of Bagger Vance, The → The Legend of Bagger Vance
+  Old RT: https://www.rottentomatoes.com/m/legend_of_bagger_vance_the
+  New RT: https://www.rottentomatoes.com/m/the_legend_of_bagger_vance
+
+[181/326] Lego Movie, The → The Lego Movie
+  Old RT: https://www.rottentomatoes.com/m/lego_movie_the
+  New RT: https://www.rottentomatoes.com/m/the_lego_movie
+
+[182/326] Limey, The → The Limey
+  Old RT: https://www.rottentomatoes.com/m/limey_the
+  New RT: https://www.rottentomatoes.com/m/the_limey
+
+[183/326] Lincoln Lawyer, The → The Lincoln Lawyer
+  Old RT: https://www.rottentomatoes.com/m/lincoln_lawyer_the
+  New RT: https://www.rottentomatoes.com/m/the_lincoln_lawyer
+
+[184/326] Lion King, The → The Lion King
+  Old RT: https://www.rottentomatoes.com/m/lion_king_the
+  New RT: https://www.rottentomatoes.com/m/the_lion_king
+
+[185/326] Little Mermaid, The → The Little Mermaid
+  Old RT: https://www.rottentomatoes.com/m/little_mermaid_the
+  New RT: https://www.rottentomatoes.com/m/the_little_mermaid
+
+[186/326] Little Mermaid, The → The Little Mermaid
+  Old RT: https://www.rottentomatoes.com/m/little_mermaid_the
+  New RT: https://www.rottentomatoes.com/m/the_little_mermaid
+
+[187/326] Little Mermaid, The → The Little Mermaid
+  Old RT: https://www.rottentomatoes.com/m/little_mermaid_the
+  New RT: https://www.rottentomatoes.com/m/the_little_mermaid
+
+[188/326] Lives of Others, The → The Lives of Others
+  Old RT: https://www.rottentomatoes.com/m/lives_of_others_the
+  New RT: https://www.rottentomatoes.com/m/the_lives_of_others
+
+[189/326] Living Daylights, The → The Living Daylights
+  Old RT: https://www.rottentomatoes.com/m/living_daylights_the
+  New RT: https://www.rottentomatoes.com/m/the_living_daylights
+
+[190/326] Lonely place to die, A → A Lonely place to die
+  Old RT: https://www.rottentomatoes.com/m/lonely_place_to_die_a
+  New RT: https://www.rottentomatoes.com/m/a_lonely_place_to_die
+
+[191/326] Longest Yard, The → The Longest Yard
+  Old RT: https://www.rottentomatoes.com/m/longest_yard_the
+  New RT: https://www.rottentomatoes.com/m/the_longest_yard
+
+[192/326] Lost Boys, The → The Lost Boys
+  Old RT: https://www.rottentomatoes.com/m/lost_boys_the
+  New RT: https://www.rottentomatoes.com/m/the_lost_boys
+
+[193/326] Lost City, The → The Lost City
+  Old RT: https://www.rottentomatoes.com/m/lost_city_the
+  New RT: https://www.rottentomatoes.com/m/the_lost_city
+
+[194/326] Majestic, The → The Majestic
+  Old RT: https://www.rottentomatoes.com/m/majestic_the
+  New RT: https://www.rottentomatoes.com/m/the_majestic
+
+[195/326] Maltese Falcon, The → The Maltese Falcon
+  Old RT: https://www.rottentomatoes.com/m/maltese_falcon_the
+  New RT: https://www.rottentomatoes.com/m/the_maltese_falcon
+
+[196/326] Man With the Golden Gun, The → The Man With the Golden Gun
+  Old RT: https://www.rottentomatoes.com/m/man_with_the_golden_gun_the
+  New RT: https://www.rottentomatoes.com/m/the_man_with_the_golden_gun
+
+[197/326] Man Without a Face, The → The Man Without a Face
+  Old RT: https://www.rottentomatoes.com/m/man_without_a_face_the
+  New RT: https://www.rottentomatoes.com/m/the_man_without_a_face
+
+[198/326] Man for  All Seasons, A → A Man for  All Seasons
+  Old RT: https://www.rottentomatoes.com/m/man_for_all_seasons_a
+  New RT: https://www.rottentomatoes.com/m/a_man_for_all_seasons
+
+[199/326] Man in the Iron Mask, The → The Man in the Iron Mask
+  Old RT: https://www.rottentomatoes.com/m/man_in_the_iron_mask_the
+  New RT: https://www.rottentomatoes.com/m/the_man_in_the_iron_mask
+
+[200/326] Mask of Zorro I, The → The Mask of Zorro I
+  Old RT: https://www.rottentomatoes.com/m/mask_of_zorro_i_the
+  New RT: https://www.rottentomatoes.com/m/the_mask_of_zorro_i
+
+[201/326] Mask, The → The Mask
+  Old RT: https://www.rottentomatoes.com/m/mask_the
+  New RT: https://www.rottentomatoes.com/m/the_mask
+
+[202/326] Master, The → The Master
+  Old RT: https://www.rottentomatoes.com/m/master_the
+  New RT: https://www.rottentomatoes.com/m/the_master
+
+[203/326] Matador, The → The Matador
+  Old RT: https://www.rottentomatoes.com/m/matador_the
+  New RT: https://www.rottentomatoes.com/m/the_matador
+
+[204/326] Matador, The → The Matador
+  Old RT: https://www.rottentomatoes.com/m/matador_the
+  New RT: https://www.rottentomatoes.com/m/the_matador
+
+[205/326] Matrix III, The → The Matrix III
+  Old RT: https://www.rottentomatoes.com/m/matrix_iii_the
+  New RT: https://www.rottentomatoes.com/m/the_matrix_iii
+
+[206/326] Matrix, The → The Matrix
+  Old RT: https://www.rottentomatoes.com/m/matrix_the
+  New RT: https://www.rottentomatoes.com/m/the_matrix
+
+[207/326] Menu, The → The Menu
+  Old RT: https://www.rottentomatoes.com/m/menu_the
+  New RT: https://www.rottentomatoes.com/m/the_menu
+
+[208/326] Mighty Ducks, The → The Mighty Ducks
+  Old RT: https://www.rottentomatoes.com/m/mighty_ducks_the
+  New RT: https://www.rottentomatoes.com/m/the_mighty_ducks
+
+[209/326] Mirror Has Two Faces, The → The Mirror Has Two Faces
+  Old RT: https://www.rottentomatoes.com/m/mirror_has_two_faces_the
+  New RT: https://www.rottentomatoes.com/m/the_mirror_has_two_faces
+
+[210/326] Money Pit, The → The Money Pit
+  Old RT: https://www.rottentomatoes.com/m/money_pit_the
+  New RT: https://www.rottentomatoes.com/m/the_money_pit
+
+[211/326] Mosquito Coast, The → The Mosquito Coast
+  Old RT: https://www.rottentomatoes.com/m/mosquito_coast_the
+  New RT: https://www.rottentomatoes.com/m/the_mosquito_coast
+
+[212/326] Namesake, The → The Namesake
+  Old RT: https://www.rottentomatoes.com/m/namesake_the
+  New RT: https://www.rottentomatoes.com/m/the_namesake
+
+[213/326] Natural, The → The Natural
+  Old RT: https://www.rottentomatoes.com/m/natural_the
+  New RT: https://www.rottentomatoes.com/m/the_natural
+
+[214/326] Negotiator, The → The Negotiator
+  Old RT: https://www.rottentomatoes.com/m/negotiator_the
+  New RT: https://www.rottentomatoes.com/m/the_negotiator
+
+[215/326] Net, The → The Net
+  Old RT: https://www.rottentomatoes.com/m/net_the
+  New RT: https://www.rottentomatoes.com/m/the_net
+
+[216/326] Nice Girl Like You, A → A Nice Girl Like You
+  Old RT: https://www.rottentomatoes.com/m/nice_girl_like_you_a
+  New RT: https://www.rottentomatoes.com/m/a_nice_girl_like_you
+
+[217/326] Nice Guys, The → The Nice Guys
+  Old RT: https://www.rottentomatoes.com/m/nice_guys_the
+  New RT: https://www.rottentomatoes.com/m/the_nice_guys
+
+[218/326] Night Before, The → The Night Before
+  Old RT: https://www.rottentomatoes.com/m/night_before_the
+  New RT: https://www.rottentomatoes.com/m/the_night_before
+
+[219/326] Nutty Professor II, The → The Nutty Professor II
+  Old RT: https://www.rottentomatoes.com/m/nutty_professor_ii_the
+  New RT: https://www.rottentomatoes.com/m/the_nutty_professor_ii
+
+[220/326] Nutty Professor, The → The Nutty Professor
+  Old RT: https://www.rottentomatoes.com/m/nutty_professor_the
+  New RT: https://www.rottentomatoes.com/m/the_nutty_professor
+
+[221/326] Object of My Affection, The → The Object of My Affection
+  Old RT: https://www.rottentomatoes.com/m/object_of_my_affection_the
+  New RT: https://www.rottentomatoes.com/m/the_object_of_my_affection
+
+[222/326] Officer and a Gentleman, An → An Officer and a Gentleman
+  Old RT: https://www.rottentomatoes.com/m/officer_and_a_gentleman_an
+  New RT: https://www.rottentomatoes.com/m/an_officer_and_a_gentleman
+
+[223/326] Out-Laws, The → The Out-Laws
+  Old RT: https://www.rottentomatoes.com/m/out_laws_the
+  New RT: https://www.rottentomatoes.com/m/the_out-laws
+
+[224/326] Outfit, The → The Outfit
+  Old RT: https://www.rottentomatoes.com/m/outfit_the
+  New RT: https://www.rottentomatoes.com/m/the_outfit
+
+[225/326] Outsiders, The → The Outsiders
+  Old RT: https://www.rottentomatoes.com/m/outsiders_the
+  New RT: https://www.rottentomatoes.com/m/the_outsiders
+
+[226/326] Overnight, The → The Overnight
+  Old RT: https://www.rottentomatoes.com/m/overnight_the
+  New RT: https://www.rottentomatoes.com/m/the_overnight
+
+[227/326] Parent Trap, The → The Parent Trap
+  Old RT: https://www.rottentomatoes.com/m/parent_trap_the
+  New RT: https://www.rottentomatoes.com/m/the_parent_trap
+
+[228/326] Patriot, The → The Patriot
+  Old RT: https://www.rottentomatoes.com/m/patriot_the
+  New RT: https://www.rottentomatoes.com/m/the_patriot
+
+[229/326] Peacemaker, The → The Peacemaker
+  Old RT: https://www.rottentomatoes.com/m/peacemaker_the
+  New RT: https://www.rottentomatoes.com/m/the_peacemaker
+
+[230/326] Pelican Brief, The → The Pelican Brief
+  Old RT: https://www.rottentomatoes.com/m/pelican_brief_the
+  New RT: https://www.rottentomatoes.com/m/the_pelican_brief
+
+[231/326] People vs. Larry Flynt, The → The People vs. Larry Flynt
+  Old RT: https://www.rottentomatoes.com/m/people_vs_larry_flynt_the
+  New RT: https://www.rottentomatoes.com/m/the_people_vs_larry_flynt
+
+[232/326] Perfect Date, The → The Perfect Date
+  Old RT: https://www.rottentomatoes.com/m/perfect_date_the
+  New RT: https://www.rottentomatoes.com/m/the_perfect_date
+
+[233/326] Perfect Murder, A → A Perfect Murder
+  Old RT: https://www.rottentomatoes.com/m/perfect_murder_a
+  New RT: https://www.rottentomatoes.com/m/a_perfect_murder
+
+[234/326] Perfect Storm, The → The Perfect Storm
+  Old RT: https://www.rottentomatoes.com/m/perfect_storm_the
+  New RT: https://www.rottentomatoes.com/m/the_perfect_storm
+
+[235/326] Perfect World, A → A Perfect World
+  Old RT: https://www.rottentomatoes.com/m/perfect_world_a
+  New RT: https://www.rottentomatoes.com/m/a_perfect_world
+
+[236/326] Perks of being a Wallflower, The → The Perks of being a Wallflower
+  Old RT: https://www.rottentomatoes.com/m/perks_of_being_a_wallflower_the
+  New RT: https://www.rottentomatoes.com/m/the_perks_of_being_a_wallflower
+
+[237/326] Philadelphia Story, The → The Philadelphia Story
+  Old RT: https://www.rottentomatoes.com/m/philadelphia_story_the
+  New RT: https://www.rottentomatoes.com/m/the_philadelphia_story
+
+[238/326] Place Beyond the Pines, The → The Place Beyond the Pines
+  Old RT: https://www.rottentomatoes.com/m/place_beyond_the_pines_the
+  New RT: https://www.rottentomatoes.com/m/the_place_beyond_the_pines
+
+[239/326] Pledge, The → The Pledge
+  Old RT: https://www.rottentomatoes.com/m/pledge_the
+  New RT: https://www.rottentomatoes.com/m/the_pledge
+
+[240/326] Power of One, The → The Power of One
+  Old RT: https://www.rottentomatoes.com/m/power_of_one_the
+  New RT: https://www.rottentomatoes.com/m/the_power_of_one
+
+[241/326] Power of the Dog, The → The Power of the Dog
+  Old RT: https://www.rottentomatoes.com/m/power_of_the_dog_the
+  New RT: https://www.rottentomatoes.com/m/the_power_of_the_dog
+
+[242/326] Practice, The → The Practice
+  Old RT: https://www.rottentomatoes.com/m/practice_the
+  New RT: https://www.rottentomatoes.com/m/the_practice
+
+[243/326] Presidio, The → The Presidio
+  Old RT: https://www.rottentomatoes.com/m/presidio_the
+  New RT: https://www.rottentomatoes.com/m/the_presidio
+
+[244/326] Prestige, The → The Prestige
+  Old RT: https://www.rottentomatoes.com/m/prestige_the
+  New RT: https://www.rottentomatoes.com/m/the_prestige
+
+[245/326] Princess Bride, The → The Princess Bride
+  Old RT: https://www.rottentomatoes.com/m/princess_bride_the
+  New RT: https://www.rottentomatoes.com/m/the_princess_bride
+
+[246/326] Princess Diaries, The → The Princess Diaries
+  Old RT: https://www.rottentomatoes.com/m/princess_diaries_the
+  New RT: https://www.rottentomatoes.com/m/the_princess_diaries
+
+[247/326] Professional, The → The Professional
+  Old RT: https://www.rottentomatoes.com/m/professional_the
+  New RT: https://www.rottentomatoes.com/m/the_professional
+
+[248/326] Proposal, The → The Proposal
+  Old RT: https://www.rottentomatoes.com/m/proposal_the
+  New RT: https://www.rottentomatoes.com/m/the_proposal
+
+[249/326] Queen, The → The Queen
+  Old RT: https://www.rottentomatoes.com/m/queen_the
+  New RT: https://www.rottentomatoes.com/m/the_queen
+
+[250/326] Quiet Place, A → A Quiet Place
+  Old RT: https://www.rottentomatoes.com/m/quiet_place_a
+  New RT: https://www.rottentomatoes.com/m/a_quiet_place
+
+[251/326] Rainmaker, The → The Rainmaker
+  Old RT: https://www.rottentomatoes.com/m/rainmaker_the
+  New RT: https://www.rottentomatoes.com/m/the_rainmaker
+
+[252/326] Reader, The → The Reader
+  Old RT: https://www.rottentomatoes.com/m/reader_the
+  New RT: https://www.rottentomatoes.com/m/the_reader
+
+[253/326] Real Pain, A → A Real Pain
+  Old RT: https://www.rottentomatoes.com/m/real_pain_a
+  New RT: https://www.rottentomatoes.com/m/a_real_pain
+
+[254/326] Recruit, The → The Recruit
+  Old RT: https://www.rottentomatoes.com/m/recruit_the
+  New RT: https://www.rottentomatoes.com/m/the_recruit
+
+[255/326] Redeem Team, The → The Redeem Team
+  Old RT: https://www.rottentomatoes.com/m/redeem_team_the
+  New RT: https://www.rottentomatoes.com/m/the_redeem_team
+
+[256/326] Redeemed and the Dominant: Fittest on Earth, The → The Redeemed and the Dominant: Fittest on Earth
+  Old RT: https://www.rottentomatoes.com/m/redeemed_and_the_dominant_fittest_on_earth_the
+  New RT: https://www.rottentomatoes.com/m/the_redeemed_and_the_dominant_fittest_on_earth
+
+[257/326] Ref, The → The Ref
+  Old RT: https://www.rottentomatoes.com/m/ref_the
+  New RT: https://www.rottentomatoes.com/m/the_ref
+
+[258/326] Remains of the Day, The → The Remains of the Day
+  Old RT: https://www.rottentomatoes.com/m/remains_of_the_day_the
+  New RT: https://www.rottentomatoes.com/m/the_remains_of_the_day
+
+[259/326] Revenant, The → The Revenant
+  Old RT: https://www.rottentomatoes.com/m/revenant_the
+  New RT: https://www.rottentomatoes.com/m/the_revenant
+
+[260/326] Rewrite, The → The Rewrite
+  Old RT: https://www.rottentomatoes.com/m/rewrite_the
+  New RT: https://www.rottentomatoes.com/m/the_rewrite
+
+[261/326] Right Stuff, The → The Right Stuff
+  Old RT: https://www.rottentomatoes.com/m/right_stuff_the
+  New RT: https://www.rottentomatoes.com/m/the_right_stuff
+
+[262/326] River Wild, The → The River Wild
+  Old RT: https://www.rottentomatoes.com/m/river_wild_the
+  New RT: https://www.rottentomatoes.com/m/the_river_wild
+
+[263/326] Road Uphill, The → The Road Uphill
+  Old RT: https://www.rottentomatoes.com/m/road_uphill_the
+  New RT: https://www.rottentomatoes.com/m/the_road_uphill
+
+[264/326] Rock, The → The Rock
+  Old RT: https://www.rottentomatoes.com/m/rock_the
+  New RT: https://www.rottentomatoes.com/m/the_rock
+
+[265/326] Rookie, The → The Rookie
+  Old RT: https://www.rottentomatoes.com/m/rookie_the
+  New RT: https://www.rottentomatoes.com/m/the_rookie
+
+[266/326] Running Man, The → The Running Man
+  Old RT: https://www.rottentomatoes.com/m/running_man_the
+  New RT: https://www.rottentomatoes.com/m/the_running_man
+
+[267/326] Running Man, The → The Running Man
+  Old RT: https://www.rottentomatoes.com/m/the_running_man_2025
+  New RT: https://www.rottentomatoes.com/m/the_running_man
+
+[268/326] Russia House, The → The Russia House
+  Old RT: https://www.rottentomatoes.com/m/russia_house_the
+  New RT: https://www.rottentomatoes.com/m/the_russia_house
+
+[269/326] Saint, The → The Saint
+  Old RT: https://www.rottentomatoes.com/m/saint_the
+  New RT: https://www.rottentomatoes.com/m/the_saint
+
+[270/326] Score, The → The Score
+  Old RT: https://www.rottentomatoes.com/m/score_the
+  New RT: https://www.rottentomatoes.com/m/the_score
+
+[271/326] Sea Beast, The → The Sea Beast
+  Old RT: https://www.rottentomatoes.com/m/sea_beast_the
+  New RT: https://www.rottentomatoes.com/m/the_sea_beast
+
+[272/326] Searchers, The → The Searchers
+  Old RT: https://www.rottentomatoes.com/m/searchers_the
+  New RT: https://www.rottentomatoes.com/m/the_searchers
+
+[273/326] Secret Life of Walter Mitty, The → The Secret Life of Walter Mitty
+  Old RT: https://www.rottentomatoes.com/m/secret_life_of_walter_mitty_the
+  New RT: https://www.rottentomatoes.com/m/the_secret_life_of_walter_mitty
+
+[274/326] Secret of My Success, The → The Secret of My Success
+  Old RT: https://www.rottentomatoes.com/m/secret_of_my_success_the
+  New RT: https://www.rottentomatoes.com/m/the_secret_of_my_success
+
+[275/326] Sentinel, The → The Sentinel
+  Old RT: https://www.rottentomatoes.com/m/sentinel_the
+  New RT: https://www.rottentomatoes.com/m/the_sentinel
+
+[276/326] Shawshank Redemption, The → The Shawshank Redemption
+  Old RT: https://www.rottentomatoes.com/m/shawshank_redemption_the
+  New RT: https://www.rottentomatoes.com/m/the_shawshank_redemption
+
+[277/326] Shining, The → The Shining
+  Old RT: https://www.rottentomatoes.com/m/shining_the
+  New RT: https://www.rottentomatoes.com/m/the_shining
+
+[278/326] Siege, The → The Siege
+  Old RT: https://www.rottentomatoes.com/m/siege_the
+  New RT: https://www.rottentomatoes.com/m/the_siege
+
+[279/326] Silence of the Lambs, The → The Silence of the Lambs
+  Old RT: https://www.rottentomatoes.com/m/silence_of_the_lambs_the
+  New RT: https://www.rottentomatoes.com/m/the_silence_of_the_lambs
+
+[280/326] Simple Plan, A → A Simple Plan
+  Old RT: https://www.rottentomatoes.com/m/simple_plan_a
+  New RT: https://www.rottentomatoes.com/m/a_simple_plan
+
+[281/326] Simpsons, The → The Simpsons
+  Old RT: https://www.rottentomatoes.com/m/simpsons_the
+  New RT: https://www.rottentomatoes.com/m/the_simpsons
+
+[282/326] Sixth Sense, The → The Sixth Sense
+  Old RT: https://www.rottentomatoes.com/m/sixth_sense_the
+  New RT: https://www.rottentomatoes.com/m/the_sixth_sense
+
+[283/326] Skeleton Twins, The → The Skeleton Twins
+  Old RT: https://www.rottentomatoes.com/m/skeleton_twins_the
+  New RT: https://www.rottentomatoes.com/m/the_skeleton_twins
+
+[284/326] Social Dilemma, The → The Social Dilemma
+  Old RT: https://www.rottentomatoes.com/m/social_dilemma_the
+  New RT: https://www.rottentomatoes.com/m/the_social_dilemma
+
+[285/326] Social Network, The → The Social Network
+  Old RT: https://www.rottentomatoes.com/m/social_network_the
+  New RT: https://www.rottentomatoes.com/m/the_social_network
+
+[286/326] Sound of Music, The → The Sound of Music
+  Old RT: https://www.rottentomatoes.com/m/sound_of_music_the
+  New RT: https://www.rottentomatoes.com/m/the_sound_of_music
+
+[287/326] Specialist, The → The Specialist
+  Old RT: https://www.rottentomatoes.com/m/specialist_the
+  New RT: https://www.rottentomatoes.com/m/the_specialist
+
+[288/326] Spectacular Now, The → The Spectacular Now
+  Old RT: https://www.rottentomatoes.com/m/spectacular_now_the
+  New RT: https://www.rottentomatoes.com/m/the_spectacular_now
+
+[289/326] Speed Cubers, The → The Speed Cubers
+  Old RT: https://www.rottentomatoes.com/m/speed_cubers_the
+  New RT: https://www.rottentomatoes.com/m/the_speed_cubers
+
+[290/326] Spy Who Loved Me, The → The Spy Who Loved Me
+  Old RT: https://www.rottentomatoes.com/m/spy_who_loved_me_the
+  New RT: https://www.rottentomatoes.com/m/the_spy_who_loved_me
+
+[291/326] Squid and the Whale, The → The Squid and the Whale
+  Old RT: https://www.rottentomatoes.com/m/squid_and_the_whale_the
+  New RT: https://www.rottentomatoes.com/m/the_squid_and_the_whale
+
+[292/326] Sting, The → The Sting
+  Old RT: https://www.rottentomatoes.com/m/sting_the
+  New RT: https://www.rottentomatoes.com/m/the_sting
+
+[293/326] Substitute, The → The Substitute
+  Old RT: https://www.rottentomatoes.com/m/substitute_the
+  New RT: https://www.rottentomatoes.com/m/the_substitute
+
+[294/326] Sum of All Fears, The → The Sum of All Fears
+  Old RT: https://www.rottentomatoes.com/m/sum_of_all_fears_the
+  New RT: https://www.rottentomatoes.com/m/the_sum_of_all_fears
+
+[295/326] Swimmers, The → The Swimmers
+  Old RT: https://www.rottentomatoes.com/m/swimmers_the
+  New RT: https://www.rottentomatoes.com/m/the_swimmers
+
+[296/326] Switch, The → The Switch
+  Old RT: https://www.rottentomatoes.com/m/switch_the
+  New RT: https://www.rottentomatoes.com/m/the_switch
+
+[297/326] Tailor of Panama, The → The Tailor of Panama
+  Old RT: https://www.rottentomatoes.com/m/tailor_of_panama_the
+  New RT: https://www.rottentomatoes.com/m/the_tailor_of_panama
+
+[298/326] Talented Mr. Ripley, The → The Talented Mr. Ripley
+  Old RT: https://www.rottentomatoes.com/m/talented_mr_ripley_the
+  New RT: https://www.rottentomatoes.com/m/the_talented_mr_ripley
+
+[299/326] Tender Bar, The → The Tender Bar
+  Old RT: https://www.rottentomatoes.com/m/tender_bar_the
+  New RT: https://www.rottentomatoes.com/m/the_tender_bar
+
+[300/326] Terminal, The → The Terminal
+  Old RT: https://www.rottentomatoes.com/m/terminal_the
+  New RT: https://www.rottentomatoes.com/m/the_terminal
+
+[301/326] Terminator, The → The Terminator
+  Old RT: https://www.rottentomatoes.com/m/terminator_the
+  New RT: https://www.rottentomatoes.com/m/the_terminator
+
+[302/326] Theory of Everything, The → The Theory of Everything
+  Old RT: https://www.rottentomatoes.com/m/theory_of_everything_the
+  New RT: https://www.rottentomatoes.com/m/the_theory_of_everything
+
+[303/326] Third Man, The → The Third Man
+  Old RT: https://www.rottentomatoes.com/m/third_man_the
+  New RT: https://www.rottentomatoes.com/m/the_third_man
+
+[304/326] Third Man, The → The Third Man
+  Old RT: https://www.rottentomatoes.com/m/third_man_the
+  New RT: https://www.rottentomatoes.com/m/the_third_man
+
+[305/326] Thomas Crown Affair, The → The Thomas Crown Affair
+  Old RT: https://www.rottentomatoes.com/m/thomas_crown_affair_the
+  New RT: https://www.rottentomatoes.com/m/the_thomas_crown_affair
+
+[306/326] To Do List, The → The To Do List
+  Old RT: https://www.rottentomatoes.com/m/to_do_list_the
+  New RT: https://www.rottentomatoes.com/m/the_to_do_list
+
+[307/326] Town, The → The Town
+  Old RT: https://www.rottentomatoes.com/m/town_the
+  New RT: https://www.rottentomatoes.com/m/the_town
+
+[308/326] Truman Show, The → The Truman Show
+  Old RT: https://www.rottentomatoes.com/m/truman_show_the
+  New RT: https://www.rottentomatoes.com/m/the_truman_show
+
+[309/326] Truth About Cats & Dogs, The → The Truth About Cats & Dogs
+  Old RT: https://www.rottentomatoes.com/m/truth_about_cats_dogs_the
+  New RT: https://www.rottentomatoes.com/m/the_truth_about_cats_dogs
+
+[310/326] Untouchables, The → The Untouchables
+  Old RT: https://www.rottentomatoes.com/m/untouchables_the
+  New RT: https://www.rottentomatoes.com/m/the_untouchables
+
+[311/326] Usual Suspects, The → The Usual Suspects
+  Old RT: https://www.rottentomatoes.com/m/usual_suspects_the
+  New RT: https://www.rottentomatoes.com/m/the_usual_suspects
+
+[312/326] Vanishing, The → The Vanishing
+  Old RT: https://www.rottentomatoes.com/m/vanishing_the
+  New RT: https://www.rottentomatoes.com/m/the_vanishing
+
+[313/326] View to a Kill, A → A View to a Kill
+  Old RT: https://www.rottentomatoes.com/m/view_to_a_kill_a
+  New RT: https://www.rottentomatoes.com/m/a_view_to_a_kill
+
+[314/326] Visitor, The → The Visitor
+  Old RT: https://www.rottentomatoes.com/m/visitor_the
+  New RT: https://www.rottentomatoes.com/m/the_visitor
+
+[315/326] War Room, The → The War Room
+  Old RT: https://www.rottentomatoes.com/m/war_room_the
+  New RT: https://www.rottentomatoes.com/m/the_war_room
+
+[316/326] War of the Roses, The → The War of the Roses
+  Old RT: https://www.rottentomatoes.com/m/war_of_the_roses_the
+  New RT: https://www.rottentomatoes.com/m/the_war_of_the_roses
+
+[317/326] Way Way Back, The → The Way Way Back
+  Old RT: https://www.rottentomatoes.com/m/way_way_back_the
+  New RT: https://www.rottentomatoes.com/m/the_way_way_back
+
+[318/326] Whole Nine Yards, The → The Whole Nine Yards
+  Old RT: https://www.rottentomatoes.com/m/whole_nine_yards_the
+  New RT: https://www.rottentomatoes.com/m/the_whole_nine_yards
+
+[319/326] Whole Nine Yards, The → The Whole Nine Yards
+  Old RT: https://www.rottentomatoes.com/m/whole_nine_yards_the
+  New RT: https://www.rottentomatoes.com/m/the_whole_nine_yards
+
+[320/326] Wild Bunch, The → The Wild Bunch
+  Old RT: https://www.rottentomatoes.com/m/wild_bunch_the
+  New RT: https://www.rottentomatoes.com/m/the_wild_bunch
+
+[321/326] Wizard of Oz, The → The Wizard of Oz
+  Old RT: https://www.rottentomatoes.com/m/wizard_of_oz_the
+  New RT: https://www.rottentomatoes.com/m/the_wizard_of_oz
+
+[322/326] Wizard, The → The Wizard
+  Old RT: https://www.rottentomatoes.com/m/wizard_the
+  New RT: https://www.rottentomatoes.com/m/the_wizard
+
+[323/326] Woodsman, The → The Woodsman
+  Old RT: https://www.rottentomatoes.com/m/woodsman_the
+  New RT: https://www.rottentomatoes.com/m/the_woodsman
+
+[324/326] World is Not Enough, The → The World is Not Enough
+  Old RT: https://www.rottentomatoes.com/m/world_is_not_enough_the
+  New RT: https://www.rottentomatoes.com/m/the_world_is_not_enough
+
+[325/326] Wrestler, The → The Wrestler
+  Old RT: https://www.rottentomatoes.com/m/wrestler_the
+  New RT: https://www.rottentomatoes.com/m/the_wrestler
+
+[326/326] Year I Started Masturbating, The → The Year I Started Masturbating
+  Old RT: https://www.rottentomatoes.com/m/year_i_started_masturbating_the
+  New RT: https://www.rottentomatoes.com/m/the_year_i_started_masturbating
+
+================================================================================
+TITLE FIX COMPLETED
+================================================================================
+Titles fixed: 326
+RT links updated: 326
+Posters updated: 0
+Errors: 0
+
+Log saved to: title_fix_log_20251119_111025.txt
+================================================================================

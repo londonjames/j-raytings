@@ -1,0 +1,274 @@
+====================================================================================================
+IMPORTING RT SCORES FROM GOOGLE SHEETS HTML
+====================================================================================================
+
+✗ Godfather, The (1972): Not found in database
+✗ Social Network, The (2010): Not found in database
+✗ American President, The (1995): Not found in database
+✗ Beautiful Mind, A (2001): Not found in database
+✗ Philadelphia Story, The (1940): Not found in database
+✗ Shawshank Redemption, The (1994): Not found in database
+✗ Sting, The (1974): Not found in database
+✗ Godfather II, The (1974): Not found in database
+✗ Grapes of Wrath, The (1940): Not found in database
+✗ Last King of Scotland, The (2006): Not found in database
+✓ Star Wars II: The Empire Strikes Back (1980): Added 97%
+✗ Big Short, The (2015): Not found in database
+✗ Bourne Ultimatum, The (2007): Not found in database
+✓ City of God (2003): Added 90%
+✓ Clueless (1995): Added 81%
+✗ Crocodile Dundee I (1986): Not found in database
+✗ Dark Knight, The (2008): Not found in database
+✗ Edge of Seventeen, The (2016): Not found in database
+✓ Ex Machina (2015): Added 92%
+✗ King of Kong, The (2007): Not found in database
+✓ Paddington (2015): Added 98%
+✗ Remains of the Day, The (1993): Not found in database
+✓ Three Billboards outside Ebbing, Missouri (2017): Added 92%
+✗ Toy Story III (2010): Not found in database
+✗ Woodsman, The (2004): Not found in database
+✗ Wrestler, The (2008): Not found in database
+✓ Bigger, Stronger, Faster* (2008): Added 100%
+✗ Bridge on the River Kwai, The (1957): Not found in database
+✗ End of the Tour, The (2015): Not found in database
+✓ Gone, Baby, Gone (2007): Added 93%
+✗ Hunger Games 2: Catching Fire, The (2013): Not found in database
+✗ Hunt for the Wilderpeople, The (2016): Not found in database
+✓ Inglorious Basterds (2009): Added 89%
+✓ Jiro Dreams of Sushi (2012): Added 99%
+✓ Locke (2014): Added 91%
+✗ Manchurian Candidate, The (original) (1962): Not found in database
+✓ O.J. Simpson: Made in America (2016): Added 100%
+✓ On the Waterfront (19): Added 98%
+✓ Paddington 2 (2018): Added 100%
+✗ Place Beyond the Pines, The (2013): Not found in database
+✗ Quiet Place, A (2018): Not found in database
+✗ Spectacular Now, The (2013): Not found in database
+✗ Third Man, The (1949): Not found in database
+✗ Visitor, The (2008): Not found in database
+✓ 1917 (2020): Added 90%
+✗ Alpinist, The (2021): Not found in database
+✓ American Sniper (2015): Added 73%
+✗ Armstrong Lie, The (2013): Not found in database
+✓ Arnold (2023): Added 73%
+✓ Bad Words (2014): Added 64%
+✗ Bank Job, The (2008): Not found in database
+✗ Barbie (2008): Not found in database
+✓ Beckham (2023): Added 91%
+✓ Bus 174 (2003): Added 100%
+✗ Descendants, The (2011): Not found in database
+✓ Encanto (2021): Added 90%
+✗ Equalizer, The (2014): Not found in database
+✓ Eye in the Sky (2016): Added 95%
+✗ Fighter, The (2010): Not found in database
+✗ Footloose (1984): Not found in database
+✓ Ford  vs. Ferrari (2019): Added 92%
+✗ Fundamentals of Caring, The (2016): Not found in database
+✗ Gift, The (2015): Not found in database
+✗ Girl With the Dragon Tattoo, The (2011): Not found in database
+✗ Hunt for Red October, The (1990): Not found in database
+✗ Hurt Locker, The (2009): Not found in database
+✗ Ice Storm, The (1997): Not found in database
+✗ Ides of March, The (2011): Not found in database
+✗ Incredibles 2, The (2018): Not found in database
+✓ Interstellar (2022): Added 73%
+✗ Kings of Summer, The (2013): Not found in database
+✗ King's Speech, The (2010): Not found in database
+✗ Lego Movie, The (2014): Not found in database
+✗ Lincoln Lawyer, The (2011): Not found in database
+✗ Lost City, The (2022): Not found in database
+✓ Maidentrip (2014): Added 82%
+✗ Mission Impossible V (2015): Not found in database
+✗ Mission Impossible VII (2023): Not found in database
+✓ Mud (2013): Added 98%
+✗ Perks of being a Wallflower, The (2012): Not found in database
+✗ Power of the Dog, The (2021): Not found in database
+✗ Princess Bride, The (1987): Not found in database
+✗ Real Pain, A (2024): Not found in database
+✗ Redeem Team, The (2022): Not found in database
+✗ Revenant, The (2015): Not found in database
+✓ Senna (2011): Added 92%
+✓ Star Wars: The Rise of Skywalker (2020): Added 52%
+✓ Sweeney Todd: The Demon Barber of Fleet St (2007): Added 86%
+✗ Third Man, The (1949): Not found in database
+✓ Thirteen (2016): Added 97%
+✗ Thor: Raganok (2017): Not found in database
+✗ Theory of Everything, The (2014): Not found in database
+✗ Town, The (2010): Not found in database
+✓ Two Lovers (2009): Added 83%
+✗ Whole Nine Yards, The (2000): Not found in database
+✗ Wolf of Wall Stret, The (2013): Not found in database
+✗ 4 Months, 3 Days, 2 Hours (2008): Not found in database
+✗ Armstrong Lie, The (2013): Not found in database
+✗ Assassination of Jesse James, The (2007): Not found in database
+✗ Avengers, The: Civil War (2016): Not found in database
+✗ Banshees of Inisherin, The (2022): Not found in database
+✓ Becoming (2020): Added 93%
+✗ Blind Side, The (2009): Not found in database
+✓ Casting By (2013): Added 93%
+✓ Champs (2015): Added 56%
+✓ Confess, Fletch (2022): Added 86%
+✓ Crazy, Stupid, Love (2011): Added 78%
+✗ Curious Case of Benjamin Button, The (2008): Not found in database
+✗ Dark Knight Rises, The (2012): Not found in database
+✗ Diving Bell and the Butterfly, The (2007): Not found in database
+✗ Drop, The (2014): Not found in database
+✗ Eight Grade (2018): Not found in database
+✓ El Camino: A Breaking Bad movie (2019): Added 91%
+✗ Equalizer 3, The (2023): Not found in database
+✗ Fall Guy, The (2024): Not found in database
+✓ Fast and the Furious 6: The (2013): Added 70%
+✗ Fault In Our Stars, The (2014): Not found in database
+✗ Founder, The (2017): Not found in database
+✓ Gentlemen,The (2020): Added 74%
+✗ Guardian of the Galaxy (2014): Not found in database
+✗ Hoax, The (2007): Not found in database
+✗ Hunchback of Notre Dame, The (1996): Not found in database
+✗ Hunter, The (2012): Not found in database
+✗ Iceman, The (2013): Not found in database
+✗ Imitation Game, The (2014): Not found in database
+✗ Irishman, The (2019): Not found in database
+✗ Jim and Andy: The Great Beyond (2017): Not found in database
+✓ Les Miserables (2012): Added 71%
+✓ Mission Impossible 4 (2011): Added 93%
+✓ Moana (2017): Added 95%
+✗ Overnight, The (2015): Not found in database
+✗ Reader, The (2008): Not found in database
+✗ Rookie, The (2002): Not found in database
+✗ Secret Life of Walter Mitty, The (2013): Not found in database
+✗ Skeleton Twins, The (2014): Not found in database
+✓ Stuck In Love (2013): Added 58%
+✓ Tar (2022): Added 90%
+✓ Tinker, Taylor, Soldier, Spy (2012): Added 83%
+✓ Top Spin (2015): Added 100%
+✓ Tyson (2009): Added 86%
+✗ War Room, The (1993): Not found in database
+✓ Zero Dark Thirty (2013): Added 92%
+✓ About Last Night (2022): Added 61%
+✗ Accountant, The (2016): Not found in database
+✗ Amazing Spider-Man, The (2012): Not found in database
+✗ BFG, The (2016): Not found in database
+✓ Begin Again (2014): Added 82%
+✗ Big Chill, The (1983): Not found in database
+✓ Celeste and Jesse Forever (2012): Added 68%
+✗ Equalizer 2, The (2018): Not found in database
+✓ Food Inc. (2009): Added 97%
+✗ Giant Mechanical Man, The (2012): Not found in database
+✗ Greatest Night in Pop, The (2024): Not found in database
+✗ Hangover, The (2009): Not found in database
+✓ Hunger Games, The; The Mockingjay Part 2) (2015): Added 70%
+✗ Iceman, The (2013): Not found in database
+✓ In Search of a Midnight Kiss (2008): Added 100%
+✗ Infiltrator, The (2016): Not found in database
+✗ Informant, The (2009): Not found in database
+✗ Intern, The (2015): Not found in database
+✗ Internship, The (2013): Not found in database
+✗ Little Mermaid, The (1989): Not found in database
+✓ Married Life (2008): Added 58%
+✗ Master, The (2012): Not found in database
+✗ Meyerowitz, Stories, The (2022): Not found in database
+✓ Miss Americana (2020): Added 90%
+✗ Nice Guys, The (2016): Not found in database
+✗ Outfit, The (2022): Not found in database
+✓ Palo Alto (2014): Added 71%
+✗ Sea Beast, The (2022): Not found in database
+✗ Short  Game, The (2014): Not found in database
+✗ St Kings (2008): Not found in database
+✓ Sunshine Cleaning (2009): Added 72%
+✓ Touching the Void (2004): Added 93%
+✗ Way Way Back, The (2013): Not found in database
+✗ Widow of St. Pierre, The (2001): Not found in database
+✓ Yes, God, Yes (2019): Added 93%
+✓ Zack & Miri Make A Porno (2008): Added 65%
+✓ 21 Jump St (2012): Added 85%
+✓ Definitely, Maybe (2008): Added 72%
+✓ Don't Look Up (2021): Added 55%
+✗ Fast and the Furious I, The (2001): Not found in database
+✓ Friends with Kids (2012): Added 68%
+✗ Game Changers, The (2018): Not found in database
+✗ Hunger Games, The (2012): Not found in database
+✓ I Love You, Man (2009): Added 82%
+✗ Idea of You, The (2024): Not found in database
+✗ Imposter, The (2012): Not found in database
+✗ Invisible Guest, The (2016): Not found in database
+✗ Lonely place to die, A (2011): Not found in database
+✗ Nick & Nora's Infinite Playlist (2008): Not found in database
+✗ Night Before, The (2015): Not found in database
+✗ Princess Diaries, The (2001): Not found in database
+✓ Robbie Williams (2023): Added 73%
+✓ Son of a Gun (2015): Added 63%
+✗ Sound of Music, The (1965): Not found in database
+✓ Steve Jobs: Man in the Machine (2015): Added 74%
+✓ Welcome to Me (2015): Added 71%
+✗ Adam Project, The (2022): Not found in database
+✗ Amazing Spider-Man 2, The (2014): Not found in database
+✓ Are you there god? It's me, Margaret (2023): Added 99%
+✗ Avengers, The (2012): Not found in database
+✓ Avengers, The: Age of Ultron (2015): Added 74%
+✓ Beside Still Waters (2014): Added 64%
+✗ Bourne Legacy, The (2012): Not found in database
+✓ Bronson (2009): Added 76%
+✓ Doctor Strange (2017): Added 90%
+✗ Duff, The (2015): Not found in database
+✗ Eurotrip (2003): Not found in database
+✗ Expendables, The (2010): Not found in database
+✓ Fast & Furious (4) (2009): Added 28%
+✗ Gray Man, The (2022): Not found in database
+✓ Hunger Games, The: The Mockingjay, Part 1 (2014): Added 65%
+✓ I Now Pronounce You Chuck and Larry (2007): Added 14%
+✓ Knight & Day (2010): Added 53%
+✗ Little Mermaid, The (1989): Not found in database
+✓ Lone Survivor (2014): Added 75%
+✓ Mean Girls: The Musical (2024): Added 69%
+✗ Menu, The (2022): Not found in database
+✓ Michael Jackson's This is It (2009): Added 80%
+✓ Ocean's 8 (2018): Added 67%
+✓ Priscilla, Queen of the Desert (1994): Added 93%
+✗ Ref, The (1994): Not found in database
+✗ Rewrite, The (2014): Not found in database
+✗ Road House (2024 (2024): Not found in database
+✗ Social Dilemma, The (2020): Not found in database
+✗ Speed Cubers, The (2020): Not found in database
+✗ Spencer Confidential (2020): Not found in database
+✗ Swimmers, The (2022): Not found in database
+✗ Tender Bar, The (2021): Not found in database
+✗ Terminal, The (2004): Not found in database
+✗ To Do List, The (2013): Not found in database
+✓ Uncharted (2022): Added 41%
+✓ Van Wilder 2: The Rise of Taj (2006): Added 8%
+✓ Why We Fight (2006): Added 79%
+✗ Bling Ring, The (2013): Not found in database
+✗ Girl Next Door, The (2004): Not found in database
+✗ Girl on the Train, The (2016): Not found in database
+✗ Grand, The (2008): Not found in database
+✗ Longest Yard, The (2005): Not found in database
+✓ While We're Young (2015): Added 84%
+✗ Bad News Bears, The (2022): Not found in database
+✓ Confessions of a Superhero (2007): Added 100%
+✗ Family Affair, A (2024): Not found in database
+✗ First Wive's Club, The (1996): Not found in database
+✓ Focus (2015): Added 57%
+✗ Goods, The (2009): Not found in database
+✗ Incredible Hulk, The (2008): Not found in database
+✗ Kid from Coney Island, A (2019): Not found in database
+✓ Peter Pan and Wendy (2023): Added 64%
+✗ Proposal, The (2009): Not found in database
+✓ Slapshot (1977): Added 83%
+✓ Studio 54: The Documentary (2018): Added 91%
+✗ Switch, The (2010): Not found in database
+✓ Twenty One (2008): Added 31%
+✗ Wall St 2: Money Never Sleeps (2010): Not found in database
+✓ You, Me, and Dupree (2006): Added 22%
+✓ Akeelah & the Bee (2006): Added 83%
+✗ American Pie IV: American Wedding (2012): Not found in database
+✗ Boy Next Door, The (2015): Not found in database
+✗ Invention of Lying, The (2009): Not found in database
+✓ 5 to 7 (2015): Added 67%
+✗ Eurovision Song Content: The Story of Fire Saga (2020): Not found in database
+✗ Heartbreak Kid, The (2007): Not found in database
+✗ Nice Girl Like You, A (2020): Not found in database
+✗ Out-Laws, The (2023): Not found in database
+✓ Percy Jackson and the Olympians: The Lightning Thief (2010): Added 49%
+✗ Perfect Date, The (2019): Not found in database
+✗ Sierra Burgess is a Loser (2019): Not found in database
+✓ Hancock (2009): Added 40%

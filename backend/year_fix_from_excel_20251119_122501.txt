@@ -1,0 +1,75 @@
+================================================================================
+FIXING YEARS FROM EXCEL SOURCE - 2025-11-19 12:25:01
+================================================================================
+
+Reading Excel file: /Users/jamesraybould/Downloads/@londonjames - films, books, and songs (1).xlsx
+Found 1864 films in Excel
+
+Found 1731 films in database
+
+Created lookup for 1833 Excel titles
+
+================================================================================
+COMPARING YEARS
+
+[MISMATCH] Barbie
+  DB year: 2008 → Excel year: 2023
+[MISMATCH] Footloose
+  DB year: 1984 → Excel year: 2011
+[MISMATCH] An Honest Liar
+  DB year: 2014 → Excel year: 2015
+[MISMATCH] King Jack
+  DB year: 2015 → Excel year: 2016
+[MISMATCH] Kodachrome
+  DB year: 2017 → Excel year: 2022
+[MISMATCH] Desert Runners
+  DB year: 2013 → Excel year: 2014
+[MISMATCH] Hope Springs
+  DB year: 2012 → Excel year: 2022
+[MISMATCH] Interview with the Vampire
+  DB year: 1994 → Excel year: 1989
+[MISMATCH] Kim Swims
+  DB year: 2017 → Excel year: 2019
+[MISMATCH] Triple Frontier
+  DB year: 2019 → Excel year: 2022
+[MISMATCH] Driven
+  DB year: 2001 → Excel year: 2014
+[MISMATCH] EuroTrip
+  DB year: 2004 → Excel year: 2003
+[MISMATCH] Ronnie Coleman: The King
+  DB year: 2018 → Excel year: 2022
+[MISMATCH] Sierra Burgess Is a Loser
+  DB year: 2018 → Excel year: 2019
+
+================================================================================
+SUMMARY
+================================================================================
+Matched films: 1281
+Years to fix: 14
+Years to add: 0
+No year in Excel: 705
+Not found in Excel: 450
+
+================================================================================
+APPLYING 14 FIXES
+================================================================================
+✓ Updated Barbie → 2023
+✓ Updated Footloose → 2011
+✓ Updated An Honest Liar → 2015
+✓ Updated King Jack → 2016
+✓ Updated Kodachrome → 2022
+✓ Updated Desert Runners → 2014
+✓ Updated Hope Springs → 2022
+✓ Updated Interview with the Vampire → 1989
+✓ Updated Kim Swims → 2019
+✓ Updated Triple Frontier → 2022
+✓ Updated Driven → 2014
+✓ Updated EuroTrip → 2003
+✓ Updated Ronnie Coleman: The King → 2022
+✓ Updated Sierra Burgess Is a Loser → 2019
+
+Successfully updated 14 films
+
+================================================================================
+Log saved to: year_fix_from_excel_20251119_122501.txt
+================================================================================

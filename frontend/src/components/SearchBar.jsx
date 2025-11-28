@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function SearchBar({ onSearch, totalFilms, filteredFilms, initialSearchTerm = '', hasActiveFilters = false }) {
+function SearchBar({ onSearch, totalFilms, filteredFilms, initialSearchTerm = '', hasActiveFilters = false, itemName = 'films' }) {
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm)
 
   // Update local state when initialSearchTerm changes (e.g., from localStorage)
@@ -22,13 +22,13 @@ function SearchBar({ onSearch, totalFilms, filteredFilms, initialSearchTerm = ''
   const getPlaceholder = () => {
     // When filters are active, show compact version
     if (hasActiveFilters) {
-      return `${filteredFilms} films`
+      return `${filteredFilms} ${itemName}`
     }
 
     if (filteredFilms === totalFilms) {
-      return `Search ${totalFilms.toLocaleString()} films...`
+      return `Search ${totalFilms.toLocaleString()} ${itemName}...`
     } else {
-      return `${filteredFilms.toLocaleString()} films`
+      return `${filteredFilms.toLocaleString()} ${itemName}`
     }
   }
 

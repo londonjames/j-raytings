@@ -1,0 +1,864 @@
+====================================================================================================
+RESTORING RT LINKS FROM GOOGLE SHEETS HTML
+====================================================================================================
+
+Hoop Dreams (1994)
+  OLD: https://www.rottentomatoes.com/m/hoop_dreams
+  NEW: http://www.rottentomatoes.com/m/hoop_dreams/
+
+Almost Famous (2000)
+  OLD: https://www.rottentomatoes.com/m/almost_famous
+  NEW: http://www.rottentomatoes.com/m/almost_famous/
+
+Parasite (2019)
+  OLD: https://www.rottentomatoes.com/m/parasite
+  NEW: https://www.rottentomatoes.com/m/parasite_2019
+
+12 Angry Men (1957)
+  OLD: https://www.rottentomatoes.com/m/12_angry_men
+  NEW: https://www.rottentomatoes.com/m/1000013_12_angry_men
+
+All About Eve (1950)
+  OLD: https://www.rottentomatoes.com/m/all_about_eve
+  NEW: https://www.rottentomatoes.com/m/1000619_all_about_eve
+
+Mystic River (2003)
+  OLD: https://www.rottentomatoes.com/m/mystic_river
+  NEW: http://www.rottentomatoes.com/m/mystic_river/
+
+Boyhood (2014)
+  OLD: https://www.rottentomatoes.com/m/boyhood
+  NEW: http://www.rottentomatoes.com/m/boyhood/
+
+City of God (2003)
+  OLD: https://www.rottentomatoes.com/m/city_of_god
+  NEW: http://www.rottentomatoes.com/m/city_of_god/?search=city%20of%20god
+
+Ex Machina (2015)
+  OLD: https://www.rottentomatoes.com/m/ex_machina
+  NEW: http://www.rottentomatoes.com/m/ex_machina/?search=ex%20machina
+
+Frozen (2013)
+  OLD: https://www.rottentomatoes.com/m/frozen
+  NEW: http://www.rottentomatoes.com/m/frozen_2013/
+
+Mustang (2015)
+  OLD: https://www.rottentomatoes.com/m/mustang
+  NEW: https://www.rottentomatoes.com/m/mustang_2015
+
+Paddington (2015)
+  OLD: https://www.rottentomatoes.com/m/paddington
+  NEW: http://www.rottentomatoes.com/m/paddington_2014/?search=paddington
+
+Bridge of Spies (2015)
+  OLD: https://www.rottentomatoes.com/m/bridge_of_spies
+  NEW: http://www.rottentomatoes.com/m/bridge_of_spies/?search=bridge%20of%20spies
+
+Coda (2021)
+  OLD: https://www.rottentomatoes.com/m/coda
+  NEW: https://www.rottentomatoes.com/m/coda_2021
+
+Creed (2015)
+  OLD: https://www.rottentomatoes.com/m/creed
+  NEW: http://www.rottentomatoes.com/m/creed_2015/
+
+Exit Through The Gift Shop (2010)
+  OLD: https://www.rottentomatoes.com/m/exit_through_the_gift_shop
+  NEW: http://www.rottentomatoes.com/m/exit_through_the_gift_shop/
+
+Her (2013)
+  OLD: https://www.rottentomatoes.com/m/her
+  NEW: http://www.rottentomatoes.com/m/her/
+
+Hugo (2011)
+  OLD: https://www.rottentomatoes.com/m/hugo
+  NEW: http://www.rottentomatoes.com/m/hugo/?search=hugo
+
+Icarus (2017)
+  OLD: https://www.rottentomatoes.com/m/icarus
+  NEW: https://www.rottentomatoes.com/m/icarus_2017
+
+Inglorious Basterds (2009)
+  OLD: https://www.rottentomatoes.com/m/inglorious_basterds
+  NEW: https://www.rottentomatoes.com/m/inglourious_basterds
+
+Joker (2019)
+  OLD: https://www.rottentomatoes.com/m/joker
+  NEW: https://rottentomatoes.com/m/joker_2019
+
+Locke (2014)
+  OLD: https://www.rottentomatoes.com/m/locke
+  NEW: http://www.rottentomatoes.com/m/locke/?search=locke
+
+Moonlight (2016)
+  OLD: https://www.rottentomatoes.com/m/moonlight
+  NEW: https://www.rottentomatoes.com/m/moonlight_2016
+
+Nightcrawler (2014)
+  OLD: https://www.rottentomatoes.com/m/nightcrawler
+  NEW: http://www.rottentomatoes.com/m/nightcrawler
+
+O.J. Simpson: Made in America (2016)
+  OLD: https://www.rottentomatoes.com/m/oj_simpson_made_in_america
+  NEW: https://www.rottentomatoes.com/m/oj_made_in_america
+
+On the Waterfront (19)
+  OLD: https://www.rottentomatoes.com/m/on_the_waterfront
+  NEW: http://www.rottentomatoes.com/m/on_the_waterfront/?search=on%20the%20waterfront
+
+Oppenheimer (2023)
+  OLD: https://www.rottentomatoes.com/m/oppenheimer
+  NEW: https://www.rottentomatoes.com/m/oppenheimer_2023
+
+Sing Street (2016)
+  OLD: https://www.rottentomatoes.com/m/sing_street
+  NEW: https://www.rottentomatoes.com/m/sing_street/?search=sing%20street
+
+Spotlight (2015)
+  OLD: https://www.rottentomatoes.com/m/spotlight
+  NEW: http://www.rottentomatoes.com/m/spotlight_2015/?search=spotlight
+
+A Star is Born (2018)
+  OLD: https://www.rottentomatoes.com/m/star_is_born
+  NEW: https://www.rottentomatoes.com/m/a_star_is_born_2018
+
+Star Wars Episode VII: The Force Awakens (2015)
+  OLD: https://www.rottentomatoes.com/m/star_wars_episode_vii_the_force_awakens
+  NEW: http://www.rottentomatoes.com/m/star_wars_episode_vii_the_force_awakens/
+
+Steve Jobs (2015)
+  OLD: https://www.rottentomatoes.com/m/steve_jobs
+  NEW: http://www.rottentomatoes.com/m/steve_jobs_2015/?search=steve%20jobs
+
+Wonder Woman (2017)
+  OLD: https://www.rottentomatoes.com/m/wonder_woman
+  NEW: https://www.rottentomatoes.com/m/wonder_woman_2017
+
+1917 (2020)
+  OLD: https://www.rottentomatoes.com/m/1917
+  NEW: https://rottentomatoes.com/m/1917_2019
+
+22 Jump Street (2014)
+  OLD: https://www.rottentomatoes.com/m/22_jump_street
+  NEW: http://www.rottentomatoes.com/m/22_jump_street/?search=22%20jump%20street
+
+Air (2023)
+  OLD: https://www.rottentomatoes.com/m/air
+  NEW: https://www.rottentomatoes.com/m/air_2023
+
+American Sniper (2015)
+  OLD: https://www.rottentomatoes.com/m/american_sniper
+  NEW: http://www.rottentomatoes.com/m/american_sniper/?search=american%20sniper
+
+Ant-Man (2015)
+  OLD: https://www.rottentomatoes.com/m/ant_man
+  NEW: https://www.rottentomatoes.com/m/antman
+
+Arnold (2023)
+  OLD: https://www.rottentomatoes.com/m/arnold
+  NEW: https://www.rottentomatoes.com/tv/arnold
+
+Bad Words (2014)
+  OLD: https://www.rottentomatoes.com/m/bad_words
+  NEW: http://www.rottentomatoes.com/m/bad_words/
+
+Barbie (2023)
+  OLD: https://www.rottentomatoes.com/m/barbie
+  NEW: https://www.rottentomatoes.com/m/barbie_2023
+
+Beckham (2023)
+  OLD: https://www.rottentomatoes.com/m/beckham
+  NEW: https://www.rottentomatoes.com/tv/beckham
+
+Birdman (2014)
+  OLD: https://www.rottentomatoes.com/m/birdman
+  NEW: https://www.rottentomatoes.com/m/birdman_2014
+
+Booksmart (2019)
+  OLD: https://www.rottentomatoes.com/m/booksmart
+  NEW: https://rottentomatoes.com/m/booksmart
+
+Chef (2014)
+  OLD: https://www.rottentomatoes.com/m/chef
+  NEW: http://www.rottentomatoes.com/m/chef_2014/?search=chef
+
+Dunkirk (2017)
+  OLD: https://www.rottentomatoes.com/m/dunkirk
+  NEW: https://www.rottentomatoes.com/m/dunkirk_2017
+
+Edge of Tomorrow (2014)
+  OLD: https://www.rottentomatoes.com/m/edge_of_tomorrow
+  NEW: http://www.rottentomatoes.com/m/edge_of_tomorrow/
+
+Encanto (2021)
+  OLD: https://www.rottentomatoes.com/m/encanto
+  NEW: https://www.rottentomatoes.com/m/encanto_2021
+
+Everybody Wants Some!! (2016)
+  OLD: https://www.rottentomatoes.com/m/everybody_wants_some
+  NEW: https://www.rottentomatoes.com/m/everybody_wants_some/?search=eveybody%20wants
+
+Eye in the Sky (2016)
+  OLD: https://www.rottentomatoes.com/m/eye_in_the_sky
+  NEW: https://www.rottentomatoes.com/m/eye_in_the_sky/?search=eye%20in%20the%20sky
+
+Hamilton (2020)
+  OLD: https://www.rottentomatoes.com/m/hamilton
+  NEW: https://www.rottentomatoes.com/m/hamilton_2020
+
+Inside Out (2015)
+  OLD: https://www.rottentomatoes.com/m/inside_out
+  NEW: http://www.rottentomatoes.com/m/inside_out_2015/?search=inside%20out
+
+Interstellar (2022)
+  OLD: https://www.rottentomatoes.com/m/interstellar
+  NEW: https://www.rottentomatoes.com/m/interstellar_2014
+
+Joy Ride (2023)
+  OLD: https://www.rottentomatoes.com/m/joy_ride
+  NEW: https://www.rottentomatoes.com/m/joy_ride_2023
+
+Lion (2016)
+  OLD: https://www.rottentomatoes.com/m/lion
+  NEW: https://www.rottentomatoes.com/m/lion_2016
+
+Maidentrip (2014)
+  OLD: https://www.rottentomatoes.com/m/maidentrip
+  NEW: http://www.rottentomatoes.com/m/maidentrip/?search=maidentrip
+
+The Martian (2015)
+  OLD: https://www.rottentomatoes.com/m/martian
+  NEW: http://www.rottentomatoes.com/m/the_martian/
+
+Monsters University (2013)
+  OLD: https://www.rottentomatoes.com/m/monsters_university
+  NEW: http://www.rottentomatoes.com/m/monsters_university
+
+Mud (2013)
+  OLD: https://www.rottentomatoes.com/m/mud
+  NEW: http://www.rottentomatoes.com/m/mud_2012/
+
+Neighbors (2014)
+  OLD: https://www.rottentomatoes.com/m/neighbors
+  NEW: http://www.rottentomatoes.com/m/neighbors_2014/
+
+Roma (2018)
+  OLD: https://www.rottentomatoes.com/m/roma
+  NEW: https://www.rottentomatoes.com/m/roma_2018
+
+Senna (2011)
+  OLD: https://www.rottentomatoes.com/m/senna
+  NEW: http://www.rottentomatoes.com/m/senna/
+
+Spectre (2015)
+  OLD: https://www.rottentomatoes.com/m/spectre
+  NEW: http://www.rottentomatoes.com/m/spectre_2015/?search=spectre
+
+Spy (2015)
+  OLD: https://www.rottentomatoes.com/m/spy
+  NEW: http://www.rottentomatoes.com/m/spy_2015/?search=spy
+
+Straight Outta Compton (2015)
+  OLD: https://www.rottentomatoes.com/m/straight_outta_compton
+  NEW: http://www.rottentomatoes.com/m/straight_outta_compton/?search=straight%20outta%20compton
+
+Toy Story 4 (2019)
+  OLD: https://www.rottentomatoes.com/m/toy_story_4
+  NEW: https://rottentomatoes.com/m/toy_story_4
+
+American Made (2017)
+  OLD: https://www.rottentomatoes.com/m/american_made
+  NEW: https://www.rottentomatoes.com/m/american_made_2017
+
+Andre The Giant (2018)
+  OLD: https://www.rottentomatoes.com/m/andre_the_giant
+  NEW: https://www.rottentomatoes.com/m/andre_the_giant_2018
+
+Captain America: Civil War (2016)
+  OLD: https://www.rottentomatoes.com/m/captain_america_civil_war
+  NEW: http://www.rottentomatoes.com/m/captain_america_civil_war/?search=captain%20america
+
+Awakenings (1990)
+  OLD: https://www.rottentomatoes.com/m/awakenings
+  NEW: https://www.rottentomatoes.com/m/1032970-awakenings
+
+Becoming (2020)
+  OLD: https://www.rottentomatoes.com/m/becoming
+  NEW: https://www.rottentomatoes.com/m/becoming_2020_2
+
+Black Panther (2018)
+  OLD: https://www.rottentomatoes.com/m/black_panther
+  NEW: https://www.rottentomatoes.com/m/black_panther_2018
+
+Captain America: The Winter Soldier (2014)
+  OLD: https://www.rottentomatoes.com/m/captain_america_the_winter_soldier
+  NEW: http://www.rottentomatoes.com/m/captain_america_the_winter_soldier_2014/
+
+Casting By (2013)
+  OLD: https://www.rottentomatoes.com/m/casting_by
+  NEW: http://www.rottentomatoes.com/m/casting_by/
+
+Champs (2015)
+  OLD: https://www.rottentomatoes.com/m/champs
+  NEW: http://www.rottentomatoes.com/m/champs/?search=champs
+
+Don Jon (2013)
+  OLD: https://www.rottentomatoes.com/m/don_jon
+  NEW: http://www.rottentomatoes.com/m/don_jon/
+
+Don't Think Twice (2016)
+  OLD: https://www.rottentomatoes.com/m/dont_think_twice
+  NEW: https://www.rottentomatoes.com/m/dont_think_twice/
+
+Dune (2021)
+  OLD: https://www.rottentomatoes.com/m/dune
+  NEW: https://www.rottentomatoes.com/m/dune_2021
+
+El Camino: A Breaking Bad movie (2019)
+  OLD: https://www.rottentomatoes.com/m/el_camino_a_breaking_bad_movie
+  NEW: https://rottentomatoes.com/m/el_camino_a_breaking_bad_movie
+
+F9 The Fast Saga (2021)
+  OLD: https://www.rottentomatoes.com/m/f9_the_fast_saga
+  NEW: https://www.rottentomatoes.com/m/f9
+
+Field of Dreams (1989)
+  OLD: https://www.rottentomatoes.com/m/field_of_dreams
+  NEW: https://rottentomatoes.com/m/field_of_dreams
+
+Team Foxcatcher (2016)
+  OLD: https://www.rottentomatoes.com/m/team_foxcatcher
+  NEW: http://www.rottentomatoes.com/m/team_foxcatcher/?search=team%20foxca
+
+Fury (2014)
+  OLD: https://www.rottentomatoes.com/m/fury
+  NEW: http://www.rottentomatoes.com/m/fury_2015/
+
+Gentlemen,The (2020)
+  OLD: https://www.rottentomatoes.com/m/gentlementhe
+  NEW: https://www.rottentomatoes.com/m/the_gentlemen
+
+Gone Girl (2014)
+  OLD: https://www.rottentomatoes.com/m/gone_girl
+  NEW: http://www.rottentomatoes.com/m/gone_girl
+
+Harry Potter and the Deathly Hallows: Part 2 (2011)
+  OLD: https://www.rottentomatoes.com/m/harry_potter_ii
+  NEW: https://www.rottentomatoes.com/m/harry_potter_and_the_deathly_hallows_part_2
+
+Hit Man (2024)
+  OLD: https://www.rottentomatoes.com/m/hit_man
+  NEW: https://www.rottentomatoes.com/m/hit_man_2023
+
+An Honest Liar (2015)
+  OLD: https://www.rottentomatoes.com/m/honest_liar
+  NEW: http://www.rottentomatoes.com/m/an_honest_liar/?search=honest%20liar
+
+Hustle (2022)
+  OLD: https://www.rottentomatoes.com/m/hustle
+  NEW: https://www.rottentomatoes.com/m/hustle_2022
+
+Inspired to Ride (2015)
+  OLD: https://www.rottentomatoes.com/m/inspired_to_ride
+  NEW: http://www.rottentomatoes.com/m/inspired_to_ride/?search=inspired%20to%20ride
+
+King Jack (2016)
+  OLD: https://www.rottentomatoes.com/m/king_jack
+  NEW: https://www.rottentomatoes.com/m/king_jack/
+
+Kodachrome (2022)
+  OLD: https://www.rottentomatoes.com/m/kodachrome
+  NEW: https://www.rottentomatoes.com/m/kodachrome_2018
+
+Marriage Story (2019)
+  OLD: https://www.rottentomatoes.com/m/marriage_story
+  NEW: https://www.rottentomatoes.com/m/marriage_story_2019
+
+Moana (2017)
+  OLD: https://www.rottentomatoes.com/m/moana
+  NEW: https://www.rottentomatoes.com/m/moana_2016
+
+Molly's Game (2017)
+  OLD: https://www.rottentomatoes.com/m/mollys_game
+  NEW: https://www.rottentomatoes.com/m/mollys_game_2017
+
+My Beautiful Broken Brain (2016)
+  OLD: https://www.rottentomatoes.com/m/my_beautiful_broken_brain
+  NEW: http://www.rottentomatoes.com/m/my_beautiful_broken_brain/?search=my%20beautiful%20broken
+
+Sicario (2015)
+  OLD: https://www.rottentomatoes.com/m/sicario
+  NEW: https://www.rottentomatoes.com/m/sicario_2015
+
+Stuck In Love (2013)
+  OLD: https://www.rottentomatoes.com/m/stuck_in_love
+  NEW: http://www.rottentomatoes.com/m/stuck_in_love/?search=stuck%20in%20love
+
+Tar (2022)
+  OLD: https://www.rottentomatoes.com/m/tar
+  NEW: https://www.rottentomatoes.com/m/tar_2022
+
+Ticket to Paradise (2022)
+  OLD: https://www.rottentomatoes.com/m/ticket_to_paradise
+  NEW: https://www.rottentomatoes.com/m/ticket_to_paradise_2022
+
+Tinker, Taylor, Soldier, Spy (2012)
+  OLD: https://www.rottentomatoes.com/m/tinker_taylor_soldier_spy
+  NEW: http://www.rottentomatoes.com/m/tinker_tailor_soldier_spy/
+
+Top Spin (2015)
+  OLD: https://www.rottentomatoes.com/m/top_spin
+  NEW: https://www.rottentomatoes.com/m/top_spin_2014/?search=top%20spin
+
+Tully (2018)
+  OLD: https://www.rottentomatoes.com/m/tully
+  NEW: https://www.rottentomatoes.com/m/tully_2018
+
+Valley Uprising (2014)
+  OLD: https://www.rottentomatoes.com/m/valley_uprising
+  NEW: http://www.rottentomatoes.com/m/valley_uprising/?search=valley%20uprising
+
+Warrior (2011)
+  OLD: https://www.rottentomatoes.com/m/warrior
+  NEW: https://www.rottentomatoes.com/m/1212910-warrior
+
+Zero Dark Thirty (2013)
+  OLD: https://www.rottentomatoes.com/m/zero_dark_thirty
+  NEW: https://www.rottentomatoes.com/m/zero_dark_thirty/?search=zero%20dark
+
+Anyone But You (2024)
+  OLD: https://www.rottentomatoes.com/m/anyone_but_you
+  NEW: https://www.rottentomatoes.com/m/anyone_but_you_2023
+
+Barbie (2023)
+  OLD: https://www.rottentomatoes.com/m/barbie
+  NEW: https://www.rottentomatoes.com/m/barbie_2023
+
+Begin Again (2014)
+  OLD: https://www.rottentomatoes.com/m/begin_again
+  NEW: http://www.rottentomatoes.com/m/begin_again_2013/
+
+Captain America: Civil War (2016)
+  OLD: https://www.rottentomatoes.com/m/captain_america_civil_war
+  NEW: http://www.rottentomatoes.com/m/captain_america_civil_war/?search=captain%20america
+
+Champs (2015)
+  OLD: https://www.rottentomatoes.com/m/champs
+  NEW: http://www.rottentomatoes.com/m/champs/?search=champs
+
+Desert Runners (2014)
+  OLD: https://www.rottentomatoes.com/m/desert_runners
+  NEW: http://www.rottentomatoes.com/m/desert_runners_2013/?search=desert%20runner
+
+Field of Dreams (1989)
+  OLD: https://www.rottentomatoes.com/m/field_of_dreams
+  NEW: https://rottentomatoes.com/m/field_of_dreams
+
+Helvetica (2007)
+  OLD: https://www.rottentomatoes.com/m/helvetica
+  NEW: http://www.rottentomatoes.com/m/helvetica/
+
+Hope Springs (2022)
+  OLD: https://www.rottentomatoes.com/m/hope_springs
+  NEW: https://www.rottentomatoes.com/m/hope_springs_2012
+
+Hunger Games, The; The Mockingjay Part 2) (2015)
+  OLD: https://www.rottentomatoes.com/m/hunger_games_the_the_mockingjay_part_2
+  NEW: http://www.rottentomatoes.com/m/the_hunger_games_mockingjay_part_2/?search=hunger%20games
+
+I Know That Voice (2014)
+  OLD: https://www.rottentomatoes.com/m/i_know_that_voice
+  NEW: http://www.rottentomatoes.com/m/i_know_that_voice/?search=i%20know%20that%20voice
+
+King of Staten Island,The (2020)
+  OLD: https://www.rottentomatoes.com/m/king_of_staten_islandthe
+  NEW: https://www.rottentomatoes.com/m/the_king_of_staten_island
+
+Late Night (2019)
+  OLD: https://www.rottentomatoes.com/m/late_night
+  NEW: https://rottentomatoes.com/m/late_night_2019
+
+Mad Max: Fury Road (2015)
+  OLD: https://www.rottentomatoes.com/m/mad_max_fury_road
+  NEW: http://www.rottentomatoes.com/m/mad_max_fury_road/?search=mad%20max
+
+Shooter (2007)
+  OLD: https://www.rottentomatoes.com/m/shooter
+  NEW: https://www.rottentomatoes.com/m/shooterf
+
+Shutter Island (2010)
+  OLD: https://www.rottentomatoes.com/m/shutter_island
+  NEW: https://www.rottentomatoes.com/m/1198124-shutter_island
+
+A Simple Favor (2018)
+  OLD: https://www.rottentomatoes.com/m/simple_favor
+  NEW: https://www.rottentomatoes.com/m/a_simple_favor
+
+Sly (2023)
+  OLD: https://www.rottentomatoes.com/m/sly
+  NEW: https://www.rottentomatoes.com/m/sly_2023
+
+Stop At Nothing: The Lance Armstrong Story (2014)
+  OLD: https://www.rottentomatoes.com/m/stop_at_nothing_the_lance_armstrong_story
+  NEW: http://www.rottentomatoes.com/m/stop_at_nothing_the_lance_armstrong_story
+
+Unstoppable (2010)
+  OLD: https://www.rottentomatoes.com/m/unstoppable
+  NEW: https://www.rottentomatoes.com/m/unstoppable-2010
+
+Vengeance (2022)
+  OLD: https://www.rottentomatoes.com/m/vengeance
+  NEW: https://www.rottentomatoes.com/m/vengeance_2022
+
+All Work All Play (2015)
+  OLD: https://www.rottentomatoes.com/m/all_work_all_play
+  NEW: http://www.rottentomatoes.com/m/all_work_all_play_the_pursuit_of_esports_glory/?search=all%20work
+
+Back in Time (2015)
+  OLD: https://www.rottentomatoes.com/m/back_in_time
+  NEW: http://www.rottentomatoes.com/m/back_in_time_2015/?search=back%20in%20time
+
+Brave (2012)
+  OLD: https://www.rottentomatoes.com/m/brave
+  NEW: https://www.rottentomatoes.com/m/brave_2012
+
+Captain America: The First Avenger (2011)
+  OLD: https://www.rottentomatoes.com/m/captain_america_the_first_avenger
+  NEW: http://www.rottentomatoes.com/m/captain-america/
+
+Cinema Paradiso (1988)
+  OLD: https://www.rottentomatoes.com/m/cinema_paradiso
+  NEW: http://www.rottentomatoes.com/m/cinema_paradiso/?search=cinema%20pa
+
+Don't Look Up (2021)
+  OLD: https://www.rottentomatoes.com/m/dont_look_up
+  NEW: https://www.rottentomatoes.com/m/dont_look_up_2021
+
+Don't Think Twice (2016)
+  OLD: https://www.rottentomatoes.com/m/dont_think_twice
+  NEW: https://www.rottentomatoes.com/m/dont_think_twice/
+
+Downloaded (2013)
+  OLD: https://www.rottentomatoes.com/m/downloaded
+  NEW: http://www.rottentomatoes.com/m/downloaded_2013/?search=downloaded
+
+Indiana Jones and the Dial of Destiny (2023)
+  OLD: https://www.rottentomatoes.com/m/indiana_jones_and_the_dial_of_destiny
+  NEW: https://www.rottentomatoes.com/m/wham
+
+Kidpoker (2015)
+  OLD: https://www.rottentomatoes.com/m/kidpoker
+  NEW: https://www.rottentomatoes.com/m/kidpoker_2015/?search=kidpoker
+
+Long Shot (2019)
+  OLD: https://www.rottentomatoes.com/m/long_shot
+  NEW: https://rottentomatoes.com/m/long_shot_2019
+
+Mitt (2014)
+  OLD: https://www.rottentomatoes.com/m/mitt
+  NEW: http://www.rottentomatoes.com/m/mitt/
+
+Paper Towns (2015)
+  OLD: https://www.rottentomatoes.com/m/paper_towns
+  NEW: http://www.rottentomatoes.com/m/paper_towns/
+
+Resurrection of Jake The Snake Roberts,The (2015)
+  OLD: https://www.rottentomatoes.com/m/resurrection_of_jake_the_snake_robertsthe
+  NEW: https://www.rottentomatoes.com/m/the_resurrection_of_jake_the_snake_roberts/?search=resurrection%20of%20jake
+
+Robbie Williams (2023)
+  OLD: https://www.rottentomatoes.com/m/robbie_williams
+  NEW: https://www.rottentomatoes.com/tv/robbie_williams
+
+Son of a Gun (2015)
+  OLD: https://www.rottentomatoes.com/m/son_of_a_gun
+  NEW: http://www.rottentomatoes.com/m/son_of_a_gun_2015
+
+Steve Jobs: Man in the Machine (2015)
+  OLD: https://www.rottentomatoes.com/m/steve_jobs_man_in_the_machine
+  NEW: http://www.rottentomatoes.com/m/steve_jobs_man_in_the_machine/?search=the%20man%20in%20the%20machine
+
+Trap (2024)
+  OLD: https://www.rottentomatoes.com/m/trap
+  NEW: https://www.rottentomatoes.com/m/trap_2024
+
+Welcome to Me (2015)
+  OLD: https://www.rottentomatoes.com/m/welcome_to_me
+  NEW: http://www.rottentomatoes.com/m/welcome_to_me/?search=welcome%20to%20me
+
+About Alex (2014)
+  OLD: https://www.rottentomatoes.com/m/about_alex
+  NEW: http://www.rottentomatoes.com/m/about_alex/?search=about%20alex
+
+Ashby (2015)
+  OLD: https://www.rottentomatoes.com/m/ashby
+  NEW: http://www.rottentomatoes.com/m/ashby/?search=ashby
+
+Avengers, The: Age of Ultron (2015)
+  OLD: https://www.rottentomatoes.com/m/avengers_the_age_of_ultron
+  NEW: http://www.rottentomatoes.com/m/avengers_age_of_ultron
+
+Baywatch (2017)
+  OLD: https://www.rottentomatoes.com/m/baywatch
+  NEW: https://www.rottentomatoes.com/m/baywatch_2017
+
+Beside Still Waters (2014)
+  OLD: https://www.rottentomatoes.com/m/beside_still_waters
+  NEW: http://www.rottentomatoes.com/m/beside_still_waters/
+
+Black Widow (2021)
+  OLD: https://www.rottentomatoes.com/m/black_widow
+  NEW: https://www.rottentomatoes.com/m/black_widow_2021
+
+Bridget Jones's Baby (2016)
+  OLD: https://www.rottentomatoes.com/m/bridget_joness_baby
+  NEW: https://www.rottentomatoes.com/m/bridget_joness_baby_2016
+
+Bronson (2009)
+  OLD: https://www.rottentomatoes.com/m/bronson
+  NEW: http://www.rottentomatoes.com/m/bronson/?search=bronson
+
+Captain Marvel (2019)
+  OLD: https://www.rottentomatoes.com/m/captain_marvel
+  NEW: https://rottentomatoes.com/m/captain_marvel
+
+Doctor Strange (2017)
+  OLD: https://www.rottentomatoes.com/m/doctor_strange
+  NEW: https://www.rottentomatoes.com/m/doctor_strange_2016
+
+Draft Day (2014)
+  OLD: https://www.rottentomatoes.com/m/draft_day
+  NEW: http://www.rottentomatoes.com/m/draft_day/
+
+Drinking Buddies (2013)
+  OLD: https://www.rottentomatoes.com/m/drinking_buddies
+  NEW: http://www.rottentomatoes.com/m/drinking_buddies_2013
+
+Escape Plan (2013)
+  OLD: https://www.rottentomatoes.com/m/escape_plan
+  NEW: https://rottentomatoes.com/m/escape_plan
+
+Extract (2009)
+  OLD: https://www.rottentomatoes.com/m/extract
+  NEW: http://www.rottentomatoes.com/m/1211183-extract/
+
+Fast & Furious (4) (2009)
+  OLD: https://www.rottentomatoes.com/m/fast_furious_4
+  NEW: https://www.rottentomatoes.com/m/fast_and_furious
+
+Frozen II (2019)
+  OLD: https://www.rottentomatoes.com/m/frozen_ii
+  NEW: https://rottentomatoes.com/m/frozen_ii
+
+Happy (2011)
+  OLD: https://www.rottentomatoes.com/m/happy
+  NEW: http://www.rottentomatoes.com/m/happy_2011/
+
+Horrible Bosses 2 (2014)
+  OLD: https://www.rottentomatoes.com/m/horrible_bosses_2
+  NEW: http://www.rottentomatoes.com/m/horrible_bosses_2/?search=horrible%20boss
+
+Hot Girls Wanted (2015)
+  OLD: https://www.rottentomatoes.com/m/hot_girls_wanted
+  NEW: https://www.rottentomatoes.com/m/hot_girls_wanted_2015
+
+Hunger Games, The: The Mockingjay, Part 1 (2014)
+  OLD: https://www.rottentomatoes.com/m/hunger_games_the_the_mockingjay_part_1
+  NEW: http://www.rottentomatoes.com/m/the_hunger_games_mockingjay_part_1/?search=hunger%20games
+
+I used to be Famous (2022)
+  OLD: https://www.rottentomatoes.com/m/i_used_to_be_famous
+  NEW: https://www.rottentomatoes.com/m/i_used_to_be_famous_2022
+
+Inside Llewyn Davis (2013)
+  OLD: https://www.rottentomatoes.com/m/inside_llewyn_davis
+  NEW: https://www.rottentomatoes.com/m/inside_llewyn_davis_2013
+
+Killer Elite (2011)
+  OLD: https://www.rottentomatoes.com/m/killer_elite
+  NEW: https://www.rottentomatoes.com/m/killer_elite_2011
+
+Lone Survivor (2014)
+  OLD: https://www.rottentomatoes.com/m/lone_survivor
+  NEW: http://www.rottentomatoes.com/m/lone_survivor/?search=lone%20surv
+
+Man Up (2015)
+  OLD: https://www.rottentomatoes.com/m/man_up
+  NEW: https://www.rottentomatoes.com/m/man_up_2015
+
+Mean Girls: The Musical (2024)
+  OLD: https://www.rottentomatoes.com/m/mean_girls_the_musical
+  NEW: https://www.rottentomatoes.com/m/mean_girls_2024
+
+Neighbors 2 (2016)
+  OLD: https://www.rottentomatoes.com/m/neighbors_2
+  NEW: https://www.rottentomatoes.com/m/neighbors_2_sorority_rising
+
+Regarding Henry (1991)
+  OLD: https://www.rottentomatoes.com/m/regarding_henry
+  NEW: http://www.rottentomatoes.com/m/regarding_henry/?search=regarding%20henry
+
+Sisters (2015)
+  OLD: https://www.rottentomatoes.com/m/sisters
+  NEW: http://www.rottentomatoes.com/m/sisters_2015/?search=sisters
+
+Spider Man: Far from Home (2019)
+  OLD: https://www.rottentomatoes.com/m/spider_man_far_from_home
+  NEW: https://rottentomatoes.com/m/spider_man_far_from_home
+
+Uncharted (2022)
+  OLD: https://www.rottentomatoes.com/m/uncharted
+  NEW: https://www.rottentomatoes.com/m/uncharted_2022
+
+Vacation (2015)
+  OLD: https://www.rottentomatoes.com/m/vacation
+  NEW: http://www.rottentomatoes.com/m/vacation_2013/?search=vacation
+
+Vision Quest (1985)
+  OLD: https://www.rottentomatoes.com/m/vision_quest
+  NEW: https://www.rottentomatoes.com/m/vision_quest_1985
+
+Wet Hot American Summer (2001)
+  OLD: https://www.rottentomatoes.com/m/wet_hot_american_summer
+  NEW: http://www.rottentomatoes.com/m/wet_hot_american_summer/?search=wet%20hot%20american%20summer
+
+X-Men: Days of Future Past (2014)
+  OLD: https://www.rottentomatoes.com/m/x_men_days_of_future_past
+  NEW: http://www.rottentomatoes.com/m/x_men_days_of_future_past/
+
+Yesterday (2019)
+  OLD: https://www.rottentomatoes.com/m/yesterday
+  NEW: https://rottentomatoes.com/m/yesterday_2019
+
+You People (2023)
+  OLD: https://www.rottentomatoes.com/m/you_people
+  NEW: https://www.rottentomatoes.com/m/you_people_2023
+
+Black Widow (2021)
+  OLD: https://www.rottentomatoes.com/m/black_widow
+  NEW: https://www.rottentomatoes.com/m/black_widow_2021
+
+Deadpool (2016)
+  OLD: https://www.rottentomatoes.com/m/deadpool
+  NEW: http://www.rottentomatoes.com/m/deadpool/?search=deadpool
+
+How to be Single (2016)
+  OLD: https://www.rottentomatoes.com/m/how_to_be_single
+  NEW: https://www.rottentomatoes.com/m/how_to_be_single_2016/?search=how%20to%20be%20single
+
+Kicking and Screaming (1995)
+  OLD: https://www.rottentomatoes.com/m/kicking_and_screaming
+  NEW: https://www.rottentomatoes.com/m/1066170-kicking_and_screaming
+
+Lucy (2014)
+  OLD: https://www.rottentomatoes.com/m/lucy
+  NEW: http://www.rottentomatoes.com/m/lucy_2014/
+
+Tag (2018)
+  OLD: https://www.rottentomatoes.com/m/tag
+  NEW: https://www.rottentomatoes.com/m/tag_2018
+
+Welcome to Me (2015)
+  OLD: https://www.rottentomatoes.com/m/welcome_to_me
+  NEW: http://www.rottentomatoes.com/m/welcome_to_me/?search=welcome%20to%20me
+
+Veronica Mars (2014)
+  OLD: https://www.rottentomatoes.com/m/veronica_mars
+  NEW: http://www.rottentomatoes.com/m/veronica_mars/?search=veronica%20mars
+
+101 Dalmatians (1996)
+  OLD: https://www.rottentomatoes.com/m/101_dalmatians
+  NEW: https://www.rottentomatoes.com/m/1074108-101_dalmatians
+
+Airplane (1980)
+  OLD: https://www.rottentomatoes.com/m/airplane
+  NEW: http://www.rottentomatoes.com/m/airplane/?search=airplane
+
+Always Be My Maybe (2019)
+  OLD: https://www.rottentomatoes.com/m/always_be_my_maybe
+  NEW: https://rottentomatoes.com/m/always_be_my_maybe_2019
+
+Love at First Sight (2023)
+  OLD: https://www.rottentomatoes.com/m/love_at_first_sight
+  NEW: https://www.rottentomatoes.com/m/love_at_first_sight_2023
+
+Batman v Superman: Dawn of Justice (2016)
+  OLD: https://www.rottentomatoes.com/m/batman_v_superman_dawn_of_justice
+  NEW: https://www.rottentomatoes.com/m/batman_v_superman_dawn_of_justice/?search=batman%20v
+
+Chloe (2009)
+  OLD: https://www.rottentomatoes.com/m/chloe
+  NEW: https://www.rottentomatoes.com/m/10011774-chloe
+
+Entourage (2015)
+  OLD: https://www.rottentomatoes.com/m/entourage
+  NEW: http://www.rottentomatoes.com/m/entourage/?search=entourage
+
+Focus (2015)
+  OLD: https://www.rottentomatoes.com/m/focus
+  NEW: http://www.rottentomatoes.com/m/focus_2014/
+
+Insurgent (2015)
+  OLD: https://www.rottentomatoes.com/m/insurgent
+  NEW: http://www.rottentomatoes.com/m/insurgent/?search=insurgent
+
+Just Friends (2005)
+  OLD: https://www.rottentomatoes.com/m/just_friends
+  NEW: https://www.rottentomatoes.com/m/just_friends/?search=just%20friends
+
+Like Father (2018)
+  OLD: https://www.rottentomatoes.com/m/like_father
+  NEW: https://www.rottentomatoes.com/m/like_father_2018
+
+Murder Mystery (2019)
+  OLD: https://www.rottentomatoes.com/m/murder_mystery
+  NEW: https://rottentomatoes.com/m/murder_mystery
+
+No Hard Feelings (2023)
+  OLD: https://www.rottentomatoes.com/m/no_hard_feelings
+  NEW: https://www.rottentomatoes.com/m/no_hard_feelings_2023
+
+Now You See Me (2013)
+  OLD: https://www.rottentomatoes.com/m/now_you_see_me
+  NEW: http://www.rottentomatoes.com/m/now_you_see_me/?search=now%20you%20see%20me
+
+Park Avenue: Money, Power, and the American Dream (2012)
+  OLD: https://www.rottentomatoes.com/m/park_avenue_money_power_and_the_american_dream
+  NEW: http://www.rottentomatoes.com/m/park_avenue_money_power_and_the_american_dream/?search=park%20avenue
+
+Pretty In Pink (1986)
+  OLD: https://www.rottentomatoes.com/m/pretty_in_pink
+  NEW: http://www.rottentomatoes.com/m/pretty_in_pink/
+
+Slapshot (1977)
+  OLD: https://www.rottentomatoes.com/m/slapshot
+  NEW: https://www.rottentomatoes.com/m/slap_shot
+
+Studio 54: The Documentary (2018)
+  OLD: https://www.rottentomatoes.com/m/studio_54_the_documentary
+  NEW: https://www.rottentomatoes.com/m/studio_54
+
+Windfall (2022)
+  OLD: https://www.rottentomatoes.com/m/windfall
+  NEW: https://www.rottentomatoes.com/m/windfall_2022
+
+Wine Country (2019)
+  OLD: https://www.rottentomatoes.com/m/wine_country
+  NEW: https://rottentomatoes.com/m/wine_country
+
+Your Place or Mine (2023)
+  OLD: https://www.rottentomatoes.com/m/your_place_or_mine
+  NEW: https://www.rottentomatoes.com/m/your_place_or_mine_2023
+
+5 to 7 (2015)
+  OLD: https://www.rottentomatoes.com/m/5_to_7
+  NEW: http://www.rottentomatoes.com/m/5_to_7/?search=5%20to%207#
+
+Percy Jackson and the Olympians: The Lightning Thief (2010)
+  OLD: https://www.rottentomatoes.com/m/percy_jackson_and_the_olympians_the_lightning_thief
+  NEW: https://www.rottentomatoes.com/m/0814255
+
+Unstoppable (2010)
+  OLD: https://www.rottentomatoes.com/m/unstoppable
+  NEW: https://www.rottentomatoes.com/m/unstoppable-2010
+

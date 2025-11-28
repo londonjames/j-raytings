@@ -21,7 +21,9 @@ const server = http.createServer((req, res) => {
   } 
   // Serve static files (images, etc.)
   else if (req.url.startsWith('/')) {
-    const filePath = path.join(__dirname, 'frontend', 'public', req.url);
+    // Strip query parameters from URL
+    const urlPath = req.url.split('?')[0];
+    const filePath = path.join(__dirname, 'frontend', 'public', urlPath);
     fs.readFile(filePath, (err, data) => {
       if (err) {
         res.writeHead(404);
