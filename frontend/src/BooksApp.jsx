@@ -287,9 +287,9 @@ function BooksApp() {
         const bYear = parseInt(b.year) || 0
         comparison = bYear - aYear // Newer first
       } else if (actualSortBy === 'published') {
-        // Year published (from published_date)
-        const aYear = a.published_date ? parseInt(a.published_date.substring(0, 4)) || 0 : 0
-        const bYear = b.published_date ? parseInt(b.published_date.substring(0, 4)) || 0 : 0
+        // Year written (from year_written)
+        const aYear = a.year_written || 0
+        const bYear = b.year_written || 0
         comparison = bYear - aYear // Newer first
       } else if (actualSortBy === 'author') {
         // Author alphabetical
