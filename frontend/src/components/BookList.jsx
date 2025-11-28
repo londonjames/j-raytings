@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 
 // Use environment variable for production API URL (Railway backend)
 // In development, use local backend
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
+// Default to Railway production URL if no env var is set (for production builds)
+const API_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.PROD ? 'https://web-production-01d1.up.railway.app/api' : 'http://localhost:5001/api')
 
 function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
   const [loadedImages, setLoadedImages] = useState(new Set())
@@ -152,6 +154,8 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                         onLoad={() => handleImageLoad(book.id)}
                         onError={(e) => {
                           console.error(`Failed to load cover for ${book.book_name}:`, book.cover_url);
+                          console.error(`Proxy URL was: ${getCoverProxyUrl(book.cover_url, book.google_books_id)}`);
+                          console.error(`API_URL is: ${API_URL}`);
                           e.target.style.display = 'none';
                         }}
                       />
