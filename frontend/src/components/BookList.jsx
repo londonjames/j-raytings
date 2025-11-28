@@ -21,9 +21,15 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
   const getCoverProxyUrl = (coverUrl, googleBooksId) => {
     if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
     const bookId = googleBooksId || getGoogleBooksId(coverUrl)
-    // Use the URL itself as part of the cache key - this ensures different URLs get different cache keys
-    // Encode the full URL to create a unique hash that changes when URL changes
-    const urlHash = btoa(coverUrl).slice(0, 20).replace(/[^a-zA-Z0-9]/g, '')
+    // Create a simple hash from the URL for cache-busting
+    // This ensures different URLs get different cache keys
+    let hash = 0
+    for (let i = 0; i < coverUrl.length; i++) {
+      const char = coverUrl.charCodeAt(i)
+      hash = ((hash << 5) - hash) + char
+      hash = hash & hash // Convert to 32bit integer
+    }
+    const urlHash = Math.abs(hash).toString(36).slice(0, 10)
     if (bookId) {
       return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(bookId)}&url=${encodeURIComponent(coverUrl)}&_cb=${urlHash}`
     }
