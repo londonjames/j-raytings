@@ -167,6 +167,15 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                           console.error(`API_URL is: ${API_URL}`);
                           e.target.style.display = 'none';
                         }}
+                        onLoadStart={() => {
+                          // Debug: log what URL is being loaded
+                          if (book.book_name === 'The Right Stuff' || book.book_name === 'Animal Farm' || book.book_name === 'Confessions of an Advertising Man') {
+                            console.log(`Loading ${book.book_name}:`, {
+                              cover_url: book.cover_url,
+                              proxy_url: getCoverProxyUrl(book.cover_url, book.google_books_id)
+                            });
+                          }
+                        }}
                       />
                     </>
                   ) : (
