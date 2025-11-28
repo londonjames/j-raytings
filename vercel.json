@@ -17,6 +17,10 @@
     {
       "source": "/books",
       "destination": "/films.html"
+    },
+    {
+      "source": "/books/admin",
+      "destination": "/films.html"
     }
   ]
 }
