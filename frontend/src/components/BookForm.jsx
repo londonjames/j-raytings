@@ -6,6 +6,7 @@ function BookForm({ book, onSave, onCancel }) {
     author: '',
     date_read: '',
     year: '',
+    year_written: '',
     j_rayting: '',
     score: '',
     type: '',
@@ -24,6 +25,7 @@ function BookForm({ book, onSave, onCancel }) {
         author: book.author || '',
         date_read: book.date_read || '',
         year: book.year || '',
+        year_written: book.year_written || '',
         j_rayting: book.j_rayting || '',
         score: book.score || '',
         type: book.type || '',
@@ -46,6 +48,7 @@ function BookForm({ book, onSave, onCancel }) {
       order_number: formData.order_number ? parseInt(formData.order_number) : null,
       score: formData.score ? parseInt(formData.score) : null,
       year: formData.year ? parseInt(formData.year) : null,
+      year_written: formData.year_written ? parseInt(formData.year_written) : null,
       pages: formData.pages ? parseInt(formData.pages) : null
     }
 
@@ -134,6 +137,20 @@ function BookForm({ book, onSave, onCancel }) {
                   value={formData.year}
                   onChange={handleChange}
                   placeholder="e.g., 2024"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="year_written">Year Written</label>
+                <input
+                  type="number"
+                  id="year_written"
+                  name="year_written"
+                  min="0"
+                  max={new Date().getFullYear()}
+                  value={formData.year_written}
+                  onChange={handleChange}
+                  placeholder="e.g., 1979"
                 />
               </div>
 

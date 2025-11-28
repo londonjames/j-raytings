@@ -167,6 +167,7 @@ def init_books_db():
                 average_rating REAL,
                 ratings_count INTEGER,
                 published_date TEXT,
+                year_written INTEGER,
                 description TEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
@@ -176,7 +177,7 @@ def init_books_db():
         for column_name, column_type in [
             ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
             ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
-            ('published_date', 'TEXT'), ('description', 'TEXT')
+            ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT')
         ]:
             cursor.execute("""
                 SELECT column_name 
@@ -212,6 +213,7 @@ def init_books_db():
                 average_rating REAL,
                 ratings_count INTEGER,
                 published_date TEXT,
+                year_written INTEGER,
                 description TEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
@@ -221,7 +223,7 @@ def init_books_db():
         for column_name, column_type in [
             ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
             ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
-            ('published_date', 'TEXT'), ('description', 'TEXT')
+            ('published_date', 'TEXT'), ('description', 'TEXT'), ('year_written', 'INTEGER')
         ]:
             try:
                 cursor.execute(f'ALTER TABLE books ADD COLUMN {column_name} {column_type}')
@@ -1104,9 +1106,9 @@ def add_book():
                 order_number, date_read, year, book_name, author,
                 details_commentary, j_rayting, score, type, pages,
                 form, notes_in_notion, cover_url, google_books_id,
-                isbn, average_rating, ratings_count, published_date, description
+                isbn, average_rating, ratings_count, published_date, year_written, description
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
         ''', (
             data.get('order_number', new_order),
@@ -1127,6 +1129,7 @@ def add_book():
             average_rating,
             ratings_count,
             published_date,
+            data.get('year_written'),
             description
         ))
         book_id = cursor.fetchone()[0]
@@ -1136,9 +1139,9 @@ def add_book():
                 order_number, date_read, year, book_name, author,
                 details_commentary, j_rayting, score, type, pages,
                 form, notes_in_notion, cover_url, google_books_id,
-                isbn, average_rating, ratings_count, published_date, description
+                isbn, average_rating, ratings_count, published_date, year_written, description
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             data.get('order_number', new_order),
             data.get('date_read'),
@@ -1158,6 +1161,7 @@ def add_book():
             average_rating,
             ratings_count,
             published_date,
+            data.get('year_written'),
             description
         ))
         book_id = cursor.lastrowid
@@ -1187,7 +1191,7 @@ def update_book(book_id):
         'order_number', 'date_read', 'year', 'book_name', 'author',
         'details_commentary', 'j_rayting', 'score', 'type', 'pages',
         'form', 'notes_in_notion', 'cover_url', 'google_books_id',
-        'isbn', 'average_rating', 'ratings_count', 'published_date', 'description'
+        'isbn', 'average_rating', 'ratings_count', 'published_date', 'year_written', 'description'
     ]
 
     placeholder = '%s' if USE_POSTGRES else '?'
@@ -1348,7 +1352,7 @@ def update_book_field(book_id):
         'order_number', 'date_read', 'year', 'book_name', 'author',
         'details_commentary', 'j_rayting', 'score', 'type', 'pages',
         'form', 'notes_in_notion', 'cover_url', 'google_books_id',
-        'isbn', 'average_rating', 'ratings_count', 'published_date', 'description'
+        'isbn', 'average_rating', 'ratings_count', 'published_date', 'year_written', 'description'
     ]
     
     if field_name not in allowed_fields:

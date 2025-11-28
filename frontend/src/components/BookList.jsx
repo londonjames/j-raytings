@@ -201,17 +201,9 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                         )}
                       </div>
                       <div className="film-metadata book-metadata">
-                        {(() => {
-                          // Extract year from published_date (format: "2008-03-04" or "2008")
-                          let publishedYear = null;
-                          if (book.published_date) {
-                            const yearMatch = book.published_date.match(/^(\d{4})/);
-                            publishedYear = yearMatch ? yearMatch[1] : null;
-                          }
-                          return publishedYear ? (
-                            <span className="info-item">{publishedYear}</span>
-                          ) : null;
-                        })()}
+                        {book.year_written && (
+                          <span className="info-item">{book.year_written}</span>
+                        )}
                         {book.pages && (
                           <span className="info-item">{book.pages} pages</span>
                         )}
@@ -292,10 +284,10 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                         <span className="detail-value">{book.pages}</span>
                       </div>
                     )}
-                    {book.published_date && (
+                    {book.year_written && (
                       <div className="detail-row">
-                        <span className="detail-label">Published:</span>
-                        <span className="detail-value">{book.published_date}</span>
+                        <span className="detail-label">Written:</span>
+                        <span className="detail-value">{book.year_written}</span>
                       </div>
                     )}
                   </div>
