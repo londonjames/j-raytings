@@ -11,15 +11,11 @@
       "destination": "/films.html"
     },
     {
-      "source": "/books/(.*)",
-      "destination": "/$1"
-    },
-    {
-      "source": "/books",
+      "source": "/books/admin",
       "destination": "/films.html"
     },
     {
-      "source": "/books/admin",
+      "source": "/books",
       "destination": "/films.html"
     },
     {
