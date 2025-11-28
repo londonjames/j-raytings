@@ -1324,7 +1324,7 @@ def proxy_book_cover():
                 mimetype=content_type or 'image/jpeg',
                 headers={
                     'Access-Control-Allow-Origin': '*',
-                    'Cache-Control': 'public, max-age=31536000'  # Cache for 1 year
+                    'Cache-Control': 'no-cache, no-store, must-revalidate'  # Don't cache to allow updates
                 }
             )
         except requests.exceptions.RequestException:
