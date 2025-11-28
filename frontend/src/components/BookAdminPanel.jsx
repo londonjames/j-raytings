@@ -26,8 +26,10 @@ function BookAdminPanel({ onLogout }) {
     try {
       const response = await fetch(`${API_URL}/books`)
       const data = await response.json()
-      setBooks(data)
-      setFilteredBooks(data)
+      // Sort by ID descending (newest first) so newly added items appear at top
+      const sortedData = [...data].sort((a, b) => (b.id || 0) - (a.id || 0))
+      setBooks(sortedData)
+      setFilteredBooks(sortedData)
     } catch (error) {
       console.error('Error fetching books:', error)
     }

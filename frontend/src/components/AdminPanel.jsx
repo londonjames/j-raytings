@@ -18,8 +18,10 @@ function AdminPanel({ onLogout }) {
     try {
       const response = await fetch(`${API_URL}/films`)
       const data = await response.json()
-      setFilms(data)
-      setFilteredFilms(data)
+      // Sort by ID descending (newest first) so newly added items appear at top
+      const sortedData = [...data].sort((a, b) => (b.id || 0) - (a.id || 0))
+      setFilms(sortedData)
+      setFilteredFilms(sortedData)
     } catch (error) {
       console.error('Error fetching films:', error)
     }
