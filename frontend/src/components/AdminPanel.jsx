@@ -74,7 +74,10 @@ function AdminPanel({ onLogout }) {
         setShowAddForm(false)
         setEditingFilm(null)
         setDuplicateWarning(null)
-        fetchFilms()
+        // Small delay to ensure backend has saved the new film
+        setTimeout(() => {
+          fetchFilms()
+        }, 100)
         setTimeout(() => setMessage(''), 5000)
       } else if (response.status === 409) {
         // Duplicate detected

@@ -83,7 +83,10 @@ function BookAdminPanel({ onLogout }) {
         setShowAddForm(false)
         setEditingBook(null)
         setDuplicateWarning(null)
-        fetchBooks()
+        // Small delay to ensure backend has saved the new book
+        setTimeout(() => {
+          fetchBooks()
+        }, 100)
         setTimeout(() => setMessage(''), 5000)
       } else if (response.status === 409) {
         // Duplicate detected
