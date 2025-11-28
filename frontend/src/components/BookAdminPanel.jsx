@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 import BookForm from './BookForm'
 import './AdminPanel.css'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
+// Use environment variable for production API URL (Railway backend)
+// In development, use local backend
+// Default to Railway production URL if no env var is set (for production builds)
+const API_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.PROD ? 'https://web-production-01d1.up.railway.app/api' : 'http://localhost:5001/api')
 
 function BookAdminPanel({ onLogout }) {
   const handleLogout = () => {
