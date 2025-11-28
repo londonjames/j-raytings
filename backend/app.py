@@ -1080,6 +1080,15 @@ def add_book():
                     ratings_count = book_data.get('ratings_count')
                 if not published_date:
                     published_date = book_data.get('published_date')
+                # Extract year_written from published_date if not already set
+                if not data.get('year_written') and published_date:
+                    year_match = None
+                    if isinstance(published_date, str):
+                        year_match = published_date[:4] if len(published_date) >= 4 else None
+                    elif isinstance(published_date, int):
+                        year_match = str(published_date) if 0 < published_date < 3000 else None
+                    if year_match and year_match.isdigit():
+                        data['year_written'] = int(year_match)
                 if not description:
                     description = book_data.get('description')
 
@@ -1101,6 +1110,17 @@ def add_book():
 
     # Insert new book
     if USE_POSTGRES:
+        # Extract year_written from published_date if not provided
+        year_written = data.get('year_written')
+        if not year_written and published_date:
+            if isinstance(published_date, str):
+                year_match = published_date[:4] if len(published_date) >= 4 else None
+                if year_match and year_match.isdigit():
+                    year_written = int(year_match)
+            elif isinstance(published_date, int):
+                if 0 < published_date < 3000:
+                    year_written = published_date
+        
         cursor.execute('''
             INSERT INTO books (
                 order_number, date_read, year, book_name, author,
@@ -1129,11 +1149,22 @@ def add_book():
             average_rating,
             ratings_count,
             published_date,
-            data.get('year_written'),
+            year_written,
             description
         ))
         book_id = cursor.fetchone()[0]
     else:
+        # Extract year_written from published_date if not provided
+        year_written = data.get('year_written')
+        if not year_written and published_date:
+            if isinstance(published_date, str):
+                year_match = published_date[:4] if len(published_date) >= 4 else None
+                if year_match and year_match.isdigit():
+                    year_written = int(year_match)
+            elif isinstance(published_date, int):
+                if 0 < published_date < 3000:
+                    year_written = published_date
+        
         cursor.execute('''
             INSERT INTO books (
                 order_number, date_read, year, book_name, author,
@@ -1161,7 +1192,7 @@ def add_book():
             average_rating,
             ratings_count,
             published_date,
-            data.get('year_written'),
+            year_written,
             description
         ))
         book_id = cursor.lastrowid
