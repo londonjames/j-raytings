@@ -8,9 +8,10 @@ import BooksAdmin from './BooksAdmin.jsx'
 import BooksApp from './BooksApp.jsx'
 
 // Check if we're on the /books path
-// This checks both the current pathname and the full URL to handle Vercel rewrites
+// Handle Vercel rewrites: /books/admin gets rewritten to /admin, so we check the full URL
 const currentPath = window.location.pathname
-const isBooksPath = currentPath.startsWith('/books') || currentPath === '/admin' && document.referrer.includes('/books')
+const fullUrl = window.location.href
+const isBooksPath = currentPath.startsWith('/books') || fullUrl.includes('/books/')
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
