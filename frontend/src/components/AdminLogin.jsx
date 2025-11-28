@@ -9,7 +9,16 @@ function AdminLogin({ onLogin }) {
     e.preventDefault()
 
     // Check password (stored in environment variable)
-    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'OpenSesame77'
+    // Default to 'OpenSesame77' if not set
+    const envPassword = import.meta.env.VITE_ADMIN_PASSWORD
+    const correctPassword = envPassword && envPassword.trim() !== '' ? envPassword : 'OpenSesame77'
+    
+    // Debug logging (remove in production if needed)
+    console.log('Password check:', {
+      hasEnvVar: !!envPassword,
+      envPasswordLength: envPassword?.length,
+      usingDefault: !envPassword || envPassword.trim() === ''
+    })
 
     if (password === correctPassword) {
       // Store in sessionStorage (clears when browser closes)
