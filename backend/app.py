@@ -169,6 +169,7 @@ def init_books_db():
                 published_date TEXT,
                 year_written INTEGER,
                 description TEXT,
+                a_grade_rank INTEGER,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
@@ -178,7 +179,7 @@ def init_books_db():
             ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
             ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
             ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT'),
-            ('notion_link', 'TEXT')
+            ('notion_link', 'TEXT'), ('a_grade_rank', 'INTEGER')
         ]:
             cursor.execute("""
                 SELECT column_name 
@@ -216,6 +217,7 @@ def init_books_db():
                 published_date TEXT,
                 year_written INTEGER,
                 description TEXT,
+                a_grade_rank INTEGER,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
@@ -225,7 +227,7 @@ def init_books_db():
             ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
             ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
             ('published_date', 'TEXT'), ('description', 'TEXT'), ('year_written', 'INTEGER'),
-            ('notion_link', 'TEXT')
+            ('notion_link', 'TEXT'), ('a_grade_rank', 'INTEGER')
         ]:
             try:
                 cursor.execute(f'ALTER TABLE books ADD COLUMN {column_name} {column_type}')
@@ -1012,6 +1014,92 @@ def set_a_grade_rankings():
         if conn:
             conn.close()
         print(f"Error setting A-grade rankings: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'Error setting rankings: {str(e)}'}), 500
+
+@app.route('/api/admin/set-a-grade-book-rankings', methods=['POST'])
+def set_a_grade_book_rankings():
+    """Admin endpoint to bulk set A-grade book rankings"""
+    data = request.get_json()
+    rankings = data.get('rankings', [])  # List of {book_name: str, rank: int}
+    
+    if not rankings:
+        return jsonify({'error': 'rankings array is required'}), 400
+    
+    conn = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        updated = 0
+        not_found = []
+        
+        for item in rankings:
+            book_name = item.get('book_name')
+            rank = item.get('rank')
+            alternatives = item.get('alternatives', [])
+            
+            if not book_name or rank is None:
+                continue
+            
+            # Try main book name first, then alternatives
+            names_to_try = [book_name] + alternatives
+            book = None
+            
+            for try_name in names_to_try:
+                # Find book by name (case-insensitive) - check for A+ or A/A+ or A ratings
+                if USE_POSTGRES:
+                    cursor.execute("""
+                        SELECT id FROM books 
+                        WHERE LOWER(book_name) = LOWER(%s) AND j_rayting IN ('A+', 'A/A+', 'A')
+                    """, (try_name,))
+                else:
+                    cursor.execute("""
+                        SELECT id FROM books 
+                        WHERE LOWER(book_name) = LOWER(?) AND j_rayting IN ('A+', 'A/A+', 'A')
+                    """, (try_name,))
+                
+                book = cursor.fetchone()
+                if book:
+                    break  # Found it, stop trying alternatives
+            
+            if book:
+                book_id = book[0] if USE_POSTGRES else book[0]
+                
+                # Check if a_grade_rank column exists
+                if USE_POSTGRES:
+                    cursor.execute("""
+                        SELECT column_name 
+                        FROM information_schema.columns 
+                        WHERE table_name='books' AND column_name='a_grade_rank'
+                    """)
+                    if not cursor.fetchone():
+                        conn.close()
+                        return jsonify({'error': 'a_grade_rank column does not exist'}), 500
+                
+                # Update the ranking
+                if USE_POSTGRES:
+                    cursor.execute('UPDATE books SET a_grade_rank = %s WHERE id = %s', (rank, book_id))
+                else:
+                    cursor.execute('UPDATE books SET a_grade_rank = ? WHERE id = ?', (rank, book_id))
+                
+                updated += 1
+            else:
+                not_found.append(book_name)
+        
+        conn.commit()
+        conn.close()
+        
+        return jsonify({
+            'message': f'Successfully updated {updated} rankings',
+            'updated': updated,
+            'not_found': not_found
+        })
+    except Exception as e:
+        if conn:
+            conn.close()
+        print(f"Error setting A-grade book rankings: {e}")
         import traceback
         traceback.print_exc()
         return jsonify({'error': f'Error setting rankings: {str(e)}'}), 500

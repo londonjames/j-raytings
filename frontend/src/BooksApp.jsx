@@ -277,10 +277,27 @@ function BooksApp() {
       const actualSortBy = sortBy || 'rating'
 
       if (actualSortBy === 'rating') {
-        // Use numeric score field (higher score = better rating)
-        const aScore = a.score || 0
-        const bScore = b.score || 0
-        comparison = bScore - aScore // Higher score first
+        // For A-grade books (A+, A/A+, A), use a_grade_rank if available
+        const aIsAGrade = a.j_rayting && ['A+', 'A/A+', 'A'].includes(a.j_rayting)
+        const bIsAGrade = b.j_rayting && ['A+', 'A/A+', 'A'].includes(b.j_rayting)
+        
+        if (aIsAGrade && bIsAGrade) {
+          // Both are A-grade: use a_grade_rank (lower rank = better, so rank 1 comes before rank 2)
+          const aRank = a.a_grade_rank || 999
+          const bRank = b.a_grade_rank || 999
+          comparison = aRank - bRank // Lower rank first
+        } else if (aIsAGrade && !bIsAGrade) {
+          // A-grade always comes first
+          comparison = -1
+        } else if (!aIsAGrade && bIsAGrade) {
+          // A-grade always comes first
+          comparison = 1
+        } else {
+          // Neither is A-grade: use numeric score field (higher score = better rating)
+          const aScore = a.score || 0
+          const bScore = b.score || 0
+          comparison = bScore - aScore // Higher score first
+        }
       } else if (actualSortBy === 'date') {
         // Date read - parse date_read field and sort by actual date
         const parseDate = (dateStr) => {
