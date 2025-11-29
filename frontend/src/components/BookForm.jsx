@@ -57,12 +57,15 @@ function BookForm({ book, onSave, onCancel }) {
       score: formData.score ? parseInt(formData.score) : null,
       year: formData.year ? parseInt(formData.year) : null,
       year_written: formData.year_written ? parseInt(formData.year_written) : null,
-      pages: formData.pages ? parseInt(formData.pages) : null,
-      // Ensure cover_url is always included, even if empty string
-      cover_url: formData.cover_url || null
+      pages: formData.pages ? parseInt(formData.pages) : null
+      // cover_url is already in formData from the spread, so it will be included as-is
     }
 
-    console.log('BookForm submitting:', { cover_url: dataToSave.cover_url, book_name: dataToSave.book_name })
+    console.log('BookForm submitting:', { 
+      cover_url: dataToSave.cover_url, 
+      book_name: dataToSave.book_name,
+      allFields: Object.keys(dataToSave)
+    })
     onSave(dataToSave)
   }
 
