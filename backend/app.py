@@ -1102,8 +1102,14 @@ def add_book():
 
                 metadata_fetched = True
                 print(f"✓ Fetched metadata for '{data['book_name']}'")
+                if cover_url:
+                    print(f"  Cover URL: {cover_url}")
+                else:
+                    print(f"  ⚠️  No cover URL found for '{data['book_name']}'")
         except Exception as e:
-            print(f"Error fetching Google Books data: {e}")
+            print(f"Error fetching Google Books data for '{data.get('book_name', 'unknown')}': {e}")
+            import traceback
+            traceback.print_exc()
 
     # Extract year from date_read if year is not provided
     year = data.get('year')
