@@ -291,21 +291,11 @@ function BooksApp() {
         const aYear = a.year_written || 0
         const bYear = b.year_written || 0
         comparison = bYear - aYear // Newer first
-      } else if (actualSortBy === 'author') {
-        // Author alphabetical
-        const aAuthor = (a.author || '').toLowerCase()
-        const bAuthor = (b.author || '').toLowerCase()
-        comparison = aAuthor.localeCompare(bAuthor)
       } else if (actualSortBy === 'pages') {
         // Pages
         const aPages = a.pages || 0
         const bPages = b.pages || 0
         comparison = bPages - aPages // More pages first
-      } else if (actualSortBy === 'averageRating') {
-        // Average rating from Google Books
-        const aRating = a.average_rating || 0
-        const bRating = b.average_rating || 0
-        comparison = bRating - aRating // Higher rating first
       }
 
       // If primary sort is equal, sort alphabetically by book name
