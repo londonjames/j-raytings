@@ -261,8 +261,15 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                       <div className="book-author-back">by {book.author}</div>
                     )}
                     <div className="year-duration">
-                      {book.year && <span>Read: {book.year}</span>}
-                      {book.pages && <span>• {book.pages} pages</span>}
+                      {book.year_written && book.pages && (
+                        <span>{book.year_written} {book.pages} pages</span>
+                      )}
+                      {book.year_written && !book.pages && (
+                        <span>{book.year_written}</span>
+                      )}
+                      {!book.year_written && book.pages && (
+                        <span>{book.pages} pages</span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -288,28 +295,31 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                         <span className="detail-value">{formatDate(book.date_read)}</span>
                       </div>
                     )}
+                    {book.form && (
+                      <div className="detail-row">
+                        <span className="detail-label">Format:</span>
+                        <span className="detail-value">{book.form}</span>
+                      </div>
+                    )}
                     {book.type && (
                       <div className="detail-row">
                         <span className="detail-label">Type:</span>
                         <span className="detail-value">{book.type}</span>
                       </div>
                     )}
-                    {book.form && (
+                    {book.notion_link ? (
                       <div className="detail-row">
-                        <span className="detail-label">Form:</span>
-                        <span className="detail-value">{book.form}</span>
+                        <span className="detail-label">Notion notes:</span>
+                        <span className="detail-value">
+                          <a href={book.notion_link} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
+                            Here
+                          </a>
+                        </span>
                       </div>
-                    )}
-                    {book.pages && (
+                    ) : (
                       <div className="detail-row">
-                        <span className="detail-label">Pages:</span>
-                        <span className="detail-value">{book.pages}</span>
-                      </div>
-                    )}
-                    {book.year_written && (
-                      <div className="detail-row">
-                        <span className="detail-label">Written:</span>
-                        <span className="detail-value">{book.year_written}</span>
+                        <span className="detail-label">Notion notes:</span>
+                        <span className="detail-value">Not Available</span>
                       </div>
                     )}
                   </div>
