@@ -236,50 +236,19 @@ function BookForm({ book, onSave, onCancel }) {
                 />
               </div>
             </div>
-          </div>
-
-          {/* Additional Fields */}
-          <div className="form-section">
-            <h3>Additional Info (Optional)</h3>
-
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="score">Score (0-20)</label>
-                <input
-                  type="number"
-                  id="score"
-                  name="score"
-                  min="0"
-                  max="20"
-                  value={formData.score}
-                  onChange={handleChange}
-                  placeholder="Auto-calculated from grade"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="order_number">Order #</label>
-                <input
-                  type="number"
-                  id="order_number"
-                  name="order_number"
-                  value={formData.order_number}
-                  onChange={handleChange}
-                  placeholder="Sequence number"
-                />
-              </div>
-            </div>
 
             <div className="form-group">
               <label htmlFor="notes_in_notion">Notes in Notion</label>
-              <input
-                type="text"
+              <select
                 id="notes_in_notion"
                 name="notes_in_notion"
                 value={formData.notes_in_notion}
                 onChange={handleChange}
-                placeholder="YES or NO"
-              />
+              >
+                <option value="">Select</option>
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+              </select>
             </div>
 
             <div className="form-group">
