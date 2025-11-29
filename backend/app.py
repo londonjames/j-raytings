@@ -1040,6 +1040,21 @@ def set_a_grade_book_rankings():
         conn = get_db()
         cursor = conn.cursor()
         
+        # Check if updated_at column exists
+        has_updated_at = False
+        if USE_POSTGRES:
+            cursor.execute("""
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name='books' AND column_name='updated_at'
+            """)
+            has_updated_at = cursor.fetchone() is not None
+        else:
+            # SQLite: try to get column info
+            cursor.execute("PRAGMA table_info(books)")
+            columns = cursor.fetchall()
+            has_updated_at = any(col[1] == 'updated_at' for col in columns)
+        
         updated = 0
         not_found = []
         
@@ -1086,27 +1101,17 @@ def set_a_grade_book_rankings():
                         conn.close()
                         return jsonify({'error': 'a_grade_rank column does not exist'}), 500
                 
-                # Update the ranking (handle updated_at column if it exists)
-                try:
+                # Update the ranking (include updated_at only if column exists)
+                if has_updated_at:
                     if USE_POSTGRES:
                         cursor.execute('UPDATE books SET a_grade_rank = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (rank, book_id))
                     else:
                         cursor.execute('UPDATE books SET a_grade_rank = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (rank, book_id))
-                except Exception as e:
-                    # If updated_at column doesn't exist, just update a_grade_rank
-                    error_str = str(e).lower()
-                    if 'updated_at' in error_str or 'column' in error_str:
-                        # Try without updated_at
-                        try:
-                            if USE_POSTGRES:
-                                cursor.execute('UPDATE books SET a_grade_rank = %s WHERE id = %s', (rank, book_id))
-                            else:
-                                cursor.execute('UPDATE books SET a_grade_rank = ? WHERE id = ?', (rank, book_id))
-                        except Exception as e2:
-                            print(f"Error updating a_grade_rank: {e2}")
-                            raise
+                else:
+                    if USE_POSTGRES:
+                        cursor.execute('UPDATE books SET a_grade_rank = %s WHERE id = %s', (rank, book_id))
                     else:
-                        raise
+                        cursor.execute('UPDATE books SET a_grade_rank = ? WHERE id = ?', (rank, book_id))
                 
                 updated += 1
             else:
