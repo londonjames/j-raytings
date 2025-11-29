@@ -205,7 +205,16 @@ function BookFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
   const ratingOptions = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D']
 
   // Type options
-  const typeOptions = ['FICT', 'NF/BUSIN', 'NF/SOC', 'NF/SPORT', 'NF/TRUECRIME']
+  const typeOptions = [
+    'Fiction',
+    'Non-fiction: Business',
+    'Non-fiction: Social',
+    'Non-fiction: Sport',
+    'Non-fiction: Bio',
+    'Non-fiction: Politics',
+    'Non-fiction: True Crime',
+    'Non-fiction'
+  ]
 
   // Form options
   const formOptions = ['Kindle', 'Book']

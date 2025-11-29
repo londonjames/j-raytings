@@ -196,11 +196,14 @@ function BookForm({ book, onSave, onCancel }) {
                   onChange={handleChange}
                 >
                   <option value="">Select Type</option>
-                  <option value="FICT">FICT (Fiction)</option>
-                  <option value="NF/BUSIN">NF/BUSIN (Non-Fiction/Business)</option>
-                  <option value="NF/SOC">NF/SOC (Non-Fiction/Social)</option>
-                  <option value="NF/SPORT">NF/SPORT (Non-Fiction/Sports)</option>
-                  <option value="NF/TRUECRIME">NF/TRUECRIME (Non-Fiction/True Crime)</option>
+                  <option value="Fiction">Fiction</option>
+                  <option value="Non-fiction: Business">Non-fiction: Business</option>
+                  <option value="Non-fiction: Social">Non-fiction: Social</option>
+                  <option value="Non-fiction: Sport">Non-fiction: Sport</option>
+                  <option value="Non-fiction: Bio">Non-fiction: Bio</option>
+                  <option value="Non-fiction: Politics">Non-fiction: Politics</option>
+                  <option value="Non-fiction: True Crime">Non-fiction: True Crime</option>
+                  <option value="Non-fiction">Non-fiction</option>
                 </select>
               </div>
 
