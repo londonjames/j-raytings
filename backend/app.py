@@ -920,9 +920,9 @@ def update_film_field(film_id):
         cursor = conn.cursor()
         
         if USE_POSTGRES:
-            cursor.execute(f'UPDATE films SET {field_name} = %s WHERE id = %s', (field_value, film_id))
+            cursor.execute(f'UPDATE films SET {field_name} = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (field_value, film_id))
         else:
-            cursor.execute(f'UPDATE films SET {field_name} = ? WHERE id = ?', (field_value, film_id))
+            cursor.execute(f'UPDATE films SET {field_name} = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (field_value, film_id))
         
         conn.commit()
         
@@ -1002,9 +1002,9 @@ def set_a_grade_rankings():
                 
                 # Update the ranking
                 if USE_POSTGRES:
-                    cursor.execute('UPDATE films SET a_grade_rank = %s WHERE id = %s', (rank, film_id))
+                    cursor.execute('UPDATE films SET a_grade_rank = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (rank, film_id))
                 else:
-                    cursor.execute('UPDATE films SET a_grade_rank = ? WHERE id = ?', (rank, film_id))
+                    cursor.execute('UPDATE films SET a_grade_rank = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (rank, film_id))
                 
                 updated += 1
             else:
@@ -1088,9 +1088,9 @@ def set_a_grade_book_rankings():
                 
                 # Update the ranking
                 if USE_POSTGRES:
-                    cursor.execute('UPDATE books SET a_grade_rank = %s WHERE id = %s', (rank, book_id))
+                    cursor.execute('UPDATE books SET a_grade_rank = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (rank, book_id))
                 else:
-                    cursor.execute('UPDATE books SET a_grade_rank = ? WHERE id = ?', (rank, book_id))
+                    cursor.execute('UPDATE books SET a_grade_rank = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (rank, book_id))
                 
                 updated += 1
             else:
@@ -1490,9 +1490,9 @@ def update_book_cover(book_id):
             return jsonify({'error': 'cover_url is required or book_name/author needed to fetch'}), 400
         
         if USE_POSTGRES:
-            cursor.execute('UPDATE books SET cover_url = %s WHERE id = %s', (cover_url, book_id))
+            cursor.execute('UPDATE books SET cover_url = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (cover_url, book_id))
         else:
-            cursor.execute('UPDATE books SET cover_url = ? WHERE id = ?', (cover_url, book_id))
+            cursor.execute('UPDATE books SET cover_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (cover_url, book_id))
         
         conn.commit()
         conn.close()
@@ -1589,9 +1589,9 @@ def update_book_field(book_id):
         placeholder = '%s' if USE_POSTGRES else '?'
         
         if USE_POSTGRES:
-            cursor.execute(f'UPDATE books SET {field_name} = %s WHERE id = %s', (field_value, book_id))
+            cursor.execute(f'UPDATE books SET {field_name} = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (field_value, book_id))
         else:
-            cursor.execute(f'UPDATE books SET {field_name} = ? WHERE id = ?', (field_value, book_id))
+            cursor.execute(f'UPDATE books SET {field_name} = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (field_value, book_id))
         
         conn.commit()
         conn.close()
