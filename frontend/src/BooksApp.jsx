@@ -323,16 +323,6 @@ function BooksApp() {
         const aDate = parseDate(a.date_read)
         const bDate = parseDate(b.date_read)
         comparison = bDate - aDate // Most recent first
-      } else if (actualSortBy === 'year') {
-        // Year read
-        const aYear = parseInt(a.year) || 0
-        const bYear = parseInt(b.year) || 0
-        comparison = bYear - aYear // Newer first
-      } else if (actualSortBy === 'published') {
-        // Year written (from year_written)
-        const aYear = a.year_written || 0
-        const bYear = b.year_written || 0
-        comparison = bYear - aYear // Newer first
       } else if (actualSortBy === 'dateWritten') {
         // Date written - parse published_date field and sort by actual date
         const parseDate = (dateStr) => {

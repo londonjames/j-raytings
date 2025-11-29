@@ -48,8 +48,6 @@ function BookSortBar({ onSortChange, initialSortConfig }) {
     switch(sortBy) {
       case 'rating': return 'By J-Rayting'
       case 'date': return 'By Date Read'
-      case 'year': return 'By Year Read'
-      case 'published': return 'By Year Written'
       case 'dateWritten': return 'By Date Written'
       case 'pages': return 'By Pages'
       default: return ''
@@ -73,8 +71,6 @@ function BookSortBar({ onSortChange, initialSortConfig }) {
           <option value="">[CLEAR SORT ORDER]</option>
           <option value="rating">By J-Rayting</option>
           <option value="date">By Date Read</option>
-          <option value="year">By Year Read</option>
-          <option value="published">By Year Written</option>
           <option value="dateWritten">By Date Written</option>
           <option value="pages">By Pages</option>
         </select>
