@@ -1564,7 +1564,7 @@ def update_book_field(book_id):
         'order_number', 'date_read', 'year', 'book_name', 'author',
         'details_commentary', 'j_rayting', 'score', 'type', 'pages',
         'form', 'notes_in_notion', 'notion_link', 'cover_url', 'google_books_id',
-        'isbn', 'average_rating', 'ratings_count', 'published_date', 'year_written', 'description'
+        'isbn', 'average_rating', 'ratings_count', 'published_date', 'year_written', 'description', 'a_grade_rank'
     ]
     
     if field_name not in allowed_fields:
