@@ -333,6 +333,53 @@ function BooksApp() {
         const aYear = a.year_written || 0
         const bYear = b.year_written || 0
         comparison = bYear - aYear // Newer first
+      } else if (actualSortBy === 'dateWritten') {
+        // Date written - parse published_date field and sort by actual date
+        const parseDate = (dateStr) => {
+          if (!dateStr) return new Date(0) // Put missing dates at the end
+          
+          // Try YYYY-MM-DD format first
+          if (dateStr.includes('-')) {
+            const parts = dateStr.split('-')
+            if (parts.length === 3) {
+              return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]))
+            }
+          }
+          
+          // Try MM/DD/YYYY format
+          if (dateStr.includes('/')) {
+            const parts = dateStr.split('/')
+            if (parts.length === 3) {
+              return new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]))
+            }
+          }
+          
+          // Try Month-YY format (e.g., "Jan-24")
+          const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          if (dateStr.includes('-') && dateStr.length <= 7) {
+            const parts = dateStr.split('-')
+            if (parts.length === 2) {
+              const monthIndex = monthNames.indexOf(parts[0])
+              if (monthIndex !== -1) {
+                const year = 2000 + parseInt(parts[1]) // Assume 20XX
+                return new Date(year, monthIndex, 1)
+              }
+            }
+          }
+          
+          // If it's just a year (4 digits), use January 1st of that year
+          if (/^\d{4}$/.test(dateStr)) {
+            return new Date(parseInt(dateStr), 0, 1)
+          }
+          
+          // Fallback: try to parse as-is
+          const parsed = new Date(dateStr)
+          return isNaN(parsed.getTime()) ? new Date(0) : parsed
+        }
+        
+        const aDate = parseDate(a.published_date)
+        const bDate = parseDate(b.published_date)
+        comparison = bDate - aDate // Most recent first
       } else if (actualSortBy === 'pages') {
         // Pages
         const aPages = a.pages || 0
