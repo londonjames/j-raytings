@@ -182,7 +182,7 @@ def init_books_db():
             ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
             ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
             ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT'),
-            ('notion_link', 'TEXT'), ('a_grade_rank', 'INTEGER')
+            ('notion_link', 'TEXT'), ('a_grade_rank', 'INTEGER'), ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP')
         ]:
             cursor.execute("""
                 SELECT column_name 
@@ -231,7 +231,7 @@ def init_books_db():
             ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
             ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
             ('published_date', 'TEXT'), ('description', 'TEXT'), ('year_written', 'INTEGER'),
-            ('notion_link', 'TEXT'), ('a_grade_rank', 'INTEGER')
+            ('notion_link', 'TEXT'), ('a_grade_rank', 'INTEGER'), ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP')
         ]:
             try:
                 cursor.execute(f'ALTER TABLE books ADD COLUMN {column_name} {column_type}')
