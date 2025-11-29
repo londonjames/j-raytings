@@ -24,9 +24,12 @@ function BookAdminPanel({ onLogout }) {
   // Fetch all books
   const fetchBooks = async () => {
     try {
-      const response = await fetch(`${API_URL}/books`)
+      // Add cache-busting to ensure fresh data
+      const response = await fetch(`${API_URL}/books?_t=${Date.now()}`, {
+        cache: 'no-store'
+      })
       const data = await response.json()
-      // Sort by ID descending (newest first) so newly added items appear at top
+      // Backend now orders by ID descending, but ensure sorting here too
       const sortedData = [...data].sort((a, b) => (b.id || 0) - (a.id || 0))
       setBooks(sortedData)
       setFilteredBooks(sortedData)
@@ -83,10 +86,10 @@ function BookAdminPanel({ onLogout }) {
         setShowAddForm(false)
         setEditingBook(null)
         setDuplicateWarning(null)
-        // Small delay to ensure backend has saved the new book
+        // Longer delay to ensure backend has fully saved the new book
         setTimeout(() => {
           fetchBooks()
-        }, 100)
+        }, 500)
         setTimeout(() => setMessage(''), 5000)
       } else if (response.status === 409) {
         // Duplicate detected

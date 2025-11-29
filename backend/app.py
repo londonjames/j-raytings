@@ -381,7 +381,9 @@ def get_books():
         query += f' AND year = {placeholder}'
         params.append(int(year))
 
-    query += ' ORDER BY order_number ASC'
+    # Order by ID descending (newest first) so newly added books appear at top
+    # Fallback to order_number if ID is not available
+    query += ' ORDER BY id DESC'
 
     cursor.execute(query, params)
     books = [book_row_to_dict(row) for row in cursor.fetchall()]
