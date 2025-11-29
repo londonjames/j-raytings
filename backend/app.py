@@ -177,7 +177,8 @@ def init_books_db():
         for column_name, column_type in [
             ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
             ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
-            ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT')
+            ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT'),
+            ('notion_link', 'TEXT')
         ]:
             cursor.execute("""
                 SELECT column_name 
@@ -223,7 +224,8 @@ def init_books_db():
         for column_name, column_type in [
             ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
             ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
-            ('published_date', 'TEXT'), ('description', 'TEXT'), ('year_written', 'INTEGER')
+            ('published_date', 'TEXT'), ('description', 'TEXT'), ('year_written', 'INTEGER'),
+            ('notion_link', 'TEXT')
         ]:
             try:
                 cursor.execute(f'ALTER TABLE books ADD COLUMN {column_name} {column_type}')
@@ -1125,10 +1127,10 @@ def add_book():
             INSERT INTO books (
                 order_number, date_read, year, book_name, author,
                 details_commentary, j_rayting, score, type, pages,
-                form, notes_in_notion, cover_url, google_books_id,
+                form, notes_in_notion, notion_link, cover_url, google_books_id,
                 isbn, average_rating, ratings_count, published_date, year_written, description
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
         ''', (
             data.get('order_number', new_order),
@@ -1143,6 +1145,7 @@ def add_book():
             data.get('pages'),
             data.get('form'),
             data.get('notes_in_notion'),
+            data.get('notion_link'),
             cover_url,
             google_books_id,
             isbn,
@@ -1169,10 +1172,10 @@ def add_book():
             INSERT INTO books (
                 order_number, date_read, year, book_name, author,
                 details_commentary, j_rayting, score, type, pages,
-                form, notes_in_notion, cover_url, google_books_id,
+                form, notes_in_notion, notion_link, cover_url, google_books_id,
                 isbn, average_rating, ratings_count, published_date, year_written, description
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             data.get('order_number', new_order),
             data.get('date_read'),
@@ -1186,6 +1189,7 @@ def add_book():
             data.get('pages'),
             data.get('form'),
             data.get('notes_in_notion'),
+            data.get('notion_link'),
             cover_url,
             google_books_id,
             isbn,

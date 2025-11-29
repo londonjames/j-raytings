@@ -12,8 +12,8 @@ function BookForm({ book, onSave, onCancel }) {
     type: '',
     pages: '',
     form: '',
-    details_commentary: '',
     notes_in_notion: '',
+    notion_link: '',
     order_number: '',
     cover_url: ''
   })
@@ -31,8 +31,8 @@ function BookForm({ book, onSave, onCancel }) {
         type: book.type || '',
         pages: book.pages || '',
         form: book.form || '',
-        details_commentary: book.details_commentary || '',
         notes_in_notion: book.notes_in_notion || '',
+        notion_link: book.notion_link || '',
         order_number: book.order_number || '',
         cover_url: book.cover_url || ''
       })
@@ -206,7 +206,9 @@ function BookForm({ book, onSave, onCancel }) {
                   <option value="Non-fiction">Non-fiction</option>
                 </select>
               </div>
+            </div>
 
+            <div className="form-row">
               <div className="form-group">
                 <label htmlFor="form">Form</label>
                 <select
@@ -269,18 +271,6 @@ function BookForm({ book, onSave, onCancel }) {
             </div>
 
             <div className="form-group">
-              <label htmlFor="details_commentary">Details & Commentary</label>
-              <textarea
-                id="details_commentary"
-                name="details_commentary"
-                value={formData.details_commentary}
-                onChange={handleChange}
-                rows="4"
-                placeholder="Your thoughts and commentary about the book..."
-              />
-            </div>
-
-            <div className="form-group">
               <label htmlFor="notes_in_notion">Notes in Notion</label>
               <input
                 type="text"
@@ -289,6 +279,18 @@ function BookForm({ book, onSave, onCancel }) {
                 value={formData.notes_in_notion}
                 onChange={handleChange}
                 placeholder="YES or NO"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="notion_link">Notion Link</label>
+              <input
+                type="url"
+                id="notion_link"
+                name="notion_link"
+                value={formData.notion_link}
+                onChange={handleChange}
+                placeholder="https://www.notion.so/..."
               />
             </div>
 
