@@ -216,16 +216,58 @@ function BookAdminPanel({ onLogout }) {
               {(filteredBooks || []).map(book => (
                 <div key={book.id} className="admin-film-item">
                   <div className="film-info">
-                    {book.cover_url && book.cover_url !== 'PLACEHOLDER' && (
-                      <img 
-                        src={book.cover_url.startsWith('http') ? `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(book.google_books_id || '')}&url=${encodeURIComponent(book.cover_url)}` : book.cover_url}
-                        alt={book.book_name} 
-                        className="film-thumb"
-                        onError={(e) => {
-                          e.target.style.display = 'none'
-                        }}
-                      />
-                    )}
+                    {book.cover_url && book.cover_url !== 'PLACEHOLDER' && (() => {
+                      // Use same logic as consumer page for consistency
+                      const getCoverProxyUrl = (coverUrl, googleBooksId) => {
+                        if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
+                        
+                        // For Google Books URLs, try constructing a more stable direct URL if we have the book ID
+                        if (googleBooksId && coverUrl.includes('books.google.com')) {
+                          return `https://books.google.com/books/publisher/content/images/frontcover/${googleBooksId}?fife=w480-h690`
+                        }
+                        
+                        // For all other URLs, use directly (they should work without proxy)
+                        return coverUrl
+                      }
+                      
+                      // Create cache-busting hash from cover_url and updated_at (if available)
+                      let cacheBuster = ''
+                      if (book.cover_url) {
+                        let hash = 0
+                        const urlToHash = book.cover_url + (book.updated_at || book.id || '')
+                        for (let i = 0; i < urlToHash.length; i++) {
+                          const char = urlToHash.charCodeAt(i)
+                          hash = ((hash << 5) - hash) + char
+                          hash = hash & hash
+                        }
+                        cacheBuster = Math.abs(hash).toString(36).slice(0, 10)
+                      }
+                      
+                      const imageUrl = getCoverProxyUrl(book.cover_url, book.google_books_id)
+                      const finalUrl = imageUrl.includes('books.google.com') && imageUrl.includes('fife=')
+                        ? `${imageUrl}&_cb=${cacheBuster}`
+                        : imageUrl.includes('?')
+                        ? `${imageUrl}&_cb=${cacheBuster}`
+                        : `${imageUrl}?_cb=${cacheBuster}`
+                      
+                      return (
+                        <img 
+                          key={`${book.id}-${cacheBuster}`}
+                          src={finalUrl}
+                          alt={book.book_name} 
+                          className="film-thumb"
+                          onError={(e) => {
+                            // Fallback to proxy if direct URL fails
+                            if (!e.target.src.includes('/books/cover-proxy')) {
+                              const proxyUrl = `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(book.google_books_id || '')}&url=${encodeURIComponent(book.cover_url)}&_cb=${cacheBuster}`
+                              e.target.src = proxyUrl
+                            } else {
+                              e.target.style.display = 'none'
+                            }
+                          }}
+                        />
+                      )
+                    })()}
                     <div className="film-details">
                       <h3>{book.book_name}</h3>
                       <div className="film-meta">

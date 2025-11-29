@@ -199,9 +199,33 @@ function AdminPanel({ onLogout }) {
               {(filteredFilms || []).map(film => (
                 <div key={film.id} className="admin-film-item">
                   <div className="film-info">
-                    {film.poster_url && (
-                      <img src={film.poster_url} alt={film.title} className="film-thumb" />
-                    )}
+                    {film.poster_url && (() => {
+                      // Add cache-busting to ensure updated images show immediately
+                      let cacheBuster = ''
+                      if (film.poster_url) {
+                        let hash = 0
+                        const urlToHash = film.poster_url + (film.updated_at || film.id || '')
+                        for (let i = 0; i < urlToHash.length; i++) {
+                          const char = urlToHash.charCodeAt(i)
+                          hash = ((hash << 5) - hash) + char
+                          hash = hash & hash
+                        }
+                        cacheBuster = Math.abs(hash).toString(36).slice(0, 10)
+                      }
+                      
+                      const finalUrl = film.poster_url.includes('?')
+                        ? `${film.poster_url}&_cb=${cacheBuster}`
+                        : `${film.poster_url}?_cb=${cacheBuster}`
+                      
+                      return (
+                        <img 
+                          key={`${film.id}-${cacheBuster}`}
+                          src={finalUrl} 
+                          alt={film.title} 
+                          className="film-thumb" 
+                        />
+                      )
+                    })()}
                     <div className="film-details">
                       <h3>{film.title}</h3>
                       <div className="film-meta">
