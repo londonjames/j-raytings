@@ -8,20 +8,25 @@ import os
 import requests
 import json
 
-# Use production API URL if DATABASE_URL is set (Railway), otherwise local
-API_URL = os.getenv('API_URL', 'http://localhost:5001/api')
+# Use production API URL (Railway) - production is the source of truth
+API_URL = os.getenv('API_URL', 'https://web-production-01d1.up.railway.app/api')
 
-# The 9 A-grade books with custom rankings
+# A-grade books with custom rankings
+# A/A+ tier: The Right Stuff should be rank 1
+# A tier: The 9 books below are ranked within the A tier
 A_GRADE_BOOK_RANKINGS = [
-    {'book_name': 'Animal Farm', 'rank': 1},
-    {'book_name': 'The Amateurs', 'rank': 2},
-    {'book_name': 'Confessions of an Advertising Man', 'rank': 3},
-    {'book_name': 'Ethan Frome', 'rank': 4},
-    {'book_name': 'The Things You Can See Only When You Slow Down: How to Be Calm in a Busy World', 'rank': 5, 'alternatives': ['Things You Can Only See When You Slow Down']},
-    {'book_name': 'Gold in the Water: The True Story of Ordinary Men and their Extraordinary Dream of Olympic Glory', 'rank': 6, 'alternatives': ['Gold in the Water']},
-    {'book_name': 'The Seven Habits of Highly Effective People', 'rank': 7, 'alternatives': ['Seven Habits']},
-    {'book_name': 'Conscious Business: How to Build Value Through Values', 'rank': 8, 'alternatives': ['Conscious Business']},
-    {'book_name': 'A Civil Action', 'rank': 9},
+    # A/A+ tier
+    {'book_name': 'The Right Stuff', 'rank': 1, 'rating': 'A/A+'},
+    # A tier (the 9 books ranked within A)
+    {'book_name': 'Animal Farm', 'rank': 1, 'rating': 'A'},
+    {'book_name': 'The Amateurs', 'rank': 2, 'rating': 'A'},
+    {'book_name': 'Confessions of an Advertising Man', 'rank': 3, 'rating': 'A'},
+    {'book_name': 'Ethan Frome', 'rank': 4, 'rating': 'A'},
+    {'book_name': 'The Things You Can See Only When You Slow Down: How to Be Calm in a Busy World', 'rank': 5, 'rating': 'A', 'alternatives': ['Things You Can Only See When You Slow Down']},
+    {'book_name': 'Gold in the Water: The True Story of Ordinary Men and their Extraordinary Dream of Olympic Glory', 'rank': 6, 'rating': 'A', 'alternatives': ['Gold in the Water']},
+    {'book_name': 'The Seven Habits of Highly Effective People', 'rank': 7, 'rating': 'A', 'alternatives': ['Seven Habits']},
+    {'book_name': 'Conscious Business: How to Build Value Through Values', 'rank': 8, 'rating': 'A', 'alternatives': ['Conscious Business']},
+    {'book_name': 'A Civil Action', 'rank': 9, 'rating': 'A'},
 ]
 
 def set_a_grade_book_rankings():

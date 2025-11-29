@@ -1086,11 +1086,21 @@ def set_a_grade_book_rankings():
                         conn.close()
                         return jsonify({'error': 'a_grade_rank column does not exist'}), 500
                 
-                # Update the ranking
-                if USE_POSTGRES:
-                    cursor.execute('UPDATE books SET a_grade_rank = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (rank, book_id))
-                else:
-                    cursor.execute('UPDATE books SET a_grade_rank = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (rank, book_id))
+                # Update the ranking (handle updated_at column if it exists)
+                try:
+                    if USE_POSTGRES:
+                        cursor.execute('UPDATE books SET a_grade_rank = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (rank, book_id))
+                    else:
+                        cursor.execute('UPDATE books SET a_grade_rank = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (rank, book_id))
+                except Exception as e:
+                    # If updated_at column doesn't exist, just update a_grade_rank
+                    if 'updated_at' in str(e).lower():
+                        if USE_POSTGRES:
+                            cursor.execute('UPDATE books SET a_grade_rank = %s WHERE id = %s', (rank, book_id))
+                        else:
+                            cursor.execute('UPDATE books SET a_grade_rank = ? WHERE id = ?', (rank, book_id))
+                    else:
+                        raise
                 
                 updated += 1
             else:
