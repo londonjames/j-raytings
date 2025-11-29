@@ -876,9 +876,9 @@ def update_film_poster(film_id):
         cursor = conn.cursor()
         
         if USE_POSTGRES:
-            cursor.execute('UPDATE films SET poster_url = %s WHERE id = %s', (poster_url, film_id))
+            cursor.execute('UPDATE films SET poster_url = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (poster_url, film_id))
         else:
-            cursor.execute('UPDATE films SET poster_url = ? WHERE id = ?', (poster_url, film_id))
+            cursor.execute('UPDATE films SET poster_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (poster_url, film_id))
         
         conn.commit()
         
