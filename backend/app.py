@@ -66,7 +66,8 @@ def init_db():
                 poster_url TEXT,
                 rt_link TEXT,
                 a_grade_rank INTEGER,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
         
