@@ -19,7 +19,9 @@ function BookForm({ book, onSave, onCancel }) {
     notes_in_notion: '',
     notion_link: '',
     order_number: '',
-    cover_url: ''
+    cover_url: '',
+    google_books_id: '',
+    details_commentary: ''
   })
 
   useEffect(() => {
@@ -331,7 +333,9 @@ function BookForm({ book, onSave, onCancel }) {
                       
                       // If proxy also fails or not a Google Books URL, show error
                       e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'block';
+                      if (e.target.nextSibling) {
+                        e.target.nextSibling.style.display = 'block';
+                      }
                     }}
                   />
                   <div style={{ display: 'none', color: '#999', fontSize: '0.85rem', marginTop: '5px' }}>
@@ -346,7 +350,7 @@ function BookForm({ book, onSave, onCancel }) {
               <textarea
                 id="details_commentary"
                 name="details_commentary"
-                value={formData.details_commentary}
+                value={formData.details_commentary || ''}
                 onChange={handleChange}
                 rows="4"
                 placeholder="Your thoughts and commentary about the book..."
