@@ -100,72 +100,128 @@ def main():
     print(f"✓ PostgreSQL currently has {pg_count_before} books")
     print()
 
-    # Clear PostgreSQL table
-    print("🗑️  Clearing PostgreSQL books table...")
-    pg_cursor.execute("DELETE FROM books")
-    pg_conn.commit()
-    print("✓ Cleared all existing data")
-    print()
-
     # Get all books from SQLite
     print("📦 Reading all books from SQLite...")
     sqlite_cursor.execute("SELECT * FROM books ORDER BY id")
-    books = sqlite_cursor.fetchall()
-    print(f"✓ Retrieved {len(books)} books")
+    sqlite_books = sqlite_cursor.fetchall()
+    print(f"✓ Retrieved {len(sqlite_books)} books from SQLite")
     print()
 
-    # Insert into PostgreSQL
-    print("⬆️  Uploading books to PostgreSQL...")
+    # Get existing books from PostgreSQL (to preserve ones added in production)
+    print("📦 Reading existing books from PostgreSQL...")
+    pg_cursor.execute("SELECT id, book_name, author FROM books")
+    pg_existing_books = {row[0]: (row[1], row[2]) for row in pg_cursor.fetchall()}
+    print(f"✓ Found {len(pg_existing_books)} existing books in PostgreSQL")
+    print()
+
+    # Helper function to safely get values from Row object
+    def get_value(book, key, default=None):
+        try:
+            return book[key]
+        except (KeyError, IndexError):
+            return default
+
+    # Update or insert books from SQLite
+    print("⬆️  Syncing books from SQLite to PostgreSQL...")
+    updated = 0
     inserted = 0
+    preserved = 0
 
-    for book in books:
-        # Helper function to safely get values from Row object
-        def get_value(key, default=None):
-            try:
-                return book[key]
-            except (KeyError, IndexError):
-                return default
+    for book in sqlite_books:
+        book_id = get_value(book, 'id')
         
-        pg_cursor.execute("""
-            INSERT INTO books (
-                id, order_number, date_read, year, book_name, author,
-                details_commentary, j_rayting, score, type, pages, form,
-                notes_in_notion, notion_link, cover_url, google_books_id, isbn,
-                average_rating, ratings_count, published_date, year_written, description
-            ) VALUES (
-                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
-            )
-        """, (
-            get_value('id'),
-            get_value('order_number'),
-            get_value('date_read'),
-            get_value('year'),
-            get_value('book_name'),
-            get_value('author'),
-            get_value('details_commentary'),
-            get_value('j_rayting'),
-            get_value('score'),
-            get_value('type'),
-            get_value('pages'),
-            get_value('form'),
-            get_value('notes_in_notion'),
-            get_value('notion_link'),
-            get_value('cover_url'),
-            get_value('google_books_id'),
-            get_value('isbn'),
-            get_value('average_rating'),
-            get_value('ratings_count'),
-            get_value('published_date'),
-            get_value('year_written'),
-            get_value('description')
-        ))
-        inserted += 1
+        # Check if book exists in PostgreSQL
+        pg_cursor.execute("SELECT id FROM books WHERE id = %s", (book_id,))
+        exists = pg_cursor.fetchone()
+        
+        if exists:
+            # Update existing book
+            pg_cursor.execute("""
+                UPDATE books SET
+                    order_number = %s, date_read = %s, year = %s, book_name = %s, author = %s,
+                    details_commentary = %s, j_rayting = %s, score = %s, type = %s, pages = %s, form = %s,
+                    notes_in_notion = %s, notion_link = %s, cover_url = %s, google_books_id = %s, isbn = %s,
+                    average_rating = %s, ratings_count = %s, published_date = %s, year_written = %s, description = %s
+                WHERE id = %s
+            """, (
+                get_value(book, 'order_number'),
+                get_value(book, 'date_read'),
+                get_value(book, 'year'),
+                get_value(book, 'book_name'),
+                get_value(book, 'author'),
+                get_value(book, 'details_commentary'),
+                get_value(book, 'j_rayting'),
+                get_value(book, 'score'),
+                get_value(book, 'type'),
+                get_value(book, 'pages'),
+                get_value(book, 'form'),
+                get_value(book, 'notes_in_notion'),
+                get_value(book, 'notion_link'),
+                get_value(book, 'cover_url'),
+                get_value(book, 'google_books_id'),
+                get_value(book, 'isbn'),
+                get_value(book, 'average_rating'),
+                get_value(book, 'ratings_count'),
+                get_value(book, 'published_date'),
+                get_value(book, 'year_written'),
+                get_value(book, 'description'),
+                book_id
+            ))
+            updated += 1
+        else:
+            # Insert new book
+            pg_cursor.execute("""
+                INSERT INTO books (
+                    id, order_number, date_read, year, book_name, author,
+                    details_commentary, j_rayting, score, type, pages, form,
+                    notes_in_notion, notion_link, cover_url, google_books_id, isbn,
+                    average_rating, ratings_count, published_date, year_written, description
+                ) VALUES (
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                )
+            """, (
+                book_id,
+                get_value(book, 'order_number'),
+                get_value(book, 'date_read'),
+                get_value(book, 'year'),
+                get_value(book, 'book_name'),
+                get_value(book, 'author'),
+                get_value(book, 'details_commentary'),
+                get_value(book, 'j_rayting'),
+                get_value(book, 'score'),
+                get_value(book, 'type'),
+                get_value(book, 'pages'),
+                get_value(book, 'form'),
+                get_value(book, 'notes_in_notion'),
+                get_value(book, 'notion_link'),
+                get_value(book, 'cover_url'),
+                get_value(book, 'google_books_id'),
+                get_value(book, 'isbn'),
+                get_value(book, 'average_rating'),
+                get_value(book, 'ratings_count'),
+                get_value(book, 'published_date'),
+                get_value(book, 'year_written'),
+                get_value(book, 'description')
+            ))
+            inserted += 1
 
-        if inserted % 100 == 0:
-            print(f"  Uploaded {inserted}/{len(books)} books...")
+        if (updated + inserted) % 100 == 0:
+            print(f"  Processed {updated + inserted}/{len(sqlite_books)} books...")
 
     pg_conn.commit()
-    print(f"✓ Successfully uploaded {inserted} books")
+    
+    # Count books that exist in PostgreSQL but not SQLite (preserved production entries)
+    pg_cursor.execute("SELECT COUNT(*) FROM books WHERE id NOT IN (SELECT id FROM (SELECT id FROM books) AS pg_ids)")
+    # Better approach: get all PG IDs and check against SQLite
+    pg_cursor.execute("SELECT id FROM books")
+    pg_all_ids = {row[0] for row in pg_cursor.fetchall()}
+    sqlite_all_ids = {get_value(book, 'id') for book in sqlite_books}
+    preserved_ids = pg_all_ids - sqlite_all_ids
+    preserved = len(preserved_ids)
+    
+    print(f"✓ Updated {updated} existing books")
+    print(f"✓ Inserted {inserted} new books from SQLite")
+    print(f"✓ Preserved {preserved} books that exist only in PostgreSQL (added in production)")
     print()
 
     # Reset sequence
@@ -187,7 +243,9 @@ def main():
     print("=" * 80)
     print(f"SQLite:     {sqlite_count} books")
     print(f"PostgreSQL: {pg_count_after} books")
-    print(f"Difference: {pg_count_before - pg_count_after} books removed")
+    print(f"Updated:    {updated} books")
+    print(f"Inserted:   {inserted} books from SQLite")
+    print(f"Preserved:  {preserved} books from production (not in SQLite)")
     print()
 
     # Show cover stats
