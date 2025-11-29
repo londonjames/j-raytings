@@ -66,6 +66,7 @@ def main():
             average_rating REAL,
             ratings_count INTEGER,
             published_date TEXT,
+            year_written INTEGER,
             description TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
@@ -75,7 +76,7 @@ def main():
     for column_name, column_type in [
         ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
         ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
-        ('published_date', 'TEXT'), ('description', 'TEXT')
+        ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT')
     ]:
         pg_cursor.execute("""
             SELECT column_name 
@@ -128,9 +129,9 @@ def main():
                 id, order_number, date_read, year, book_name, author,
                 details_commentary, j_rayting, score, type, pages, form,
                 notes_in_notion, cover_url, google_books_id, isbn,
-                average_rating, ratings_count, published_date, description
+                average_rating, ratings_count, published_date, year_written, description
             ) VALUES (
-                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
             )
         """, (
             get_value('id'),
@@ -152,6 +153,7 @@ def main():
             get_value('average_rating'),
             get_value('ratings_count'),
             get_value('published_date'),
+            get_value('year_written'),
             get_value('description')
         ))
         inserted += 1
@@ -190,9 +192,12 @@ def main():
     with_covers = pg_cursor.fetchone()[0]
     pg_cursor.execute("SELECT COUNT(*) FROM books WHERE published_date IS NOT NULL AND published_date != ''")
     with_dates = pg_cursor.fetchone()[0]
+    pg_cursor.execute("SELECT COUNT(*) FROM books WHERE year_written IS NOT NULL")
+    with_year_written = pg_cursor.fetchone()[0]
 
     print(f"Covers:     {with_covers} books ({100*with_covers/pg_count_after:.1f}%)")
     print(f"Published dates: {with_dates} books ({100*with_dates/pg_count_after:.1f}%)")
+    print(f"Year written: {with_year_written} books ({100*with_year_written/pg_count_after:.1f}%)")
     print("=" * 80)
 
     # Close connections
