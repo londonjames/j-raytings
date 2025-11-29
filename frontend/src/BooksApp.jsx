@@ -281,6 +281,48 @@ function BooksApp() {
         const aScore = a.score || 0
         const bScore = b.score || 0
         comparison = bScore - aScore // Higher score first
+      } else if (actualSortBy === 'date') {
+        // Date read - parse date_read field and sort by actual date
+        const parseDate = (dateStr) => {
+          if (!dateStr) return new Date(0) // Put missing dates at the end
+          
+          // Try YYYY-MM-DD format first
+          if (dateStr.includes('-')) {
+            const parts = dateStr.split('-')
+            if (parts.length === 3) {
+              return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]))
+            }
+          }
+          
+          // Try MM/DD/YYYY format
+          if (dateStr.includes('/')) {
+            const parts = dateStr.split('/')
+            if (parts.length === 3) {
+              return new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]))
+            }
+          }
+          
+          // Try Month-YY format (e.g., "Jan-24")
+          const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          if (dateStr.includes('-') && dateStr.length <= 7) {
+            const parts = dateStr.split('-')
+            if (parts.length === 2) {
+              const monthIndex = monthNames.indexOf(parts[0])
+              if (monthIndex !== -1) {
+                const year = 2000 + parseInt(parts[1]) // Assume 20XX
+                return new Date(year, monthIndex, 1)
+              }
+            }
+          }
+          
+          // Fallback: try to parse as-is
+          const parsed = new Date(dateStr)
+          return isNaN(parsed.getTime()) ? new Date(0) : parsed
+        }
+        
+        const aDate = parseDate(a.date_read)
+        const bDate = parseDate(b.date_read)
+        comparison = bDate - aDate // Most recent first
       } else if (actualSortBy === 'year') {
         // Year read
         const aYear = parseInt(a.year) || 0

@@ -47,6 +47,7 @@ function BookSortBar({ onSortChange, initialSortConfig }) {
   const getSortLabel = () => {
     switch(sortBy) {
       case 'rating': return 'By J-Rayting'
+      case 'date': return 'By Date Read'
       case 'year': return 'By Year Read'
       case 'published': return 'By Year Written'
       case 'pages': return 'By Pages'
@@ -70,6 +71,7 @@ function BookSortBar({ onSortChange, initialSortConfig }) {
         >
           <option value="">[CLEAR SORT ORDER]</option>
           <option value="rating">By J-Rayting</option>
+          <option value="date">By Date Read</option>
           <option value="year">By Year Read</option>
           <option value="published">By Year Written</option>
           <option value="pages">By Pages</option>
