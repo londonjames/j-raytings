@@ -18,37 +18,23 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
   }
 
   // Helper function to get cover image URL
-  // Use direct URLs when possible (Amazon, Goodreads) to avoid proxy latency
-  // Only use proxy for Google Books URLs that may have CORS issues
+  // Use direct URLs when possible to avoid proxy latency
+  // The proxy was originally needed for CORS, but most URLs work directly now
   const getCoverProxyUrl = (coverUrl, googleBooksId) => {
     if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
     
-    // Check if it's a Google Books URL - these may have CORS issues, use proxy
-    const isGoogleBooksUrl = coverUrl.includes('books.google.com') || 
-                             coverUrl.includes('googleapis.com') ||
-                             coverUrl.includes('googleusercontent.com')
+    // Try using direct URLs for everything - they should work in most cases
+    // The browser's native image loading is much faster than proxying through backend
+    // Only use proxy as a fallback if direct loading fails (handled by onError)
     
-    // For non-Google Books URLs (Amazon, Goodreads, etc.), use direct URL
-    // These typically don't have CORS restrictions and will load much faster
-    if (!isGoogleBooksUrl) {
-      return coverUrl
+    // For Google Books URLs, try constructing a more stable direct URL if we have the book ID
+    if (googleBooksId && coverUrl.includes('books.google.com')) {
+      // Use the stable Google Books publisher URL format
+      return `https://books.google.com/books/publisher/content/images/frontcover/${googleBooksId}?fife=w480-h690`
     }
     
-    // For Google Books URLs, use proxy only if needed
-    // Create a simple hash from the URL for cache-busting
-    let hash = 0
-    for (let i = 0; i < coverUrl.length; i++) {
-      const char = coverUrl.charCodeAt(i)
-      hash = ((hash << 5) - hash) + char
-      hash = hash & hash // Convert to 32bit integer
-    }
-    const urlHash = Math.abs(hash).toString(36).slice(0, 10)
-    
-    // Use proxy for Google Books URLs
-    if (googleBooksId) {
-      return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(googleBooksId)}&url=${encodeURIComponent(coverUrl)}&_cb=${urlHash}`
-    }
-    return `${API_URL}/books/cover-proxy?url=${encodeURIComponent(coverUrl)}&_cb=${urlHash}`
+    // For all other URLs (including most Google Books URLs), use directly
+    return coverUrl
   }
 
   const handleImageLoad = (bookId) => {
@@ -177,9 +163,34 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                         loading="lazy"
                         onLoad={() => handleImageLoad(book.id)}
                         onError={(e) => {
+                          // If direct URL failed, try proxy as fallback
+                          const directUrl = getCoverProxyUrl(book.cover_url, book.google_books_id)
+                          const isGoogleBooksUrl = book.cover_url && (
+                            book.cover_url.includes('books.google.com') || 
+                            book.cover_url.includes('googleapis.com') ||
+                            book.cover_url.includes('googleusercontent.com')
+                          )
+                          
+                          // Only try proxy if it's a Google Books URL and we haven't already tried proxy
+                          if (isGoogleBooksUrl && !directUrl.includes('/books/cover-proxy')) {
+                            // Create proxy URL as fallback
+                            let hash = 0
+                            for (let i = 0; i < book.cover_url.length; i++) {
+                              const char = book.cover_url.charCodeAt(i)
+                              hash = ((hash << 5) - hash) + char
+                              hash = hash & hash
+                            }
+                            const urlHash = Math.abs(hash).toString(36).slice(0, 10)
+                            const proxyUrl = book.google_books_id
+                              ? `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(book.google_books_id)}&url=${encodeURIComponent(book.cover_url)}&_cb=${urlHash}`
+                              : `${API_URL}/books/cover-proxy?url=${encodeURIComponent(book.cover_url)}&_cb=${urlHash}`
+                            
+                            e.target.src = proxyUrl
+                            return
+                          }
+                          
+                          // If proxy also fails or not a Google Books URL, hide image
                           console.error(`Failed to load cover for ${book.book_name}:`, book.cover_url);
-                          console.error(`Proxy URL was: ${getCoverProxyUrl(book.cover_url, book.google_books_id)}`);
-                          console.error(`API_URL is: ${API_URL}`);
                           e.target.style.display = 'none';
                         }}
                         onLoadStart={() => {
