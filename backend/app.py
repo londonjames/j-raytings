@@ -119,7 +119,8 @@ def init_db():
                 poster_url TEXT,
                 rt_link TEXT,
                 a_grade_rank INTEGER,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
 
@@ -806,6 +807,8 @@ def update_film(film_id):
             
             if updates:
                 values.append(film_id)
+                # Always update updated_at timestamp
+                updates.append('updated_at = CURRENT_TIMESTAMP')
                 query = f'UPDATE films SET {", ".join(updates)} WHERE id = %s'
                 cursor.execute(query, values)
             else:
@@ -834,6 +837,8 @@ def update_film(film_id):
             
             if updates:
                 values.append(film_id)
+                # Always update updated_at timestamp
+                updates.append('updated_at = CURRENT_TIMESTAMP')
                 query = f'UPDATE films SET {", ".join(updates)} WHERE id = ?'
                 cursor.execute(query, values)
             else:
@@ -1421,6 +1426,9 @@ def update_book(book_id):
         return jsonify({'error': 'No valid fields to update'}), 400
 
     params.append(book_id)
+    
+    # Always update updated_at timestamp
+    updates.append('updated_at = CURRENT_TIMESTAMP')
 
     if USE_POSTGRES:
         query = f'UPDATE books SET {", ".join(updates)} WHERE id = %s'
