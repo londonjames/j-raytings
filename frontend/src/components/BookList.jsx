@@ -71,8 +71,21 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
       }
     }
 
+    // Parse YYYY-MM-DD format (e.g., "2025-01-03" -> "Jan 3, 2025")
+    if (dateRead.includes('-') && dateRead.length >= 10) {
+      const parts = dateRead.split('-')
+      if (parts.length === 3 && parts[0].length === 4) {
+        const year = parseInt(parts[0])
+        const month = parseInt(parts[1]) - 1
+        const day = parseInt(parts[2])
+        if (month >= 0 && month < 12 && day > 0 && day <= 31) {
+          return `${months[month]} ${day}, ${year}`
+        }
+      }
+    }
+
     // Handle "Month-YY" format (e.g., "April-08" -> "Apr 2008")
-    if (dateRead.includes('-')) {
+    if (dateRead.includes('-') && dateRead.length <= 10) {
       const parts = dateRead.split('-')
       if (parts.length === 2) {
         const monthName = parts[0]
