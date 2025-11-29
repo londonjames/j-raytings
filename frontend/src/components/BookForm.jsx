@@ -39,7 +39,8 @@ function BookForm({ book, onSave, onCancel }) {
         notion_link: book.notion_link || '',
         order_number: book.order_number || '',
         cover_url: book.cover_url || '',
-        google_books_id: book.google_books_id || ''
+        google_books_id: book.google_books_id || '',
+        details_commentary: book.details_commentary || ''
       })
     }
   }, [book])
@@ -338,6 +339,18 @@ function BookForm({ book, onSave, onCancel }) {
                   </div>
                 </div>
               )}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="details_commentary">Notes</label>
+              <textarea
+                id="details_commentary"
+                name="details_commentary"
+                value={formData.details_commentary}
+                onChange={handleChange}
+                rows="4"
+                placeholder="Your thoughts and commentary about the book..."
+              />
             </div>
           </div>
 
