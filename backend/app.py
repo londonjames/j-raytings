@@ -1105,6 +1105,36 @@ def add_book():
         except Exception as e:
             print(f"Error fetching Google Books data: {e}")
 
+    # Extract year from date_read if year is not provided
+    year = data.get('year')
+    if not year and data.get('date_read'):
+        date_read = data.get('date_read')
+        # Handle YYYY-MM-DD format (from date input)
+        if isinstance(date_read, str) and '-' in date_read:
+            try:
+                year = int(date_read.split('-')[0])
+            except (ValueError, IndexError):
+                pass
+        # Handle MM/DD/YYYY format
+        elif isinstance(date_read, str) and '/' in date_read:
+            try:
+                parts = date_read.split('/')
+                if len(parts) == 3:
+                    year = int(parts[2])
+            except (ValueError, IndexError):
+                pass
+        # Handle Month-YY format (e.g., "November-22")
+        elif isinstance(date_read, str) and '-' in date_read:
+            try:
+                parts = date_read.split('-')
+                if len(parts) == 2:
+                    year_part = parts[1]
+                    # Convert 2-digit year to 4-digit
+                    year_int = int(year_part)
+                    year = 2000 + year_int if year_int < 50 else 1900 + year_int
+            except (ValueError, IndexError):
+                pass
+
     # Get max order_number to set new book's order
     conn = get_db()
     cursor = conn.cursor()
@@ -1141,7 +1171,7 @@ def add_book():
         ''', (
             data.get('order_number', new_order),
             data.get('date_read'),
-            data.get('year'),
+            year or data.get('year'),  # Use extracted year if available, otherwise user-provided
             data['book_name'],
             data.get('author'),
             data.get('details_commentary'),
@@ -1185,7 +1215,7 @@ def add_book():
         ''', (
             data.get('order_number', new_order),
             data.get('date_read'),
-            data.get('year'),
+            year or data.get('year'),  # Use extracted year if available, otherwise user-provided
             data['book_name'],
             data.get('author'),
             data.get('details_commentary'),
