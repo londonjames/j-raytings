@@ -275,7 +275,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                     )}
                     <div className="year-duration">
                       {book.year_written && book.pages && (
-                        <span>{book.year_written} {book.pages} pages</span>
+                        <span>{book.year_written}   {book.pages} pages</span>
                       )}
                       {book.year_written && !book.pages && (
                         <span>{book.year_written}</span>
