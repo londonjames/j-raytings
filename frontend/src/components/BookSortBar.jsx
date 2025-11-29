@@ -49,9 +49,7 @@ function BookSortBar({ onSortChange, initialSortConfig }) {
       case 'rating': return 'By J-Rayting'
       case 'year': return 'By Year Read'
       case 'published': return 'By Year Written'
-      case 'author': return 'By Author'
       case 'pages': return 'By Pages'
-      case 'averageRating': return 'By Goodreads Rating'
       default: return ''
     }
   }
@@ -74,9 +72,7 @@ function BookSortBar({ onSortChange, initialSortConfig }) {
           <option value="rating">By J-Rayting</option>
           <option value="year">By Year Read</option>
           <option value="published">By Year Written</option>
-          <option value="author">By Author</option>
           <option value="pages">By Pages</option>
-          <option value="averageRating">By Goodreads Rating</option>
         </select>
       </div>
 
