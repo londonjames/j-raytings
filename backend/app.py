@@ -1411,7 +1411,11 @@ def update_book(book_id):
             updates.append(f'{field} = {placeholder}')
             if field == 'j_rayting':
                 j_rayting_updated = True
-            params.append(data[field])
+            # Handle cover_url specially - always save it, even if empty string (to allow clearing)
+            if field == 'cover_url':
+                params.append(data[field] if data[field] else None)
+            else:
+                params.append(data[field])
     
     # If j_rayting was updated but score wasn't provided, auto-calculate score
     if j_rayting_updated and not score_provided:

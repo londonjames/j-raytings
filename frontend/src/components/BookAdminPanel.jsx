@@ -77,6 +77,8 @@ function BookAdminPanel({ onLogout }) {
 
       const method = editingBook ? 'PUT' : 'POST'
 
+      console.log('Saving book:', { id: editingBook?.id, cover_url: bookData.cover_url, method })
+      
       const response = await fetch(url, {
         method,
         headers: {
@@ -84,6 +86,8 @@ function BookAdminPanel({ onLogout }) {
         },
         body: JSON.stringify(bookData)
       })
+      
+      console.log('Save response:', response.status, response.statusText)
 
       if (response.ok) {
         const result = await response.json()
