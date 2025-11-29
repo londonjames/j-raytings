@@ -1060,6 +1060,7 @@ def add_book():
     ratings_count = data.get('ratings_count')
     published_date = data.get('published_date')
     description = data.get('description')
+    pages = data.get('pages')
     metadata_fetched = False
 
     # Fetch metadata from Google Books API if available
@@ -1095,6 +1096,9 @@ def add_book():
                         data['year_written'] = int(year_match)
                 if not description:
                     description = book_data.get('description')
+                # Get page count if not already provided
+                if not pages and book_data.get('page_count'):
+                    pages = book_data.get('page_count')
 
                 metadata_fetched = True
                 print(f"✓ Fetched metadata for '{data['book_name']}'")
