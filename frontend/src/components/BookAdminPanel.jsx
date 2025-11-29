@@ -31,8 +31,15 @@ function BookAdminPanel({ onLogout }) {
       const data = await response.json()
       // Ensure data is an array
       const booksArray = Array.isArray(data) ? data : []
-      // Backend now orders by ID descending, but ensure sorting here too
-      const sortedData = [...booksArray].sort((a, b) => (b.id || 0) - (a.id || 0))
+      // Sort by updated_at (most recently updated first), then by id as fallback
+      const sortedData = [...booksArray].sort((a, b) => {
+        const aUpdated = a.updated_at ? new Date(a.updated_at) : new Date(0)
+        const bUpdated = b.updated_at ? new Date(b.updated_at) : new Date(0)
+        if (bUpdated.getTime() !== aUpdated.getTime()) {
+          return bUpdated.getTime() - aUpdated.getTime() // Most recent first
+        }
+        return (b.id || 0) - (a.id || 0) // Fallback to ID
+      })
       setBooks(sortedData)
       setFilteredBooks(sortedData)
     } catch (error) {

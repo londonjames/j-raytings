@@ -85,7 +85,7 @@ def init_db():
                 print(f"Error adding date_seen column: {e}")
         
         # Check and add other missing columns
-        for column_name, column_type in [('genres', 'TEXT'), ('poster_url', 'TEXT'), ('rt_link', 'TEXT'), ('a_grade_rank', 'INTEGER')]:
+        for column_name, column_type in [('genres', 'TEXT'), ('poster_url', 'TEXT'), ('rt_link', 'TEXT'), ('a_grade_rank', 'INTEGER'), ('updated_at', 'TIMESTAMP')]:
             cursor.execute("""
                 SELECT column_name 
                 FROM information_schema.columns 
@@ -170,7 +170,8 @@ def init_books_db():
                 year_written INTEGER,
                 description TEXT,
                 a_grade_rank INTEGER,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
         
@@ -218,7 +219,8 @@ def init_books_db():
                 year_written INTEGER,
                 description TEXT,
                 a_grade_rank INTEGER,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
 
