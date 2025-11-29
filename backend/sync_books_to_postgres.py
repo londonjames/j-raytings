@@ -73,13 +73,13 @@ def main():
             )
     ''')
     
-        # Add missing columns if they don't exist
-        for column_name, column_type in [
-            ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
-            ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
-            ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT'),
-            ('notion_link', 'TEXT')
-        ]:
+    # Add missing columns if they don't exist
+    for column_name, column_type in [
+        ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
+        ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
+        ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT'),
+        ('notion_link', 'TEXT')
+    ]:
         pg_cursor.execute("""
             SELECT column_name 
             FROM information_schema.columns 
@@ -197,10 +197,13 @@ def main():
     with_dates = pg_cursor.fetchone()[0]
     pg_cursor.execute("SELECT COUNT(*) FROM books WHERE year_written IS NOT NULL")
     with_year_written = pg_cursor.fetchone()[0]
+    pg_cursor.execute("SELECT COUNT(*) FROM books WHERE pages IS NOT NULL AND pages > 0")
+    with_pages = pg_cursor.fetchone()[0]
 
     print(f"Covers:     {with_covers} books ({100*with_covers/pg_count_after:.1f}%)")
     print(f"Published dates: {with_dates} books ({100*with_dates/pg_count_after:.1f}%)")
     print(f"Year written: {with_year_written} books ({100*with_year_written/pg_count_after:.1f}%)")
+    print(f"Page numbers: {with_pages} books ({100*with_pages/pg_count_after:.1f}%)")
     print("=" * 80)
 
     # Close connections
