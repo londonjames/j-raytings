@@ -295,6 +295,34 @@ def simplify_location(location_str):
     # Title case for proper formatting (capitalize each word)
     return location_str.title()
 
+def letter_rating_to_score(letter_rating):
+    """Convert letter rating to numeric score (out of 20)"""
+    if not letter_rating:
+        return None
+    
+    rating_map = {
+        'A+': 20,
+        'A/A+': 19,
+        'A': 18,
+        'A-/A': 17,
+        'A-': 16,
+        'B+/A-': 15,
+        'B+': 14,
+        'B/B+': 13,
+        'B': 12,
+        'B-/B': 11,
+        'B-': 10,
+        'C+/B-': 9,
+        'C+': 8,
+        'C/C+': 7,
+        'C': 6,
+        'C-': 5,
+        'D+': 4,
+        'D': 3,
+    }
+    
+    return rating_map.get(letter_rating.strip())
+
 def row_to_dict(row):
     """Convert database row to dictionary (works for both SQLite and PostgreSQL)"""
     film_dict = dict(row)
@@ -1187,7 +1215,7 @@ def add_book():
             data.get('author'),
             data.get('details_commentary'),
             data.get('j_rayting'),
-            data.get('score'),
+            data.get('score') or letter_rating_to_score(data.get('j_rayting')),
             data.get('type'),
             pages or data.get('pages'),  # Use fetched pages if available, otherwise user-provided
             data.get('form'),
@@ -1231,7 +1259,7 @@ def add_book():
             data.get('author'),
             data.get('details_commentary'),
             data.get('j_rayting'),
-            data.get('score'),
+            data.get('score') or letter_rating_to_score(data.get('j_rayting')),
             data.get('type'),
             pages or data.get('pages'),  # Use fetched pages if available, otherwise user-provided
             data.get('form'),
@@ -1281,7 +1309,18 @@ def update_book(book_id):
     for field in allowed_fields:
         if field in data:
             updates.append(f'{field} = {placeholder}')
-            params.append(data[field])
+            # Auto-calculate score from j_rayting if score is not provided but j_rayting is
+            if field == 'score' and not data.get('score') and data.get('j_rayting'):
+                params.append(letter_rating_to_score(data.get('j_rayting')))
+            elif field == 'j_rayting' and 'score' not in data:
+                # If j_rayting is being updated but score isn't, auto-calculate score
+                params.append(data[field])
+                # Also update score if j_rayting changed
+                if 'score' not in [u.split('=')[0].strip() for u in updates]:
+                    updates.append(f'score = {placeholder}')
+                    params.append(letter_rating_to_score(data[field]))
+            else:
+                params.append(data[field])
 
     if not updates:
         conn.close()
