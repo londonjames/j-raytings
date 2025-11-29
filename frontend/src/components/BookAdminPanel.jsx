@@ -140,33 +140,6 @@ function BookAdminPanel({ onLogout }) {
     }
   }
 
-  const handleUpdateCover = async (bookId, bookName, author) => {
-    try {
-      const response = await fetch(`${API_URL}/admin/books/${bookId}/cover`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          book_name: bookName,
-          author: author
-        })
-      })
-
-      if (response.ok) {
-        const result = await response.json()
-        setMessage(`Cover updated successfully! ${result.cover_url ? 'New cover URL: ' + result.cover_url.substring(0, 60) + '...' : ''}`)
-        fetchBooks()
-        setTimeout(() => setMessage(''), 5000)
-      } else {
-        const errorData = await response.json()
-        setMessage(`Error updating cover: ${errorData.error || 'Unknown error'}`)
-      }
-    } catch (error) {
-      console.error('Error:', error)
-      setMessage(`Error updating cover: ${error.message}`)
-    }
-  }
 
   return (
     <div className="admin-panel">
@@ -247,13 +220,6 @@ function BookAdminPanel({ onLogout }) {
                     </div>
                   </div>
                   <div className="film-actions">
-                    <button 
-                      onClick={() => handleUpdateCover(book.id, book.book_name, book.author)} 
-                      className="edit-btn"
-                      title="Update cover from Google Books"
-                    >
-                      Update Cover
-                    </button>
                     <button onClick={() => handleEditBook(book)} className="edit-btn">
                       Edit
                     </button>
