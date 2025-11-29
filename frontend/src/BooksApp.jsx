@@ -282,10 +282,21 @@ function BooksApp() {
         const bIsAGrade = b.j_rayting && ['A+', 'A/A+', 'A'].includes(b.j_rayting)
         
         if (aIsAGrade && bIsAGrade) {
-          // Both are A-grade: use a_grade_rank (lower rank = better, so rank 1 comes before rank 2)
-          const aRank = a.a_grade_rank || 999
-          const bRank = b.a_grade_rank || 999
-          comparison = aRank - bRank // Lower rank first
+          // Both are A-grade: first sort by letter rating (A+ > A/A+ > A), then by rank
+          const ratingOrder = { 'A+': 1, 'A/A+': 2, 'A': 3 }
+          const aRatingOrder = ratingOrder[a.j_rayting] || 999
+          const bRatingOrder = ratingOrder[b.j_rayting] || 999
+          
+          // First compare by rating (A+ comes before A/A+, which comes before A)
+          if (aRatingOrder !== bRatingOrder) {
+            comparison = aRatingOrder - bRatingOrder
+          } else {
+            // Same rating: use a_grade_rank (lower rank = better, so rank 1 comes before rank 2)
+            // Books without ranks should come after books with ranks
+            const aRank = (a.a_grade_rank !== null && a.a_grade_rank !== undefined) ? a.a_grade_rank : 9999
+            const bRank = (b.a_grade_rank !== null && b.a_grade_rank !== undefined) ? b.a_grade_rank : 9999
+            comparison = aRank - bRank // Lower rank first
+          }
         } else if (aIsAGrade && !bIsAGrade) {
           // A-grade always comes first
           comparison = -1
