@@ -9,6 +9,7 @@ const API_URL = import.meta.env.VITE_API_URL ||
 function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
   const [loadedImages, setLoadedImages] = useState(new Set())
   const [flippedCards, setFlippedCards] = useState(new Set())
+  const [thoughtsModal, setThoughtsModal] = useState(null) // Store the book whose thoughts modal is open
 
   // Helper function to extract Google Books ID from URL
   const getGoogleBooksId = (url) => {
@@ -320,35 +321,117 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                         <span className="detail-value">{book.type}</span>
                       </div>
                     )}
+                    {book.details_commentary && (
+                      <div className="detail-row">
+                        <span className="detail-label">Thoughts:</span>
+                        <span className="detail-value">
+                          <button 
+                            onClick={() => setThoughtsModal(book.id)}
+                            style={{ 
+                              background: 'none', 
+                              border: 'none', 
+                              color: 'inherit', 
+                              textDecoration: 'underline', 
+                              cursor: 'pointer',
+                              padding: 0,
+                              font: 'inherit'
+                            }}
+                          >
+                            Click Here
+                          </button>
+                        </span>
+                      </div>
+                    )}
                     {book.notion_link ? (
                       <div className="detail-row">
-                        <span className="detail-label">Notion notes:</span>
+                        <span className="detail-label">Notion note:</span>
                         <span className="detail-value">
                           <a href={book.notion_link} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
-                            Here
+                            Open
                           </a>
                         </span>
                       </div>
                     ) : (
                       <div className="detail-row">
-                        <span className="detail-label">Notion notes:</span>
+                        <span className="detail-label">Notion note:</span>
                         <span className="detail-value">Not Available</span>
                       </div>
                     )}
                   </div>
                 )}
 
-                {book.details_commentary && (
-                  <div className="card-back-commentary">
-                    <span className="commentary-label">Notes:</span>
-                    <p className="commentary-text">{book.details_commentary}</p>
-                  </div>
-                )}
               </div>
             </div>
           </div>
         )
       })}
+
+      {/* Thoughts Modal */}
+      {thoughtsModal && (() => {
+        const book = books.find(b => b.id === thoughtsModal)
+        if (!book || !book.details_commentary) return null
+        return (
+          <div 
+            className="thoughts-modal-overlay"
+            onClick={() => setThoughtsModal(null)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.8)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 1000,
+              padding: '20px'
+            }}
+          >
+            <div 
+              className="thoughts-modal-content"
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                background: '#1c1c1c',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                borderRadius: '8px',
+                padding: '24px',
+                maxWidth: '600px',
+                maxHeight: '80vh',
+                overflow: 'auto',
+                color: '#e0e0e0'
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                <h3 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 600 }}>
+                  {book.book_name}
+                </h3>
+                <button
+                  onClick={() => setThoughtsModal(null)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#e0e0e0',
+                    fontSize: '24px',
+                    cursor: 'pointer',
+                    padding: '0',
+                    width: '30px',
+                    height: '30px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+              <div style={{ color: '#e0e0e0', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
+                {book.details_commentary}
+              </div>
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }

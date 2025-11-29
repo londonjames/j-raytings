@@ -1536,7 +1536,7 @@ body {
 .card-back-header {
   display: flex;
   gap: 1rem;
-  align-items: flex-start;
+  align-items: center;
   padding-right: 0.6rem;
   position: relative;
   margin-bottom: 0.75rem;
@@ -1552,7 +1552,6 @@ body {
 
 .header-text {
   flex: 1;
-  padding-top: 26px;
 }
 
 .film-title-back {
@@ -1576,8 +1575,8 @@ body {
   gap: 0.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.75rem 0.6rem 0.75rem 0.3rem;
-  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.6rem 0.5rem 0.3rem;
+  margin-bottom: 0.5rem;
 }
 
 .metric-item {
@@ -1627,6 +1626,7 @@ body {
   gap: 0.4rem;
   padding-left: 0.3rem;
   padding-right: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .card-back-details.no-data {
@@ -1652,7 +1652,7 @@ body {
 
 .detail-value {
   color: #fff;
-  margin-left: 0.5rem;
+  margin-left: 0;
 }
 
 /* Flip hint */
