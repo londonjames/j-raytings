@@ -1109,31 +1109,32 @@ def add_book():
     year = data.get('year')
     if not year and data.get('date_read'):
         date_read = data.get('date_read')
-        # Handle YYYY-MM-DD format (from date input)
-        if isinstance(date_read, str) and '-' in date_read:
-            try:
-                year = int(date_read.split('-')[0])
-            except (ValueError, IndexError):
-                pass
-        # Handle MM/DD/YYYY format
-        elif isinstance(date_read, str) and '/' in date_read:
-            try:
-                parts = date_read.split('/')
-                if len(parts) == 3:
-                    year = int(parts[2])
-            except (ValueError, IndexError):
-                pass
-        # Handle Month-YY format (e.g., "November-22")
-        elif isinstance(date_read, str) and '-' in date_read:
-            try:
+        if isinstance(date_read, str):
+            # Handle YYYY-MM-DD format (from date input) - check if first part is 4 digits
+            if '-' in date_read:
                 parts = date_read.split('-')
-                if len(parts) == 2:
-                    year_part = parts[1]
-                    # Convert 2-digit year to 4-digit
-                    year_int = int(year_part)
-                    year = 2000 + year_int if year_int < 50 else 1900 + year_int
-            except (ValueError, IndexError):
-                pass
+                if len(parts) >= 1:
+                    try:
+                        first_part = parts[0]
+                        # If first part is 4 digits, it's YYYY-MM-DD format
+                        if len(first_part) == 4 and first_part.isdigit():
+                            year = int(first_part)
+                        # Otherwise, check if it's Month-YY format (e.g., "November-22")
+                        elif len(parts) == 2:
+                            year_part = parts[1]
+                            # Convert 2-digit year to 4-digit
+                            year_int = int(year_part)
+                            year = 2000 + year_int if year_int < 50 else 1900 + year_int
+                    except (ValueError, IndexError):
+                        pass
+            # Handle MM/DD/YYYY format
+            elif '/' in date_read:
+                try:
+                    parts = date_read.split('/')
+                    if len(parts) == 3:
+                        year = int(parts[2])
+                except (ValueError, IndexError):
+                    pass
 
     # Get max order_number to set new book's order
     conn = get_db()
