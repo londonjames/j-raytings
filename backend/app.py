@@ -755,20 +755,23 @@ def update_film(film_id):
             updates = []
             values = []
             
-            if 'order_number' in data: updates.append('order_number = %s'); values.append(data.get('order_number'))
-            if 'date_seen' in data: updates.append('date_seen = %s'); values.append(data.get('date_seen'))
-            if 'title' in data: updates.append('title = %s'); values.append(data.get('title'))
-            if 'letter_rating' in data: updates.append('letter_rating = %s'); values.append(data.get('letter_rating'))
-            if 'score' in data: updates.append('score = %s'); values.append(data.get('score'))
-            if 'year_watched' in data: updates.append('year_watched = %s'); values.append(data.get('year_watched'))
-            if 'location' in data: updates.append('location = %s'); values.append(data.get('location'))
-            if 'format' in data: updates.append('format = %s'); values.append(data.get('format'))
-            if 'release_year' in data: updates.append('release_year = %s'); values.append(data.get('release_year'))
-            if rotten_tomatoes is not None: updates.append('rotten_tomatoes = %s'); values.append(rotten_tomatoes)
-            if 'length_minutes' in data: updates.append('length_minutes = %s'); values.append(data.get('length_minutes'))
-            if 'rt_link' in data: updates.append('rt_link = %s'); values.append(data.get('rt_link'))
-            if 'genres' in data: updates.append('genres = %s'); values.append(data.get('genres'))
-            if 'poster_url' in data: updates.append('poster_url = %s'); values.append(data.get('poster_url'))
+            # All film fields that can be updated
+            allowed_film_fields = [
+                'order_number', 'date_seen', 'title', 'letter_rating', 'score',
+                'year_watched', 'location', 'format', 'release_year', 'rotten_tomatoes',
+                'length_minutes', 'rt_per_minute', 'rt_link', 'genres', 'poster_url', 'a_grade_rank'
+            ]
+            
+            for field in allowed_film_fields:
+                if field in data:
+                    updates.append(f'{field} = %s')
+                    values.append(data.get(field))
+            
+            # Handle rotten_tomatoes separately if it's explicitly set to None/empty
+            if 'rotten_tomatoes' in data and rotten_tomatoes is not None:
+                if 'rotten_tomatoes = %s' not in updates:
+                    updates.append('rotten_tomatoes = %s')
+                    values.append(rotten_tomatoes)
             
             if updates:
                 values.append(film_id)
@@ -779,29 +782,31 @@ def update_film(film_id):
                 conn.close()
                 return jsonify({'error': 'No fields to update'}), 400
         else:
-            cursor.execute('''
-                UPDATE films
-                SET order_number = ?, date_seen = ?, title = ?, letter_rating = ?,
-                    score = ?, year_watched = ?, location = ?, format = ?,
-                    release_year = ?, rotten_tomatoes = ?, length_minutes = ?, rt_per_minute = ?, rt_link = ?, a_grade_rank = ?
-                WHERE id = ?
-            ''', (
-                data.get('order_number'),
-                data.get('date_seen'),
-                data.get('title'),
-                data.get('letter_rating'),
-                data.get('score'),
-                data.get('year_watched'),
-                data.get('location'),
-                data.get('format'),
-                data.get('release_year'),
-                rotten_tomatoes,
-                data.get('length_minutes'),
-                data.get('rt_per_minute'),
-                data.get('rt_link'),
-                data.get('a_grade_rank'),
-                film_id
-            ))
+            # SQLite: Build UPDATE dynamically to match PostgreSQL behavior
+            updates = []
+            values = []
+            
+            allowed_film_fields = [
+                'order_number', 'date_seen', 'title', 'letter_rating', 'score',
+                'year_watched', 'location', 'format', 'release_year', 'rotten_tomatoes',
+                'length_minutes', 'rt_per_minute', 'rt_link', 'genres', 'poster_url', 'a_grade_rank'
+            ]
+            
+            for field in allowed_film_fields:
+                if field in data:
+                    updates.append(f'{field} = ?')
+                    if field == 'rotten_tomatoes' and rotten_tomatoes is not None:
+                        values.append(rotten_tomatoes)
+                    else:
+                        values.append(data.get(field))
+            
+            if updates:
+                values.append(film_id)
+                query = f'UPDATE films SET {", ".join(updates)} WHERE id = ?'
+                cursor.execute(query, values)
+            else:
+                conn.close()
+                return jsonify({'error': 'No fields to update'}), 400
 
         conn.commit()
 
