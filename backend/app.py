@@ -1439,6 +1439,12 @@ def update_book(book_id):
     else:
         query = f'UPDATE books SET {", ".join(updates)} WHERE id = ?'
 
+    # Log the update for debugging
+    print(f"Updating book {book_id}: {len(updates)} fields")
+    if 'cover_url' in [u.split('=')[0].strip() for u in updates]:
+        cover_idx = [u.split('=')[0].strip() for u in updates].index('cover_url')
+        print(f"  cover_url = {params[cover_idx]}")
+    
     cursor.execute(query, params)
     conn.commit()
 
@@ -1446,8 +1452,17 @@ def update_book(book_id):
         conn.close()
         return jsonify({'error': 'Book not found'}), 404
 
+    # Verify the update by fetching the book back
+    if USE_POSTGRES:
+        cursor.execute('SELECT cover_url FROM books WHERE id = %s', (book_id,))
+    else:
+        cursor.execute('SELECT cover_url FROM books WHERE id = ?', (book_id,))
+    updated_book = cursor.fetchone()
+    saved_cover_url = updated_book[0] if updated_book else None
+    print(f"  Saved cover_url: {saved_cover_url}")
+
     conn.close()
-    return jsonify({'message': 'Book updated successfully'})
+    return jsonify({'message': 'Book updated successfully', 'cover_url': saved_cover_url})
 
 @app.route('/api/books/<int:book_id>', methods=['DELETE'])
 def delete_book(book_id):
