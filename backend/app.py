@@ -1305,22 +1305,25 @@ def update_book(book_id):
     ]
 
     placeholder = '%s' if USE_POSTGRES else '?'
-
+    
+    # Track if j_rayting is being updated and if score is provided
+    j_rayting_updated = False
+    score_provided = 'score' in data
+    
     for field in allowed_fields:
         if field in data:
             updates.append(f'{field} = {placeholder}')
-            # Auto-calculate score from j_rayting if score is not provided but j_rayting is
-            if field == 'score' and not data.get('score') and data.get('j_rayting'):
-                params.append(letter_rating_to_score(data.get('j_rayting')))
-            elif field == 'j_rayting' and 'score' not in data:
-                # If j_rayting is being updated but score isn't, auto-calculate score
-                params.append(data[field])
-                # Also update score if j_rayting changed
-                if 'score' not in [u.split('=')[0].strip() for u in updates]:
-                    updates.append(f'score = {placeholder}')
-                    params.append(letter_rating_to_score(data[field]))
-            else:
-                params.append(data[field])
+            if field == 'j_rayting':
+                j_rayting_updated = True
+            params.append(data[field])
+    
+    # If j_rayting was updated but score wasn't provided, auto-calculate score
+    if j_rayting_updated and not score_provided:
+        j_rayting_value = data.get('j_rayting')
+        calculated_score = letter_rating_to_score(j_rayting_value)
+        if calculated_score is not None:
+            updates.append(f'score = {placeholder}')
+            params.append(calculated_score)
 
     if not updates:
         conn.close()
