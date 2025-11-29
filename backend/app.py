@@ -765,13 +765,11 @@ def update_film(film_id):
             for field in allowed_film_fields:
                 if field in data:
                     updates.append(f'{field} = %s')
-                    values.append(data.get(field))
-            
-            # Handle rotten_tomatoes separately if it's explicitly set to None/empty
-            if 'rotten_tomatoes' in data and rotten_tomatoes is not None:
-                if 'rotten_tomatoes = %s' not in updates:
-                    updates.append('rotten_tomatoes = %s')
-                    values.append(rotten_tomatoes)
+                    # Use processed rotten_tomatoes value if available, otherwise use from data
+                    if field == 'rotten_tomatoes' and rotten_tomatoes is not None:
+                        values.append(rotten_tomatoes)
+                    else:
+                        values.append(data.get(field))
             
             if updates:
                 values.append(film_id)
@@ -795,6 +793,7 @@ def update_film(film_id):
             for field in allowed_film_fields:
                 if field in data:
                     updates.append(f'{field} = ?')
+                    # Use processed rotten_tomatoes value if available, otherwise use from data
                     if field == 'rotten_tomatoes' and rotten_tomatoes is not None:
                         values.append(rotten_tomatoes)
                     else:
