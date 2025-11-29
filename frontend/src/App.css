@@ -1537,6 +1537,7 @@ body {
   display: flex;
   gap: 1rem;
   align-items: center;
+  padding-left: 0;
   padding-right: 0.6rem;
   position: relative;
   margin-bottom: 0.75rem;
@@ -1577,6 +1578,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.5rem 0.6rem 0.5rem 0;
   margin-bottom: 0.5rem;
+  padding-left: 0;
 }
 
 .metric-item {
@@ -1627,6 +1629,7 @@ body {
   padding-left: 0;
   padding-right: 0.6rem;
   margin-bottom: 0.5rem;
+  padding-left: 0;
 }
 
 .card-back-details.no-data {
