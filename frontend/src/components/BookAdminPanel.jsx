@@ -177,7 +177,14 @@ function BookAdminPanel({ onLogout }) {
         {!showAddForm ? (
           <>
             <div className="admin-actions">
-              <button onClick={() => setShowAddForm(true)} className="add-film-btn">
+              <button 
+                onClick={() => {
+                  console.log('Add Book button clicked')
+                  setShowAddForm(true)
+                  setEditingBook(null)
+                }} 
+                className="add-film-btn"
+              >
                 + Add New Book
               </button>
               <a href="/books" className="view-site-btn">View Public Site</a>
@@ -238,15 +245,18 @@ function BookAdminPanel({ onLogout }) {
         ) : (
           <div className="admin-form-container">
             <h2>{editingBook ? 'Edit Book' : 'Add New Book'}</h2>
-            <BookForm
-              book={editingBook}
-              onSave={handleSaveBook}
-              onCancel={() => {
-                setShowAddForm(false)
-                setEditingBook(null)
-                setDuplicateWarning(null)
-              }}
-            />
+            {showAddForm && (
+              <BookForm
+                book={editingBook}
+                onSave={handleSaveBook}
+                onCancel={() => {
+                  console.log('Cancel clicked')
+                  setShowAddForm(false)
+                  setEditingBook(null)
+                  setDuplicateWarning(null)
+                }}
+              />
+            )}
           </div>
         )}
       </div>
