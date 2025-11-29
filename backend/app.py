@@ -1040,20 +1040,24 @@ def set_a_grade_book_rankings():
         conn = get_db()
         cursor = conn.cursor()
         
-        # Check if updated_at column exists
+        # Check if updated_at column exists (before any updates to avoid transaction issues)
         has_updated_at = False
-        if USE_POSTGRES:
-            cursor.execute("""
-                SELECT column_name 
-                FROM information_schema.columns 
-                WHERE table_name='books' AND column_name='updated_at'
-            """)
-            has_updated_at = cursor.fetchone() is not None
-        else:
-            # SQLite: try to get column info
-            cursor.execute("PRAGMA table_info(books)")
-            columns = cursor.fetchall()
-            has_updated_at = any(col[1] == 'updated_at' for col in columns)
+        try:
+            if USE_POSTGRES:
+                cursor.execute("""
+                    SELECT column_name 
+                    FROM information_schema.columns 
+                    WHERE table_name='books' AND column_name='updated_at'
+                """)
+                has_updated_at = cursor.fetchone() is not None
+            else:
+                # SQLite: try to get column info
+                cursor.execute("PRAGMA table_info(books)")
+                columns = cursor.fetchall()
+                has_updated_at = any(col[1] == 'updated_at' for col in columns)
+        except Exception as e:
+            print(f"Error checking for updated_at column: {e}")
+            has_updated_at = False
         
         updated = 0
         not_found = []
