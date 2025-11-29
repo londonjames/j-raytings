@@ -46,38 +46,40 @@ def main():
     # Ensure books table exists
     print("📚 Ensuring books table exists...")
     pg_cursor.execute('''
-        CREATE TABLE IF NOT EXISTS books (
-            id SERIAL PRIMARY KEY,
-            order_number INTEGER,
-            date_read TEXT,
-            year INTEGER,
-            book_name TEXT NOT NULL,
-            author TEXT,
-            details_commentary TEXT,
-            j_rayting TEXT,
-            score INTEGER,
-            type TEXT,
-            pages INTEGER,
-            form TEXT,
-            notes_in_notion TEXT,
-            cover_url TEXT,
-            google_books_id TEXT,
-            isbn TEXT,
-            average_rating REAL,
-            ratings_count INTEGER,
-            published_date TEXT,
-            year_written INTEGER,
-            description TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
+            CREATE TABLE IF NOT EXISTS books (
+                id SERIAL PRIMARY KEY,
+                order_number INTEGER,
+                date_read TEXT,
+                year INTEGER,
+                book_name TEXT NOT NULL,
+                author TEXT,
+                details_commentary TEXT,
+                j_rayting TEXT,
+                score INTEGER,
+                type TEXT,
+                pages INTEGER,
+                form TEXT,
+                notes_in_notion TEXT,
+                notion_link TEXT,
+                cover_url TEXT,
+                google_books_id TEXT,
+                isbn TEXT,
+                average_rating REAL,
+                ratings_count INTEGER,
+                published_date TEXT,
+                year_written INTEGER,
+                description TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
     ''')
     
-    # Add missing columns if they don't exist
-    for column_name, column_type in [
-        ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
-        ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
-        ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT')
-    ]:
+        # Add missing columns if they don't exist
+        for column_name, column_type in [
+            ('cover_url', 'TEXT'), ('google_books_id', 'TEXT'), ('isbn', 'TEXT'),
+            ('average_rating', 'REAL'), ('ratings_count', 'INTEGER'),
+            ('published_date', 'TEXT'), ('year_written', 'INTEGER'), ('description', 'TEXT'),
+            ('notion_link', 'TEXT')
+        ]:
         pg_cursor.execute("""
             SELECT column_name 
             FROM information_schema.columns 
@@ -128,10 +130,10 @@ def main():
             INSERT INTO books (
                 id, order_number, date_read, year, book_name, author,
                 details_commentary, j_rayting, score, type, pages, form,
-                notes_in_notion, cover_url, google_books_id, isbn,
+                notes_in_notion, notion_link, cover_url, google_books_id, isbn,
                 average_rating, ratings_count, published_date, year_written, description
             ) VALUES (
-                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
             )
         """, (
             get_value('id'),
@@ -147,6 +149,7 @@ def main():
             get_value('pages'),
             get_value('form'),
             get_value('notes_in_notion'),
+            get_value('notion_link'),
             get_value('cover_url'),
             get_value('google_books_id'),
             get_value('isbn'),
