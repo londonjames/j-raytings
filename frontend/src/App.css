@@ -1584,17 +1584,20 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
+  position: relative;
 }
 
 .metric-label {
   color: #999;
   min-width: 80px;
+  flex-shrink: 0;
 }
 
 .metric-value {
   color: #fff;
   font-weight: 500;
-  margin-left: calc(87px + 1rem - 80px - 0.5rem);
+  position: absolute;
+  left: calc(87px + 1rem);
 }
 
 .metric-value.with-rating-box {
@@ -1643,16 +1646,19 @@ body {
   display: flex;
   gap: 0.5rem;
   font-size: 0.85rem;
+  position: relative;
 }
 
 .detail-label {
   color: #999;
   min-width: 80px;
+  flex-shrink: 0;
 }
 
 .detail-value {
   color: #fff;
-  margin-left: calc(87px + 1rem - 80px - 0.5rem);
+  position: absolute;
+  left: calc(87px + 1rem);
 }
 
 /* Flip hint */
