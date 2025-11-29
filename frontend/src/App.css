@@ -1575,7 +1575,7 @@ body {
   gap: 0.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 0.6rem 0.5rem 0;
+  padding: 0.5rem 0.6rem 0.5rem calc(87px + 1rem);
   margin-bottom: 0.5rem;
 }
 
@@ -1624,10 +1624,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  padding-left: 0;
+  padding-left: calc(87px + 1rem);
   padding-right: 0.6rem;
   margin-bottom: 0.5rem;
-  padding-left: 0;
 }
 
 .card-back-details.no-data {
