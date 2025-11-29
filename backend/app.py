@@ -1094,11 +1094,17 @@ def set_a_grade_book_rankings():
                         cursor.execute('UPDATE books SET a_grade_rank = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (rank, book_id))
                 except Exception as e:
                     # If updated_at column doesn't exist, just update a_grade_rank
-                    if 'updated_at' in str(e).lower():
-                        if USE_POSTGRES:
-                            cursor.execute('UPDATE books SET a_grade_rank = %s WHERE id = %s', (rank, book_id))
-                        else:
-                            cursor.execute('UPDATE books SET a_grade_rank = ? WHERE id = ?', (rank, book_id))
+                    error_str = str(e).lower()
+                    if 'updated_at' in error_str or 'column' in error_str:
+                        # Try without updated_at
+                        try:
+                            if USE_POSTGRES:
+                                cursor.execute('UPDATE books SET a_grade_rank = %s WHERE id = %s', (rank, book_id))
+                            else:
+                                cursor.execute('UPDATE books SET a_grade_rank = ? WHERE id = ?', (rank, book_id))
+                        except Exception as e2:
+                            print(f"Error updating a_grade_rank: {e2}")
+                            raise
                     else:
                         raise
                 
