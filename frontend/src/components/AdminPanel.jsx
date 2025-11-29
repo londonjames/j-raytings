@@ -156,7 +156,7 @@ function AdminPanel({ onLogout }) {
           <div style={{ marginTop: '10px' }}>
             <p>Existing films with this title:</p>
             <ul>
-              {duplicateWarning.existing_films.map(film => (
+              {(duplicateWarning.existing_films || []).map(film => (
                 <li key={film.id}>
                   {film.title} ({film.release_year}) - {film.rt_link || 'No RT link'}
                 </li>
