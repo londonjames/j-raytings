@@ -17,12 +17,24 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
     return match ? match[1] : null
   }
 
-  // Helper function to get proxy URL for cover image
+  // Helper function to get cover image URL
+  // Use direct URLs when possible (Amazon, Goodreads) to avoid proxy latency
+  // Only use proxy for Google Books URLs that may have CORS issues
   const getCoverProxyUrl = (coverUrl, googleBooksId) => {
     if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
     
-    // Always use the cover_url directly - don't prioritize google_books_id
-    // This ensures custom URLs (like Amazon/Goodreads) are used when set
+    // Check if it's a Google Books URL - these may have CORS issues, use proxy
+    const isGoogleBooksUrl = coverUrl.includes('books.google.com') || 
+                             coverUrl.includes('googleapis.com') ||
+                             coverUrl.includes('googleusercontent.com')
+    
+    // For non-Google Books URLs (Amazon, Goodreads, etc.), use direct URL
+    // These typically don't have CORS restrictions and will load much faster
+    if (!isGoogleBooksUrl) {
+      return coverUrl
+    }
+    
+    // For Google Books URLs, use proxy only if needed
     // Create a simple hash from the URL for cache-busting
     let hash = 0
     for (let i = 0; i < coverUrl.length; i++) {
@@ -32,9 +44,8 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
     }
     const urlHash = Math.abs(hash).toString(36).slice(0, 10)
     
-    // Always use the cover_url directly, only include book_id if it's a Google Books URL
-    const isGoogleBooksUrl = coverUrl.includes('books.google.com') || coverUrl.includes('googleapis.com')
-    if (isGoogleBooksUrl && googleBooksId) {
+    // Use proxy for Google Books URLs
+    if (googleBooksId) {
       return `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(googleBooksId)}&url=${encodeURIComponent(coverUrl)}&_cb=${urlHash}`
     }
     return `${API_URL}/books/cover-proxy?url=${encodeURIComponent(coverUrl)}&_cb=${urlHash}`
