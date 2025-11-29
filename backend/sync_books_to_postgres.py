@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Sync books from SQLite database to PostgreSQL production database
-This will replace all books data in PostgreSQL with the updated SQLite data
+This will MERGE data - preserving books added in production while updating/inserting from SQLite
+PRODUCTION IS THE SOURCE OF TRUTH - books added in production will be preserved
 """
 import sqlite3
 import psycopg2

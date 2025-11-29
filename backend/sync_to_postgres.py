@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Sync SQLite database to PostgreSQL production database
-This will replace all data in PostgreSQL with the updated SQLite data
+This will MERGE data - preserving films added in production while updating/inserting from SQLite
+PRODUCTION IS THE SOURCE OF TRUTH - films added in production will be preserved
 """
 import sqlite3
 import psycopg2
@@ -49,67 +50,105 @@ def main():
     print(f"✓ PostgreSQL currently has {pg_count_before} films")
     print()
 
-    # Clear PostgreSQL table
-    print("🗑️  Clearing PostgreSQL films table...")
-    pg_cursor.execute("DELETE FROM films")
-    pg_conn.commit()
-    print("✓ Cleared all existing data")
-    print()
-
     # Get all films from SQLite
     print("📦 Reading all films from SQLite...")
     sqlite_cursor.execute("SELECT * FROM films ORDER BY id")
-    films = sqlite_cursor.fetchall()
-    print(f"✓ Retrieved {len(films)} films")
+    sqlite_films = sqlite_cursor.fetchall()
+    print(f"✓ Retrieved {len(sqlite_films)} films from SQLite")
     print()
 
-    # Insert into PostgreSQL
-    print("⬆️  Uploading films to PostgreSQL...")
+    # Helper function to safely get values from Row object
+    def get_value(film, key, default=None):
+        try:
+            return film[key]
+        except (KeyError, IndexError):
+            return default
+
+    # Update or insert films from SQLite
+    print("⬆️  Syncing films from SQLite to PostgreSQL...")
+    updated = 0
     inserted = 0
+    preserved = 0
 
-    for film in films:
+    for film in sqlite_films:
+        film_id = get_value(film, 'id')
+        
+        # Check if film exists in PostgreSQL
+        pg_cursor.execute("SELECT id FROM films WHERE id = %s", (film_id,))
+        exists = pg_cursor.fetchone()
+        
         # Handle optional fields safely
-        try:
-            location = film['location']
-        except (KeyError, IndexError):
-            location = None
+        location = get_value(film, 'location')
+        format_val = get_value(film, 'format')
+        
+        if exists:
+            # Update existing film
+            pg_cursor.execute("""
+                UPDATE films SET
+                    title = %s, release_year = %s, score = %s, letter_rating = %s, year_watched = %s,
+                    rotten_tomatoes = %s, length_minutes = %s, rt_per_minute = %s, poster_url = %s,
+                    genres = %s, rt_link = %s, location = %s, format = %s
+                WHERE id = %s
+            """, (
+                get_value(film, 'title'),
+                get_value(film, 'release_year'),
+                get_value(film, 'score'),
+                get_value(film, 'letter_rating'),
+                get_value(film, 'year_watched'),
+                get_value(film, 'rotten_tomatoes'),
+                get_value(film, 'length_minutes'),
+                get_value(film, 'rt_per_minute'),
+                get_value(film, 'poster_url'),
+                get_value(film, 'genres'),
+                get_value(film, 'rt_link'),
+                location,
+                format_val,
+                film_id
+            ))
+            updated += 1
+        else:
+            # Insert new film
+            pg_cursor.execute("""
+                INSERT INTO films (
+                    id, title, release_year, score, letter_rating, year_watched,
+                    rotten_tomatoes, length_minutes, rt_per_minute, poster_url,
+                    genres, rt_link, location, format
+                ) VALUES (
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                )
+            """, (
+                film_id,
+                get_value(film, 'title'),
+                get_value(film, 'release_year'),
+                get_value(film, 'score'),
+                get_value(film, 'letter_rating'),
+                get_value(film, 'year_watched'),
+                get_value(film, 'rotten_tomatoes'),
+                get_value(film, 'length_minutes'),
+                get_value(film, 'rt_per_minute'),
+                get_value(film, 'poster_url'),
+                get_value(film, 'genres'),
+                get_value(film, 'rt_link'),
+                location,
+                format_val
+            ))
+            inserted += 1
 
-        try:
-            format_val = film['format']
-        except (KeyError, IndexError):
-            format_val = None
-
-        pg_cursor.execute("""
-            INSERT INTO films (
-                id, title, release_year, score, letter_rating, year_watched,
-                rotten_tomatoes, length_minutes, rt_per_minute, poster_url,
-                genres, rt_link, location, format
-            ) VALUES (
-                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
-            )
-        """, (
-            film['id'],
-            film['title'],
-            film['release_year'],
-            film['score'],
-            film['letter_rating'],
-            film['year_watched'],
-            film['rotten_tomatoes'],
-            film['length_minutes'],
-            film['rt_per_minute'],
-            film['poster_url'],
-            film['genres'],
-            film['rt_link'],
-            location,
-            format_val
-        ))
-        inserted += 1
-
-        if inserted % 100 == 0:
-            print(f"  Uploaded {inserted}/{len(films)} films...")
+        if (updated + inserted) % 100 == 0:
+            print(f"  Processed {updated + inserted}/{len(sqlite_films)} films...")
 
     pg_conn.commit()
-    print(f"✓ Successfully uploaded {inserted} films")
+    
+    # Count films that exist in PostgreSQL but not SQLite (preserved production entries)
+    pg_cursor.execute("SELECT id FROM films")
+    pg_all_ids = {row[0] for row in pg_cursor.fetchall()}
+    sqlite_all_ids = {get_value(film, 'id') for film in sqlite_films}
+    preserved_ids = pg_all_ids - sqlite_all_ids
+    preserved = len(preserved_ids)
+    
+    print(f"✓ Updated {updated} existing films")
+    print(f"✓ Inserted {inserted} new films from SQLite")
+    print(f"✓ Preserved {preserved} films that exist only in PostgreSQL (added in production)")
     print()
 
     # Reset sequence
@@ -131,7 +170,9 @@ def main():
     print("=" * 80)
     print(f"SQLite:     {sqlite_count} films")
     print(f"PostgreSQL: {pg_count_after} films")
-    print(f"Difference: {pg_count_before - pg_count_after} films removed")
+    print(f"Updated:    {updated} films")
+    print(f"Inserted:   {inserted} films from SQLite")
+    print(f"Preserved:  {preserved} films from production (not in SQLite)")
     print()
 
     # Show RT score stats
