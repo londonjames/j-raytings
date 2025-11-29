@@ -29,12 +29,16 @@ function BookAdminPanel({ onLogout }) {
         cache: 'no-store'
       })
       const data = await response.json()
+      // Ensure data is an array
+      const booksArray = Array.isArray(data) ? data : []
       // Backend now orders by ID descending, but ensure sorting here too
-      const sortedData = [...data].sort((a, b) => (b.id || 0) - (a.id || 0))
+      const sortedData = [...booksArray].sort((a, b) => (b.id || 0) - (a.id || 0))
       setBooks(sortedData)
       setFilteredBooks(sortedData)
     } catch (error) {
       console.error('Error fetching books:', error)
+      setBooks([])
+      setFilteredBooks([])
     }
   }
 
@@ -159,7 +163,7 @@ function BookAdminPanel({ onLogout }) {
           <h3>Duplicate Book Detected</h3>
           <p>This book may already exist in the database:</p>
           <ul>
-            {duplicateWarning.duplicates.map((book, index) => (
+            {(duplicateWarning.duplicates || []).map((book, index) => (
               <li key={index}>
                 {book.book_name} by {book.author} - {book.cover_url ? 'Has cover' : 'No cover'}
               </li>
@@ -191,7 +195,7 @@ function BookAdminPanel({ onLogout }) {
             </div>
 
             <div className="admin-film-list">
-              {filteredBooks.map(book => (
+              {(filteredBooks || []).map(book => (
                 <div key={book.id} className="admin-film-item">
                   <div className="film-info">
                     {book.cover_url && book.cover_url !== 'PLACEHOLDER' && (
