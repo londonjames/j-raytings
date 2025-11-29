@@ -1148,7 +1148,7 @@ def add_book():
             data.get('j_rayting'),
             data.get('score'),
             data.get('type'),
-            data.get('pages'),
+            pages or data.get('pages'),  # Use fetched pages if available, otherwise user-provided
             data.get('form'),
             data.get('notes_in_notion'),
             data.get('notion_link'),
@@ -1192,7 +1192,7 @@ def add_book():
             data.get('j_rayting'),
             data.get('score'),
             data.get('type'),
-            data.get('pages'),
+            pages or data.get('pages'),  # Use fetched pages if available, otherwise user-provided
             data.get('form'),
             data.get('notes_in_notion'),
             data.get('notion_link'),
