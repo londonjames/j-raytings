@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
 
+// Use environment variable for production API URL (Railway backend)
+const API_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.PROD ? 'https://web-production-01d1.up.railway.app/api' : 'http://localhost:5001/api')
+
 function BookForm({ book, onSave, onCancel }) {
   const [formData, setFormData] = useState({
     book_name: '',
@@ -34,7 +38,8 @@ function BookForm({ book, onSave, onCancel }) {
         notes_in_notion: book.notes_in_notion || '',
         notion_link: book.notion_link || '',
         order_number: book.order_number || '',
-        cover_url: book.cover_url || ''
+        cover_url: book.cover_url || '',
+        google_books_id: book.google_books_id || ''
       })
     }
   }, [book])
@@ -61,6 +66,19 @@ function BookForm({ book, onSave, onCancel }) {
       ...prev,
       [name]: value
     }))
+  }
+
+  // Helper function to get cover image URL (same logic as BookList)
+  const getCoverProxyUrl = (coverUrl, googleBooksId) => {
+    if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
+    
+    // For Google Books URLs, try constructing a more stable direct URL if we have the book ID
+    if (googleBooksId && coverUrl.includes('books.google.com')) {
+      return `https://books.google.com/books/publisher/content/images/frontcover/${googleBooksId}?fife=w480-h690`
+    }
+    
+    // For all other URLs, use directly
+    return coverUrl
   }
 
   return (
@@ -276,7 +294,7 @@ function BookForm({ book, onSave, onCancel }) {
               {formData.cover_url && (
                 <div style={{ marginTop: '10px' }}>
                   <img 
-                    src={formData.cover_url} 
+                    src={getCoverProxyUrl(formData.cover_url, formData.google_books_id)} 
                     alt="Preview" 
                     style={{ 
                       maxWidth: '200px', 
@@ -285,6 +303,32 @@ function BookForm({ book, onSave, onCancel }) {
                       borderRadius: '4px'
                     }}
                     onError={(e) => {
+                      // If direct URL failed, try proxy as fallback (for Google Books URLs)
+                      const directUrl = getCoverProxyUrl(formData.cover_url, formData.google_books_id)
+                      const isGoogleBooksUrl = formData.cover_url && (
+                        formData.cover_url.includes('books.google.com') || 
+                        formData.cover_url.includes('googleapis.com') ||
+                        formData.cover_url.includes('googleusercontent.com')
+                      )
+                      
+                      if (isGoogleBooksUrl && !directUrl.includes('/books/cover-proxy')) {
+                        // Create proxy URL as fallback
+                        let hash = 0
+                        for (let i = 0; i < formData.cover_url.length; i++) {
+                          const char = formData.cover_url.charCodeAt(i)
+                          hash = ((hash << 5) - hash) + char
+                          hash = hash & hash
+                        }
+                        const urlHash = Math.abs(hash).toString(36).slice(0, 10)
+                        const proxyUrl = formData.google_books_id
+                          ? `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(formData.google_books_id)}&url=${encodeURIComponent(formData.cover_url)}&_cb=${urlHash}`
+                          : `${API_URL}/books/cover-proxy?url=${encodeURIComponent(formData.cover_url)}&_cb=${urlHash}`
+                        
+                        e.target.src = proxyUrl
+                        return
+                      }
+                      
+                      // If proxy also fails or not a Google Books URL, show error
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'block';
                     }}
