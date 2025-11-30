@@ -16,6 +16,15 @@ function App() {
   const location = useLocation()
   const navigate = useNavigate()
   
+  // Update page title based on route
+  useEffect(() => {
+    if (location.pathname.includes('/admin')) {
+      document.title = 'Admin | Films | James Raybould'
+    } else {
+      document.title = 'Films | James Raybould'
+    }
+  }, [location.pathname])
+  
   // Helper function to parse URL query parameters
   const parseQueryParams = () => {
     const params = new URLSearchParams(location.search)

@@ -6,6 +6,9 @@ function BooksAdmin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
+    // Update page title
+    document.title = 'Admin | Books | James Raybould'
+    
     // Check if already authenticated in this session
     const authStatus = sessionStorage.getItem('adminAuthenticated')
     if (authStatus === 'true') {
