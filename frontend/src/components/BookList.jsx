@@ -18,26 +18,6 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
     return match ? match[1] : null
   }
 
-  // Helper function to get cover image URL
-  // Use direct URLs when possible to avoid proxy latency
-  // The proxy was originally needed for CORS, but most URLs work directly now
-  const getCoverProxyUrl = (coverUrl, googleBooksId) => {
-    if (!coverUrl || !coverUrl.startsWith('http')) return coverUrl
-    
-    // Try using direct URLs for everything - they should work in most cases
-    // The browser's native image loading is much faster than proxying through backend
-    // Only use proxy as a fallback if direct loading fails (handled by onError)
-    
-    // For Google Books URLs, try constructing a more stable direct URL if we have the book ID
-    if (googleBooksId && coverUrl.includes('books.google.com')) {
-      // Use the stable Google Books publisher URL format
-      return `https://books.google.com/books/publisher/content/images/frontcover/${googleBooksId}?fife=w480-h690`
-    }
-    
-    // For all other URLs (including most Google Books URLs), use directly
-    return coverUrl
-  }
-
   const handleImageLoad = (bookId) => {
     setLoadedImages(prev => new Set([...prev, bookId]))
   }
@@ -116,22 +96,65 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
     )
   }
 
+  // Helper function to get image URL - simplified like films
+  const getImageUrl = (coverUrl, googleBooksId) => {
+    if (!coverUrl || coverUrl === 'PLACEHOLDER') return null
+    if (!coverUrl.startsWith('http')) return null
+    
+    // For Google Books URLs with ID, use stable publisher URL format
+    if (googleBooksId && (coverUrl.includes('books.google.com') || coverUrl.includes('googleapis.com') || coverUrl.includes('googleusercontent.com'))) {
+      return `https://books.google.com/books/publisher/content/images/frontcover/${googleBooksId}?fife=w480-h690`
+    }
+    
+    // For all other URLs, use directly (like films do)
+    return coverUrl
+  }
+
   if (viewMode === 'list') {
     return (
       <div className="film-list-view">
-        {books.map(book => (
-          <div key={book.id} className="film-row">
-            {book.cover_url && (
-              <img
-                src={book.cover_url.startsWith('http') ? getCoverProxyUrl(book.cover_url, book.google_books_id) : book.cover_url}
-                alt={`${book.book_name} cover`}
-                className="film-poster-small"
-                loading="lazy"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-            )}
+        {books.map((book, index) => {
+          const imageUrl = getImageUrl(book.cover_url, book.google_books_id)
+          const shouldLoadEagerly = index < 10
+          const shouldPrioritize = index < 30 // First 30 get priority hints
+          
+          return (
+            <div key={book.id} className="film-row">
+              {imageUrl && (
+                <img
+                  src={imageUrl}
+                  alt={`${book.book_name} cover`}
+                  className="film-poster-small"
+                  loading={shouldLoadEagerly ? "eager" : "lazy"}
+                  fetchPriority={shouldLoadEagerly ? "high" : (shouldPrioritize ? "auto" : "low")}
+                  onError={(e) => {
+                    // Try proxy as fallback for Google Books URLs
+                    const isGoogleBooksUrl = book.cover_url && (
+                      book.cover_url.includes('books.google.com') || 
+                      book.cover_url.includes('googleapis.com') ||
+                      book.cover_url.includes('googleusercontent.com')
+                    )
+                    
+                    if (isGoogleBooksUrl && !e.target.src.includes('/books/cover-proxy')) {
+                      let hash = 0
+                      for (let i = 0; i < book.cover_url.length; i++) {
+                        const char = book.cover_url.charCodeAt(i)
+                        hash = ((hash << 5) - hash) + char
+                        hash = hash & hash
+                      }
+                      const urlHash = Math.abs(hash).toString(36).slice(0, 10)
+                      const proxyUrl = book.google_books_id
+                        ? `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(book.google_books_id)}&url=${encodeURIComponent(book.cover_url)}&_cb=${urlHash}`
+                        : `${API_URL}/books/cover-proxy?url=${encodeURIComponent(book.cover_url)}&_cb=${urlHash}`
+                      
+                      e.target.src = proxyUrl
+                      return
+                    }
+                    
+                    e.target.style.display = 'none';
+                  }}
+                />
+              )}
             <div className="film-row-content">
               <h3>{book.book_name}</h3>
               {book.author && (
@@ -146,47 +169,52 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                 )}
               </div>
             </div>
-            {book.j_rayting && (
-              <div className="rating-box-list">
-                <span className="rating">{book.j_rayting}</span>
-              </div>
-            )}
-          </div>
-        ))}
+              {book.j_rayting && (
+                <div className="rating-box-list">
+                  <span className="rating">{book.j_rayting}</span>
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
     )
   }
 
   return (
     <div className="film-list">
-      {books.map(book => {
+      {books.map((book, index) => {
         const isFlipped = flippedCards.has(book.id)
+        // Prioritize first 10 images with eager loading, next 20 get priority hints
+        const shouldLoadEagerly = index < 10
+        const shouldPrioritize = index < 30 // First 30 get priority hints
+        const imageUrl = getImageUrl(book.cover_url, book.google_books_id)
+        
         return (
           <div key={book.id} className={`film-card-container ${isFlipped ? 'flipped' : ''}`}>
             <div className="film-card-flipper">
               {/* FRONT OF CARD */}
               <div className="film-card film-card-front" onClick={() => toggleFlip(book.id)} onDoubleClick={() => toggleFlip(book.id)}>
                 <div className="poster-container">
-                  {book.cover_url && book.cover_url !== 'PLACEHOLDER' ? (
+                  {imageUrl ? (
                     <>
                       {!loadedImages.has(book.id) && <div className="poster-skeleton"></div>}
                       <img
-                        src={getCoverProxyUrl(book.cover_url, book.google_books_id)}
+                        src={imageUrl}
                         alt={`${book.book_name} cover`}
                         className={`film-poster ${loadedImages.has(book.id) ? 'loaded' : ''}`}
-                        loading="lazy"
+                        loading={shouldLoadEagerly ? "eager" : "lazy"}
+                        fetchPriority={shouldLoadEagerly ? "high" : (shouldPrioritize ? "auto" : "low")}
                         onLoad={() => handleImageLoad(book.id)}
                         onError={(e) => {
-                          // If direct URL failed, try proxy as fallback
-                          const directUrl = getCoverProxyUrl(book.cover_url, book.google_books_id)
+                          // If direct URL failed and it's a Google Books URL, try proxy
                           const isGoogleBooksUrl = book.cover_url && (
                             book.cover_url.includes('books.google.com') || 
                             book.cover_url.includes('googleapis.com') ||
                             book.cover_url.includes('googleusercontent.com')
                           )
                           
-                          // Only try proxy if it's a Google Books URL and we haven't already tried proxy
-                          if (isGoogleBooksUrl && !directUrl.includes('/books/cover-proxy')) {
+                          if (isGoogleBooksUrl && !e.target.src.includes('/books/cover-proxy')) {
                             // Create proxy URL as fallback
                             let hash = 0
                             for (let i = 0; i < book.cover_url.length; i++) {
@@ -204,17 +232,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                           }
                           
                           // If proxy also fails or not a Google Books URL, hide image
-                          console.error(`Failed to load cover for ${book.book_name}:`, book.cover_url);
                           e.target.style.display = 'none';
-                        }}
-                        onLoadStart={() => {
-                          // Debug: log what URL is being loaded
-                          if (book.book_name === 'The Right Stuff' || book.book_name === 'Animal Farm' || book.book_name === 'Confessions of an Advertising Man') {
-                            console.log(`Loading ${book.book_name}:`, {
-                              cover_url: book.cover_url,
-                              proxy_url: getCoverProxyUrl(book.cover_url, book.google_books_id)
-                            });
-                          }
                         }}
                       />
                     </>
@@ -259,12 +277,37 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                 <button className="close-btn" onClick={(e) => { e.stopPropagation(); toggleFlip(book.id); }}>✕</button>
 
                 <div className="card-back-header">
-                  {book.cover_url && book.cover_url !== 'PLACEHOLDER' && (
+                  {imageUrl && (
                     <img
-                      src={book.cover_url.startsWith('http') ? getCoverProxyUrl(book.cover_url, book.google_books_id) : book.cover_url}
+                      src={imageUrl}
                       alt={`${book.book_name} cover`}
                       className="poster-thumbnail"
+                      loading="lazy"
+                      fetchPriority={shouldPrioritize ? "auto" : "low"}
                       onError={(e) => {
+                        // Try proxy as fallback for Google Books URLs
+                        const isGoogleBooksUrl = book.cover_url && (
+                          book.cover_url.includes('books.google.com') || 
+                          book.cover_url.includes('googleapis.com') ||
+                          book.cover_url.includes('googleusercontent.com')
+                        )
+                        
+                        if (isGoogleBooksUrl && !e.target.src.includes('/books/cover-proxy')) {
+                          let hash = 0
+                          for (let i = 0; i < book.cover_url.length; i++) {
+                            const char = book.cover_url.charCodeAt(i)
+                            hash = ((hash << 5) - hash) + char
+                            hash = hash & hash
+                          }
+                          const urlHash = Math.abs(hash).toString(36).slice(0, 10)
+                          const proxyUrl = book.google_books_id
+                            ? `${API_URL}/books/cover-proxy?book_id=${encodeURIComponent(book.google_books_id)}&url=${encodeURIComponent(book.cover_url)}&_cb=${urlHash}`
+                            : `${API_URL}/books/cover-proxy?url=${encodeURIComponent(book.cover_url)}&_cb=${urlHash}`
+                          
+                          e.target.src = proxyUrl
+                          return
+                        }
+                        
                         e.target.style.display = 'none';
                       }}
                     />

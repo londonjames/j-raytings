@@ -130,16 +130,21 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
   if (viewMode === 'list') {
     return (
       <div className="film-list-view">
-        {films.map(film => (
-          <div key={film.id} className="film-row">
-            {film.poster_url && (
-              <img
-                src={film.poster_url}
-                alt={`${film.title} poster`}
-                className="film-poster-small"
-                loading="lazy"
-              />
-            )}
+        {films.map((film, index) => {
+          const shouldLoadEagerly = index < 10
+          const shouldPrioritize = index < 30 // First 30 get priority hints
+          
+          return (
+            <div key={film.id} className="film-row">
+              {film.poster_url && (
+                <img
+                  src={film.poster_url}
+                  alt={`${film.title} poster`}
+                  className="film-poster-small"
+                  loading={shouldLoadEagerly ? "eager" : "lazy"}
+                  fetchPriority={shouldLoadEagerly ? "high" : (shouldPrioritize ? "auto" : "low")}
+                />
+              )}
             <div className="film-row-content">
               <h3>{formatTitle(film.title)}</h3>
               <div className="film-row-bottom">
@@ -154,21 +159,25 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                 )}
               </div>
             </div>
-            {film.letter_rating && (
-              <div className="rating-box-list">
-                <span className="rating">{film.letter_rating}</span>
-              </div>
-            )}
-          </div>
-        ))}
+              {film.letter_rating && (
+                <div className="rating-box-list">
+                  <span className="rating">{film.letter_rating}</span>
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
     )
   }
 
   return (
     <div className="film-list">
-      {films.map(film => {
+      {films.map((film, index) => {
         const isFlipped = flippedCards.has(film.id)
+        const shouldLoadEagerly = index < 10
+        const shouldPrioritize = index < 30 // First 30 get priority hints
+        
         return (
           <div key={film.id} className={`film-card-container ${isFlipped ? 'flipped' : ''}`}>
             <div className="film-card-flipper">
@@ -182,7 +191,8 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                         src={film.poster_url}
                         alt={`${film.title} poster`}
                         className={`film-poster ${loadedImages.has(film.id) ? 'loaded' : ''}`}
-                        loading="lazy"
+                        loading={shouldLoadEagerly ? "eager" : "lazy"}
+                        fetchPriority={shouldLoadEagerly ? "high" : (shouldPrioritize ? "auto" : "low")}
                         onLoad={() => handleImageLoad(film.id)}
                       />
                     </>
@@ -230,6 +240,8 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                       src={film.poster_url}
                       alt={`${film.title} poster`}
                       className="poster-thumbnail"
+                      loading="lazy"
+                      fetchPriority={shouldPrioritize ? "auto" : "low"}
                     />
                   )}
                   <div className="header-text">
