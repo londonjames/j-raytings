@@ -451,6 +451,84 @@
                     document.documentElement.style.backgroundColor = '#f5f5f4';
                 }
             }, 100);
+            
+            // Mobile scroll reveal: Gradually show quilt images as tiles enter viewport
+            if (window.matchMedia('(hover: none)').matches) {
+                const tiles = document.querySelectorAll('.tile:not(.tile--coming-soon)');
+                
+                const revealTiles = () => {
+                    tiles.forEach(tile => {
+                        const rect = tile.getBoundingClientRect();
+                        const windowHeight = window.innerHeight;
+                        
+                        // Calculate how much of the tile is visible
+                        // Start revealing when tile is 30% into viewport, fully revealed at 70%
+                        const tileTop = rect.top;
+                        const tileHeight = rect.height;
+                        const revealStart = windowHeight * 0.3;
+                        const revealEnd = windowHeight * 0.7;
+                        
+                        // Check if tile is in the reveal zone
+                        if (tileTop < revealEnd && tileTop + tileHeight > revealStart) {
+                            // Calculate reveal progress (0 to 1)
+                            const progress = Math.max(0, Math.min(1, 
+                                (revealEnd - tileTop) / (revealEnd - revealStart)
+                            ));
+                            
+                            // Apply opacity based on progress
+                            const image = tile.querySelector('.tile-image');
+                            const background = tile.querySelector('.tile-background');
+                            const title = tile.querySelector('.tile-title');
+                            
+                            if (image && background && title) {
+                                image.style.opacity = progress;
+                                background.style.opacity = 1 - progress;
+                                title.style.opacity = Math.max(0, 1 - (progress * 1.2)); // Title fades out slightly faster
+                            }
+                        } else if (tileTop < revealStart) {
+                            // Tile has scrolled past - keep it revealed
+                            const image = tile.querySelector('.tile-image');
+                            const background = tile.querySelector('.tile-background');
+                            const title = tile.querySelector('.tile-title');
+                            
+                            if (image && background && title) {
+                                image.style.opacity = 1;
+                                background.style.opacity = 0;
+                                title.style.opacity = 0;
+                            }
+                        } else {
+                            // Tile hasn't entered reveal zone yet - keep it hidden
+                            const image = tile.querySelector('.tile-image');
+                            const background = tile.querySelector('.tile-background');
+                            const title = tile.querySelector('.tile-title');
+                            
+                            if (image && background && title) {
+                                image.style.opacity = 0;
+                                background.style.opacity = 1;
+                                title.style.opacity = 1;
+                            }
+                        }
+                    });
+                };
+                
+                // Initial check
+                revealTiles();
+                
+                // Update on scroll with throttling
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            revealTiles();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+                
+                // Also check on resize
+                window.addEventListener('resize', revealTiles, { passive: true });
+            }
         })();
     </script>
 </body>
