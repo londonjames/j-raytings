@@ -1359,15 +1359,22 @@ def add_book():
         book_id = cursor.fetchone()[0]
     else:
         # Extract year_written from published_date if not provided
+        # Don't use future dates (2025+) as they're likely API errors
         year_written = data.get('year_written')
         if not year_written and published_date:
             if isinstance(published_date, str):
                 year_match = published_date[:4] if len(published_date) >= 4 else None
                 if year_match and year_match.isdigit():
-                    year_written = int(year_match)
+                    year_int = int(year_match)
+                    # Don't use future dates (2025+) as year_written - they're likely API errors
+                    current_year = 2024  # Use 2024 as threshold to avoid 2025+ dates
+                    if year_int <= current_year:
+                        year_written = year_int
             elif isinstance(published_date, int):
                 if 0 < published_date < 3000:
-                    year_written = published_date
+                    current_year = 2024  # Use 2024 as threshold to avoid 2025+ dates
+                    if published_date <= current_year:
+                        year_written = published_date
         
         cursor.execute('''
             INSERT INTO books (
