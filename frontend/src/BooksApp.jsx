@@ -133,7 +133,7 @@ function BooksApp() {
         })))
       }
       setBooks(data)
-      setFilteredBooks(data)
+      // Don't set filteredBooks here - let useEffect handle sorting first
     } catch (error) {
       console.error('Error fetching books:', error)
     } finally {

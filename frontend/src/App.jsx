@@ -122,7 +122,7 @@ function App() {
       const response = await fetch(`${API_URL}/films`)
       const data = await response.json()
       setFilms(data)
-      setFilteredFilms(data)
+      // Don't set filteredFilms here - let useEffect handle sorting first
     } catch (error) {
       console.error('Error fetching films:', error)
     } finally {
