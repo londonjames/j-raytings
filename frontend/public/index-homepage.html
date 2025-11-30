@@ -38,15 +38,15 @@
         }
         
         html {
-            background: #f5f5f4 !important;
-            background-color: #f5f5f4 !important;
+            background: #1c1c1c !important;
+            background-color: #1c1c1c !important;
         }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-            background: #f5f5f4 !important;
-            background-color: #f5f5f4 !important;
-            color: #000 !important;
+            background: #1c1c1c !important;
+            background-color: #1c1c1c !important;
+            color: #e0e0e0 !important;
             line-height: 1.6;
             padding: 0 !important;
             margin: 0 !important;
@@ -58,8 +58,8 @@
         body[class*="root"],
         html[class*="app"],
         html[class*="root"] {
-            background: #f5f5f4 !important;
-            background-color: #f5f5f4 !important;
+            background: #1c1c1c !important;
+            background-color: #1c1c1c !important;
         }
         
         /* Hide React app root if it exists */
@@ -82,7 +82,7 @@
             font-weight: 500;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #1a1a1a;
+            color: #e0e0e0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
         
@@ -95,7 +95,7 @@
         .nav-links a {
             font-size: 0.875rem;
             font-weight: 400;
-            color: #1a1a1a;
+            color: #e0e0e0;
             text-decoration: none;
             transition: opacity 0.2s ease;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -130,6 +130,9 @@
             width: auto;
             display: block;
             max-width: 100%;
+            /* Change blue background to white using CSS filters */
+            filter: brightness(0) invert(1);
+            -webkit-filter: brightness(0) invert(1);
         }
         
         .linkedin-link:hover {
@@ -415,8 +418,8 @@
     <script>
         (function() {
             // Immediately set background to prevent black screen
-            document.documentElement.style.backgroundColor = '#f5f5f4';
-            document.body.style.backgroundColor = '#f5f5f4';
+            document.documentElement.style.backgroundColor = '#1c1c1c';
+            document.body.style.backgroundColor = '#1c1c1c';
             
             // Hide React app root immediately
             const root = document.getElementById('root');
@@ -444,11 +447,11 @@
             
             // Force body background
             setInterval(function() {
-                if (document.body.style.backgroundColor !== 'rgb(245, 245, 244)') {
-                    document.body.style.backgroundColor = '#f5f5f4';
+                if (document.body.style.backgroundColor !== 'rgb(28, 28, 28)') {
+                    document.body.style.backgroundColor = '#1c1c1c';
                 }
-                if (document.documentElement.style.backgroundColor !== 'rgb(245, 245, 244)') {
-                    document.documentElement.style.backgroundColor = '#f5f5f4';
+                if (document.documentElement.style.backgroundColor !== 'rgb(28, 28, 28)') {
+                    document.documentElement.style.backgroundColor = '#1c1c1c';
                 }
             }, 100);
             
