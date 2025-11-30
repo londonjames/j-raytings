@@ -1659,6 +1659,7 @@ body {
   color: #fff;
   position: absolute;
   left: calc(87px + 1rem);
+  white-space: nowrap;
 }
 
 /* Flip hint */
