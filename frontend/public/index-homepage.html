@@ -292,7 +292,7 @@
             .tile-grid {
                 grid-template-columns: 1fr;
                 padding: 0 16px;
-                gap: 10px;
+                gap: 20px; /* Increased gap for better spacing on mobile */
             }
             
             /* Keep same aspect ratio as desktop to prevent squishing */
@@ -301,22 +301,38 @@
             }
         }
         
-        /* Mobile: Always show quilt image on touch devices */
+        /* Mobile: Start with background and title visible, images hidden */
         @media (hover: none) {
             .tile-image {
-                opacity: 1;
+                opacity: 0;
                 transform: scale(1);
             }
             
             .tile-background {
-                opacity: 0;
+                opacity: 1;
             }
             
             .tile-title {
-                opacity: 0;
+                opacity: 1;
             }
             
-            /* Keep Coming Soon titles visible */
+            /* Tiles that have been scrolled into view will have images revealed via JS */
+            .tile--revealed .tile-image {
+                opacity: 1;
+                transition: opacity 1.5s ease, transform 0.5s ease;
+            }
+            
+            .tile--revealed .tile-background {
+                opacity: 0;
+                transition: opacity 1.5s ease;
+            }
+            
+            .tile--revealed .tile-title {
+                opacity: 0;
+                transition: opacity 1.5s ease;
+            }
+            
+            /* Keep Coming Soon titles always visible */
             .tile--coming-soon .tile-background {
                 opacity: 1;
             }
