@@ -246,7 +246,7 @@ function BookForm({ book, onSave, onCancel }) {
                 >
                   <option value="">Select Form</option>
                   <option value="Kindle">Kindle</option>
-                  <option value="Book">Book</option>
+                  <option value="Book">Physical book</option>
                 </select>
               </div>
 

@@ -20,26 +20,42 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
     })
   }
 
-  // Helper function to format date as "Jan 1, 2010"
+  // Helper function to format date as "Dec 1, 2025" (3-letter month, day, comma, year)
   const formatDate = (dateSeen) => {
     if (!dateSeen) return null
 
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-    // Parse MM/DD/YYYY format
+    // Parse MM/DD/YYYY format (e.g., "12/1/2025" -> "Dec 1, 2025")
     if (dateSeen.includes('/')) {
       const parts = dateSeen.split('/')
       if (parts.length === 3) {
         const month = parseInt(parts[0]) - 1
         const day = parseInt(parts[1])
         const year = parseInt(parts[2])
-        return `${months[month]} ${day}, ${year}`
+        if (month >= 0 && month < 12 && day > 0 && day <= 31 && year > 0) {
+          return `${months[month]} ${day}, ${year}`
+        }
       }
     }
 
-    // Handle "Month-YY" format (e.g., "April-08" -> "Apr 2008")
-    if (dateSeen.includes('-')) {
+    // Parse YYYY-MM-DD format (e.g., "2025-12-01" -> "Dec 1, 2025")
+    if (dateSeen.includes('-') && dateSeen.length >= 10) {
+      const parts = dateSeen.split('-')
+      if (parts.length === 3 && parts[0].length === 4) {
+        const year = parseInt(parts[0])
+        const month = parseInt(parts[1]) - 1
+        const day = parseInt(parts[2])
+        if (month >= 0 && month < 12 && day > 0 && day <= 31 && year > 0) {
+          return `${months[month]} ${day}, ${year}`
+        }
+      }
+    }
+
+    // Handle "Month-YY" format (e.g., "April-08" -> "Apr 1, 2008")
+    // Note: If no day is provided, default to day 1
+    if (dateSeen.includes('-') && dateSeen.length <= 10) {
       const parts = dateSeen.split('-')
       if (parts.length === 2) {
         const monthName = parts[0]
@@ -51,7 +67,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
           // Convert 2-digit year to 4-digit (e.g., "07" -> "2007", "98" -> "1998")
           const year = parseInt(yearPart)
           const fullYear = year < 50 ? `20${yearPart.padStart(2, '0')}` : `19${yearPart.padStart(2, '0')}`
-          return `${months[monthIndex]} ${fullYear}`
+          return `${months[monthIndex]} 1, ${fullYear}`
         }
       }
     }
@@ -248,21 +264,21 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                     <h3 className="film-title-back">{formatTitle(film.title)}</h3>
                     <div className="year-duration">
                       {film.release_year && <span>{film.release_year}</span>}
-                      {film.length_minutes && <span>• {film.length_minutes} min</span>}
+                      {film.length_minutes && <span className="duration-spacer">{film.length_minutes} min</span>}
                     </div>
                   </div>
                 </div>
 
                 <div className="card-back-metrics">
                   {film.letter_rating && (
-                    <div className="metric-item">
+                    <div className="metric-item metric-item-rating">
                       <span className="metric-label">J-Rayting:</span>
                       <span className="metric-value with-rating-box">{film.letter_rating}</span>
                     </div>
                   )}
 
                   {film.rotten_tomatoes && film.rt_link && (
-                    <div className="metric-item">
+                    <div className="metric-item metric-item-rt">
                       <span className="metric-label">Score:</span>
                       <a
                         href={film.rt_link}
@@ -271,7 +287,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                         className="rt-link"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        🍅 {film.rotten_tomatoes} ↗
+                        <span className="rt-emoji">🍅</span> {film.rotten_tomatoes} ↗
                       </a>
                     </div>
                   )}
@@ -292,7 +308,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                   <div className="card-back-details">
                     {film.date_seen && (
                       <div className="detail-row">
-                        <span className="detail-label">Watched:</span>
+                        <span className="detail-label">Date Seen:</span>
                         <span className="detail-value">{formatDate(film.date_seen)}</span>
                       </div>
                     )}

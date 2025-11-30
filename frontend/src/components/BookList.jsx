@@ -34,51 +34,84 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
     })
   }
 
-  // Helper function to format date as "Jan 1, 2010"
+  // Helper function to format date as "Dec 1, 2025" (3-letter month, day, comma, year)
   const formatDate = (dateRead) => {
     if (!dateRead) return null
 
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-    // Parse MM/DD/YYYY format
+    // Handle full date formats like "February 15, 1999" or "February 15, 99"
+    // Match: "MonthName Day, Year" or "MonthName Day Year"
+    const fullDateMatch = dateRead.match(/^([A-Za-z]+)\s+(\d{1,2})[,\s]+(\d{2,4})$/)
+    if (fullDateMatch) {
+      const [, monthName, day, yearPart] = fullDateMatch
+      const monthIndex = monthNames.findIndex(m => m.toLowerCase() === monthName.toLowerCase())
+      if (monthIndex !== -1) {
+        const dayNum = parseInt(day)
+        let fullYear = parseInt(yearPart)
+        // Convert 2-digit year to 4-digit
+        if (yearPart.length === 2) {
+          fullYear = fullYear < 50 ? 2000 + fullYear : 1900 + fullYear
+        }
+        if (dayNum > 0 && dayNum <= 31 && fullYear > 0) {
+          return `${months[monthIndex]} ${dayNum}, ${fullYear}`
+        }
+      }
+    }
+
+    // Parse MM/DD/YYYY format (e.g., "12/1/2025" -> "Dec 1, 2025")
     if (dateRead.includes('/')) {
       const parts = dateRead.split('/')
       if (parts.length === 3) {
         const month = parseInt(parts[0]) - 1
         const day = parseInt(parts[1])
         const year = parseInt(parts[2])
-        return `${months[month]} ${day}, ${year}`
+        if (month >= 0 && month < 12 && day > 0 && day <= 31 && year > 0) {
+          return `${months[month]} ${day}, ${year}`
+        }
       }
     }
 
-    // Parse YYYY-MM-DD format (e.g., "2025-01-03" -> "Jan 3, 2025")
+    // Parse YYYY-MM-DD format (e.g., "2025-12-01" -> "Dec 1, 2025")
     if (dateRead.includes('-') && dateRead.length >= 10) {
       const parts = dateRead.split('-')
       if (parts.length === 3 && parts[0].length === 4) {
         const year = parseInt(parts[0])
         const month = parseInt(parts[1]) - 1
         const day = parseInt(parts[2])
-        if (month >= 0 && month < 12 && day > 0 && day <= 31) {
+        if (month >= 0 && month < 12 && day > 0 && day <= 31 && year > 0) {
           return `${months[month]} ${day}, ${year}`
         }
       }
     }
 
-    // Handle "Month-YY" format (e.g., "April-08" -> "Apr 2008")
-    if (dateRead.includes('-') && dateRead.length <= 10) {
+    // Handle "Month-YY" format (e.g., "February-99" -> "Feb 1, 1999", "April-08" -> "Apr 1, 2008")
+    // Note: If no day is provided, default to day 1
+    // Check for format like "February-99" or "April-08" (not YYYY-MM-DD which starts with 4 digits)
+    if (dateRead.includes('-')) {
       const parts = dateRead.split('-')
       if (parts.length === 2) {
         const monthName = parts[0]
         const yearPart = parts[1]
 
-        // Find month abbreviation
-        const monthIndex = monthNames.findIndex(m => m === monthName)
-        if (monthIndex !== -1) {
-          // Convert 2-digit year to 4-digit (e.g., "07" -> "2007", "98" -> "1998")
-          const year = parseInt(yearPart)
-          const fullYear = year < 50 ? `20${yearPart.padStart(2, '0')}` : `19${yearPart.padStart(2, '0')}`
-          return `${months[monthIndex]} ${fullYear}`
+        // Skip if it's YYYY-MM-DD format (first part is 4 digits)
+        if (parts[0].length === 4 && !isNaN(parseInt(parts[0]))) {
+          // This is YYYY-MM-DD format, skip it (handled above)
+        } else if (yearPart.length <= 2) {
+          // Find month abbreviation (check both full names and abbreviations)
+          let monthIndex = monthNames.findIndex(m => m.toLowerCase() === monthName.toLowerCase())
+          if (monthIndex === -1) {
+            // Try matching abbreviation
+            monthIndex = months.findIndex(m => m.toLowerCase() === monthName.toLowerCase())
+          }
+          
+          if (monthIndex !== -1) {
+            // Convert 2-digit year to 4-digit (e.g., "07" -> "2007", "98" -> "1998", "99" -> "1999")
+            const year = parseInt(yearPart)
+            const fullYear = year < 50 ? `20${yearPart.padStart(2, '0')}` : `19${yearPart.padStart(2, '0')}`
+            return `${months[monthIndex]} 1, ${fullYear}`
+          }
         }
       }
     }
@@ -348,14 +381,14 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                   <div className="card-back-details">
                     {book.date_read && (
                       <div className="detail-row">
-                        <span className="detail-label">Read:</span>
+                        <span className="detail-label">Date Read:</span>
                         <span className="detail-value">{formatDate(book.date_read)}</span>
                       </div>
                     )}
                     {book.form && (
                       <div className="detail-row">
                         <span className="detail-label">Format:</span>
-                        <span className="detail-value">{book.form}</span>
+                        <span className="detail-value">{book.form === 'Book' ? 'Physical book' : book.form}</span>
                       </div>
                     )}
                     {book.type && (
