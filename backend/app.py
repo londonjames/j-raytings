@@ -1239,6 +1239,7 @@ def add_book():
                 if not published_date:
                     published_date = book_data.get('published_date')
                 # Extract year_written from published_date if not already set
+                # Don't use future dates (2025+) as they're likely API errors
                 if not data.get('year_written') and published_date:
                     year_match = None
                     if isinstance(published_date, str):
@@ -1246,7 +1247,11 @@ def add_book():
                     elif isinstance(published_date, int):
                         year_match = str(published_date) if 0 < published_date < 3000 else None
                     if year_match and year_match.isdigit():
-                        data['year_written'] = int(year_match)
+                        year_int = int(year_match)
+                        # Don't use future dates (2025+) as year_written - they're likely API errors
+                        current_year = 2024  # Use 2024 as threshold to avoid 2025+ dates
+                        if year_int <= current_year:
+                            data['year_written'] = year_int
                 if not description:
                     description = book_data.get('description')
                 # Get page count if not already provided
