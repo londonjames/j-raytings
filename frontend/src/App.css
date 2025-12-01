@@ -648,14 +648,15 @@ body {
 
 @media (max-width: 768px) {
   .analytics-button {
-    width: 32px;
-    height: 32px;
-    padding: 0.4rem;
+    width: 30px;
+    height: 30px;
+    padding: 0.35rem;
+    min-width: 30px;
   }
   
   .analytics-button svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 }
 
