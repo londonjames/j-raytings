@@ -112,10 +112,12 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: flex-start;
+    align-items: center;
   }
   
   .view-controls {
     justify-self: start;
+    margin-top: 0.5rem;
   }
 }
 
@@ -345,34 +347,43 @@ body {
 
 @media (max-width: 900px) {
   .search-bar {
-    width: 100%;
-    min-width: 0;
-    flex: 1 1 auto;
+    flex: 1 1 200px;
+    min-width: 150px;
+    max-width: 100%;
   }
   
   .search-bar-compact {
-    width: 100%;
-    min-width: 0;
+    flex: 1 1 150px;
+    min-width: 120px;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .search-bar {
-    width: 100%;
-    min-width: 0;
     flex: 1 1 auto;
+    min-width: 0;
+    max-width: calc(100% - 0.5rem);
   }
   
   .search-bar-compact {
-    width: 100%;
+    flex: 1 1 auto;
     min-width: 0;
+    max-width: calc(100% - 0.5rem);
   }
 }
 
 @media (max-width: 480px) {
   .search-bar {
-    width: 100%;
+    flex: 1 1 100%;
     min-width: 0;
+    max-width: 100%;
+  }
+  
+  .search-bar-compact {
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: 100%;
   }
 }
 
