@@ -62,9 +62,13 @@ def main():
             film = cursor.fetchone()
         
         # If not found, try by title + release_year
-        if not film and release_year:
-            cursor.execute("SELECT id FROM films WHERE title = ? AND release_year = ?", (title, int(release_year)))
-            film = cursor.fetchone()
+        if not film and release_year and release_year != 'NA':
+            try:
+                release_year_int = int(release_year)
+                cursor.execute("SELECT id FROM films WHERE title = ? AND release_year = ?", (title, release_year_int))
+                film = cursor.fetchone()
+            except (ValueError, TypeError):
+                pass
         
         # If still not found, try just by title
         if not film:
