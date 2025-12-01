@@ -1229,9 +1229,10 @@ body {
   }
 
   .sort-button {
-    width: 32px;
-    height: 32px;
-    padding: 0.4rem;
+    width: 30px;
+    height: 30px;
+    padding: 0.35rem;
+    min-width: 30px;
   }
 
   .view-controls {
