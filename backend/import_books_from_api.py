@@ -7,6 +7,7 @@ import os
 import sys
 from google_sheets_service import get_books_data
 from google_books_service import search_book
+from fix_author_names import fix_author_name
 import time
 
 # Import database functions from import_books.py
@@ -64,7 +65,10 @@ def main():
         date_read = row.get('Date Read', '').strip()
         year = parse_int_or_none(row.get('Year', ''))
         book_name = row.get('Book Name', '').strip()
-        author = row.get('Author', '').strip()
+        author_raw = row.get('Author', '').strip()
+        
+        # Fix author name format: convert "Last, First" to "First Last"
+        author = fix_author_name(author_raw) if author_raw else ''
         details_commentary = row.get('Details & Commentary', '').strip()
         j_rayting = row.get('J-Rayting', '').strip()
         score = parse_int_or_none(row.get('Score', ''))
