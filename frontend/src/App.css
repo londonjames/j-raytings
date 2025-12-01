@@ -347,13 +347,13 @@ body {
 
 @media (max-width: 900px) {
   .search-bar {
-    flex: 1 1 200px;
+    flex: 0 1 auto;
     min-width: 150px;
     max-width: 100%;
   }
   
   .search-bar-compact {
-    flex: 1 1 150px;
+    flex: 0 1 auto;
     min-width: 120px;
     max-width: 100%;
   }
@@ -361,15 +361,15 @@ body {
 
 @media (max-width: 768px) {
   .search-bar {
-    flex: 1 1 auto;
+    flex: 1 1 200px;
     min-width: 0;
-    max-width: calc(100% - 0.5rem);
+    max-width: 100%;
   }
   
   .search-bar-compact {
-    flex: 1 1 auto;
+    flex: 1 1 150px;
     min-width: 0;
-    max-width: calc(100% - 0.5rem);
+    max-width: 100%;
   }
 }
 
@@ -378,12 +378,14 @@ body {
     flex: 1 1 100%;
     min-width: 0;
     max-width: 100%;
+    width: 100%;
   }
   
   .search-bar-compact {
     flex: 1 1 100%;
     min-width: 0;
     max-width: 100%;
+    width: 100%;
   }
 }
 
