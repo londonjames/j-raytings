@@ -305,10 +305,10 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                     James watched before 2006,<br />when he started officially tracking!
                   </div>
                 ) : (
-                  <div className="card-back-details">
+                    <div className="card-back-details">
                     <div className="detail-row">
                       <span className="detail-label">Date Seen:</span>
-                      <span className="detail-value">{formatDate(film.date_seen) || '—'}</span>
+                      <span className="detail-value">{formatDate(film.date_seen) || 'Pre-2006'}</span>
                     </div>
                     {film.format && (
                       <div className="detail-row">

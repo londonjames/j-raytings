@@ -46,6 +46,16 @@ def main():
     updated = 0
     not_found = 0
     
+    def normalize_title(title):
+        """Convert 'Title, The' to 'The Title' for matching"""
+        if not title:
+            return title
+        if ',' in title:
+            parts = [p.strip() for p in title.split(',')]
+            if len(parts) == 2 and parts[1].lower() in ['the', 'a', 'an']:
+                return f"{parts[1]} {parts[0]}"
+        return title
+    
     print("Updating existing films with dates...")
     for idx, row in enumerate(films_data, 1):
         order_number = row.get('Order', '')
@@ -53,26 +63,35 @@ def main():
         title = row.get('Film', '').strip()
         release_year = row.get('Film Year', '')
         
-        if not title or not date_seen:
+        if not title:
             continue
         
-        # Try to find existing film by order_number first
-        if order_number:
-            cursor.execute("SELECT id FROM films WHERE order_number = ?", (int(order_number),))
-            film = cursor.fetchone()
+        # Normalize title for matching (convert "Title, The" to "The Title")
+        normalized_title = normalize_title(title)
         
-        # If not found, try by title + release_year
-        if not film and release_year and release_year != 'NA':
+        # Try to find existing film by order_number first
+        film = None
+        if order_number:
             try:
-                release_year_int = int(release_year)
-                cursor.execute("SELECT id FROM films WHERE title = ? AND release_year = ?", (title, release_year_int))
+                cursor.execute("SELECT id FROM films WHERE order_number = ?", (int(order_number),))
                 film = cursor.fetchone()
             except (ValueError, TypeError):
                 pass
         
-        # If still not found, try just by title
+        # If not found, try by normalized title + release_year
+        if not film and release_year and release_year != 'NA':
+            try:
+                release_year_int = int(release_year)
+                # Try both original and normalized title
+                cursor.execute("SELECT id FROM films WHERE (title = ? OR title = ?) AND release_year = ?", 
+                              (title, normalized_title, release_year_int))
+                film = cursor.fetchone()
+            except (ValueError, TypeError):
+                pass
+        
+        # If still not found, try just by title (both formats)
         if not film:
-            cursor.execute("SELECT id FROM films WHERE title = ?", (title,))
+            cursor.execute("SELECT id FROM films WHERE title = ? OR title = ?", (title, normalized_title))
             film = cursor.fetchone()
         
         if film:
