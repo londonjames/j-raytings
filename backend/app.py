@@ -674,12 +674,22 @@ def add_film():
     except Exception as e:
         print(f"Error fetching RT score: {e}")
 
-    # Generate RT link if not provided - use IMDB ID if available for better accuracy
+    # Generate RT link if not provided
     rt_link = data.get('rt_link')
     if not rt_link:
-        if imdb_id:
-            # Use IMDB ID for more accurate RT link
-            rt_link = f"https://www.rottentomatoes.com/m/{imdb_id}"
+        # Try to build better RT link using TMDB data if available
+        if tmdb_id and os.getenv('TMDB_API_KEY'):
+            try:
+                # Use the build_rt_url function from fetch_rt_links if available
+                from fetch_rt_links import build_rt_url, get_tmdb_movie_data
+                tmdb_movie_data = get_tmdb_movie_data(data['title'], release_year)
+                if tmdb_movie_data:
+                    rt_link = build_rt_url(tmdb_movie_data['title'], tmdb_movie_data['year'], tmdb_movie_data.get('imdb_id'))
+                else:
+                    rt_link = generate_rt_url(data['title'])
+            except Exception as e:
+                print(f"Error building RT link: {e}")
+                rt_link = generate_rt_url(data['title'])
         else:
             rt_link = generate_rt_url(data['title'])
 
