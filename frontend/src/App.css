@@ -118,7 +118,14 @@ body {
   /* On mobile, prevent search bar from taking full width when other elements are present */
   .search-and-filter > .search-bar {
     flex: 0 1 auto;
-    max-width: calc(100% - 150px); /* Leave room for buttons */
+    max-width: calc(100% - 200px); /* Leave room for buttons (sort + filter + analytics = ~150px) */
+  }
+  
+  /* Keep buttons together - prevent individual wrapping */
+  .search-and-filter > .sort-bar,
+  .search-and-filter > .filter-dropdown,
+  .search-and-filter > .analytics-button {
+    flex-shrink: 0;
   }
   
   .view-controls {
@@ -147,6 +154,21 @@ body {
   .search-and-filter {
     flex-wrap: wrap;
     gap: 0.5rem;
+    align-items: center;
+  }
+  
+  /* Prevent buttons from wrapping individually - keep them together */
+  .search-and-filter > .sort-bar,
+  .search-and-filter > .filter-dropdown,
+  .search-and-filter > .analytics-button {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+  
+  /* View controls can wrap to next line if needed */
+  .search-and-filter > .view-controls {
+    flex-shrink: 0;
+    flex-grow: 0;
   }
 }
 
