@@ -1703,7 +1703,7 @@ body {
 }
 
 .book-info-left-column {
-  gap: 0.5rem !important; /* Moderate gap between title group and metadata */
+  gap: 0.48rem !important; /* Slightly reduced gap to bring author closer to year/pages */
 }
 
 .book-title-group {
