@@ -351,15 +351,8 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                       <div className="book-author-back">by {book.author}</div>
                     )}
                     <div className="year-duration">
-                      {book.year_written && book.pages && (
-                        <span>{book.year_written}   {book.pages} pages</span>
-                      )}
-                      {book.year_written && !book.pages && (
-                        <span>{book.year_written}</span>
-                      )}
-                      {!book.year_written && book.pages && (
-                        <span>{book.pages} pages</span>
-                      )}
+                      {book.year_written && <span>{book.year_written}</span>}
+                      {book.pages && <span className="duration-spacer">{book.pages} pages</span>}
                     </div>
                   </div>
                 </div>
