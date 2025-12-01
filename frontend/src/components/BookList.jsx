@@ -392,7 +392,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                     )}
                     {book.details_commentary && (
                       <div className="detail-row">
-                        <span className="detail-label">Thoughts:</span>
+                        <span className="detail-label">My Thoughts:</span>
                         <span className="detail-value">
                           <button 
                             onClick={() => setThoughtsModal(book.id)}
