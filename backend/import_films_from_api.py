@@ -79,13 +79,18 @@ def main():
             skipped += 1
             continue
         
-        # Check if film already exists
-        cursor.execute("SELECT id FROM films WHERE order_number = ?", (order_number,))
+        # Check if film already exists (by title and release_year for better matching)
+        cursor.execute("SELECT id FROM films WHERE title = ? AND release_year = ?", (title, release_year))
         existing = cursor.fetchone()
+        
+        if not existing and order_number:
+            # Fallback: try matching by order_number
+            cursor.execute("SELECT id FROM films WHERE order_number = ?", (order_number,))
+            existing = cursor.fetchone()
         
         if existing:
             # Update existing film
-            film_id = existing['id']
+            film_id = existing['id'] if isinstance(existing, dict) else existing[0]
             
             # Update date_seen with exact date from API
             cursor.execute("""
