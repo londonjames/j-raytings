@@ -307,34 +307,35 @@
         /* Mobile: Start with background and title visible, images hidden */
         @media (hover: none) {
             /* On mobile, hide images initially - they'll be revealed via scroll */
+            /* JavaScript will control these via inline styles, so no !important */
             .tile-image {
-                opacity: 0 !important;
+                opacity: 0;
                 visibility: hidden;
                 transform: scale(1);
             }
             
             .tile-background {
-                opacity: 1 !important;
+                opacity: 1;
             }
             
             .tile-title {
-                opacity: 1 !important;
+                opacity: 1;
             }
             
             /* Tiles that have been scrolled into view will have images revealed via JS */
             .tile--revealed .tile-image {
-                opacity: 1 !important;
+                opacity: 1;
                 visibility: visible;
                 transition: opacity 1.5s ease, transform 0.5s ease, visibility 0s 0.75s;
             }
             
             .tile--revealed .tile-background {
-                opacity: 0 !important;
+                opacity: 0;
                 transition: opacity 1.5s ease;
             }
             
             .tile--revealed .tile-title {
-                opacity: 0 !important;
+                opacity: 0;
                 transition: opacity 1.5s ease;
             }
             
@@ -556,6 +557,13 @@
                 
                 // Also check on resize
                 window.addEventListener('resize', revealTiles, { passive: true });
+                
+                // Also check on load to handle initial state
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        revealTiles();
+                    }, 100);
+                });
             }
         })();
     </script>
