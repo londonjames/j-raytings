@@ -391,15 +391,15 @@ body {
 @media (max-width: 768px) {
   .search-bar {
     flex: 0 1 auto;
-    min-width: 150px;
-    max-width: calc(100% - 150px);
+    min-width: 120px;
+    max-width: calc(100% - 200px);
     width: auto;
   }
   
   .search-bar-compact {
     flex: 0 1 auto;
-    min-width: 120px;
-    max-width: calc(100% - 150px);
+    min-width: 100px;
+    max-width: calc(100% - 200px);
     width: auto;
   }
 }
