@@ -306,32 +306,35 @@
         
         /* Mobile: Start with background and title visible, images hidden */
         @media (hover: none) {
+            /* On mobile, hide images initially - they'll be revealed via scroll */
             .tile-image {
-                opacity: 0;
+                opacity: 0 !important;
+                visibility: hidden;
                 transform: scale(1);
             }
             
             .tile-background {
-                opacity: 1;
+                opacity: 1 !important;
             }
             
             .tile-title {
-                opacity: 1;
+                opacity: 1 !important;
             }
             
             /* Tiles that have been scrolled into view will have images revealed via JS */
             .tile--revealed .tile-image {
-                opacity: 1;
-                transition: opacity 1.5s ease, transform 0.5s ease;
+                opacity: 1 !important;
+                visibility: visible;
+                transition: opacity 1.5s ease, transform 0.5s ease, visibility 0s 0.75s;
             }
             
             .tile--revealed .tile-background {
-                opacity: 0;
+                opacity: 0 !important;
                 transition: opacity 1.5s ease;
             }
             
             .tile--revealed .tile-title {
-                opacity: 0;
+                opacity: 0 !important;
                 transition: opacity 1.5s ease;
             }
             
