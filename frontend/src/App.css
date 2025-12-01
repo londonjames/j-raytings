@@ -473,10 +473,10 @@ body {
 
 @media (max-width: 768px) {
   .sort-button {
-    width: 32px;
-    height: 32px;
-    padding: 0.4rem;
-    min-width: 32px;
+    width: 30px;
+    height: 30px;
+    padding: 0.35rem;
+    min-width: 30px;
   }
 }
 
@@ -584,9 +584,10 @@ body {
 
 @media (max-width: 768px) {
   .filter-button {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    padding: 0.35rem;
   }
 }
 
