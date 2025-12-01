@@ -91,6 +91,21 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
   }
+  
+  /* Keep view controls together with other buttons */
+  .search-and-filter > .view-controls {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+  
+  .view-btn {
+    padding: 0.3rem;
+  }
+  
+  .view-btn svg {
+    width: 14px;
+    height: 14px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -385,13 +400,34 @@ body {
   .search-bar {
     flex: 0 1 auto;
     min-width: 150px;
-    max-width: 100%;
+    max-width: 50%; /* Limit search bar to 50% to leave room for buttons */
+    width: auto;
   }
   
   .search-bar-compact {
     flex: 0 1 auto;
     min-width: 120px;
-    max-width: 100%;
+    max-width: 50%;
+    width: auto;
+  }
+  
+  /* Keep buttons together at this breakpoint */
+  .search-and-filter > .sort-bar,
+  .search-and-filter > .filter-dropdown,
+  .search-and-filter > .analytics-button {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+}
+
+/* Intermediate breakpoint for half-laptop screens (850px) */
+@media (max-width: 850px) {
+  .search-bar {
+    max-width: 45%; /* Further reduce search bar width */
+  }
+  
+  .search-bar-compact {
+    max-width: 45%;
   }
 }
 
