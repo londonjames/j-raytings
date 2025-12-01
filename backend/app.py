@@ -616,6 +616,8 @@ def add_film():
     metadata_fetched = False
 
     # Fetch metadata from TMDB if API key is available
+    tmdb_id = None
+    imdb_id = None
     if os.getenv('TMDB_API_KEY'):
         try:
             # Search for the movie
@@ -639,27 +641,47 @@ def add_film():
                             length_minutes = details.get('runtime')
                         if not release_year and details.get('release_date'):
                             release_year = int(details['release_date'][:4])
+                    
+                    # Get IMDB ID for better RT link generation
+                    try:
+                        import requests
+                        tmdb_api_key = os.getenv('TMDB_API_KEY')
+                        external_response = requests.get(
+                            f'https://api.themoviedb.org/3/movie/{tmdb_id}/external_ids',
+                            params={'api_key': tmdb_api_key},
+                            timeout=5
+                        )
+                        if external_response.status_code == 200:
+                            external_data = external_response.json()
+                            imdb_id = external_data.get('imdb_id')
+                    except Exception as e:
+                        print(f"Error fetching IMDB ID: {e}")
 
                 metadata_fetched = True
                 print(f"✓ Fetched metadata for '{data['title']}'")
         except Exception as e:
             print(f"Error fetching TMDB data: {e}")
 
-    # Fetch Rotten Tomatoes score from OMDb if not already provided
-    if not rotten_tomatoes:
-        try:
-            rt_score = fetch_rt_score_from_omdb(data['title'], release_year)
-            if rt_score:
-                rotten_tomatoes = rt_score
-                metadata_fetched = True
-                print(f"✓ Fetched RT score for '{data['title']}': {rt_score}")
-        except Exception as e:
-            print(f"Error fetching RT score: {e}")
+    # Always try to fetch Rotten Tomatoes score from OMDb (even if user provided one, we can verify/update)
+    try:
+        rt_score = fetch_rt_score_from_omdb(data['title'], release_year)
+        if rt_score:
+            rotten_tomatoes = rt_score
+            metadata_fetched = True
+            print(f"✓ Fetched RT score for '{data['title']}': {rt_score}")
+        elif not rotten_tomatoes:
+            print(f"⚠️  No RT score found for '{data['title']}'")
+    except Exception as e:
+        print(f"Error fetching RT score: {e}")
 
-    # Generate RT link if not provided
+    # Generate RT link if not provided - use IMDB ID if available for better accuracy
     rt_link = data.get('rt_link')
     if not rt_link:
-        rt_link = generate_rt_url(data['title'])
+        if imdb_id:
+            # Use IMDB ID for more accurate RT link
+            rt_link = f"https://www.rottentomatoes.com/m/{imdb_id}"
+        else:
+            rt_link = generate_rt_url(data['title'])
 
     conn = get_db()
     cursor = conn.cursor()
@@ -1216,58 +1238,63 @@ def add_book():
     pages = data.get('pages')
     metadata_fetched = False
 
-    # Fetch metadata from Google Books API if available
-    if os.getenv('GOOGLE_BOOKS_API_KEY') or True:  # API works without key
-        try:
-            # Search for the book
-            book_data = search_book(data['book_name'], data.get('author'), data.get('isbn'))
+    # Always fetch metadata from Google Books API (works without key, but better with key)
+    try:
+        # Search for the book
+        book_data = search_book(data['book_name'], data.get('author'), data.get('isbn'))
 
-            if book_data:
-                # Get cover if not already provided
-                if not cover_url:
-                    cover_url = book_data.get('cover_url')
+        if book_data:
+            # Get cover if not already provided
+            if not cover_url:
+                cover_url = book_data.get('cover_url')
 
-                # Get other metadata if not already provided
-                if not google_books_id:
-                    google_books_id = book_data.get('google_books_id')
-                if not isbn:
-                    isbn = book_data.get('isbn')
-                if average_rating is None:
-                    average_rating = book_data.get('average_rating')
-                if ratings_count is None:
-                    ratings_count = book_data.get('ratings_count')
-                if not published_date:
-                    published_date = book_data.get('published_date')
-                # Extract year_written from published_date if not already set
-                # Don't use future dates (2025+) as they're likely API errors
-                if not data.get('year_written') and published_date:
-                    year_match = None
-                    if isinstance(published_date, str):
-                        year_match = published_date[:4] if len(published_date) >= 4 else None
-                    elif isinstance(published_date, int):
-                        year_match = str(published_date) if 0 < published_date < 3000 else None
-                    if year_match and year_match.isdigit():
-                        year_int = int(year_match)
-                        # Don't use future dates (2025+) as year_written - they're likely API errors
-                        current_year = 2024  # Use 2024 as threshold to avoid 2025+ dates
-                        if year_int <= current_year:
-                            data['year_written'] = year_int
-                if not description:
-                    description = book_data.get('description')
-                # Get page count if not already provided
-                if not pages and book_data.get('page_count'):
-                    pages = book_data.get('page_count')
+            # Get other metadata if not already provided
+            if not google_books_id:
+                google_books_id = book_data.get('google_books_id')
+            if not isbn:
+                isbn = book_data.get('isbn')
+            if average_rating is None:
+                average_rating = book_data.get('average_rating')
+            if ratings_count is None:
+                ratings_count = book_data.get('ratings_count')
+            if not published_date:
+                published_date = book_data.get('published_date')
+            # Extract year_written from published_date if not already set
+            # Don't use future dates (2025+) as they're likely API errors
+            if not data.get('year_written') and published_date:
+                year_match = None
+                if isinstance(published_date, str):
+                    year_match = published_date[:4] if len(published_date) >= 4 else None
+                elif isinstance(published_date, int):
+                    year_match = str(published_date) if 0 < published_date < 3000 else None
+                if year_match and year_match.isdigit():
+                    year_int = int(year_match)
+                    # Don't use future dates (2025+) as year_written - they're likely API errors
+                    current_year = 2024  # Use 2024 as threshold to avoid 2025+ dates
+                    if year_int <= current_year:
+                        data['year_written'] = year_int
+            if not description:
+                description = book_data.get('description')
+            # Get page count if not already provided
+            if not pages and book_data.get('page_count'):
+                pages = book_data.get('page_count')
 
-                metadata_fetched = True
-                print(f"✓ Fetched metadata for '{data['book_name']}'")
-                if cover_url:
-                    print(f"  Cover URL: {cover_url}")
-                else:
-                    print(f"  ⚠️  No cover URL found for '{data['book_name']}'")
-        except Exception as e:
-            print(f"Error fetching Google Books data for '{data.get('book_name', 'unknown')}': {e}")
-            import traceback
-            traceback.print_exc()
+            metadata_fetched = True
+            print(f"✓ Fetched metadata for '{data['book_name']}'")
+            if cover_url:
+                print(f"  Cover URL: {cover_url}")
+            else:
+                print(f"  ⚠️  No cover URL found for '{data['book_name']}'")
+            if pages:
+                print(f"  Pages: {pages}")
+            if data.get('year_written'):
+                print(f"  Year written: {data.get('year_written')}")
+        else:
+            print(f"⚠️  No Google Books data found for '{data['book_name']}'")
+    except Exception as e:
+        print(f"Error fetching Google Books data for '{data.get('book_name', 'unknown')}': {e}")
+        import traceback
+        traceback.print_exc()
 
     # Extract year from date_read if year is not provided
     year = data.get('year')
