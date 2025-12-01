@@ -118,7 +118,7 @@ body {
   /* On mobile, prevent search bar from taking full width when other elements are present */
   .search-and-filter > .search-bar {
     flex: 0 1 auto;
-    max-width: 50%; /* Limit to half screen width to leave room for buttons */
+    max-width: 45%; /* Limit to 45% to leave room for buttons */
   }
   
   /* Keep buttons together - prevent individual wrapping */
@@ -399,14 +399,14 @@ body {
   .search-bar {
     flex: 0 1 auto;
     min-width: 100px;
-    max-width: 50%;
+    max-width: 45%;
     width: auto;
   }
   
   .search-bar-compact {
     flex: 0 1 auto;
     min-width: 80px;
-    max-width: 50%;
+    max-width: 45%;
     width: auto;
   }
 }
