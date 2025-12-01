@@ -470,6 +470,24 @@
             if (window.matchMedia('(hover: none)').matches) {
                 const tiles = document.querySelectorAll('.tile:not(.tile--coming-soon)');
                 
+                // Immediately hide all images on load to prevent flash
+                tiles.forEach(tile => {
+                    const image = tile.querySelector('.tile-image');
+                    const background = tile.querySelector('.tile-background');
+                    const title = tile.querySelector('.tile-title');
+                    
+                    if (image) {
+                        image.style.opacity = '0';
+                        image.style.visibility = 'hidden';
+                    }
+                    if (background) {
+                        background.style.opacity = '1';
+                    }
+                    if (title) {
+                        title.style.opacity = '1';
+                    }
+                });
+                
                 const revealTiles = () => {
                     tiles.forEach(tile => {
                         const rect = tile.getBoundingClientRect();
@@ -482,6 +500,12 @@
                         const revealStart = windowHeight * 0.3;
                         const revealEnd = windowHeight * 0.7;
                         
+                        const image = tile.querySelector('.tile-image');
+                        const background = tile.querySelector('.tile-background');
+                        const title = tile.querySelector('.tile-title');
+                        
+                        if (!image || !background || !title) return;
+                        
                         // Check if tile is in the reveal zone
                         if (tileTop < revealEnd && tileTop + tileHeight > revealStart) {
                             // Calculate reveal progress (0 to 1)
@@ -490,43 +514,30 @@
                             ));
                             
                             // Apply opacity based on progress
-                            const image = tile.querySelector('.tile-image');
-                            const background = tile.querySelector('.tile-background');
-                            const title = tile.querySelector('.tile-title');
-                            
-                            if (image && background && title) {
-                                image.style.opacity = progress;
-                                background.style.opacity = 1 - progress;
-                                title.style.opacity = Math.max(0, 1 - (progress * 1.2)); // Title fades out slightly faster
-                            }
+                            image.style.opacity = progress;
+                            image.style.visibility = progress > 0 ? 'visible' : 'hidden';
+                            background.style.opacity = 1 - progress;
+                            title.style.opacity = Math.max(0, 1 - (progress * 1.2)); // Title fades out slightly faster
                         } else if (tileTop < revealStart) {
                             // Tile has scrolled past - keep it revealed
-                            const image = tile.querySelector('.tile-image');
-                            const background = tile.querySelector('.tile-background');
-                            const title = tile.querySelector('.tile-title');
-                            
-                            if (image && background && title) {
-                                image.style.opacity = 1;
-                                background.style.opacity = 0;
-                                title.style.opacity = 0;
-                            }
+                            image.style.opacity = '1';
+                            image.style.visibility = 'visible';
+                            background.style.opacity = '0';
+                            title.style.opacity = '0';
                         } else {
                             // Tile hasn't entered reveal zone yet - keep it hidden
-                            const image = tile.querySelector('.tile-image');
-                            const background = tile.querySelector('.tile-background');
-                            const title = tile.querySelector('.tile-title');
-                            
-                            if (image && background && title) {
-                                image.style.opacity = 0;
-                                background.style.opacity = 1;
-                                title.style.opacity = 1;
-                            }
+                            image.style.opacity = '0';
+                            image.style.visibility = 'hidden';
+                            background.style.opacity = '1';
+                            title.style.opacity = '1';
                         }
                     });
                 };
                 
-                // Initial check
-                revealTiles();
+                // Initial check after a brief delay to ensure DOM is ready
+                setTimeout(() => {
+                    revealTiles();
+                }, 10);
                 
                 // Update on scroll with throttling
                 let ticking = false;
