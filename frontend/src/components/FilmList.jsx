@@ -53,7 +53,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
       }
     }
 
-    // Handle "Month-YY" format (e.g., "April-08" -> "Apr 1, 2008")
+    // Handle "Month-YY" format (e.g., "April-08" -> "Apr 1, 2008", "October-10" -> "Oct 1, 2010")
     // Note: If no day is provided, default to day 1
     if (dateSeen.includes('-') && dateSeen.length <= 10) {
       const parts = dateSeen.split('-')
@@ -61,10 +61,10 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
         const monthName = parts[0]
         const yearPart = parts[1]
 
-        // Find month abbreviation
-        const monthIndex = monthNames.findIndex(m => m === monthName)
+        // Find month abbreviation (case-insensitive)
+        const monthIndex = monthNames.findIndex(m => m.toLowerCase() === monthName.toLowerCase())
         if (monthIndex !== -1) {
-          // Convert 2-digit year to 4-digit (e.g., "07" -> "2007", "98" -> "1998")
+          // Convert 2-digit year to 4-digit (e.g., "07" -> "2007", "98" -> "1998", "10" -> "2010")
           const year = parseInt(yearPart)
           const fullYear = year < 50 ? `20${yearPart.padStart(2, '0')}` : `19${yearPart.padStart(2, '0')}`
           return `${months[monthIndex]} 1, ${fullYear}`
@@ -306,12 +306,10 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                   </div>
                 ) : (
                   <div className="card-back-details">
-                    {film.date_seen && (
-                      <div className="detail-row">
-                        <span className="detail-label">Date Seen:</span>
-                        <span className="detail-value">{formatDate(film.date_seen)}</span>
-                      </div>
-                    )}
+                    <div className="detail-row">
+                      <span className="detail-label">Date Seen:</span>
+                      <span className="detail-value">{formatDate(film.date_seen) || '—'}</span>
+                    </div>
                     {film.format && (
                       <div className="detail-row">
                         <span className="detail-label">Format:</span>
