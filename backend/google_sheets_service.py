@@ -192,38 +192,94 @@ def get_films_data() -> List[Dict[str, Any]]:
     """
     sheet = get_sheet(sheet_name=FILMS_SHEET_NAME, gid=0)
     
-    # Get all values
+    # Get all values (handles empty first column)
     all_values = sheet.get_all_values()
     
     if not all_values or len(all_values) < 2:
         return []
     
-    # First row is headers
-    headers = all_values[0]
-    
-    # Find column indices
+    # Find header row (skip empty rows at top)
+    header_row_idx = None
+    headers = []
     col_map = {}
-    for idx, header in enumerate(headers):
-        col_map[header.strip()] = idx
     
+    for idx, row in enumerate(all_values):
+        if row and any(cell.strip() for cell in row):
+            # Found header row
+            header_row_idx = idx
+            # Skip empty first column
+            headers = [h.strip() for h in row[1:]] if row[0].strip() == '' else [h.strip() for h in row]
+            break
+    
+    if header_row_idx is None:
+        return []
+    
+    # Build column map (adjust for empty first column)
+    start_col = 1 if all_values[header_row_idx][0].strip() == '' else 0
+    for idx, header in enumerate(headers):
+        col_map[header] = idx + start_col
+    
+    # Get date column index (adjust for empty first column)
+    date_col_name = 'Date Film Seen'
+    date_col_idx = col_map.get(date_col_name)
+    if date_col_idx is None:
+        date_col_name = 'Date Seen'
+        date_col_idx = col_map.get(date_col_name)
+    
+    # Get all data rows
     films = []
-    for row_idx, row in enumerate(all_values[1:], start=2):  # Start at row 2
-        if not row or not row[0]:  # Skip empty rows
+    data_start_row = header_row_idx + 1
+    
+    # Use batch_get to get unformatted date values (date serial numbers)
+    if date_col_idx is not None:
+        # Get date column with unformatted values
+        date_range = f"{chr(65 + date_col_idx)}{data_start_row + 1}:{chr(65 + date_col_idx)}{len(all_values)}"
+        try:
+            date_values = sheet.batch_get([date_range], value_render_option='UNFORMATTED_VALUE')
+            date_serials = date_values[0] if date_values else []
+        except Exception as e:
+            print(f"Warning: Could not get unformatted dates: {e}")
+            date_serials = []
+    else:
+        date_serials = []
+    
+    # Process each data row
+    for row_idx, row in enumerate(all_values[data_start_row:], start=data_start_row + 1):
+        # Skip empty rows
+        if not row or (len(row) > 0 and not row[0].strip() and not any(cell.strip() for cell in row[1:] if len(row) > 1)):
             continue
+        
+        # Adjust for empty first column
+        row_data = row[1:] if len(row) > 0 and row[0].strip() == '' else row
         
         # Build film dict
         film = {}
         for header, col_idx in col_map.items():
-            if col_idx < len(row):
-                value = row[col_idx].strip() if row[col_idx] else ''
+            adjusted_idx = col_idx - (1 if len(row) > 0 and row[0].strip() == '' else 0)
+            if adjusted_idx >= 0 and adjusted_idx < len(row_data):
+                value = row_data[adjusted_idx].strip() if row_data[adjusted_idx] else ''
                 film[header] = value
         
-        # Get exact date from the cell
-        date_col = col_map.get('Date Film Seen', col_map.get('Date Seen', 1))
-        if date_col is not None:
-            date_cell = sheet.cell(row_idx, date_col + 1)  # gspread is 1-indexed
-            if date_cell and date_cell.value:
-                film['Date Seen'] = date_cell.value
+        # Convert date serial number to "Month Day, YYYY" format
+        if date_col_idx is not None:
+            date_row_idx = row_idx - data_start_row - 1
+            if date_row_idx >= 0 and date_row_idx < len(date_serials):
+                date_row = date_serials[date_row_idx]
+                if date_row and len(date_row) > 0:
+                    date_serial = date_row[0]
+                    if isinstance(date_serial, (int, float)) and date_serial > 0:
+                        # Convert Excel/Sheets date serial to datetime
+                        # Excel epoch is December 30, 1899
+                        excel_epoch = datetime(1899, 12, 30)
+                        try:
+                            date_obj = excel_epoch + timedelta(days=int(date_serial))
+                            month_name = date_obj.strftime('%B')  # Full month name
+                            day = date_obj.day
+                            year = date_obj.year
+                            film[date_col_name] = f"{month_name} {day}, {year}"
+                        except Exception as e:
+                            # If conversion fails, use the original value
+                            pass
         
         films.append(film)
     
