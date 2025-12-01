@@ -1709,7 +1709,7 @@ body {
 .book-title-group {
   display: flex;
   flex-direction: column;
-  gap: 0.11rem; /* Tight spacing between title and author - minimal increase (~10%) */
+  gap: 0.12rem; /* Slightly increased gap between title and author */
 }
 
 .book-author-inline {
@@ -1717,7 +1717,7 @@ body {
   color: rgba(255, 255, 255, 0.7);
   font-style: italic;
   line-height: 1.2;
-  margin-top: -0.05rem; /* Slight negative margin to bring closer to title */
+  margin-top: 0; /* Removed negative margin to move author down slightly */
 }
 
 .book-metadata {
