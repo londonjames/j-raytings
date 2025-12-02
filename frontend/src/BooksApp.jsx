@@ -102,11 +102,8 @@ function BooksApp() {
   })
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
   
-  // Load cached books immediately, then fetch fresh data
-  const [isLoading, setIsLoading] = useState(() => {
-    const cached = localStorage.getItem('cachedBooks')
-    return !cached // Only show loading if no cache
-  })
+  // Always start loading - only show content when we have actual data
+  const [isLoading, setIsLoading] = useState(true)
   
   // Update URL when state changes (but skip initial mount to avoid overwriting URL params)
   const [isInitialMount, setIsInitialMount] = useState(true)
@@ -121,37 +118,40 @@ function BooksApp() {
   // Fetch all books
   const fetchBooks = async () => {
     try {
-      // First, load from cache for instant display
+      // First, try to load from cache for instant display
       const cached = localStorage.getItem('cachedBooks')
       if (cached) {
         try {
           const cachedData = JSON.parse(cached)
-          if (cachedData && cachedData.length > 0) {
+          if (cachedData && Array.isArray(cachedData) && cachedData.length > 0) {
             setBooks(cachedData)
-            setIsLoading(false)
+            setIsLoading(false) // Only stop loading if cache has actual data
           }
         } catch (e) {
           console.error('Error parsing cached books:', e)
         }
       }
       
-      // Then fetch fresh data (with cache-busting)
+      // Then fetch fresh data from API (with cache-busting)
       const response = await fetch(`${API_URL}/books?_t=${Date.now()}`, {
         cache: 'no-store'
       })
       const data = await response.json()
-      setBooks(data)
       
-      // Cache the fresh data for next time
-      try {
-        localStorage.setItem('cachedBooks', JSON.stringify(data))
-      } catch (e) {
-        console.error('Error caching books:', e)
+      if (data && Array.isArray(data) && data.length > 0) {
+        setBooks(data)
+        setIsLoading(false)
+        
+        // Cache the fresh data for next time
+        try {
+          localStorage.setItem('cachedBooks', JSON.stringify(data))
+        } catch (e) {
+          console.error('Error caching books:', e)
+        }
       }
     } catch (error) {
       console.error('Error fetching books:', error)
-    } finally {
-      setIsLoading(false)
+      setIsLoading(false) // Stop loading on error to show error state
     }
   }
 
