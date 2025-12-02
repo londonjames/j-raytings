@@ -481,9 +481,9 @@
                 
                 const revealTiles = () => {
                     const windowHeight = window.innerHeight;
-                    // Each tile reveals when its TOP reaches 40% from the top of viewport
-                    // This creates a staggered effect - first tile reveals first, then second, etc.
-                    const revealThreshold = windowHeight * 0.4;
+                    // Each tile reveals when its TOP reaches 25% from the top of viewport
+                    // Lower percentage = more scrolling required before reveal
+                    const revealThreshold = windowHeight * 0.25;
                     
                     tiles.forEach(tile => {
                         const rect = tile.getBoundingClientRect();
