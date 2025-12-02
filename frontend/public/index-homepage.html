@@ -220,18 +220,20 @@
             color: rgba(255, 255, 255, 0.6);
         }
         
-        /* Hover Effect */
-        .tile:hover .tile-image {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .tile:hover .tile-background {
-            opacity: 0;
-        }
-        
-        .tile:hover .tile-title {
-            opacity: 0;
+        /* Hover Effect - ONLY on devices that support hover (not touch) */
+        @media (hover: hover) and (pointer: fine) {
+            .tile:hover .tile-image {
+                opacity: 1;
+                transform: scale(1);
+            }
+            
+            .tile:hover .tile-background {
+                opacity: 0;
+            }
+            
+            .tile:hover .tile-title {
+                opacity: 0;
+            }
         }
         
         /* "Coming Soon" tiles don't have images, so disable hover effect */
@@ -305,9 +307,10 @@
         }
         
         /* Mobile: Start with background and title visible, images hidden */
-        @media (hover: none) {
-            /* On mobile, hide images initially - they'll be revealed via scroll */
-            /* JavaScript will control these via inline styles, so no !important */
+        /* Using max-width as more reliable than (hover: none) */
+        @media (max-width: 1024px) {
+            /* On mobile/tablet, hide images initially - they'll be revealed via scroll */
+            /* Using a class approach - JS will add 'mobile-revealed' class */
             .tile-image {
                 opacity: 0;
                 visibility: hidden;
@@ -322,21 +325,21 @@
                 opacity: 1;
             }
             
-            /* Tiles that have been scrolled into view will have images revealed via JS */
-            .tile--revealed .tile-image {
-                opacity: 1;
-                visibility: visible;
-                transition: opacity 1.5s ease, transform 0.5s ease, visibility 0s 0.75s;
+            /* When JS adds this class, show the image */
+            .tile.mobile-revealed .tile-image {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: opacity 0.8s ease;
             }
             
-            .tile--revealed .tile-background {
-                opacity: 0;
-                transition: opacity 1.5s ease;
+            .tile.mobile-revealed .tile-background {
+                opacity: 0 !important;
+                transition: opacity 0.8s ease;
             }
             
-            .tile--revealed .tile-title {
-                opacity: 0;
-                transition: opacity 1.5s ease;
+            .tile.mobile-revealed .tile-title {
+                opacity: 0 !important;
+                transition: opacity 0.8s ease;
             }
             
             /* Keep Coming Soon titles always visible */
@@ -470,78 +473,27 @@
                 }
             }, 100);
             
-            // Mobile scroll reveal: Gradually show quilt images as tiles enter viewport
-            if (window.matchMedia('(hover: none)').matches) {
+            // Mobile scroll reveal: Show quilt images as user scrolls down
+            // Only activate on screens <= 1024px (mobile/tablet)
+            if (window.innerWidth <= 1024) {
                 const tiles = document.querySelectorAll('.tile:not(.tile--coming-soon)');
                 
-                // Immediately hide all images on load to prevent flash
-                tiles.forEach(tile => {
-                    const image = tile.querySelector('.tile-image');
-                    const background = tile.querySelector('.tile-background');
-                    const title = tile.querySelector('.tile-title');
-                    
-                    if (image) {
-                        image.style.opacity = '0';
-                        image.style.visibility = 'hidden';
-                    }
-                    if (background) {
-                        background.style.opacity = '1';
-                    }
-                    if (title) {
-                        title.style.opacity = '1';
-                    }
-                });
-                
                 const revealTiles = () => {
+                    const windowHeight = window.innerHeight;
+                    // Reveal threshold: tile must be scrolled up past 60% of viewport
+                    const revealThreshold = windowHeight * 0.6;
+                    
                     tiles.forEach(tile => {
                         const rect = tile.getBoundingClientRect();
-                        const windowHeight = window.innerHeight;
-                        
-                        // Calculate how much of the tile is visible
-                        // Start revealing when tile is 30% into viewport, fully revealed at 70%
                         const tileTop = rect.top;
-                        const tileHeight = rect.height;
-                        const revealStart = windowHeight * 0.3;
-                        const revealEnd = windowHeight * 0.7;
                         
-                        const image = tile.querySelector('.tile-image');
-                        const background = tile.querySelector('.tile-background');
-                        const title = tile.querySelector('.tile-title');
-                        
-                        if (!image || !background || !title) return;
-                        
-                        // Check if tile is in the reveal zone
-                        if (tileTop < revealEnd && tileTop + tileHeight > revealStart) {
-                            // Calculate reveal progress (0 to 1)
-                            const progress = Math.max(0, Math.min(1, 
-                                (revealEnd - tileTop) / (revealEnd - revealStart)
-                            ));
-                            
-                            // Apply opacity based on progress
-                            image.style.opacity = progress;
-                            image.style.visibility = progress > 0 ? 'visible' : 'hidden';
-                            background.style.opacity = 1 - progress;
-                            title.style.opacity = Math.max(0, 1 - (progress * 1.2)); // Title fades out slightly faster
-                        } else if (tileTop < revealStart) {
-                            // Tile has scrolled past - keep it revealed
-                            image.style.opacity = '1';
-                            image.style.visibility = 'visible';
-                            background.style.opacity = '0';
-                            title.style.opacity = '0';
-                        } else {
-                            // Tile hasn't entered reveal zone yet - keep it hidden
-                            image.style.opacity = '0';
-                            image.style.visibility = 'hidden';
-                            background.style.opacity = '1';
-                            title.style.opacity = '1';
+                        // If tile top is above the threshold (user has scrolled past it), reveal it
+                        if (tileTop < revealThreshold) {
+                            tile.classList.add('mobile-revealed');
                         }
+                        // Don't remove the class - once revealed, stay revealed
                     });
                 };
-                
-                // Initial check after a brief delay to ensure DOM is ready
-                setTimeout(() => {
-                    revealTiles();
-                }, 10);
                 
                 // Update on scroll with throttling
                 let ticking = false;
@@ -557,13 +509,6 @@
                 
                 // Also check on resize
                 window.addEventListener('resize', revealTiles, { passive: true });
-                
-                // Also check on load to handle initial state
-                window.addEventListener('load', () => {
-                    setTimeout(() => {
-                        revealTiles();
-                    }, 100);
-                });
             }
         })();
     </script>
