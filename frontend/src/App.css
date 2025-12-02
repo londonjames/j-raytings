@@ -18,19 +18,24 @@ body {
   min-height: 100vh;
   /* Background - Current: #1c1c1c (RGB: 28, 28, 28) */
   background: #1c1c1c;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 @media (max-width: 768px) {
   .app {
-    padding-top: 120px;
+    padding-top: 70px;
   }
 }
 
 @media (max-width: 480px) {
   .app {
-    padding-top: 140px;
+    padding-top: 65px;
   }
+}
+
+/* Loading placeholder - completely invisible, just takes up space */
+.loading-placeholder {
+  background: #1c1c1c;
 }
 
 .sticky-header {

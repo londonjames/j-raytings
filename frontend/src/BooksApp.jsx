@@ -516,9 +516,7 @@ function BooksApp() {
         <div className="container">
           <div className="header-controls">
             <div className={`header-top-row ${hasActiveFilters ? 'filters-active' : ''}`}>
-              {!hasActiveFilters && (
-                <div className="site-title" onClick={handleReset} style={{ cursor: 'pointer' }}>J-RAYTINGS</div>
-              )}
+              <div className="site-title" onClick={handleReset} style={{ cursor: 'pointer' }}>J-RAYTINGS</div>
               <div className="search-and-filter">
                 <SearchBar
                   key={`search-${resetKey}`}
@@ -548,31 +546,31 @@ function BooksApp() {
                     <rect x="18.5" y="3" width="3.5" height="18" rx="0.5"></rect>
                   </svg>
                 </button>
-              </div>
-              <div className="view-controls">
-              <button
-                className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
-                onClick={() => setViewMode('grid')}
-                title="Grid view"
-              >
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                  <rect x="2" y="2" width="6" height="6" rx="1"/>
-                  <rect x="12" y="2" width="6" height="6" rx="1"/>
-                  <rect x="2" y="12" width="6" height="6" rx="1"/>
-                  <rect x="12" y="12" width="6" height="6" rx="1"/>
-                </svg>
-              </button>
-              <button
-                className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
-                onClick={() => setViewMode('list')}
-                title="List view"
-              >
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                  <rect x="2" y="3" width="16" height="2" rx="1"/>
-                  <rect x="2" y="9" width="16" height="2" rx="1"/>
-                  <rect x="2" y="15" width="16" height="2" rx="1"/>
-                </svg>
-              </button>
+                <div className="view-controls">
+                  <button
+                    className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
+                    onClick={() => setViewMode('grid')}
+                    title="Grid view"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                      <rect x="2" y="2" width="6" height="6" rx="1"/>
+                      <rect x="12" y="2" width="6" height="6" rx="1"/>
+                      <rect x="2" y="12" width="6" height="6" rx="1"/>
+                      <rect x="12" y="12" width="6" height="6" rx="1"/>
+                    </svg>
+                  </button>
+                  <button
+                    className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
+                    onClick={() => setViewMode('list')}
+                    title="List view"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                      <rect x="2" y="3" width="16" height="2" rx="1"/>
+                      <rect x="2" y="9" width="16" height="2" rx="1"/>
+                      <rect x="2" y="15" width="16" height="2" rx="1"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
