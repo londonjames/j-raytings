@@ -51,155 +51,88 @@ body {
   gap: 0.75rem;
 }
 
+/* ============================================
+   HEADER NAV BAR - CLEAN SIMPLE IMPLEMENTATION
+   ============================================ */
+
+/* Header row - flexbox with proper spacing */
 .header-top-row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 2rem;
+  justify-content: space-between; /* J-RAYTINGS left, controls right on desktop */
+  gap: 1rem;
   width: 100%;
-  transition: none;
 }
 
-.header-top-row.filters-active {
-  grid-template-columns: auto 1fr auto;
-  transition: none;
-}
-
-/* Intermediate breakpoint: 1200px - hide J-RAYTINGS, adjust grid */
+/* On smaller screens, just center everything */
 @media (max-width: 1200px) {
   .header-top-row {
-    grid-template-columns: 1fr auto;
-    gap: 1.5rem;
+    justify-content: center;
   }
-  
-  .header-top-row.filters-active {
-    grid-template-columns: 1fr auto;
-  }
-  
+}
+
+/* Site title - visible on wide screens, hidden on smaller */
+.site-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #e0e0e0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Hide on tablets and smaller (below 1200px) */
+@media (max-width: 1200px) {
   .site-title {
-    display: none; /* Hide J-RAYTINGS on smaller screens */
+    display: none;
   }
 }
 
-/* Tablet breakpoint: 900px - further adjustments */
-@media (max-width: 900px) {
-  .header-top-row {
-    gap: 1rem;
-  }
-  
-  .search-and-filter {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  /* Keep view controls together with other buttons */
-  .search-and-filter > .view-controls {
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
-  
-  .view-btn {
-    padding: 0.3rem;
-  }
-  
-  .view-btn svg {
-    width: 14px;
-    height: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-top-row {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .header-top-row.filters-active {
-    grid-template-columns: 1fr;
-  }
-  
-  .site-title {
-    display: none; /* Ensure hidden on mobile */
-  }
-  
-  .search-and-filter {
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  /* On mobile, prevent search bar from taking full width when other elements are present */
-  .search-and-filter > .search-bar {
-    flex: 0 1 auto;
-    max-width: 45%; /* Limit to 45% to leave room for buttons */
-  }
-  
-  /* Keep buttons together - prevent individual wrapping */
-  .search-and-filter > .sort-bar,
-  .search-and-filter > .filter-dropdown,
-  .search-and-filter > .analytics-button {
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
-  
-  .view-controls {
-    justify-self: start;
-    margin-top: 0.5rem;
-    width: auto;
-  }
-}
-
+/* Search and filter container - simple flex */
 .search-and-filter {
   display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  min-width: 0; /* Allow flex items to shrink */
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 1 auto; /* Don't force full width on desktop */
+  min-width: 0;
+  position: relative; /* For absolute positioning of filters row */
 }
 
-@media (max-width: 900px) {
+/* On smaller screens, search-and-filter takes full width */
+@media (max-width: 1200px) {
   .search-and-filter {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex: 1 1 100%;
   }
 }
 
-@media (max-width: 768px) {
-  .search-and-filter {
-    flex-wrap: wrap;
-    gap: 0.4rem; /* Reduced gap to keep buttons together */
-    align-items: center;
-  }
-  
-  /* Prevent buttons from wrapping individually - keep them together */
-  .search-and-filter > .sort-bar,
-  .search-and-filter > .filter-dropdown,
-  .search-and-filter > .analytics-button {
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
-  
-  /* View controls can wrap to next line if needed */
-  .search-and-filter > .view-controls {
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
+/* All buttons stay fixed */
+.search-and-filter > .sort-bar,
+.search-and-filter > .analytics-button,
+.search-and-filter > .view-controls,
+.filter-dropdown,
+.clear-all-filters-btn {
+  flex: 0 0 auto;
+}
+
+/* Filter buttons stack - positioned below the nav bar */
+.filter-buttons-stack {
+  position: absolute !important;
+  top: 100% !important; /* Below the nav row */
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  padding-top: 0.5rem !important;
+  z-index: 50 !important;
 }
 
 @media (max-width: 480px) {
   .search-and-filter {
     gap: 0.3rem; /* Even smaller gap on very small screens */
   }
-}
-
-.filter-buttons-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-  min-width: 0; /* Allow shrinking */
 }
 
 @media (max-width: 768px) {
@@ -260,14 +193,22 @@ body {
   margin-left: 0.5rem;
 }
 
-.search-bar {
-  justify-self: center;
-}
+/* Removed duplicate - handled by main .search-bar rule */
 
 .container {
   max-width: 2000px;
   margin: 0 auto;
   padding: 0 2rem;
+  width: 100%;
+  overflow-x: visible !important;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 1rem !important; /* Reduced padding to give more room for buttons */
+    max-width: 100% !important;
+    overflow-x: visible !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -299,7 +240,8 @@ body {
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   flex-shrink: 0;
-  justify-self: end;
+  flex-grow: 0;
+  /* No longer needs justify-self since it's inside flex container */
 }
 
 .view-btn {
@@ -368,83 +310,36 @@ body {
   background: #da190b;
 }
 
-/* Search Bar - Responsive widths */
+/* Search Bar - constrained width on desktop */
 .search-bar {
-  width: 260px;
-  min-width: 200px;
-  max-width: 100%;
-  transition: width 0.2s ease;
-  flex: 0 1 auto;
+  display: flex;
+  align-items: center;
+  flex: 0 0 250px !important; /* Fixed 250px, don't grow or shrink */
+  min-width: 100px;
+  max-width: 250px !important;
+  width: 250px !important;
+}
+
+/* On tablet/mobile, let search bar grow */
+@media (max-width: 1200px) {
+  .search-bar {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+  }
 }
 
 .search-bar-compact {
-  width: 200px;
-  min-width: 150px;
-  max-width: 100%;
+  flex: 1 1 auto !important;
+  min-width: 100px !important;
+  max-width: none !important;
 }
 
-/* Intermediate breakpoints */
-@media (max-width: 1200px) {
-  .search-bar {
-    width: clamp(180px, 25vw, 260px);
-    min-width: 180px;
-  }
-  
-  .search-bar-compact {
-    width: clamp(150px, 20vw, 200px);
-    min-width: 150px;
-  }
-}
-
-@media (max-width: 900px) {
-  .search-bar {
-    flex: 0 1 auto;
-    min-width: 150px;
-    max-width: 50%; /* Limit search bar to 50% to leave room for buttons */
-    width: auto;
-  }
-  
-  .search-bar-compact {
-    flex: 0 1 auto;
-    min-width: 120px;
-    max-width: 50%;
-    width: auto;
-  }
-  
-  /* Keep buttons together at this breakpoint */
-  .search-and-filter > .sort-bar,
-  .search-and-filter > .filter-dropdown,
-  .search-and-filter > .analytics-button {
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
-}
-
-/* Intermediate breakpoint for half-laptop screens (850px) */
-@media (max-width: 850px) {
-  .search-bar {
-    max-width: 45%; /* Further reduce search bar width */
-  }
-  
-  .search-bar-compact {
-    max-width: 45%;
-  }
-}
-
-@media (max-width: 768px) {
-  .search-bar {
-    flex: 0 1 auto;
-    min-width: 100px;
-    max-width: 45%;
-    width: auto;
-  }
-  
-  .search-bar-compact {
-    flex: 0 1 auto;
-    min-width: 80px;
-    max-width: 45%;
-    width: auto;
-  }
+.search-input {
+  height: 30px !important; /* Match button height */
+  padding: 0.35rem 2rem 0.35rem 0.75rem !important;
+  font-size: 0.85rem;
+  box-sizing: border-box !important;
 }
 
 @media (max-width: 480px) {
@@ -501,9 +396,10 @@ body {
 
 @media (max-width: 900px) {
   .sort-button {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
+    width: 30px; /* Even smaller buttons */
+    height: 30px;
+    min-width: 30px;
+    padding: 0.3rem;
   }
 }
 
@@ -589,7 +485,7 @@ body {
 
 @media (max-width: 768px) {
   .filter-dropdown {
-    width: 100%;
+    width: auto; /* Don't force 100% width - let it fit naturally */
   }
 }
 
@@ -612,9 +508,10 @@ body {
 
 @media (max-width: 900px) {
   .filter-button {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
+    width: 30px; /* Even smaller buttons */
+    height: 30px;
+    min-width: 30px;
+    padding: 0.3rem;
   }
 }
 
@@ -666,9 +563,15 @@ body {
 
 @media (max-width: 900px) {
   .analytics-button {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
+    width: 30px !important; /* Even smaller buttons - ensure visible */
+    height: 30px !important;
+    min-width: 30px !important;
+    padding: 0.3rem !important;
+  }
+  
+  .analytics-button svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -1104,7 +1007,17 @@ body {
 .search-input-container {
   position: relative;
   width: 100%;
-  min-width: 0; /* Allow shrinking */
+  max-width: 250px; /* Constrain on desktop */
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* On mobile, remove max-width constraint */
+@media (max-width: 1200px) {
+  .search-input-container {
+    max-width: none;
+  }
 }
 
 .search-input {
@@ -1249,19 +1162,22 @@ body {
   }
 
   .search-and-filter {
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+    width: 100% !important;
+    flex-wrap: nowrap !important; /* Never wrap */
+    gap: 0.4rem !important;
   }
 
   .search-bar {
-    width: 100%;
-    min-width: 0;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 100px !important;
+    max-width: none !important;
   }
 
   .search-input {
     font-size: 0.85rem;
     padding: 0.4rem 2.25rem 0.4rem 0.85rem;
+    height: 30px !important;
   }
 
   .sort-button {
@@ -1271,10 +1187,7 @@ body {
     min-width: 30px;
   }
 
-  .view-controls {
-    justify-self: start;
-    width: auto;
-  }
+  /* view-controls is now inside search-and-filter, so no grid positioning needed */
 
   .view-btn {
     padding: 0.3rem;
@@ -2167,4 +2080,23 @@ body {
 .author-score {
   color: #ff6b6b;
   font-weight: 500;
+}
+
+
+/* DESKTOP OVERRIDE - Search bar width constraint */
+@media (min-width: 1201px) {
+  .search-bar,
+  .search-bar.search-bar-compact {
+    flex: 0 0 250px !important;
+    max-width: 250px !important;
+    width: 250px !important;
+  }
+  
+  .search-input-container {
+    max-width: 250px !important;
+  }
+  
+  .site-title {
+    display: block !important;
+  }
 }

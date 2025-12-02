@@ -100,8 +100,13 @@ function BooksApp() {
   const [showAnalytics, setShowAnalytics] = useState(() => {
     return urlParams.analytics || localStorage.getItem('booksShowAnalytics') === 'true'
   })
-  const [isLoading, setIsLoading] = useState(true)
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
+  
+  // Load cached books immediately, then fetch fresh data
+  const [isLoading, setIsLoading] = useState(() => {
+    const cached = localStorage.getItem('cachedBooks')
+    return !cached // Only show loading if no cache
+  })
   
   // Update URL when state changes (but skip initial mount to avoid overwriting URL params)
   const [isInitialMount, setIsInitialMount] = useState(true)
@@ -116,24 +121,33 @@ function BooksApp() {
   // Fetch all books
   const fetchBooks = async () => {
     try {
-      setIsLoading(true)
-      // Add cache-busting to ensure fresh data
+      // First, load from cache for instant display
+      const cached = localStorage.getItem('cachedBooks')
+      if (cached) {
+        try {
+          const cachedData = JSON.parse(cached)
+          if (cachedData && cachedData.length > 0) {
+            setBooks(cachedData)
+            setIsLoading(false)
+          }
+        } catch (e) {
+          console.error('Error parsing cached books:', e)
+        }
+      }
+      
+      // Then fetch fresh data (with cache-busting)
       const response = await fetch(`${API_URL}/books?_t=${Date.now()}`, {
         cache: 'no-store'
       })
       const data = await response.json()
-      // Debug: log the three books we're tracking
-      const trackedBooks = data.filter(b => 
-        ['The Right Stuff', 'Animal Farm', 'Confessions of an Advertising Man'].includes(b.book_name)
-      )
-      if (trackedBooks.length > 0) {
-        console.log('Fetched books with updated URLs:', trackedBooks.map(b => ({
-          name: b.book_name,
-          cover_url: b.cover_url
-        })))
-      }
       setBooks(data)
-      // Don't set filteredBooks here - let useEffect handle sorting first
+      
+      // Cache the fresh data for next time
+      try {
+        localStorage.setItem('cachedBooks', JSON.stringify(data))
+      } catch (e) {
+        console.error('Error caching books:', e)
+      }
     } catch (error) {
       console.error('Error fetching books:', error)
     } finally {
@@ -566,9 +580,7 @@ function BooksApp() {
       </div>
       <div className="container">
         {isLoading ? (
-          <div style={{ textAlign: 'center', padding: '100px 20px', color: '#666' }}>
-            Loading books...
-          </div>
+          <div className="loading-placeholder" style={{ minHeight: '80vh' }} />
         ) : showAnalytics ? (
           <BookAnalytics />
         ) : (

@@ -102,8 +102,13 @@ function App() {
   const [showAnalytics, setShowAnalytics] = useState(() => {
     return urlParams.analytics || localStorage.getItem('showAnalytics') === 'true'
   })
-  const [isLoading, setIsLoading] = useState(true)
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
+  
+  // Load cached films immediately, then fetch fresh data
+  const [isLoading, setIsLoading] = useState(() => {
+    const cached = localStorage.getItem('cachedFilms')
+    return !cached // Only show loading if no cache
+  })
   
   // Update URL when state changes (but skip initial mount to avoid overwriting URL params)
   const [isInitialMount, setIsInitialMount] = useState(true)
@@ -118,11 +123,31 @@ function App() {
   // Fetch all films
   const fetchFilms = async () => {
     try {
-      setIsLoading(true)
+      // First, load from cache for instant display
+      const cached = localStorage.getItem('cachedFilms')
+      if (cached) {
+        try {
+          const cachedData = JSON.parse(cached)
+          if (cachedData && cachedData.length > 0) {
+            setFilms(cachedData)
+            setIsLoading(false)
+          }
+        } catch (e) {
+          console.error('Error parsing cached films:', e)
+        }
+      }
+      
+      // Then fetch fresh data
       const response = await fetch(`${API_URL}/films`)
       const data = await response.json()
       setFilms(data)
-      // Don't set filteredFilms here - let useEffect handle sorting first
+      
+      // Cache the fresh data for next time
+      try {
+        localStorage.setItem('cachedFilms', JSON.stringify(data))
+      } catch (e) {
+        console.error('Error caching films:', e)
+      }
     } catch (error) {
       console.error('Error fetching films:', error)
     } finally {
@@ -444,9 +469,7 @@ function App() {
         <div className="container">
           <div className="header-controls">
             <div className={`header-top-row ${hasActiveFilters ? 'filters-active' : ''}`}>
-              {!hasActiveFilters && (
-                <div className="site-title" onClick={handleReset} style={{ cursor: 'pointer' }}>J-RAYTINGS</div>
-              )}
+              <div className="site-title" onClick={handleReset} style={{ cursor: 'pointer' }}>J-RAYTINGS</div>
               <div className="search-and-filter">
                 <SearchBar
                   key={`search-${resetKey}`}
@@ -475,31 +498,31 @@ function App() {
                     <rect x="18.5" y="3" width="3.5" height="18" rx="0.5"></rect>
                   </svg>
                 </button>
-              </div>
-              <div className="view-controls">
-              <button
-                className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
-                onClick={() => setViewMode('grid')}
-                title="Grid view"
-              >
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                  <rect x="2" y="2" width="6" height="6" rx="1"/>
-                  <rect x="12" y="2" width="6" height="6" rx="1"/>
-                  <rect x="2" y="12" width="6" height="6" rx="1"/>
-                  <rect x="12" y="12" width="6" height="6" rx="1"/>
-                </svg>
-              </button>
-              <button
-                className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
-                onClick={() => setViewMode('list')}
-                title="List view"
-              >
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                  <rect x="2" y="3" width="16" height="2" rx="1"/>
-                  <rect x="2" y="9" width="16" height="2" rx="1"/>
-                  <rect x="2" y="15" width="16" height="2" rx="1"/>
-                </svg>
-              </button>
+                <div className="view-controls">
+                  <button
+                    className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
+                    onClick={() => setViewMode('grid')}
+                    title="Grid view"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                      <rect x="2" y="2" width="6" height="6" rx="1"/>
+                      <rect x="12" y="2" width="6" height="6" rx="1"/>
+                      <rect x="2" y="12" width="6" height="6" rx="1"/>
+                      <rect x="12" y="12" width="6" height="6" rx="1"/>
+                    </svg>
+                  </button>
+                  <button
+                    className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
+                    onClick={() => setViewMode('list')}
+                    title="List view"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                      <rect x="2" y="3" width="16" height="2" rx="1"/>
+                      <rect x="2" y="9" width="16" height="2" rx="1"/>
+                      <rect x="2" y="15" width="16" height="2" rx="1"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -507,9 +530,7 @@ function App() {
       </div>
       <div className="container">
         {isLoading ? (
-          <div style={{ textAlign: 'center', padding: '100px 20px', color: '#666' }}>
-            Loading films...
-          </div>
+          <div className="loading-placeholder" style={{ minHeight: '80vh' }} />
         ) : showAnalytics ? (
           <Analytics />
         ) : (
