@@ -474,24 +474,26 @@
             }, 100);
             
             // Mobile scroll reveal: Show quilt images as user scrolls down
+            // Each tile reveals individually when it reaches 40% from the top of viewport
             // Only activate on screens <= 1024px (mobile/tablet)
             if (window.innerWidth <= 1024) {
                 const tiles = document.querySelectorAll('.tile:not(.tile--coming-soon)');
                 
                 const revealTiles = () => {
                     const windowHeight = window.innerHeight;
-                    // Reveal threshold: tile must be scrolled up past 60% of viewport
-                    const revealThreshold = windowHeight * 0.6;
+                    // Each tile reveals when its TOP reaches 40% from the top of viewport
+                    // This creates a staggered effect - first tile reveals first, then second, etc.
+                    const revealThreshold = windowHeight * 0.4;
                     
                     tiles.forEach(tile => {
                         const rect = tile.getBoundingClientRect();
                         const tileTop = rect.top;
                         
-                        // If tile top is above the threshold (user has scrolled past it), reveal it
+                        // If this specific tile's top has scrolled above the threshold, reveal it
                         if (tileTop < revealThreshold) {
                             tile.classList.add('mobile-revealed');
                         }
-                        // Don't remove the class - once revealed, stay revealed
+                        // Once revealed, stay revealed (don't remove class)
                     });
                 };
                 
