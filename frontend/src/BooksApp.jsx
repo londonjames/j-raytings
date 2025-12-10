@@ -94,15 +94,19 @@ function BooksApp() {
     return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
   })
   const [viewMode, setViewMode] = useState(() => {
-    // Check if we have a saved preference first
+    // On mobile, always default to list view regardless of saved preference
+    if (window.innerWidth < 500) {
+      return 'list'
+    }
+
+    // On larger screens, check for saved preference
     const savedViewMode = localStorage.getItem('booksViewMode')
     if (savedViewMode) {
       return savedViewMode
     }
 
-    // If no saved preference, default based on screen size
-    // Phones (< 500px) get list view, tablets/desktop (>= 500px) get grid view
-    return window.innerWidth < 500 ? 'list' : 'grid'
+    // Default to grid view on tablets/desktop
+    return 'grid'
   })
   const [resetKey, setResetKey] = useState(0)
   const [showAnalytics, setShowAnalytics] = useState(() => {

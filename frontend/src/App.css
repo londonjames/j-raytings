@@ -1163,7 +1163,15 @@ body {
   }
 
   .header-top-row {
-    gap: 0.75rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* On mobile, view-controls should wrap into search-and-filter to prevent layout break */
+  .view-controls {
+    order: 5; /* Put it after other controls but before filters */
+    padding: 0.2rem;
+    gap: 0.3rem;
   }
 
   .site-title {
