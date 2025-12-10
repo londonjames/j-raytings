@@ -448,6 +448,13 @@ body {
   white-space: nowrap;
 }
 
+/* Hide sort label on mobile to save space */
+@media (max-width: 768px) {
+  .sort-label {
+    display: none;
+  }
+}
+
 .sort-direction-btn {
   display: flex;
   align-items: center;
@@ -1651,6 +1658,7 @@ body {
   padding: 0.5rem 0.7rem;
   flex-shrink: 0;
   margin-right: 10px;
+  min-width: 60px;
 }
 
 .rating-box-list .rating {
