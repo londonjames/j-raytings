@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:homepage": "node ../serve-homepage.js",
+    "prebuild": "rm -rf node_modules/.vite dist .vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
