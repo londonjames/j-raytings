@@ -79,8 +79,20 @@ function ItemsApp({ config }) {
     if (hasUrlFilters) {
       return urlParams.filters
     }
-    const saved = localStorage.getItem(config.localStorageKeys.activeFilter)
-    return saved ? JSON.parse(saved) : config.filterFields
+    try {
+      const saved = localStorage.getItem(config.localStorageKeys.activeFilter)
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        // Validate that parsed data has the expected structure
+        if (typeof parsed === 'object' && parsed !== null) {
+          return parsed
+        }
+      }
+    } catch (e) {
+      // Clear corrupted localStorage
+      localStorage.removeItem(config.localStorageKeys.activeFilter)
+    }
+    return config.filterFields
   })
   const [sortConfig, setSortConfig] = useState(() => {
     if (urlParams.sortBy) {
