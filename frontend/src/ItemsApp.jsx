@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
 
+// Consolidated component for both films and books
 function ItemsApp({ config }) {
   const location = useLocation()
   const navigate = useNavigate()
