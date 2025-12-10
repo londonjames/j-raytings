@@ -94,7 +94,15 @@ function BooksApp() {
     return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
   })
   const [viewMode, setViewMode] = useState(() => {
-    return localStorage.getItem('booksViewMode') || 'grid'
+    // Check if we have a saved preference first
+    const savedViewMode = localStorage.getItem('booksViewMode')
+    if (savedViewMode) {
+      return savedViewMode
+    }
+
+    // If no saved preference, default based on screen size
+    // Phones (< 500px) get list view, tablets/desktop (>= 500px) get grid view
+    return window.innerWidth < 500 ? 'list' : 'grid'
   })
   const [resetKey, setResetKey] = useState(0)
   const [showAnalytics, setShowAnalytics] = useState(() => {
@@ -104,7 +112,8 @@ function BooksApp() {
   
   // Always start loading - only show content when we have actual data
   const [isLoading, setIsLoading] = useState(true)
-  
+  const [hasLoadedOnce, setHasLoadedOnce] = useState(false)
+
   // Update URL when state changes (but skip initial mount to avoid overwriting URL params)
   const [isInitialMount, setIsInitialMount] = useState(true)
   useEffect(() => {
@@ -141,7 +150,8 @@ function BooksApp() {
       if (data && Array.isArray(data) && data.length > 0) {
         setBooks(data)
         setIsLoading(false)
-        
+        setHasLoadedOnce(true)
+
         // Cache the fresh data for next time
         try {
           localStorage.setItem('cachedBooks', JSON.stringify(data))
@@ -546,48 +556,53 @@ function BooksApp() {
                     <rect x="18.5" y="3" width="3.5" height="18" rx="0.5"></rect>
                   </svg>
                 </button>
-                <div className="view-controls">
-                  <button
-                    className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
-                    onClick={() => setViewMode('grid')}
-                    title="Grid view"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                      <rect x="2" y="2" width="6" height="6" rx="1"/>
-                      <rect x="12" y="2" width="6" height="6" rx="1"/>
-                      <rect x="2" y="12" width="6" height="6" rx="1"/>
-                      <rect x="12" y="12" width="6" height="6" rx="1"/>
-                    </svg>
-                  </button>
-                  <button
-                    className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
-                    onClick={() => setViewMode('list')}
-                    title="List view"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                      <rect x="2" y="3" width="16" height="2" rx="1"/>
-                      <rect x="2" y="9" width="16" height="2" rx="1"/>
-                      <rect x="2" y="15" width="16" height="2" rx="1"/>
-                    </svg>
-                  </button>
-                </div>
+              </div>
+              <div className="view-controls">
+                <button
+                  className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
+                  onClick={() => setViewMode('grid')}
+                  title="Grid view"
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                    <rect x="2" y="2" width="6" height="6" rx="1"/>
+                    <rect x="12" y="2" width="6" height="6" rx="1"/>
+                    <rect x="2" y="12" width="6" height="6" rx="1"/>
+                    <rect x="12" y="12" width="6" height="6" rx="1"/>
+                  </svg>
+                </button>
+                <button
+                  className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
+                  onClick={() => setViewMode('list')}
+                  title="List view"
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                    <rect x="2" y="3" width="16" height="2" rx="1"/>
+                    <rect x="2" y="9" width="16" height="2" rx="1"/>
+                    <rect x="2" y="15" width="16" height="2" rx="1"/>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="container">
-        {isLoading ? (
+        {!hasLoadedOnce ? (
           <div className="loading-placeholder" style={{ minHeight: '80vh' }} />
         ) : showAnalytics ? (
           <BookAnalytics />
-        ) : (
+        ) : filteredBooks.length > 0 ? (
           <BookList
             books={filteredBooks}
             onEdit={handleEditBook}
             onDelete={handleDeleteBook}
             viewMode={viewMode}
           />
+        ) : (
+          <div className="empty-state">
+            <p>Nope, nothing here!</p>
+            <p className="empty-state-hint">Either you're searching wrong or James hasn't read the book :)</p>
+          </div>
         )}
       </div>
       {showForm && (

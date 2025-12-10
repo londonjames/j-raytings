@@ -1,15 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Use environment variable for production API URL (Railway backend)
 // In development, use local backend
 // Default to Railway production URL if no env var is set (for production builds)
-const API_URL = import.meta.env.VITE_API_URL || 
+const API_URL = import.meta.env.VITE_API_URL ||
   (import.meta.env.PROD ? 'https://web-production-01d1.up.railway.app/api' : 'http://localhost:5001/api')
 
 function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
   const [loadedImages, setLoadedImages] = useState(new Set())
   const [flippedCards, setFlippedCards] = useState(new Set())
   const [thoughtsModal, setThoughtsModal] = useState(null) // Store the book whose thoughts modal is open
+
+  // Show hint animation on first load (only in grid view)
+  useEffect(() => {
+    if (viewMode !== 'grid') return
+
+    const hasSeenHint = localStorage.getItem('hasSeenBookFlipHint')
+    if (!hasSeenHint && books.length > 0) {
+      setTimeout(() => {
+        const firstCard = document.querySelector('.film-card-flipper')
+        if (firstCard) {
+          firstCard.style.transition = 'transform 1.0s ease-in-out'
+          firstCard.style.transform = 'rotateY(180deg)'
+          setTimeout(() => {
+            firstCard.style.transform = 'rotateY(0deg)'
+            setTimeout(() => {
+              firstCard.style.transition = ''
+              firstCard.style.transform = ''
+              localStorage.setItem('hasSeenBookFlipHint', 'true')
+            }, 1000)
+          }, 1500)
+        }
+      }, 500)
+    }
+  }, [books.length, viewMode])
 
   // Helper function to extract Google Books ID from URL
   const getGoogleBooksId = (url) => {
@@ -32,6 +56,21 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
       }
       return newSet
     })
+  }
+
+  // Helper function to format author names from "Last, First" to "First Last"
+  const formatAuthor = (author) => {
+    if (!author) return ''
+
+    // Check if author has a comma (e.g., "Wolfe, Tom")
+    if (author.includes(',')) {
+      const parts = author.split(',').map(s => s.trim())
+      if (parts.length === 2) {
+        // Reverse it: "Wolfe, Tom" -> "Tom Wolfe"
+        return `${parts[1]} ${parts[0]}`
+      }
+    }
+    return author
   }
 
   // Helper function to format date as "Dec 1, 2025" (3-letter month, day, comma, year)
@@ -120,15 +159,6 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
     return dateRead
   }
 
-  if (books.length === 0) {
-    return (
-      <div className="empty-state">
-        <p>Nope, nothing here!</p>
-        <p className="empty-state-hint">Either you're searching wrong or James hasn't read the book :)</p>
-      </div>
-    )
-  }
-
   // Helper function to get image URL - simplified like films
   const getImageUrl = (coverUrl, googleBooksId) => {
     if (!coverUrl || coverUrl === 'PLACEHOLDER') return null
@@ -191,11 +221,11 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
             <div className="film-row-content">
               <h3>{book.book_name}</h3>
               {book.author && (
-                <div className="film-row-author">by {book.author}</div>
+                <div className="film-row-author">by {formatAuthor(book.author)}</div>
               )}
               <div className="film-row-bottom">
-                {book.year && (
-                  <span className="meta-item">Read: {book.year}</span>
+                {book.year_written && (
+                  <span className="meta-item">{book.year_written}</span>
                 )}
                 {book.pages && (
                   <span className="meta-item">{book.pages} pages</span>
@@ -284,7 +314,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                           {book.book_name}
                         </h3>
                         {book.author && (
-                          <div className="book-author-inline">by {book.author}</div>
+                          <div className="book-author-inline">by {formatAuthor(book.author)}</div>
                         )}
                       </div>
                       <div className="film-metadata book-metadata">
@@ -348,7 +378,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                   <div className="header-text">
                     <h3 className="film-title-back">{book.book_name}</h3>
                     {book.author && (
-                      <div className="book-author-back">by {book.author}</div>
+                      <div className="book-author-back">by {formatAuthor(book.author)}</div>
                     )}
                     <div className="year-duration">
                       {book.year_written && <span>{book.year_written}</span>}

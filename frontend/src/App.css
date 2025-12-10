@@ -64,14 +64,14 @@ body {
 .header-top-row {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: center; /* Center-align all items vertically */
   justify-content: space-between; /* J-RAYTINGS left, controls right on desktop */
   gap: 1rem;
   width: 100%;
 }
 
 /* On smaller screens, just center everything */
-@media (max-width: 1200px) {
+@media (max-width: 700px) {
   .header-top-row {
     justify-content: center;
   }
@@ -87,8 +87,8 @@ body {
   flex-shrink: 0;
 }
 
-/* Hide on tablets and smaller (below 1200px) */
-@media (max-width: 1200px) {
+/* Hide only on small screens (below 700px) */
+@media (max-width: 700px) {
   .site-title {
     display: none;
   }
@@ -101,11 +101,12 @@ body {
   gap: 0.5rem;
   flex: 1 1 auto; /* Don't force full width on desktop */
   min-width: 0;
-  position: relative; /* For absolute positioning of filters row */
+  flex-wrap: wrap; /* Allow wrapping to second row */
+  justify-content: center; /* Center the main controls on desktop */
 }
 
 /* On smaller screens, search-and-filter takes full width */
-@media (max-width: 1200px) {
+@media (max-width: 700px) {
   .search-and-filter {
     flex: 1 1 100%;
   }
@@ -114,24 +115,19 @@ body {
 /* All buttons stay fixed */
 .search-and-filter > .sort-bar,
 .search-and-filter > .analytics-button,
-.search-and-filter > .view-controls,
 .filter-dropdown,
 .clear-all-filters-btn {
   flex: 0 0 auto;
 }
 
-/* Filter buttons stack - positioned below the nav bar */
+/* Filter buttons stack - wraps to second row within nav bar */
 .filter-buttons-stack {
-  position: absolute !important;
-  top: 100% !important; /* Below the nav row */
-  left: 0 !important;
-  right: 0 !important;
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap !important;
   gap: 0.5rem !important;
-  padding-top: 0.5rem !important;
-  z-index: 50 !important;
+  flex-basis: 100% !important; /* Force to new row */
+  order: 10 !important; /* Ensure it comes after other elements */
 }
 
 @media (max-width: 480px) {
@@ -183,8 +179,8 @@ body {
   transition: none;
 }
 
-/* Hide J-RAYTINGS on screens smaller than 1200px */
-@media (max-width: 1200px) {
+/* Hide J-RAYTINGS on screens smaller than 700px */
+@media (max-width: 700px) {
   .site-title {
     display: none;
   }
@@ -224,7 +220,7 @@ body {
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 0.75rem;
+    padding: 0 0.5rem;
   }
 }
 
@@ -251,8 +247,8 @@ body {
 
 .view-btn {
   background: transparent;
-  border: none;
-  padding: 0.375rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0.45rem;
   cursor: pointer;
   border-radius: 4px;
   color: #999;
@@ -260,16 +256,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  min-width: 36px;
 }
 
 .view-btn:hover {
   background: #333;
   color: #e0e0e0;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .view-btn.active {
   background: #e0e0e0;
   color: #1a1a1a;
+  border-color: #e0e0e0;
 }
 
 .actions {
@@ -315,7 +317,7 @@ body {
   background: #da190b;
 }
 
-/* Search Bar - constrained width on desktop */
+/* Search Bar - constrained width on all screen sizes */
 .search-bar {
   display: flex;
   align-items: center;
@@ -325,23 +327,23 @@ body {
   width: 250px !important;
 }
 
-/* On tablet/mobile, let search bar grow */
-@media (max-width: 1200px) {
+/* On small screens, still constrain but allow some flexibility */
+@media (max-width: 700px) {
   .search-bar {
-    flex: 1 1 auto !important;
-    max-width: none !important;
+    flex: 0 1 250px !important; /* Can shrink but not grow beyond 250px */
+    max-width: 250px !important;
     width: auto !important;
   }
 }
 
 .search-bar-compact {
-  flex: 1 1 auto !important;
+  flex: 0 1 250px !important;
   min-width: 100px !important;
-  max-width: none !important;
+  max-width: 250px !important;
 }
 
 .search-input {
-  height: 30px !important; /* Match button height */
+  height: 36px !important; /* Match button height (36px) */
   padding: 0.35rem 2rem 0.35rem 0.75rem !important;
   font-size: 0.85rem;
   box-sizing: border-box !important;
@@ -349,24 +351,17 @@ body {
 
 @media (max-width: 480px) {
   .search-bar {
-    flex: 1 1 auto;
-    min-width: 0;
-    max-width: 100%;
+    flex: 0 1 180px !important; /* Smaller but still constrained on mobile */
+    min-width: 100px;
+    max-width: 180px !important;
     width: auto;
   }
-  
+
   .search-bar-compact {
-    flex: 1 1 auto;
-    min-width: 0;
-    max-width: 100%;
+    flex: 0 1 180px !important;
+    min-width: 100px;
+    max-width: 180px !important;
     width: auto;
-  }
-  
-  /* On very small screens, if search bar is alone, let it take more space */
-  .search-and-filter > .search-bar:only-child {
-    flex: 1 1 100%;
-    max-width: 100%;
-    width: 100%;
   }
 }
 
@@ -1012,16 +1007,22 @@ body {
 .search-input-container {
   position: relative;
   width: 100%;
-  max-width: 250px; /* Constrain on desktop */
+  max-width: 250px; /* Constrain on all screens */
   min-width: 0;
   display: flex;
   align-items: center;
 }
 
-/* On mobile, remove max-width constraint */
-@media (max-width: 1200px) {
+/* Keep max-width constraint on all screen sizes */
+@media (max-width: 700px) {
   .search-input-container {
-    max-width: none;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-input-container {
+    max-width: 180px;
   }
 }
 
@@ -1140,6 +1141,7 @@ body {
 @media (max-width: 480px) {
   .film-list {
     grid-template-columns: 1fr;
+    row-gap: 0.75rem;
   }
 
   /* Mobile header adjustments */
@@ -1173,10 +1175,10 @@ body {
   }
 
   .search-bar {
-    flex: 1 1 auto !important;
+    flex: 0 1 180px !important;
     width: auto !important;
     min-width: 100px !important;
-    max-width: none !important;
+    max-width: 180px !important;
   }
 
   .search-input {
@@ -1196,6 +1198,9 @@ body {
 
   .view-btn {
     padding: 0.3rem;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
   }
 
   .view-btn svg {
@@ -1234,6 +1239,28 @@ body {
   .clear-filter-btn {
     font-size: 0.7rem;
     padding: 0.3rem 0.45rem;
+  }
+
+  /* Make film cards bigger on mobile */
+  .film-title {
+    font-size: 1.1rem;
+  }
+
+  .info-item {
+    font-size: 0.85rem;
+  }
+
+  .film-content {
+    padding: 0.9rem 1rem;
+  }
+
+  .rating-box {
+    width: 45px;
+    height: 45px;
+  }
+
+  .rating {
+    font-size: 1rem;
   }
 }
 
@@ -1323,6 +1350,26 @@ body {
   animation: shimmer 1.5s ease-in-out infinite;
 }
 
+/* Card flip hint animation - bounce/pulse to indicate clickability */
+@keyframes hintBounce {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  25% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  50% {
+    transform: scale(1) translateY(0);
+  }
+  75% {
+    transform: scale(1.05) translateY(-5px);
+  }
+}
+
+.hint-bounce-animation {
+  animation: hintBounce 1.5s ease-in-out 0.5s 2 !important;
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -1397,6 +1444,13 @@ body {
   flex-wrap: wrap;
 }
 
+/* Tighter spacing on iPad to prevent squishing when ratings are longer (A/A+, A-) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .film-metadata {
+    gap: 0.6rem;
+  }
+}
+
 .rating-box {
   display: flex;
   align-items: center;
@@ -1457,6 +1511,19 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* RT score as clickable link on front of card */
+.rt-score-link {
+  text-decoration: none;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.rt-score-link:hover {
+  color: #e0e0e0;
+  text-decoration: underline;
 }
 
 .search-inputs select {
@@ -1566,7 +1633,7 @@ body {
 
 .film-row-bottom {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.75rem;
 }
 
 .film-row-bottom .meta-item {
@@ -1747,6 +1814,8 @@ body {
   cursor: pointer;
   overflow: hidden;
   border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
 }
 
 /* Close button */
@@ -1985,6 +2054,9 @@ body {
   color: rgba(255, 255, 255, 0.6);
   margin-top: 0.25rem;
   font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-back-commentary {
@@ -2088,19 +2160,19 @@ body {
 }
 
 
-/* DESKTOP OVERRIDE - Search bar width constraint */
-@media (min-width: 1201px) {
+/* DESKTOP/TABLET OVERRIDE - Search bar width constraint and show title */
+@media (min-width: 701px) {
   .search-bar,
   .search-bar.search-bar-compact {
     flex: 0 0 250px !important;
     max-width: 250px !important;
     width: 250px !important;
   }
-  
+
   .search-input-container {
     max-width: 250px !important;
   }
-  
+
   .site-title {
     display: block !important;
   }

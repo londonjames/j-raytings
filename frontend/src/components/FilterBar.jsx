@@ -267,9 +267,9 @@ function FilterBar({ onFilterChange, onActiveFiltersChange }) {
   }
 
   return (
-    <div ref={dropdownRef} style={{ display: 'contents' }}>
+    <>
       {/* Filter icon button - stays on top row */}
-      <div className="filter-dropdown">
+      <div ref={dropdownRef} className="filter-dropdown">
         <button
           className={`filter-button ${hasActiveFilters() ? 'active' : ''}`}
           title="Filter"
@@ -526,7 +526,7 @@ function FilterBar({ onFilterChange, onActiveFiltersChange }) {
           Clear Filters
         </button>
       )}
-    </div>
+    </>
   )
 }
 

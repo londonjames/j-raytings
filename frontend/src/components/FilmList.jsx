@@ -1,8 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
   const [loadedImages, setLoadedImages] = useState(new Set())
   const [flippedCards, setFlippedCards] = useState(new Set())
+
+  // Show hint animation on first load (only in grid view)
+  useEffect(() => {
+    if (viewMode !== 'grid') return
+
+    const hasSeenHint = localStorage.getItem('hasSeenFlipHint')
+    if (!hasSeenHint && films.length > 0) {
+      setTimeout(() => {
+        const firstCardFlipper = document.querySelector('.film-card-flipper')
+        if (firstCardFlipper) {
+          firstCardFlipper.style.transition = 'transform 1.0s ease-in-out'
+          firstCardFlipper.style.transform = 'rotateY(180deg)'
+          setTimeout(() => {
+            firstCardFlipper.style.transform = 'rotateY(0deg)'
+            setTimeout(() => {
+              firstCardFlipper.style.transition = ''
+              firstCardFlipper.style.transform = ''
+              localStorage.setItem('hasSeenFlipHint', 'true')
+            }, 1000)
+          }, 1500)
+        }
+      }, 500)
+    }
+  }, [films.length, viewMode])
 
   const handleImageLoad = (filmId) => {
     setLoadedImages(prev => new Set([...prev, filmId]))
@@ -134,15 +158,6 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
     return formatted
   }
 
-  if (films.length === 0) {
-    return (
-      <div className="empty-state">
-        <p>Nope, nothing here!</p>
-        <p className="empty-state-hint">Either you're searching wrong or James hasn't seen the film :)</p>
-      </div>
-    )
-  }
-
   if (viewMode === 'list') {
     return (
       <div className="film-list-view">
@@ -171,7 +186,19 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                   <span className="meta-item">{film.length_minutes} min</span>
                 )}
                 {film.rotten_tomatoes && film.rotten_tomatoes !== 'no RT score' && (
-                  <span className="meta-item rt-score">🍅 {film.rotten_tomatoes}</span>
+                  film.rt_link ? (
+                    <a
+                      href={film.rt_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="meta-item rt-score rt-score-link"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      🍅 {film.rotten_tomatoes}
+                    </a>
+                  ) : (
+                    <span className="meta-item rt-score">🍅 {film.rotten_tomatoes}</span>
+                  )
                 )}
               </div>
             </div>
@@ -193,7 +220,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
         const isFlipped = flippedCards.has(film.id)
         const shouldLoadEagerly = index < 10
         const shouldPrioritize = index < 30 // First 30 get priority hints
-        
+
         return (
           <div key={film.id} className={`film-card-container ${isFlipped ? 'flipped' : ''}`}>
             <div className="film-card-flipper">
@@ -233,7 +260,19 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                           <span className="info-item">{film.length_minutes} min</span>
                         )}
                         {film.rotten_tomatoes && film.rotten_tomatoes !== 'no RT score' && (
-                          <span className="info-item rt-score">🍅 {film.rotten_tomatoes}</span>
+                          film.rt_link ? (
+                            <a
+                              href={film.rt_link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="info-item rt-score rt-score-link"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              🍅 {film.rotten_tomatoes}
+                            </a>
+                          ) : (
+                            <span className="info-item rt-score">🍅 {film.rotten_tomatoes}</span>
+                          )
                         )}
                       </div>
                     </div>
