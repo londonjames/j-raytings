@@ -70,10 +70,10 @@ body {
   width: 100%;
 }
 
-/* On smaller screens, just center everything */
+/* On smaller screens, left-align to save space */
 @media (max-width: 700px) {
   .header-top-row {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
@@ -351,17 +351,23 @@ body {
 
 @media (max-width: 480px) {
   .search-bar {
-    flex: 0 1 180px !important; /* Smaller but still constrained on mobile */
-    min-width: 100px;
-    max-width: 180px !important;
+    flex: 0 1 100px !important; /* Very small on mobile - just enough to be usable */
+    min-width: 80px;
+    max-width: 100px !important;
     width: auto;
   }
 
   .search-bar-compact {
-    flex: 0 1 180px !important;
-    min-width: 100px;
-    max-width: 180px !important;
+    flex: 0 1 100px !important;
+    min-width: 80px;
+    max-width: 100px !important;
     width: auto;
+  }
+
+  /* Reduce padding inside search input on mobile */
+  .search-bar input {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -1163,15 +1169,45 @@ body {
   }
 
   .header-top-row {
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    gap: 0.25rem;
+    flex-wrap: nowrap; /* Prevent wrapping on mobile */
+    justify-content: flex-start; /* Left-align everything on mobile */
   }
 
-  /* On mobile, view-controls should wrap into search-and-filter to prevent layout break */
+  /* Hide site title on mobile to save critical space */
+  .site-title {
+    display: none;
+  }
+
+  /* Don't let search-and-filter expand - keep it compact */
+  .search-and-filter {
+    flex: 0 1 auto;
+    justify-content: flex-start;
+  }
+
+  /* On mobile, hide analytics button to save space */
+  .analytics-button {
+    display: none;
+  }
+
+  /* Compact view controls on mobile - show as single toggle, same size as other buttons */
   .view-controls {
-    order: 5; /* Put it after other controls but before filters */
-    padding: 0.2rem;
-    gap: 0.3rem;
+    padding: 0;
+    gap: 0;
+    margin-left: 1rem; /* Double the space to separate it from filter button */
+  }
+
+  /* Show only the active button (current mode) - hide the inactive one */
+  .view-controls button:not(.active) {
+    display: none;
+  }
+
+  .view-controls button.active {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    padding: 0.35rem !important;
+    font-size: 0.875rem !important;
   }
 
   .site-title {
@@ -1487,7 +1523,7 @@ body {
 
 .info-item {
   color: #999;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
@@ -1653,7 +1689,7 @@ body {
 
 .film-row-bottom .meta-item {
   color: #999;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 400;
 }
 
@@ -2175,6 +2211,194 @@ body {
   font-weight: 500;
 }
 
+
+/* MOBILE CARD BACK ADJUSTMENTS - Better space utilization on phones */
+@media (max-width: 500px) {
+  .film-card-back {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .card-back-header {
+    gap: 1.25rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .poster-thumbnail {
+    width: 100px;
+    height: 150px;
+  }
+
+  .film-title-back {
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .year-duration {
+    font-size: 0.95rem;
+    gap: 0.65rem;
+  }
+
+  .card-back-metrics {
+    gap: 1rem;
+    padding: 1.5rem 0.75rem 1.5rem 0;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .metric-item {
+    font-size: 0.95rem;
+    gap: 0.65rem;
+  }
+
+  .metric-label {
+    font-size: 0.95rem;
+    min-width: 95px;
+  }
+
+  .metric-value {
+    font-size: 0.95rem;
+    left: calc(100px + 1.25rem);
+  }
+
+  .metric-value.with-rating-box {
+    font-size: 1rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .rt-link {
+    left: calc(100px + 1.25rem);
+    font-size: 0.95rem;
+  }
+
+  .card-back-details {
+    gap: 0.65rem;
+    padding-right: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-back-details.no-data {
+    font-size: 0.95rem;
+    padding-top: 1rem;
+    line-height: 1.6;
+  }
+
+  .detail-row {
+    font-size: 0.95rem;
+    gap: 0.65rem;
+  }
+
+  .detail-label {
+    font-size: 0.95rem;
+    min-width: 95px;
+  }
+
+  .detail-value {
+    font-size: 0.95rem;
+    left: calc(100px + 1.25rem);
+  }
+
+  .close-btn {
+    font-size: 1.25rem;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* TABLET CARD BACK ADJUSTMENTS - Moderate improvements for tablets */
+@media (min-width: 501px) and (max-width: 1000px) {
+  .film-card-back {
+    padding: 1.1rem;
+    gap: 0.85rem;
+  }
+
+  .card-back-header {
+    gap: 1.15rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .poster-thumbnail {
+    width: 95px;
+    height: 143px;
+  }
+
+  .film-title-back {
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .year-duration {
+    font-size: 0.9rem;
+    gap: 0.6rem;
+  }
+
+  .card-back-metrics {
+    gap: 0.9rem;
+    padding: 1.4rem 0.7rem 1.4rem 0;
+    margin-top: 0.4rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .metric-item {
+    font-size: 0.9rem;
+    gap: 0.6rem;
+  }
+
+  .metric-label {
+    font-size: 0.9rem;
+    min-width: 88px;
+  }
+
+  .metric-value {
+    font-size: 0.9rem;
+    left: calc(95px + 1.15rem);
+  }
+
+  .metric-value.with-rating-box {
+    font-size: 0.95rem;
+    padding: 0.18rem 0.55rem;
+  }
+
+  .rt-link {
+    left: calc(95px + 1.15rem);
+    font-size: 0.9rem;
+  }
+
+  .card-back-details {
+    gap: 0.55rem;
+    padding-right: 0.7rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .card-back-details.no-data {
+    font-size: 0.9rem;
+    padding-top: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .detail-row {
+    font-size: 0.9rem;
+    gap: 0.6rem;
+  }
+
+  .detail-label {
+    font-size: 0.9rem;
+    min-width: 88px;
+  }
+
+  .detail-value {
+    font-size: 0.9rem;
+    left: calc(95px + 1.15rem);
+  }
+
+  .close-btn {
+    font-size: 1.15rem;
+    width: 30px;
+    height: 30px;
+  }
+}
 
 /* DESKTOP/TABLET OVERRIDE - Search bar width constraint and show title */
 @media (min-width: 701px) {
