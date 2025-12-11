@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import SearchBar from './components/SearchBar'
+import { FilterBarActiveRow } from './components/FilterBar'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
 
@@ -297,13 +298,13 @@ function ItemsApp({ config }) {
   // Handle filter change
   const handleFilterChange = (filterConfig) => {
     setActiveFilter(filterConfig)
-    applyFiltersAndSearch(searchTerm, filterConfig)
+    // applyFiltersAndSearch will be called by useEffect when activeFilter changes
   }
 
   // Handle sort change
   const handleSortChange = (newSortConfig) => {
     setSortConfig(newSortConfig)
-    applyFiltersAndSearch(searchTerm, activeFilter)
+    // applyFiltersAndSearch will be called by useEffect when sortConfig changes
   }
 
   // Re-apply filters when items data changes

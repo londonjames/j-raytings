@@ -53,7 +53,7 @@ body {
 .header-controls {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem; /* Reduced gap between rows */
 }
 
 /* ============================================
@@ -63,11 +63,12 @@ body {
 /* Header row - flexbox with proper spacing */
 .header-top-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Never wrap */
   align-items: center; /* Center-align all items vertically */
   justify-content: space-between; /* J-RAYTINGS left, controls right on desktop */
   gap: 1rem;
   width: 100%;
+  position: relative; /* For absolute positioning of filter-buttons-stack-wrapper */
 }
 
 /* On smaller screens, left-align to save space */
@@ -101,7 +102,7 @@ body {
   gap: 0.5rem;
   flex: 1 1 auto; /* Don't force full width on desktop */
   min-width: 0;
-  flex-wrap: wrap; /* Allow wrapping to second row */
+  flex-wrap: nowrap; /* Never wrap */
   justify-content: center; /* Center the main controls on desktop */
 }
 
@@ -120,14 +121,24 @@ body {
   flex: 0 0 auto;
 }
 
-/* Filter buttons stack - wraps to second row within nav bar */
+/* Filter buttons stack wrapper - forces to separate row below main nav */
+.filter-buttons-stack-wrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-top: 0.5rem;
+  background: #1c1c1c;
+  z-index: 50;
+}
+
+/* Filter buttons stack */
 .filter-buttons-stack {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap !important;
   gap: 0.5rem !important;
-  flex-basis: 100% !important; /* Force to new row */
-  order: 10 !important; /* Ensure it comes after other elements */
+  width: 100% !important;
 }
 
 @media (max-width: 480px) {
@@ -237,23 +248,27 @@ body {
   display: flex;
   gap: 0.5rem;
   background: #2a2a2a;
-  padding: 0.25rem;
+  padding: 0;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  flex-shrink: 0;
-  flex-grow: 0;
+  flex-shrink: 0; /* Never shrink */
+  flex-grow: 0; /* Never grow */
+  min-width: fit-content; /* Maintain minimum size */
+  height: 36px; /* Match other button heights */
   /* No longer needs justify-self since it's inside flex container */
 }
 
 .view-btn {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  padding: 0.45rem;
+  padding: 0.35rem;
   cursor: pointer;
   border-radius: 4px;
   color: #999;
   transition: all 0.2s ease;
   display: flex;
+  height: 36px; /* Match other button heights */
+  width: 36px; /* Square buttons */
   align-items: center;
   justify-content: center;
   width: 36px;
