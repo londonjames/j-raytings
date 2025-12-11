@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
-function FilterBar({ onFilterChange, onActiveFiltersChange }) {
+function FilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiveFiltersChange }) {
   const [showMainDropdown, setShowMainDropdown] = useState(false)
   const [openDropdowns, setOpenDropdowns] = useState({
     rating: false,
@@ -18,16 +18,13 @@ function FilterBar({ onFilterChange, onActiveFiltersChange }) {
     genre: false
   })
   const [selectedFilters, setSelectedFilters] = useState(() => {
-    const saved = localStorage.getItem('activeFilter')
-    if (saved) {
-      const parsedFilters = JSON.parse(saved)
-      // Ensure all filter types exist with defaults
+    if (propActiveFilter) {
       return {
-        rating: parsedFilters.rating || [],
-        rt: parsedFilters.rt || [],
-        year: parsedFilters.year || [],
-        yearSeen: parsedFilters.yearSeen || [],
-        genre: parsedFilters.genre || []
+        rating: propActiveFilter.rating || [],
+        rt: propActiveFilter.rt || [],
+        year: propActiveFilter.year || [],
+        yearSeen: propActiveFilter.yearSeen || [],
+        genre: propActiveFilter.genre || []
       }
     }
     return {
@@ -39,28 +36,15 @@ function FilterBar({ onFilterChange, onActiveFiltersChange }) {
     }
   })
 
-  // On mount, restore active filters from localStorage
+  // On mount, set activeFilters based on propActiveFilter
   useEffect(() => {
-    const saved = localStorage.getItem('activeFilter')
-    if (saved) {
-      const parsedFilters = JSON.parse(saved)
-      // Ensure all filter types exist with defaults
-      const fullFilters = {
-        rating: parsedFilters.rating || [],
-        rt: parsedFilters.rt || [],
-        year: parsedFilters.year || [],
-        yearSeen: parsedFilters.yearSeen || [],
-        genre: parsedFilters.genre || []
-      }
-      setSelectedFilters(fullFilters)
-
-      // Set activeFilters based on what has selections
+    if (propActiveFilter) {
       setActiveFilters({
-        rating: fullFilters.rating.length > 0,
-        rt: fullFilters.rt.length > 0,
-        year: fullFilters.year.length > 0,
-        yearSeen: fullFilters.yearSeen.length > 0,
-        genre: fullFilters.genre.length > 0
+        rating: (propActiveFilter.rating?.length || 0) > 0,
+        rt: (propActiveFilter.rt?.length || 0) > 0,
+        year: (propActiveFilter.year?.length || 0) > 0,
+        yearSeen: (propActiveFilter.yearSeen?.length || 0) > 0,
+        genre: (propActiveFilter.genre?.length || 0) > 0
       })
     }
   }, [])
@@ -122,6 +106,7 @@ function FilterBar({ onFilterChange, onActiveFiltersChange }) {
   }
 
   const handleValueToggle = (type, value) => {
+    console.log('FilterBar handleValueToggle called:', type, value, selectedFilters)
     const newSelectedFilters = { ...selectedFilters }
 
     if (newSelectedFilters[type].includes(value)) {
@@ -267,9 +252,9 @@ function FilterBar({ onFilterChange, onActiveFiltersChange }) {
   }
 
   return (
-    <>
+    <div ref={dropdownRef} style={{ display: 'contents' }}>
       {/* Filter icon button - stays on top row */}
-      <div ref={dropdownRef} className="filter-dropdown">
+      <div className="filter-dropdown">
         <button
           className={`filter-button ${hasActiveFilters() ? 'active' : ''}`}
           title="Filter"
@@ -526,7 +511,7 @@ function FilterBar({ onFilterChange, onActiveFiltersChange }) {
           Clear Filters
         </button>
       )}
-    </>
+    </div>
   )
 }
 
