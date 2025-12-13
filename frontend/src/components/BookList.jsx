@@ -18,20 +18,20 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
     const hasSeenHint = localStorage.getItem('hasSeenBookFlipHint')
     if (!hasSeenHint && books.length > 0) {
       setTimeout(() => {
-        const firstCard = document.querySelector('.film-card-flipper')
-        if (firstCard) {
-          firstCard.style.transition = 'transform 1.0s ease-in-out'
-          firstCard.style.transform = 'rotateY(180deg)'
+        const firstCardFlipper = document.querySelector('.film-card-flipper')
+        if (firstCardFlipper) {
+          firstCardFlipper.style.transition = 'transform 1.5s ease-in-out' // Flip to back duration
+          firstCardFlipper.style.transform = 'rotateY(180deg)'
           setTimeout(() => {
-            firstCard.style.transform = 'rotateY(0deg)'
+            firstCardFlipper.style.transform = 'rotateY(0deg)'
             setTimeout(() => {
-              firstCard.style.transition = ''
-              firstCard.style.transform = ''
+              firstCardFlipper.style.transition = ''
+              firstCardFlipper.style.transform = ''
               localStorage.setItem('hasSeenBookFlipHint', 'true')
-            }, 1000)
-          }, 1500)
+            }, 1500) // Cleanup delay after flip back
+          }, 2000) // Pause showing back
         }
-      }, 500)
+      }, 2000) // Initial delay
     }
   }, [books.length, viewMode])
 

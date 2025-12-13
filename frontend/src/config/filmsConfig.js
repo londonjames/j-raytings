@@ -72,9 +72,51 @@ export const filmsConfig = {
     return originalTitle.includes(searchLower) || formattedTitle.includes(searchLower)
   },
 
+  // Helper function to get the higher rating from a combo rating
+  // E.g., "A/A+" -> "A+", "A-/A" -> "A", "B+/A-" -> "A-"
+  getHigherRating: (rating) => {
+    if (!rating) return null
+    // If it's not a combo (no slash), return as-is
+    if (!rating.includes('/')) return rating
+    
+    // Split combo rating (e.g., "A/A+" -> ["A", "A+"])
+    const parts = rating.split('/').map(r => r.trim())
+    if (parts.length !== 2) return rating // Not a valid combo, return as-is
+    
+    // Rating order from highest to lowest (lower number = higher rating)
+    const ratingOrder = {
+      'A+': 20, 'A/A+': 19, 'A': 18, 'A-/A': 17, 'A-': 16,
+      'B+/A-': 15, 'B+': 14, 'B/B+': 13, 'B': 12, 'B-/B': 11, 'B-': 10,
+      'C+/B-': 9, 'C+': 8, 'C/C+': 7, 'C': 6, 'C-': 5,
+      'D+': 4, 'D': 3
+    }
+    
+    // Compare the two parts and return the one with higher order (lower number = higher rating)
+    const part1Order = ratingOrder[parts[0]] || 999
+    const part2Order = ratingOrder[parts[1]] || 999
+    
+    // Lower order number = higher rating, so return the one with lower order
+    return part1Order < part2Order ? parts[0] : parts[1]
+  },
+
   // Filter functions
   applyRatingFilter: (items, selectedRatings) => {
-    return items.filter(item => selectedRatings.includes(item.letter_rating))
+    // Get reference to config for helper function
+    const config = filmsConfig
+    return items.filter(item => {
+      if (!item.letter_rating) return false
+      
+      // Check if exact match
+      if (selectedRatings.includes(item.letter_rating)) return true
+      
+      // Check if combo rating's higher rating matches any selected rating
+      if (item.letter_rating.includes('/')) {
+        const higherRating = config.getHigherRating(item.letter_rating)
+        return selectedRatings.includes(higherRating)
+      }
+      
+      return false
+    })
   },
 
   applyYearFilter: (items, selectedYears) => {
@@ -140,6 +182,24 @@ export const filmsConfig = {
       const actualSortBy = sortBy || 'rating'
 
       if (actualSortBy === 'rating') {
+        // Helper to get score, calculating from letter_rating if score is missing
+        const getScore = (item) => {
+          if (item.score !== null && item.score !== undefined) {
+            return item.score
+          }
+          // If score is missing, calculate from letter_rating
+          if (item.letter_rating) {
+            const ratingMap = {
+              'A+': 20, 'A/A+': 19, 'A': 18, 'A-/A': 17, 'A-': 16,
+              'B+/A-': 15, 'B+': 14, 'B/B+': 13, 'B': 12, 'B-/B': 11, 'B-': 10,
+              'C+/B-': 9, 'C+': 8, 'C/C+': 7, 'C': 6, 'C-': 5,
+              'D+': 4, 'D': 3
+            }
+            return ratingMap[item.letter_rating] || 0
+          }
+          return 0
+        }
+
         // Special handling for A-grade movies: use custom ranking if available
         const aIsA = a.letter_rating === 'A'
         const bIsA = b.letter_rating === 'A'
@@ -160,14 +220,14 @@ export const filmsConfig = {
             comparison = 1
           } else {
             // Neither has rank: fall back to score, then alphabetical
-            const aScore = a.score || 0
-            const bScore = b.score || 0
+            const aScore = getScore(a)
+            const bScore = getScore(b)
             comparison = bScore - aScore
           }
         } else {
           // Not both A-grade: use numeric score field (20 = A+, 19 = A/A+, etc.)
-          const aScore = a.score || 0
-          const bScore = b.score || 0
+          const aScore = getScore(a)
+          const bScore = getScore(b)
           comparison = bScore - aScore // Higher score first
         }
       } else if (actualSortBy === 'year') {

@@ -63,9 +63,51 @@ export const booksConfig = {
     return bookName.includes(searchLower) || author.includes(searchLower)
   },
 
+  // Helper function to get the higher rating from a combo rating
+  // E.g., "A/A+" -> "A+", "A-/A" -> "A", "B+/A-" -> "A-"
+  getHigherRating: (rating) => {
+    if (!rating) return null
+    // If it's not a combo (no slash), return as-is
+    if (!rating.includes('/')) return rating
+    
+    // Split combo rating (e.g., "A/A+" -> ["A", "A+"])
+    const parts = rating.split('/').map(r => r.trim())
+    if (parts.length !== 2) return rating // Not a valid combo, return as-is
+    
+    // Rating order from highest to lowest (lower number = higher rating)
+    const ratingOrder = {
+      'A+': 20, 'A/A+': 19, 'A': 18, 'A-/A': 17, 'A-': 16,
+      'B+/A-': 15, 'B+': 14, 'B/B+': 13, 'B': 12, 'B-/B': 11, 'B-': 10,
+      'C+/B-': 9, 'C+': 8, 'C/C+': 7, 'C': 6, 'C-': 5,
+      'D+': 4, 'D': 3
+    }
+    
+    // Compare the two parts and return the one with higher order (lower number = higher rating)
+    const part1Order = ratingOrder[parts[0]] || 999
+    const part2Order = ratingOrder[parts[1]] || 999
+    
+    // Lower order number = higher rating, so return the one with lower order
+    return part1Order < part2Order ? parts[0] : parts[1]
+  },
+
   // Filter functions
   applyRatingFilter: (items, selectedRatings) => {
-    return items.filter(item => selectedRatings.includes(item.j_rayting))
+    // Get reference to config for helper function
+    const config = booksConfig
+    return items.filter(item => {
+      if (!item.j_rayting) return false
+      
+      // Check if exact match
+      if (selectedRatings.includes(item.j_rayting)) return true
+      
+      // Check if combo rating's higher rating matches any selected rating
+      if (item.j_rayting.includes('/')) {
+        const higherRating = config.getHigherRating(item.j_rayting)
+        return selectedRatings.includes(higherRating)
+      }
+      
+      return false
+    })
   },
 
   applyTypeFilter: (items, selectedTypes) => {
