@@ -2,9 +2,20 @@ import { useState, useEffect, useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import SearchBar from './components/SearchBar'
-import { FilterBarActiveRow } from './components/FilterBar'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
+// Detect if we're accessing from network IP and use that for API, otherwise use localhost
+const getApiUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL
+  }
+  // If accessing from network IP (not localhost), use network IP for API too
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : 'localhost'
+  if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+    return `http://${hostname}:5001/api`
+  }
+  return 'http://localhost:5001/api'
+}
+const API_URL = getApiUrl()
 
 // Consolidated component for both films and books
 function ItemsApp({ config }) {
@@ -120,6 +131,31 @@ function ItemsApp({ config }) {
     return urlParams.analytics || localStorage.getItem(config.localStorageKeys.showAnalytics) === 'true'
   })
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
+  
+  // Calculate initial filter count from activeFilter
+  const calculateInitialFilterCount = () => {
+    let count = 0
+    if (activeFilter.rating?.length > 0) count++
+    if (activeFilter.rt?.length > 0) count++
+    if (activeFilter.year?.length > 0) count++
+    if (activeFilter.yearSeen?.length > 0) count++
+    if (activeFilter.genre?.length > 0) count++
+    return count
+  }
+  
+  const [filterCount, setFilterCount] = useState(calculateInitialFilterCount)
+  const [filterRows, setFilterRows] = useState(0) // Track actual number of rows when filters wrap
+  
+  // Update filterCount when activeFilter changes - use the same calculation
+  useEffect(() => {
+    let count = 0
+    if (activeFilter.rating?.length > 0) count++
+    if (activeFilter.rt?.length > 0) count++
+    if (activeFilter.year?.length > 0) count++
+    if (activeFilter.yearSeen?.length > 0) count++
+    if (activeFilter.genre?.length > 0) count++
+    setFilterCount(count)
+  }, [activeFilter])
 
   const [isLoading, setIsLoading] = useState(true)
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false)
@@ -347,73 +383,151 @@ function ItemsApp({ config }) {
     return Object.keys(activeFilter).some(key => activeFilter[key].length > 0)
   }
 
+  // Calculate filter count from activeFilter directly as fallback
+  const calculateFilterCount = () => {
+    let count = 0
+    if (activeFilter.rating?.length > 0) count++
+    if (activeFilter.rt?.length > 0) count++
+    if (activeFilter.year?.length > 0) count++
+    if (activeFilter.yearSeen?.length > 0) count++
+    if (activeFilter.genre?.length > 0) count++
+    return count
+  }
+
+  // Use filterCount from FilterBar, or calculate as fallback
+  const actualFilterCount = filterCount > 0 ? filterCount : calculateFilterCount()
+  const shouldShowFilters = hasActiveFilters || actualFilterCount > 0
+  const filterCountClass = actualFilterCount > 0 ? `filter-count-${Math.min(actualFilterCount, 3)}` : ''
+
+  // Calculate padding based on actual filter rows (when they wrap) or filter count
+  // Use rows if available (when wrapping), otherwise use count
+  const actualRows = filterRows > 0 ? filterRows : (actualFilterCount > 0 ? 1 : 0)
+  
+  const getPaddingTop = () => {
+    if (actualRows === 0) return undefined
+    
+    // Calculate padding based on rows: base (75px) + (rows * ~45px per row)
+    // Each row is ~36px button height + 8px gap = 44px, plus some spacing
+    const basePadding = 75 // Base header height
+    const rowHeight = 45 // Height per filter row (button + gap + spacing)
+    const padding = basePadding + (actualRows * rowHeight)
+    return `${padding}px`
+  }
+  
+  const paddingTop = getPaddingTop()
+  const style = paddingTop ? { paddingTop } : undefined
+
+  // Also update header-controls padding-bottom based on rows
+  // Add more space below filter buttons (above gray line) when they wrap
+  const headerControlsStyle = actualRows > 0 ? {
+    paddingBottom: `${0.5 + (actualRows * 2.75)}rem` // 0.5rem base (8px) + 2.75rem per row - reduced base to move gray line up slightly
+  } : undefined
+
+  // Reduce space between gray line and films when filters are active
+  const containerStyle = actualRows > 0 ? {
+    paddingTop: '0.5rem' // 8px - reduced spacing when filters are active
+  } : undefined
+
   return (
-    <div className="app">
+    <div 
+      className={`app ${shouldShowFilters ? 'filters-active' : ''} ${filterCountClass}`.trim()}
+      style={style}
+    >
       <div className="sticky-header">
         <div className="container">
-          <div className="header-controls">
-            <div className={`header-top-row ${hasActiveFilters ? 'filters-active' : ''}`}>
+          <div className="header-controls" style={headerControlsStyle}>
+            {/* SINGLE FIXED ROW: J-RAYTINGS + Search/Sort/Filter/Analytics + View Controls - NEVER CHANGES */}
+            <div className="header-top-row">
               <div className="site-title" onClick={handleReset} style={{ cursor: 'pointer' }}>J-RAYTINGS</div>
-              <div className="search-and-filter">
-                <SearchBar
-                  key={`search-${resetKey}`}
-                  onSearch={handleSearch}
-                  totalFilms={items.length}
-                  filteredFilms={filteredItems.length}
-                  initialSearchTerm={searchTerm}
-                  hasActiveFilters={hasSelectedFilterValues()}
-                  itemName={config.type}
-                />
-                <SortBar key={`sort-${resetKey}`} onSortChange={handleSortChange} initialSortConfig={sortConfig} />
-                <FilterBar
-                  key={`filter-${resetKey}`}
-                  onFilterChange={handleFilterChange}
-                  activeFilter={activeFilter}
-                  onActiveFiltersChange={setHasActiveFilters}
-                />
+              <div className="search-and-filter-wrapper">
+                <div className="search-and-filter">
+                  <SearchBar
+                    key={`search-${resetKey}`}
+                    onSearch={handleSearch}
+                    totalFilms={items.length}
+                    filteredFilms={filteredItems.length}
+                    initialSearchTerm={searchTerm}
+                    hasActiveFilters={hasSelectedFilterValues()}
+                    itemName={config.type}
+                  />
+                  <SortBar key={`sort-${resetKey}`} onSortChange={handleSortChange} initialSortConfig={sortConfig} />
+                  <FilterBar
+                    key={`filter-${resetKey}`}
+                    onFilterChange={handleFilterChange}
+                    activeFilter={activeFilter}
+                    onActiveFiltersChange={setHasActiveFilters}
+                    onFilterCountChange={setFilterCount}
+                    onFilterRowsChange={setFilterRows}
+                  />
+                  <button
+                    className={`analytics-button ${showAnalytics ? 'active' : ''}`}
+                    onClick={handleAnalyticsToggle}
+                    title="Analytics"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="2" y="15" width="3.5" height="6" rx="0.5"></rect>
+                      <rect x="7.5" y="10" width="3.5" height="11" rx="0.5"></rect>
+                      <rect x="13" y="6" width="3.5" height="15" rx="0.5"></rect>
+                      <rect x="18.5" y="3" width="3.5" height="18" rx="0.5"></rect>
+                    </svg>
+                  </button>
+                  {/* View controls - on mobile, appears here (where analytics is); on desktop, appears on right */}
+                  <div className="view-controls view-controls-mobile">
                 <button
-                  className={`analytics-button ${showAnalytics ? 'active' : ''}`}
-                  onClick={handleAnalyticsToggle}
-                  title="Analytics"
+                  className="view-btn active"
+                  onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
+                  title={viewMode === 'grid' ? 'Switch to list view' : 'Switch to grid view'}
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <rect x="2" y="15" width="3.5" height="6" rx="0.5"></rect>
-                    <rect x="7.5" y="10" width="3.5" height="11" rx="0.5"></rect>
-                    <rect x="13" y="6" width="3.5" height="15" rx="0.5"></rect>
-                    <rect x="18.5" y="3" width="3.5" height="18" rx="0.5"></rect>
-                  </svg>
+                  {viewMode === 'grid' ? (
+                    // Show grid icon when in grid mode
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                      <rect x="2" y="2" width="6" height="6" rx="1"/>
+                      <rect x="12" y="2" width="6" height="6" rx="1"/>
+                      <rect x="2" y="12" width="6" height="6" rx="1"/>
+                      <rect x="12" y="12" width="6" height="6" rx="1"/>
+                    </svg>
+                  ) : (
+                    // Show list icon when in list mode
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                      <rect x="2" y="3" width="16" height="2" rx="1"/>
+                      <rect x="2" y="9" width="16" height="2" rx="1"/>
+                      <rect x="2" y="15" width="16" height="2" rx="1"/>
+                    </svg>
+                  )}
                 </button>
+                  </div>
+                </div>
               </div>
-              <div className="view-controls">
+              {/* View controls for desktop - hidden on mobile */}
+              <div className="view-controls view-controls-desktop">
                 <button
-                  className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
-                  onClick={() => setViewMode('grid')}
-                  title="Grid view"
+                  className="view-btn active"
+                  onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
+                  title={viewMode === 'grid' ? 'Switch to list view' : 'Switch to grid view'}
                 >
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                    <rect x="2" y="2" width="6" height="6" rx="1"/>
-                    <rect x="12" y="2" width="6" height="6" rx="1"/>
-                    <rect x="2" y="12" width="6" height="6" rx="1"/>
-                    <rect x="12" y="12" width="6" height="6" rx="1"/>
-                  </svg>
-                </button>
-                <button
-                  className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
-                  onClick={() => setViewMode('list')}
-                  title="List view"
-                >
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                    <rect x="2" y="3" width="16" height="2" rx="1"/>
-                    <rect x="2" y="9" width="16" height="2" rx="1"/>
-                    <rect x="2" y="15" width="16" height="2" rx="1"/>
-                  </svg>
+                  {viewMode === 'grid' ? (
+                    // Show grid icon when in grid mode
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                      <rect x="2" y="2" width="6" height="6" rx="1"/>
+                      <rect x="12" y="2" width="6" height="6" rx="1"/>
+                      <rect x="2" y="12" width="6" height="6" rx="1"/>
+                      <rect x="12" y="12" width="6" height="6" rx="1"/>
+                    </svg>
+                  ) : (
+                    // Show list icon when in list mode
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                      <rect x="2" y="3" width="16" height="2" rx="1"/>
+                      <rect x="2" y="9" width="16" height="2" rx="1"/>
+                      <rect x="2" y="15" width="16" height="2" rx="1"/>
+                    </svg>
+                  )}
                 </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container" style={containerStyle}>
         {!hasLoadedOnce ? (
           <div className="loading-placeholder" style={{ minHeight: '80vh' }} />
         ) : showAnalytics ? (

@@ -5,6 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/', // Use root base for local dev to support both /films and /books
+  server: {
+    host: '0.0.0.0', // Allow connections from network
+    port: 5174,
+  },
   build: {
     // Force fresh build by modifying output config
     rollupOptions: {

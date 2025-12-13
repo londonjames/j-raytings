@@ -18,19 +18,15 @@ body {
   min-height: 100vh;
   /* Background - Current: #1c1c1c (RGB: 28, 28, 28) */
   background: #1c1c1c;
-  padding-top: 80px;
-}
-
-@media (max-width: 768px) {
-  .app {
-    padding-top: 70px;
-  }
-}
-
-@media (max-width: 480px) {
-  .app {
-    padding-top: 65px;
-  }
+  /* Padding-top accounts for fixed header - SAME AT ALL WIDTHS */
+  /* Header calculation (FIXED, no width dependency):
+   * - sticky-header padding-top: 0.75rem (12px)
+   * - header-top-row: 50px (FIXED height)
+   * - header-controls padding-bottom: 0.75rem (12px)
+   * - border-bottom: 1px
+   * Total: 12px + 50px + 12px + 1px = 75px
+   */
+  padding-top: 75px;
 }
 
 /* Loading placeholder - completely invisible, just takes up space */
@@ -43,32 +39,55 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  /* Background - Current: #1c1c1c (RGB: 28, 28, 28) */
+  width: 100%;
   background: #1c1c1c;
   z-index: 100;
-  padding: 0.75rem 0;
+  padding: 0.75rem 0 0 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-controls {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Reduced gap between rows */
+  gap: 0;
+  position: relative;
+  padding-bottom: 0.75rem;
+  /* This padding is inside sticky-header, border is below it */
 }
+
+/* When filters are active, expand header to accommodate them - gray line stays at bottom */
+.app.filter-count-1 .header-controls:has(.filter-buttons-stack-wrapper) {
+  padding-bottom: 3rem; /* 1 filter row */
+}
+
+.app.filter-count-2 .header-controls:has(.filter-buttons-stack-wrapper) {
+  padding-bottom: 4.5rem; /* 2 filter rows */
+}
+
+.app.filter-count-3 .header-controls:has(.filter-buttons-stack-wrapper) {
+  padding-bottom: 6rem; /* 3 filter rows */
+}
+
+/* Gray line is now on sticky-header border-bottom - simple and always works */
 
 /* ============================================
    HEADER NAV BAR - CLEAN SIMPLE IMPLEMENTATION
    ============================================ */
 
-/* Header row - flexbox with proper spacing */
+/* SINGLE FIXED ROW: J-RAYTINGS + Search/Sort/Filter/Analytics + View Controls - NEVER CHANGES */
 .header-top-row {
   display: flex;
-  flex-wrap: nowrap; /* Never wrap */
-  align-items: center; /* Center-align all items vertically */
-  justify-content: space-between; /* J-RAYTINGS left, controls right on desktop */
+  flex-wrap: nowrap !important; /* NEVER wrap - always stay on one row */
+  align-items: center;
+  justify-content: space-between; /* J-RAYTINGS left, view controls right */
   gap: 1rem;
   width: 100%;
-  position: relative; /* For absolute positioning of filter-buttons-stack-wrapper */
+  margin-bottom: 0; /* No margin - spacing handled by header-controls padding */
+  flex-shrink: 0; /* Never shrink */
+  height: 50px; /* FIXED height - same at all widths to ensure consistent spacing */
+  min-height: 50px;
+  max-height: 50px;
+  /* This row NEVER changes - filter buttons appear below it */
 }
 
 /* On smaller screens, left-align to save space */
@@ -95,12 +114,20 @@ body {
   }
 }
 
+.search-and-filter-wrapper {
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative; /* For absolute positioning of filter buttons below */
+  display: flex;
+  justify-content: center;
+}
+
 /* Search and filter container - simple flex */
 .search-and-filter {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex: 1 1 auto; /* Don't force full width on desktop */
+  flex: 0 1 auto; /* Don't force full width */
   min-width: 0;
   flex-wrap: nowrap; /* Never wrap */
   justify-content: center; /* Center the main controls on desktop */
@@ -121,24 +148,55 @@ body {
   flex: 0 0 auto;
 }
 
-/* Filter buttons stack wrapper - forces to separate row below main nav */
+/* Filter buttons stack wrapper - positioned below search bar, expands header */
+/* Filter buttons - only when active, appear BELOW the fixed header-top-row */
+/* Positioned absolutely relative to header-controls to appear as separate row */
 .filter-buttons-stack-wrapper {
   position: absolute;
-  top: 100%;
+  top: 100%; /* Position directly below header-top-row */
   left: 0;
   right: 0;
-  padding-top: 0.5rem;
-  background: #1c1c1c;
+  width: 100%;
+  margin-top: 0.75rem; /* Space above filter buttons (12px) - increased from 0.5rem */
+  margin-bottom: 0.75rem; /* Space below filter buttons before gray line */
+  background: transparent;
   z-index: 50;
+  pointer-events: auto; /* Allow clicks */
+  /* Completely independent of header-top-row layout */
 }
 
-/* Filter buttons stack */
+/* Filter buttons stack - allow wrapping when needed */
 .filter-buttons-stack {
   display: flex !important;
   flex-direction: row !important;
-  flex-wrap: wrap !important;
+  flex-wrap: wrap !important; /* Allow wrapping when buttons don't fit in one row */
   gap: 0.5rem !important;
-  width: 100% !important;
+  align-items: center !important; /* Center align vertically - matches filter pills with Clear Filters button */
+  justify-content: center !important; /* Center align filter buttons */
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Only on mobile (<500px), stack filter buttons vertically */
+@media (max-width: 500px) {
+  .filter-buttons-stack {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    overflow-x: visible;
+  }
+  
+  /* Fixed width for all filter buttons - based on "By Rotten Tomatoes" */
+  .filter-buttons-stack .filter-dropdown {
+    width: 180px !important;
+    max-width: 180px !important;
+    min-width: 180px !important;
+  }
+  
+  .filter-buttons-stack .filter-type-button {
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -215,11 +273,22 @@ body {
   overflow-x: visible !important;
 }
 
+/* Simple spacing: consistent spacing below gray line - SAME AT ALL WIDTHS */
+.app > .container {
+  padding-top: 1rem; /* Matches spacing above gray line */
+}
+
+
+.sticky-header .container {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 @media (max-width: 900px) {
   .container {
-    padding: 0 1rem !important; /* Reduced padding to give more room for buttons */
-    max-width: 100% !important;
-    overflow-x: visible !important;
+    padding: 0 1rem;
+    max-width: 100%;
   }
 }
 
@@ -258,22 +327,26 @@ body {
   /* No longer needs justify-self since it's inside flex container */
 }
 
+/* Hide mobile version on desktop */
+.view-controls-mobile {
+  display: none;
+}
+
 .view-btn {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  padding: 0.35rem;
+  padding: 0.45rem;
   cursor: pointer;
   border-radius: 4px;
   color: #999;
   transition: all 0.2s ease;
   display: flex;
-  height: 36px; /* Match other button heights */
-  width: 36px; /* Square buttons */
+  width: 36px; /* Match analytics/sort button size */
+  height: 36px; /* Match analytics/sort button size */
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
   flex-shrink: 0;
+  min-width: 36px;
   min-width: 36px;
 }
 
@@ -601,6 +674,18 @@ body {
     width: 14px;
     height: 14px;
   }
+
+  /* Match view-controls button size to analytics/sort buttons */
+  .view-controls {
+    height: 30px;
+  }
+
+  .view-btn {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    padding: 0.3rem;
+  }
 }
 
 .analytics-button:hover {
@@ -789,7 +874,7 @@ body {
 
 @media (max-width: 480px) {
   .filter-main-dropdown {
-    min-width: 120px;
+    min-width: 180px; /* 50% wider: 120px * 1.5 = 180px */
     max-width: calc(100vw - 0.5rem);
   }
 }
@@ -832,25 +917,28 @@ body {
 
 @media (max-width: 900px) {
   .filter-type-button {
-    min-width: 120px;
-    max-width: 100%;
-    flex: 1 1 auto;
+    min-width: 150px; /* Keep minimum to prevent squishing */
+    max-width: 180px;
+    flex: 0 0 auto; /* Don't shrink or grow */
   }
 }
 
 @media (max-width: 768px) {
   .filter-type-button {
-    min-width: 0;
-    width: 100%;
-    max-width: 100%;
+    min-width: 150px; /* Keep minimum to prevent squishing */
+    max-width: 180px;
+    flex: 0 0 auto; /* Don't shrink or grow */
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   .filter-type-button {
     font-size: 0.8rem;
     padding: 0.4rem 0.65rem;
-    height: 34px;
+    height: 36px;
+    width: 180px !important; /* Fixed width for all filters - based on "By Rotten Tomatoes" */
+    min-width: 180px !important;
+    max-width: 180px !important;
   }
 }
 
@@ -902,7 +990,7 @@ body {
 
 @media (max-width: 480px) {
   .filter-checkbox-dropdown {
-    min-width: 100px;
+    min-width: 150px; /* 50% wider: 100px * 1.5 = 150px */
     max-width: calc(100vw - 0.5rem);
     max-height: min(200px, calc(100vh - 120px));
   }
@@ -1174,19 +1262,28 @@ body {
 
   /* Mobile header adjustments */
   .sticky-header {
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 0 0; /* Keep top padding, but border-bottom stays at bottom */
+    overflow: visible; /* Ensure gray line is visible */
+    /* Border-bottom MUST stay - it's the gray line */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
 
   .header-controls {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    overflow: visible; /* Ensure gray line is visible */
   }
 
   .header-top-row {
     gap: 0.25rem;
     flex-wrap: nowrap; /* Prevent wrapping on mobile */
     justify-content: flex-start; /* Left-align everything on mobile */
+  }
+  
+  /* Reduce spacing between search-and-filter-wrapper and view-controls on mobile */
+  .search-and-filter-wrapper + .view-controls {
+    margin-left: 0.25rem; /* Override parent gap - move view button closer */
   }
 
   /* Hide site title on mobile to save critical space */
@@ -1197,7 +1294,7 @@ body {
   /* Don't let search-and-filter expand - keep it compact */
   .search-and-filter {
     flex: 0 1 auto;
-    justify-content: flex-start;
+    justify-content: center; /* Center-align search/sort/filter */
   }
 
   /* On mobile, hide analytics button to save space */
@@ -1205,24 +1302,28 @@ body {
     display: none;
   }
 
-  /* Compact view controls on mobile - show as single toggle, same size as other buttons */
-  .view-controls {
+  /* On mobile: show view-controls inside search-and-filter (where analytics button is), hide desktop version */
+  .view-controls-desktop {
+    display: none; /* Hide desktop version on mobile */
+  }
+  
+  .view-controls-mobile {
+    display: flex; /* Show mobile version inside search-and-filter */
     padding: 0;
     gap: 0;
-    margin-left: 1rem; /* Double the space to separate it from filter button */
+    margin-left: 0;
+    background: transparent; /* Remove background to match inline button style */
+    box-shadow: none; /* Remove shadow to match inline button style */
+    border-radius: 0; /* Remove border radius */
+    height: auto; /* Let it size naturally */
   }
-
-  /* Show only the active button (current mode) - hide the inactive one */
-  .view-controls button:not(.active) {
-    display: none;
-  }
-
-  .view-controls button.active {
-    width: 30px !important;
-    height: 30px !important;
-    min-width: 30px !important;
-    padding: 0.35rem !important;
-    font-size: 0.875rem !important;
+  
+  .view-controls-mobile button.active {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    padding: 0.35rem;
+    font-size: 0.875rem;
   }
 
   .site-title {
@@ -1341,20 +1442,27 @@ body {
   cursor: pointer;
 }
 
-.film-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-}
+/* Only apply hover effects on devices that support hover (mouse/trackpad, not touch) */
+@media (hover: hover) {
+  .film-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  }
 
-.film-card:hover .film-poster {
-  transform: translateY(-50%) scale(1.1);
-  filter: brightness(1.1);
-  left: 0;
-  right: 0;
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 100% !important;
-  max-height: 100% !important;
+  .film-card:hover .film-poster {
+    transform: translateY(-50%) scale(1.1);
+    filter: brightness(1.1);
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  .film-card:hover .poster-container {
+    overflow: hidden;
+  }
 }
 
 .poster-container {
@@ -1364,10 +1472,6 @@ body {
   /* Background - Current: #1c1c1c (RGB: 28, 28, 28) */
   background: #1c1c1c;
   position: relative;
-}
-
-.film-card:hover .poster-container {
-  overflow: hidden;
 }
 
 .film-poster {
@@ -1412,7 +1516,6 @@ body {
     #2a2a2a 100%
   );
   background-size: 200% 100%;
-}
   animation: shimmer 1.5s ease-in-out infinite;
 }
 
@@ -1645,22 +1748,60 @@ body {
 }
 
 /* List View Styles */
+/* ============================================
+   LIST VIEW - Responsive Card Grid
+   ============================================ */
 .film-list-view {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
+  /* Calculated breakpoints based on minimum card width of 330px:
+   * (increased by 10px due to added spacing between metadata items)
+   * - 2 columns: 330px × 2 + 16px gap = 676px
+   * - 3 columns: 330px × 3 + 32px gaps = 1022px
+   * - 4 columns: 330px × 4 + 48px gaps = 1368px
+   */
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Extra large desktop: 4 columns */
+@media (min-width: 1368px) {
+  .film-list-view {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large screens: 3 columns */
+@media (max-width: 1367px) and (min-width: 1022px) {
+  .film-list-view {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets/smaller laptops: 2 columns */
+@media (max-width: 1021px) and (min-width: 676px) {
+  .film-list-view {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 675px) {
+  .film-list-view {
+    grid-template-columns: 1fr;
+  }
 }
 
 .film-row {
   display: flex;
-  gap: 0.75rem;
-  padding: 0.6rem;
+  gap: 0.6rem;
+  padding: 0.5rem;
   background: #2a2a2a;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease;
   align-items: center;
   height: 102px;
+  min-width: 0; /* Allow flex children to shrink below content size */
 }
 
 .film-row:hover {
@@ -1682,8 +1823,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  min-width: 0;
+  min-width: 0; /* Critical: allows text truncation to work */
   justify-content: center;
+  overflow: hidden;
 }
 
 .film-row-content h3 {
@@ -1699,13 +1841,34 @@ body {
 
 .film-row-bottom {
   display: flex;
-  gap: 0.75rem;
+  gap: calc(0.4rem + 5px); /* 0.4rem (~6.4px) + 5px = ~11.4px spacing between items */
+  flex-wrap: nowrap; /* Keep all items on one line */
+  align-items: center;
+  min-width: 0; /* Allow children to shrink */
 }
 
 .film-row-bottom .meta-item {
   color: #999;
   font-size: 0.8rem;
   font-weight: 400;
+  flex-shrink: 0; /* Don't shrink year/duration */
+  white-space: nowrap;
+}
+
+/* RT score - allow it to shrink but don't truncate unless absolutely necessary */
+.film-row-bottom .meta-item.rt-score {
+  flex-shrink: 1;
+  min-width: 0; /* Allow text truncation to work */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* On very narrow cards, hide RT score to prioritize year/duration */
+@media (max-width: 400px) {
+  .film-row-bottom .meta-item.rt-score {
+    display: none;
+  }
 }
 
 .rating-box-list {
@@ -1714,10 +1877,11 @@ body {
   justify-content: center;
   background: #e0e0e0;
   border-radius: 4px;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 0.6rem;
   flex-shrink: 0;
-  margin-right: 10px;
-  min-width: 60px;
+  margin-right: 0;
+  min-width: 55px;
+  max-width: 55px;
 }
 
 .rating-box-list .rating {
@@ -2431,4 +2595,5 @@ body {
   .site-title {
     display: block !important;
   }
+
 }

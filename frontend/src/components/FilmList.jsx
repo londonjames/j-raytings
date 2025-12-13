@@ -13,7 +13,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
       setTimeout(() => {
         const firstCardFlipper = document.querySelector('.film-card-flipper')
         if (firstCardFlipper) {
-          firstCardFlipper.style.transition = 'transform 1.0s ease-in-out'
+          firstCardFlipper.style.transition = 'transform 1.5s ease-in-out'
           firstCardFlipper.style.transform = 'rotateY(180deg)'
           setTimeout(() => {
             firstCardFlipper.style.transform = 'rotateY(0deg)'
@@ -21,10 +21,10 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
               firstCardFlipper.style.transition = ''
               firstCardFlipper.style.transform = ''
               localStorage.setItem('hasSeenFlipHint', 'true')
-            }, 1000)
-          }, 1500)
+            }, 1500)
+          }, 2000)
         }
-      }, 500)
+      }, 2000)
     }
   }, [films.length, viewMode])
 
