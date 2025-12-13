@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build && cp dist/index.html dist/films.html && cp dist/index.html dist/books.html && cp public/index-homepage.html dist/index.html",
+  "buildCommand": "cd frontend && npm install && npm run build && cp dist/index.html dist/films.html && cp dist/index.html dist/books.html && cp public/index-homepage.html dist/index.html && node update-meta-tags.js",
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
@@ -16,15 +16,15 @@
     },
     {
       "source": "/books/admin",
-      "destination": "/films.html"
+      "destination": "/books.html"
     },
     {
       "source": "/books",
-      "destination": "/films.html"
+      "destination": "/books.html"
     },
     {
       "source": "/books/(.*)",
-      "destination": "/films.html"
+      "destination": "/books.html"
     }
   ]
 }

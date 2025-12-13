@@ -25,7 +25,7 @@ export const booksConfig = {
 
   // Page titles
   pageTitles: {
-    main: 'Books | James Raybould',
+    main: 'every book (700+) I\'ve ever read with my very own J-Raytings',
     admin: 'Admin | Books | James Raybould',
   },
 
