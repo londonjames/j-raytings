@@ -53,28 +53,30 @@ function ItemsApp({ config }) {
   }
 
   // Helper function to update URL with current state
-  const updateURL = (search, filters, sortConfig, showAnalytics) => {
+  const updateURL = useCallback((search, filters, sortConfig, showAnalytics) => {
     const params = new URLSearchParams()
 
-    if (search) params.set('search', search)
+    if (search && search.trim()) params.set('search', search.trim())
 
     // Add all filter parameters dynamically
     Object.keys(filters).forEach(key => {
-      if (filters[key].length > 0) {
+      if (filters[key] && Array.isArray(filters[key]) && filters[key].length > 0) {
         params.set(key, filters[key].join(','))
       }
     })
 
     if (sortConfig.sortBy) {
       params.set('sortBy', sortConfig.sortBy)
-      params.set('sortDirection', sortConfig.direction)
+      params.set('sortDirection', sortConfig.direction || 'desc')
     }
     if (showAnalytics) params.set('analytics', 'true')
 
     const newSearch = params.toString()
     const newURL = newSearch ? `?${newSearch}` : ''
+    // Use replace: true to update URL without adding to history
+    // This allows sharing URLs with filters/sort/search
     navigate(newURL, { replace: true })
-  }
+  }, [navigate])
 
   const [items, setItems] = useState([])
   const [filteredItems, setFilteredItems] = useState([])
@@ -140,7 +142,7 @@ function ItemsApp({ config }) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false)
 
-  // Update URL when state changes (skip initial mount)
+  // Update URL when state changes (skip initial mount to avoid overwriting URL params on load)
   const [isInitialMount, setIsInitialMount] = useState(true)
   useEffect(() => {
     if (isInitialMount) {
@@ -148,7 +150,7 @@ function ItemsApp({ config }) {
       return
     }
     updateURL(searchTerm, activeFilter, sortConfig, showAnalytics)
-  }, [searchTerm, activeFilter, sortConfig, showAnalytics])
+  }, [searchTerm, activeFilter, sortConfig, showAnalytics, updateURL])
 
   // Fetch all items
   const fetchItems = async () => {
