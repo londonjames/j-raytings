@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import SearchBar from './components/SearchBar'
@@ -142,11 +142,55 @@ function ItemsApp({ config }) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false)
 
-  // Update URL when state changes (skip initial mount to avoid overwriting URL params on load)
+  // Track if we're updating from URL to prevent loops
+  const isUpdatingFromURL = useRef(false)
+
+  // Sync state from URL when URL changes (e.g., user navigates to clean URL or removes params)
+  // This ensures that when URL is clean, state resets to defaults
+  useEffect(() => {
+    const currentUrlParams = parseQueryParams()
+    
+    // Set flag to prevent URL update effect from running
+    isUpdatingFromURL.current = true
+    
+    // Update search term from URL
+    setSearchTerm(currentUrlParams.search || '')
+    
+    // Update filters from URL - if URL has no filters, use defaults
+    const hasUrlFilters = Object.keys(currentUrlParams.filters).some(key => currentUrlParams.filters[key].length > 0)
+    if (hasUrlFilters) {
+      setActiveFilter(currentUrlParams.filters)
+    } else {
+      // URL has no filters - reset to defaults
+      setActiveFilter(config.filterFields)
+    }
+    
+    // Update sort from URL - if URL has no sort, use defaults
+    if (currentUrlParams.sortBy) {
+      setSortConfig({ sortBy: currentUrlParams.sortBy, direction: currentUrlParams.sortDirection })
+    } else {
+      // URL has no sort - reset to default
+      setSortConfig({ sortBy: '', direction: 'desc' })
+    }
+    
+    // Update analytics from URL
+    setShowAnalytics(currentUrlParams.analytics || false)
+    
+    // Reset flag after state updates complete
+    setTimeout(() => {
+      isUpdatingFromURL.current = false
+    }, 0)
+  }, [location.search, config]) // Watch URL changes
+
+  // Update URL when state changes (skip initial mount and when updating from URL)
   const [isInitialMount, setIsInitialMount] = useState(true)
   useEffect(() => {
     if (isInitialMount) {
       setIsInitialMount(false)
+      return
+    }
+    // Don't update URL if we're currently syncing from URL
+    if (isUpdatingFromURL.current) {
       return
     }
     updateURL(searchTerm, activeFilter, sortConfig, showAnalytics)
