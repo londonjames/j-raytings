@@ -74,7 +74,7 @@ export const booksConfig = {
     const parts = rating.split('/').map(r => r.trim())
     if (parts.length !== 2) return rating // Not a valid combo, return as-is
     
-    // Rating order from highest to lowest (lower number = higher rating)
+    // Rating order from highest to lowest (higher number = better rating)
     const ratingOrder = {
       'A+': 20, 'A/A+': 19, 'A': 18, 'A-/A': 17, 'A-': 16,
       'B+/A-': 15, 'B+': 14, 'B/B+': 13, 'B': 12, 'B-/B': 11, 'B-': 10,
@@ -82,12 +82,12 @@ export const booksConfig = {
       'D+': 4, 'D': 3
     }
     
-    // Compare the two parts and return the one with higher order (lower number = higher rating)
-    const part1Order = ratingOrder[parts[0]] || 999
-    const part2Order = ratingOrder[parts[1]] || 999
+    // Compare the two parts and return the one with higher order (higher number = better rating)
+    const part1Order = ratingOrder[parts[0]] || 0
+    const part2Order = ratingOrder[parts[1]] || 0
     
-    // Lower order number = higher rating, so return the one with lower order
-    return part1Order < part2Order ? parts[0] : parts[1]
+    // Higher order number = better rating, so return the one with higher order
+    return part1Order > part2Order ? parts[0] : parts[1]
   },
 
   // Filter functions
