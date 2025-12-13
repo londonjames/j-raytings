@@ -1413,6 +1413,16 @@ body {
     font-size: 1.1rem;
   }
 
+  /* Ensure book titles still truncate on mobile */
+  .book-content .book-title-group .film-title,
+  .book-title-group .film-title {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    white-space: normal !important;
+  }
+
   .info-item {
     font-size: 0.85rem;
   }
@@ -1602,6 +1612,8 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* Override for book titles to allow 2-line truncation - moved to book-specific section below */
 
 .film-title-long {
   font-size: 0.85rem;
@@ -2081,7 +2093,7 @@ body {
   padding-right: 0.6rem;
   position: relative;
   margin-bottom: 0;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0; /* Remove padding-bottom to eliminate space before gray line */
 }
 
 .poster-thumbnail {
@@ -2124,9 +2136,9 @@ body {
   gap: 0.75rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.25rem 0.6rem 1.29rem 0;
-  margin-top: 0.25rem;
-  margin-bottom: 0.73rem;
+  padding: 0.5rem 0.6rem 0.5rem 0; /* Reduced padding-top (less space between poster and J-Rayting) and padding-bottom (less space between RT/Minute and Date Seen) */
+  margin-top: 0; /* Remove spacing between poster and top gray line */
+  margin-bottom: 0.25rem; /* Reduced margin-bottom to move Date Seen/Format up closer to gray line */
 }
 
 .metric-item {
@@ -2192,10 +2204,11 @@ body {
 .card-back-details {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.3rem; /* Increased gap between Date Seen, Format, and Location for better readability */
   padding-left: 0;
   padding-right: 0.6rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0; /* Ensure no extra space above Date Seen */
+  margin-bottom: 0.5rem; /* Keep some space below Location */
 }
 
 .card-back-details.no-data {
@@ -2251,6 +2264,27 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.12rem; /* Slightly increased gap between title and author */
+  min-height: 2.5rem; /* Fixed minimum height to prevent cards from shifting */
+  max-height: 2.5rem; /* Fixed maximum height to prevent cards from shifting */
+  overflow: hidden; /* Hide any overflow */
+}
+
+.book-content .book-title-group .film-title,
+.book-title-group .film-title {
+  display: block !important;
+  -webkit-line-clamp: 2 !important;
+  line-clamp: 2 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  height: 2.4rem !important; /* Fixed height for exactly 2 lines */
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  /* Use line-clamp with display block */
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
 }
 
 .book-author-inline {
@@ -2288,6 +2322,22 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Book list view: match grid view spacing */
+.film-list-view .film-row-content {
+  gap: 0; /* Remove default gap, use specific margins instead */
+}
+
+.film-list-view .film-row-content h3 {
+  margin-bottom: 0.12rem; /* Space between title and author (matches book-title-group gap) */
+}
+
+.film-list-view .film-row-author {
+  margin-top: 0; /* Remove extra margin */
+  margin-bottom: 0.48rem; /* Space between author and year/pages (matches grid view gap between title-group and metadata) */
+  font-size: 0.75rem; /* Match grid view book-author-inline size */
+  color: rgba(255, 255, 255, 0.7); /* Match grid view color */
 }
 
 .card-back-commentary {
@@ -2422,9 +2472,9 @@ body {
 
   .card-back-metrics {
     gap: 1rem;
-    padding: 1.5rem 0.75rem 1.5rem 0;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
+    padding: 0.75rem 0.75rem 0.75rem 0; /* Reduced padding-top and padding-bottom for tighter spacing */
+    margin-top: 0; /* Remove spacing between poster and top gray line */
+    margin-bottom: 0.5rem; /* Reduced margin-bottom to move Date Seen/Format up closer to gray line */
   }
 
   .metric-item {
@@ -2453,9 +2503,9 @@ body {
   }
 
   .card-back-details {
-    gap: 0.65rem;
+    gap: 0.4rem; /* Increased gap between Date Seen, Format, and Location on larger screens */
     padding-right: 0.75rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.75rem; /* Keep space below Location */
   }
 
   .card-back-details.no-data {
@@ -2515,9 +2565,9 @@ body {
 
   .card-back-metrics {
     gap: 0.9rem;
-    padding: 1.4rem 0.7rem 1.4rem 0;
-    margin-top: 0.4rem;
-    margin-bottom: 0.9rem;
+    padding: 0.7rem 0.7rem 0.7rem 0; /* Reduced padding-top and padding-bottom for tighter spacing */
+    margin-top: 0; /* Remove spacing between poster and top gray line */
+    margin-bottom: 0.4rem; /* Reduced margin-bottom to move Date Seen/Format up closer to gray line */
   }
 
   .metric-item {
@@ -2546,9 +2596,9 @@ body {
   }
 
   .card-back-details {
-    gap: 0.55rem;
+    gap: 0.35rem; /* Increased gap between Date Seen, Format, and Location on medium screens */
     padding-right: 0.7rem;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.65rem; /* Keep space below Location */
   }
 
   .card-back-details.no-data {

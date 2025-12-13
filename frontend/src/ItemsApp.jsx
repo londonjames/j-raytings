@@ -81,54 +81,34 @@ function ItemsApp({ config }) {
   const [editingItem, setEditingItem] = useState(null)
   const [showForm, setShowForm] = useState(false)
 
-  // Initialize state from URL params or localStorage
+  // Initialize state from URL params only (no localStorage for user preferences)
   const urlParams = parseQueryParams()
   const [searchTerm, setSearchTerm] = useState(() => {
-    return urlParams.search || localStorage.getItem(config.localStorageKeys.searchTerm) || ''
+    return urlParams.search || ''
   })
   const [activeFilter, setActiveFilter] = useState(() => {
     const hasUrlFilters = Object.keys(urlParams.filters).some(key => urlParams.filters[key].length > 0)
     if (hasUrlFilters) {
       return urlParams.filters
     }
-    try {
-      const saved = localStorage.getItem(config.localStorageKeys.activeFilter)
-      if (saved) {
-        const parsed = JSON.parse(saved)
-        // Validate that parsed data has the expected structure
-        if (typeof parsed === 'object' && parsed !== null) {
-          return parsed
-        }
-      }
-    } catch (e) {
-      // Clear corrupted localStorage
-      localStorage.removeItem(config.localStorageKeys.activeFilter)
-    }
-    return config.filterFields
+    return config.filterFields // Default empty filters
   })
   const [sortConfig, setSortConfig] = useState(() => {
     if (urlParams.sortBy) {
       return { sortBy: urlParams.sortBy, direction: urlParams.sortDirection }
     }
-    const saved = localStorage.getItem(config.localStorageKeys.sortConfig)
-    return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
+    return { sortBy: '', direction: 'desc' } // Default
   })
   const [viewMode, setViewMode] = useState(() => {
     // On mobile, always default to list view
     if (window.innerWidth < 500) {
       return 'list'
     }
-
-    const savedViewMode = localStorage.getItem(config.localStorageKeys.viewMode)
-    if (savedViewMode) {
-      return savedViewMode
-    }
-
-    return 'grid'
+    return 'grid' // Default, no localStorage
   })
   const [resetKey, setResetKey] = useState(0)
   const [showAnalytics, setShowAnalytics] = useState(() => {
-    return urlParams.analytics || localStorage.getItem(config.localStorageKeys.showAnalytics) === 'true'
+    return urlParams.analytics || false
   })
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
   
@@ -216,26 +196,9 @@ function ItemsApp({ config }) {
     fetchItems()
   }, [])
 
-  // Save state to localStorage
-  useEffect(() => {
-    localStorage.setItem(config.localStorageKeys.viewMode, viewMode)
-  }, [viewMode])
-
-  useEffect(() => {
-    localStorage.setItem(config.localStorageKeys.searchTerm, searchTerm)
-  }, [searchTerm])
-
-  useEffect(() => {
-    localStorage.setItem(config.localStorageKeys.activeFilter, JSON.stringify(activeFilter))
-  }, [activeFilter])
-
-  useEffect(() => {
-    localStorage.setItem(config.localStorageKeys.sortConfig, JSON.stringify(sortConfig))
-  }, [sortConfig])
-
-  useEffect(() => {
-    localStorage.setItem(config.localStorageKeys.showAnalytics, showAnalytics)
-  }, [showAnalytics])
+  // Note: Removed localStorage persistence for user preferences (search, filters, sort, view mode, analytics)
+  // Each visitor now gets a clean state. URL params are still used for shareable links.
+  // Data cache (cachedFilms/cachedBooks) is still used for performance.
 
   // Add or update item
   const handleSaveItem = async (itemData) => {
@@ -356,7 +319,7 @@ function ItemsApp({ config }) {
     setSortConfig({ sortBy: '', direction: 'desc' })
     setShowAnalytics(false)
 
-    // Clear localStorage
+    // Clear any old localStorage data (cleanup for legacy data)
     Object.values(config.localStorageKeys).forEach(key => {
       localStorage.removeItem(key)
     })
@@ -539,11 +502,15 @@ function ItemsApp({ config }) {
             onDelete={handleDeleteItem}
             viewMode={viewMode}
           />
-        ) : (
+        ) : (searchTerm || hasSelectedFilterValues()) ? (
+          // Only show empty state message if user is actively filtering or searching
           <div className="empty-state">
             <p>{config.emptyState.message}</p>
             <p className="empty-state-hint">{config.emptyState.hint}</p>
           </div>
+        ) : (
+          // If no search/filters and no items, show nothing (black screen)
+          null
         )}
       </div>
       {showForm && (

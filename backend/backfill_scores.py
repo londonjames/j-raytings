@@ -11,7 +11,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Import database connection logic from app.py
 DATABASE = 'films.db'
-DATABASE_URL = os.getenv('DATABASE_URL')
+# Use environment variable if set, otherwise fall back to production URL (for direct execution)
+DATABASE_URL = os.getenv('DATABASE_URL') or "postgresql://postgres:rcvXfFuoGQZokshoQKRJvMcZGvvweTHI@gondola.proxy.rlwy.net:57791/railway"
 USE_POSTGRES = DATABASE_URL is not None
 
 if USE_POSTGRES:
@@ -30,6 +31,7 @@ else:
 def get_db():
     """Get database connection (PostgreSQL or SQLite based on environment)"""
     if USE_POSTGRES:
+        import psycopg2.extras
         conn = psycopg2.connect(**DB_CONFIG)
         return conn
     else:
@@ -87,7 +89,9 @@ def backfill_films():
     films = cursor.fetchall()
     
     if USE_POSTGRES:
-        films = [dict(row) for row in films]
+        # For PostgreSQL, convert to dict using column names
+        column_names = [desc[0] for desc in cursor.description]
+        films = [dict(zip(column_names, row)) for row in films]
     else:
         films = [dict(row) for row in films]
     
@@ -172,7 +176,9 @@ def backfill_books():
     books = cursor.fetchall()
     
     if USE_POSTGRES:
-        books = [dict(row) for row in books]
+        # For PostgreSQL, convert to dict using column names
+        column_names = [desc[0] for desc in cursor.description]
+        books = [dict(zip(column_names, row)) for row in books]
     else:
         books = [dict(row) for row in books]
     

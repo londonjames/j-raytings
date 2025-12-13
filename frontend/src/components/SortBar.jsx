@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 
 function SortBar({ onSortChange, initialSortConfig }) {
-  // Initialize from prop or localStorage, defaulting to empty (no visual selection)
+  // Initialize from prop only (no localStorage for user preferences)
   const getInitialSort = () => {
     if (initialSortConfig) {
       return initialSortConfig
     }
-    const saved = localStorage.getItem('sortConfig')
-    return saved ? JSON.parse(saved) : { sortBy: '', direction: 'desc' }
+    return { sortBy: '', direction: 'desc' } // Default, no localStorage
   }
 
   const initialSort = getInitialSort()
