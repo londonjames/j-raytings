@@ -12,10 +12,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "canvas": "^3.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.6",
-    "react-window": "^2.2.3"
+    "react-window": "^2.2.3",
+    "to-ico": "^1.1.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

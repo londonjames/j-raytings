@@ -453,7 +453,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                     ) : (
                       <div className="detail-row">
                         <span className="detail-label">Notion note:</span>
-                        <span className="detail-value">Not Available</span>
+                        <span className="detail-value">doesn't exist</span>
                       </div>
                     )}
                   </div>

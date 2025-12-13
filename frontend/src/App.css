@@ -1145,23 +1145,28 @@ body {
 .search-input {
   width: 100%;
   padding: 0.45rem 2.5rem 0.45rem 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 6px;
   font-size: 0.9rem;
   background: #2a2a2a;
   color: #e0e0e0;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .search-input::placeholder {
-  color: #666;
+  color: #999 !important;
 }
 
 .search-input:focus {
-  outline: none;
-  border-color: rgba(255, 255, 255, 0.4);
+  outline: none !important;
+  border: 2px solid rgba(255, 255, 255, 0.4) !important;
   background: #333;
+  box-shadow: none !important;
 }
 
 .search-input-filtered {
@@ -1171,7 +1176,7 @@ body {
 }
 
 .search-input-filtered::placeholder {
-  color: #666 !important;
+  color: #999 !important;
 }
 
 .search-input-filtered:focus {
@@ -1413,14 +1418,12 @@ body {
     font-size: 1.1rem;
   }
 
-  /* Ensure book titles still truncate on mobile */
+  /* Ensure book titles truncate to single line on mobile */
   .book-content .book-title-group .film-title,
   .book-title-group .film-title {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    white-space: normal !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   .info-item {
@@ -2271,20 +2274,11 @@ body {
 
 .book-content .book-title-group .film-title,
 .book-title-group .film-title {
-  display: block !important;
-  -webkit-line-clamp: 2 !important;
-  line-clamp: 2 !important;
+  white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  white-space: normal !important;
   line-height: 1.2 !important;
   margin: 0 !important;
-  height: 2.4rem !important; /* Fixed height for exactly 2 lines */
-  word-wrap: break-word !important;
-  word-break: break-word !important;
-  /* Use line-clamp with display block */
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical !important;
 }
 
 .book-author-inline {

@@ -34,6 +34,41 @@ function ItemsApp({ config }) {
     }
   }, [location.pathname, config.pageTitles])
 
+  // Update meta tags for social sharing (Open Graph and Twitter)
+  useEffect(() => {
+    const baseUrl = 'https://jamesraybould.me'
+    const pageUrl = `${baseUrl}/${config.type}`
+    const pageTitle = config.pageTitles.main
+    const description = `Explore my collection of ${config.titlePlural.toLowerCase()} with ratings and reviews.`
+    const imageUrl = `${baseUrl}/${config.type}-quilt.jpg`
+
+    // Helper function to update or create meta tag
+    const updateMetaTag = (property, content, isProperty = true) => {
+      const attribute = isProperty ? 'property' : 'name'
+      let meta = document.querySelector(`meta[${attribute}="${property}"]`)
+      if (!meta) {
+        meta = document.createElement('meta')
+        meta.setAttribute(attribute, property)
+        document.head.appendChild(meta)
+      }
+      meta.setAttribute('content', content)
+    }
+
+    // Update Open Graph tags
+    updateMetaTag('og:type', 'website')
+    updateMetaTag('og:url', pageUrl)
+    updateMetaTag('og:title', pageTitle)
+    updateMetaTag('og:description', description)
+    updateMetaTag('og:image', imageUrl)
+
+    // Update Twitter Card tags
+    updateMetaTag('twitter:card', 'summary_large_image', false)
+    updateMetaTag('twitter:url', pageUrl, false)
+    updateMetaTag('twitter:title', pageTitle, false)
+    updateMetaTag('twitter:description', description, false)
+    updateMetaTag('twitter:image', imageUrl, false)
+  }, [config.type, config.pageTitles, config.titlePlural])
+
   // Helper function to parse URL query parameters
   const parseQueryParams = () => {
     const params = new URLSearchParams(location.search)
