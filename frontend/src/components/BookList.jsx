@@ -228,7 +228,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                   <span className="meta-item">{book.year_written}</span>
                 )}
                 {book.pages && (
-                  <span className="meta-item">{book.pages} pages</span>
+                  <span className="meta-item">{book.pages} pg</span>
                 )}
               </div>
             </div>
@@ -322,7 +322,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                           <span className="info-item">{book.year_written}</span>
                         )}
                         {book.pages && (
-                          <span className="info-item">{book.pages} pages</span>
+                          <span className="info-item">{book.pages} pg</span>
                         )}
                       </div>
                     </div>
@@ -382,7 +382,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                     )}
                     <div className="year-duration">
                       {book.year_written && <span>{book.year_written}</span>}
-                      {book.pages && <span className="duration-spacer">{book.pages} pages</span>}
+                      {book.pages && <span className="duration-spacer">{book.pages} pg</span>}
                     </div>
                   </div>
                 </div>
@@ -453,7 +453,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                     ) : (
                       <div className="detail-row">
                         <span className="detail-label">Notion note:</span>
-                        <span className="detail-value">doesn't exist</span>
+                        <span className="detail-value">Sorry, no</span>
                       </div>
                     )}
                   </div>

@@ -7,7 +7,6 @@ function BookAnalytics() {
   const [typeData, setTypeData] = useState([])
   const [formData, setFormData] = useState([])
   const [authorData, setAuthorData] = useState([])
-  const [summary, setSummary] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -16,28 +15,35 @@ function BookAnalytics() {
 
   const fetchAllAnalytics = async () => {
     try {
-      const [yearResponse, typeResponse, formResponse, authorResponse, summaryResponse] = await Promise.all([
+      const [yearResponse, typeResponse, formResponse, authorResponse] = await Promise.all([
         fetch(`${API_URL}/analytics/books/by-year`),
         fetch(`${API_URL}/analytics/books/by-type`),
         fetch(`${API_URL}/analytics/books/by-form`),
-        fetch(`${API_URL}/analytics/books/by-author`),
-        fetch(`${API_URL}/analytics/books/summary`)
+        fetch(`${API_URL}/analytics/books/by-author`)
       ])
+
+      // Check for errors
+      if (!yearResponse.ok) throw new Error(`Year analytics failed: ${yearResponse.status}`)
+      if (!typeResponse.ok) throw new Error(`Type analytics failed: ${typeResponse.status}`)
+      if (!formResponse.ok) throw new Error(`Form analytics failed: ${formResponse.status}`)
+      if (!authorResponse.ok) throw new Error(`Author analytics failed: ${authorResponse.status}`)
 
       const yearAnalytics = await yearResponse.json()
       const typeAnalytics = await typeResponse.json()
       const formAnalytics = await formResponse.json()
       const authorAnalytics = await authorResponse.json()
-      const summaryData = await summaryResponse.json()
 
-      setYearData(yearAnalytics)
-      setTypeData(typeAnalytics)
-      setFormData(formAnalytics)
-      setAuthorData(authorAnalytics)
-      setSummary(summaryData)
+      setYearData(Array.isArray(yearAnalytics) ? yearAnalytics : [])
+      setTypeData(Array.isArray(typeAnalytics) ? typeAnalytics : [])
+      setFormData(Array.isArray(formAnalytics) ? formAnalytics : [])
+      setAuthorData(Array.isArray(authorAnalytics) ? authorAnalytics : [])
       setLoading(false)
     } catch (error) {
       console.error('Error fetching book analytics:', error)
+      setYearData([])
+      setTypeData([])
+      setFormData([])
+      setAuthorData([])
       setLoading(false)
     }
   }
@@ -48,35 +54,6 @@ function BookAnalytics() {
 
   return (
     <div className="analytics-container">
-      {/* Summary Stats */}
-      {summary && (
-        <div className="analytics-summary">
-          <h2>Summary</h2>
-          <div className="summary-stats">
-            <div className="summary-stat">
-              <div className="stat-value">{summary.total_books || 0}</div>
-              <div className="stat-label">Total Books</div>
-            </div>
-            <div className="summary-stat">
-              <div className="stat-value">{summary.avg_score ? summary.avg_score.toFixed(2) : 'N/A'}</div>
-              <div className="stat-label">Average Score</div>
-            </div>
-            <div className="summary-stat">
-              <div className="stat-value">{summary.total_pages ? summary.total_pages.toLocaleString() : 'N/A'}</div>
-              <div className="stat-label">Total Pages</div>
-            </div>
-            <div className="summary-stat">
-              <div className="stat-value">{summary.avg_pages ? summary.avg_pages.toFixed(0) : 'N/A'}</div>
-              <div className="stat-label">Avg Pages/Book</div>
-            </div>
-            <div className="summary-stat">
-              <div className="stat-value">{summary.avg_goodreads_rating ? summary.avg_goodreads_rating.toFixed(2) : 'N/A'}</div>
-              <div className="stat-label">Avg Goodreads Rating</div>
-            </div>
-          </div>
-        </div>
-      )}
-
       <AnalyticsSection
         title="BY YEAR READ"
         data={yearData}
@@ -114,7 +91,7 @@ function BookAnalytics() {
                 <span className="author-rank">{index + 1}.</span>
                 <span className="author-name">{author.author}</span>
                 <span className="author-count">{author.count} books</span>
-                {author.avg_score && (
+                {author.avg_score != null && (
                   <span className="author-score">Avg: {author.avg_score.toFixed(1)}</span>
                 )}
               </div>
@@ -140,21 +117,21 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   const chartHeight = height - padding.top - padding.bottom
 
   // Get data ranges
-  const counts = data.map(d => d.count)
-  const scores = data.map(d => d.avg_score)
+  const counts = data.map(d => d.count || 0)
+  const scores = data.map(d => d.avg_score || 0)
 
-  const maxCount = Math.max(...counts)
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0
   const totalPoints = data.length
 
   // Calculate max Y for count
   let maxCountY
   let countStep
   if (countRange === 'auto') {
-    maxCountY = Math.ceil(maxCount / 20) * 20
+    maxCountY = maxCount > 0 ? Math.ceil(maxCount / 20) * 20 : 20
     countStep = 20
   } else {
-    maxCountY = countRange.max
-    countStep = countRange.step
+    maxCountY = countRange.max || 20
+    countStep = countRange.step || 20
   }
 
   // Scale functions
@@ -168,6 +145,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   }
 
   const scaleYScore = (score) => {
+    if (score == null || isNaN(score)) return padding.top + chartHeight // Default to bottom if null/NaN
     const minScore = scoreRange.min
     const maxScore = scoreRange.max
     return padding.top + chartHeight - ((score - minScore) / (maxScore - minScore)) * chartHeight
@@ -176,15 +154,19 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   // Generate paths
   const countPath = data.map((d, i) => {
     const x = scaleX(i)
-    const y = scaleYCount(d.count)
+    const y = scaleYCount(d.count || 0)
     return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
   }).join(' ')
 
-  const scorePath = data.map((d, i) => {
-    const x = scaleX(i)
-    const y = scaleYScore(d.avg_score)
-    return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
-  }).join(' ')
+  const scorePath = data
+    .filter(d => d.avg_score != null && !isNaN(d.avg_score)) // Filter out null/NaN scores
+    .map((d, i, filteredData) => {
+      const originalIndex = data.indexOf(d)
+      const x = scaleX(originalIndex)
+      const y = scaleYScore(d.avg_score)
+      return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
+    })
+    .join(' ')
 
   // Generate Y-axis ticks
   const countTicks = []
@@ -400,6 +382,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
             {/* Data points */}
             {data.map((d, i) => {
+              if (d.avg_score == null || isNaN(d.avg_score)) return null // Skip null/NaN scores
               const x = scaleX(i)
               const y = scaleYScore(d.avg_score)
               return (
