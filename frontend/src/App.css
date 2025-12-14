@@ -2109,13 +2109,6 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
-/* Front of card: poster and content side by side */
-.film-card-front {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-
 .film-card-back {
   transform: rotateY(180deg);
   background: linear-gradient(135deg, #1c1c1c 0%, #1f1f1f 100%);
