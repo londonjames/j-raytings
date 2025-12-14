@@ -25,7 +25,7 @@ export const filmsConfig = {
 
   // Page titles
   pageTitles: {
-    main: 'Films | 1,700+',
+    main: 'Films | James Raybould',
     admin: 'Admin | Films | James Raybould',
   },
 
