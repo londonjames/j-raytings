@@ -6,16 +6,16 @@ const distDir = path.join(process.cwd(), 'dist');
 
 // Meta tag configurations
 const filmsMeta = {
-  title: 'every film (1700+) I\'ve ever seen with my very own J-Raytings',
+  title: 'Every film I\'ve seen (1700+)',
   description: 'Explore my collection of films with ratings and reviews.',
-  image: 'https://jamesraybould.me/films-quilt.jpg',
+  image: 'https://jamesraybould.me/films-quilt-social.jpg',
   url: 'https://jamesraybould.me/films'
 };
 
 const booksMeta = {
-  title: 'every book (700+) I\'ve ever read with my very own J-Raytings',
+  title: 'Every book I\'ve read (700+)',
   description: 'Explore my collection of books with ratings and reviews.',
-  image: 'https://jamesraybould.me/books-quilt.jpg',
+  image: 'https://jamesraybould.me/books-quilt-social.jpg',
   url: 'https://jamesraybould.me/books'
 };
 
