@@ -1479,7 +1479,9 @@ body {
   }
 
   .film-content {
-    padding: 0.9rem 1rem;
+    /* Reduce left padding by ~10% (1rem = 16px, 10% = 1.6px, so reduce by ~1.6px = 0.1rem) */
+    /* New left padding: 1rem - 0.1rem = 0.9rem */
+    padding: 0.9rem 1rem 0.9rem 0.9rem;
   }
 
   .rating-box {
