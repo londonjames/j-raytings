@@ -2203,7 +2203,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.6rem 0.6rem 0.6rem 0; /* Increased padding-top and padding-bottom for more space around J-RAYTING */
   margin-top: 0; /* Remove spacing between poster and top gray line */
-  margin-bottom: 0.05rem; /* Reduced margin below gray line to bring "Date Read" closer */
+  margin-bottom: 0.04rem; /* Further reduced margin below gray line (20% reduction) */
 }
 
 .metric-item {
@@ -2272,7 +2272,7 @@ body {
   gap: 0.3rem; /* Increased gap between Date Seen, Format, and Location for better readability */
   padding-left: 0;
   padding-right: 0.6rem;
-  margin-top: 0.1rem; /* Reduced margin-top to bring "Date Read" closer to gray line */
+  margin-top: 0.08rem; /* Further reduced margin-top to bring "Date Read" closer to gray line (20% reduction) */
   margin-bottom: 0.8rem; /* Increased space below "Notion note" for better breathing room */
   min-height: fit-content; /* Ensure content is always visible */
 }
@@ -2550,7 +2550,7 @@ body {
     gap: 1rem;
     padding: 0.65rem 0.75rem 0.65rem 0; /* Increased padding-top and padding-bottom for more space around J-RAYTING */
     margin-top: 0; /* Remove spacing between poster and top gray line */
-    margin-bottom: 0.05rem; /* Reduced margin below gray line to bring "Date Read" closer */
+    margin-bottom: 0.04rem; /* Further reduced margin below gray line (20% reduction) */
   }
 
   .metric-item {
@@ -2581,7 +2581,7 @@ body {
   .card-back-details {
     gap: 0.4rem; /* Increased gap between Date Seen, Format, and Location on larger screens */
     padding-right: 0.75rem;
-    margin-top: 0.1rem; /* Reduced margin-top to bring "Date Read" closer to gray line */
+    margin-top: 0.08rem; /* Further reduced margin-top to bring "Date Read" closer to gray line (20% reduction) */
     margin-bottom: 0.9rem; /* Increased space below "Notion note" for better breathing room */
   }
 
@@ -2648,7 +2648,7 @@ body {
     gap: 0.9rem;
     padding: 0.6rem 0.7rem 0.6rem 0; /* Increased padding-top and padding-bottom for more space around J-RAYTING */
     margin-top: 0; /* Remove spacing between poster and top gray line */
-    margin-bottom: 0.05rem; /* Reduced margin below gray line to bring "Date Read" closer */
+    margin-bottom: 0.04rem; /* Further reduced margin below gray line (20% reduction) */
   }
 
   .metric-item {
@@ -2679,7 +2679,7 @@ body {
   .card-back-details {
     gap: 0.35rem; /* Increased gap between Date Seen, Format, and Location on medium screens */
     padding-right: 0.7rem;
-    margin-top: 0.1rem; /* Reduced margin-top to bring "Date Read" closer to gray line */
+    margin-top: 0.08rem; /* Further reduced margin-top to bring "Date Read" closer to gray line (20% reduction) */
     margin-bottom: 0.85rem; /* Increased space below "Notion note" for better breathing room */
   }
 
