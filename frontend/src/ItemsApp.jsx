@@ -39,8 +39,10 @@ function ItemsApp({ config }) {
     const baseUrl = 'https://jamesraybould.me'
     const pageUrl = `${baseUrl}/${config.type}`
     const pageTitle = config.pageTitles.main
-    const description = `Explore my collection of ${config.titlePlural.toLowerCase()} with ratings and reviews.`
-    const imageUrl = `${baseUrl}/${config.type}-quilt.jpg`
+    const description = config.type === 'films' 
+      ? 'Browse my collection of over 1700 films I\'ve watched, each with my own J-Rayting. And if you\'re super geeky, you can filter by Rotten Tomatoes score, Year, genre, and more.'
+      : 'Browse my personal collection of over 700 books I\'ve read, each with my own J-Rayting. And if you\'re super geeky, you can skim my short summaries or even dig into my comprehensive Notion pages with all my Amazon Kindle highlights.'
+    const imageUrl = `${baseUrl}/${config.type}-quilt-social.jpg?v2`
 
     // Helper function to update or create meta tag
     const updateMetaTag = (property, content, isProperty = true) => {

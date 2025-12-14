@@ -9,7 +9,7 @@ import { createCanvas, loadImage } from 'canvas';
 const SOCIAL_WIDTH = 1200;
 const SOCIAL_HEIGHT = 675;
 const QUILT_SCALE = 0.80; // Quilt takes up 80% of the image (5% smaller)
-const BACKGROUND_COLOR = '#f0f0f0'; // Lighter gray background
+const BACKGROUND_COLOR = '#505050'; // Charcoal gray background (RGB ~80, 80, 80)
 
 async function createSocialImage(quiltPath, outputPath) {
   try {

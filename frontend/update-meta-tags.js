@@ -5,17 +5,20 @@ import path from 'path';
 const distDir = path.join(process.cwd(), 'dist');
 
 // Meta tag configurations
+// Add cache-busting version to force refresh
+const CACHE_VERSION = 'v2';
+
 const filmsMeta = {
   title: 'Every film I\'ve seen (1700+)',
-  description: 'Explore my collection of films with ratings and reviews.',
-  image: 'https://jamesraybould.me/films-quilt-social.jpg',
+  description: 'Browse my collection of over 1700 films I\'ve watched, each with my own J-Rayting. And if you\'re super geeky, you can filter by Rotten Tomatoes score, Year, genre, and more.',
+  image: `https://jamesraybould.me/films-quilt-social.jpg?${CACHE_VERSION}`,
   url: 'https://jamesraybould.me/films'
 };
 
 const booksMeta = {
   title: 'Every book I\'ve read (700+)',
-  description: 'Explore my collection of books with ratings and reviews.',
-  image: 'https://jamesraybould.me/books-quilt-social.jpg',
+  description: 'Browse my personal collection of over 700 books I\'ve read, each with my own J-Rayting. And if you\'re super geeky, you can skim my short summaries or even dig into my comprehensive Notion pages with all my Amazon Kindle highlights.',
+  image: `https://jamesraybould.me/books-quilt-social.jpg?${CACHE_VERSION}`,
   url: 'https://jamesraybould.me/books'
 };
 
