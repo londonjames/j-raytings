@@ -22,16 +22,42 @@ function Analytics() {
         fetch(`${API_URL}/analytics/by-genre`)
       ])
 
-      // Check for errors
-      if (!yearResponse.ok) throw new Error(`Year analytics failed: ${yearResponse.status}`)
-      if (!filmYearResponse.ok) throw new Error(`Film year analytics failed: ${filmYearResponse.status}`)
-      if (!rtResponse.ok) throw new Error(`RT analytics failed: ${rtResponse.status}`)
-      if (!genreResponse.ok) throw new Error(`Genre analytics failed: ${genreResponse.status}`)
-
-      const yearAnalytics = await yearResponse.json()
-      const filmYearAnalytics = await filmYearResponse.json()
-      const rtAnalytics = await rtResponse.json()
-      const genreAnalytics = await genreResponse.json()
+      // Parse responses (try to parse even if status is not 200)
+      let yearAnalytics, filmYearAnalytics, rtAnalytics, genreAnalytics
+      
+      try {
+        yearAnalytics = await yearResponse.json()
+      } catch (e) {
+        console.error('Error parsing year analytics:', e)
+        yearAnalytics = []
+      }
+      
+      try {
+        filmYearAnalytics = await filmYearResponse.json()
+      } catch (e) {
+        console.error('Error parsing film year analytics:', e)
+        filmYearAnalytics = []
+      }
+      
+      try {
+        rtAnalytics = await rtResponse.json()
+      } catch (e) {
+        console.error('Error parsing RT analytics:', e)
+        rtAnalytics = []
+      }
+      
+      try {
+        genreAnalytics = await genreResponse.json()
+      } catch (e) {
+        console.error('Error parsing genre analytics:', e)
+        genreAnalytics = []
+      }
+      
+      // Log warnings for non-200 responses but don't throw
+      if (!yearResponse.ok) console.warn(`Year analytics returned ${yearResponse.status}`)
+      if (!filmYearResponse.ok) console.warn(`Film year analytics returned ${filmYearResponse.status}`)
+      if (!rtResponse.ok) console.warn(`RT analytics returned ${rtResponse.status}`)
+      if (!genreResponse.ok) console.warn(`Genre analytics returned ${genreResponse.status}`)
 
       setYearData(Array.isArray(yearAnalytics) ? yearAnalytics : [])
       setFilmYearData(Array.isArray(filmYearAnalytics) ? filmYearAnalytics : [])
