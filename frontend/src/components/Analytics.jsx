@@ -135,7 +135,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
   // Get data ranges
   const counts = data.map(d => d.count || 0)
-  const scores = data.map(d => d.avg_score || 0)
+  const scores = data.map(d => (typeof d.avg_score === 'number' && !isNaN(d.avg_score)) ? d.avg_score : 0)
 
   // For "BY YEAR SEEN", exclude Pre-2006 from max calculation since we cap it at 110
   let maxCount
@@ -173,7 +173,8 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   }
 
   const scaleYScore = (score) => {
-    if (score == null || isNaN(score)) return padding.top + chartHeight // Default to bottom if null/NaN
+    // Check for null, NaN, or non-numeric types
+    if (score == null || isNaN(score) || typeof score !== 'number') return padding.top + chartHeight // Default to bottom if null/NaN/non-numeric
     const minScore = scoreRange.min
     const maxScore = scoreRange.max
     return padding.top + chartHeight - ((score - minScore) / (maxScore - minScore)) * chartHeight
@@ -190,7 +191,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
   // Generate path for score line
   const scorePath = data
-    .filter(d => d.avg_score != null && !isNaN(d.avg_score)) // Filter out null/NaN scores
+    .filter(d => d.avg_score != null && !isNaN(d.avg_score) && typeof d.avg_score === 'number') // Filter out null/NaN/non-numeric scores
     .map((d, i, filteredData) => {
       const originalIndex = data.indexOf(d)
       const x = scaleX(originalIndex)
@@ -442,7 +443,8 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
             {/* Data points and labels */}
             {data.map((d, i) => {
-              if (d.avg_score == null || isNaN(d.avg_score)) return null // Skip null/NaN scores
+              // Skip null/NaN scores or non-numeric values
+              if (d.avg_score == null || isNaN(d.avg_score) || typeof d.avg_score !== 'number') return null
               const x = scaleX(i)
               const y = scaleYScore(d.avg_score)
               return (
@@ -456,7 +458,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
                     fontSize="12"
                     fontWeight="600"
                   >
-                    {d.avg_score.toFixed(1)}
+                    {d.avg_score != null && typeof d.avg_score === 'number' ? d.avg_score.toFixed(1) : 'N/A'}
                   </text>
                 </g>
               )
