@@ -1481,7 +1481,9 @@ body {
   .film-content {
     /* Reduce left padding by ~10% (1rem = 16px, 10% = 1.6px, so reduce by ~1.6px = 0.1rem) */
     /* New left padding: 1rem - 0.1rem = 0.9rem */
+    /* Also add negative margin-left to move content closer to poster */
     padding: 0.9rem 1rem 0.9rem 0.9rem;
+    margin-left: -0.1rem; /* Move content 10% closer to poster */
   }
 
   .rating-box {
@@ -1629,9 +1631,11 @@ body {
 }
 
 .film-content {
-  /* Reduce left padding by ~10% (0.75rem = 12px, 10% = 1.2px, so reduce by ~1px = 0.0625rem) */
-  /* New left padding: 0.75rem - 0.0625rem = 0.6875rem ≈ 0.69rem */
-  padding: 0.75rem 0.75rem 0.75rem 0.69rem;
+  /* Reduce left padding by ~10% (0.75rem = 12px, 10% = 1.2px, so reduce by ~1.2px = 0.075rem) */
+  /* New left padding: 0.75rem - 0.075rem = 0.675rem */
+  /* Also add negative margin-left to move content closer to poster */
+  padding: 0.75rem 0.75rem 0.75rem 0.675rem;
+  margin-left: -0.075rem; /* Move content 10% closer to poster */
   display: flex;
   flex-direction: column;
 }
@@ -2326,8 +2330,10 @@ body {
 /* Book-specific styles */
 .book-content {
   /* Reduce left padding by ~10% (0.85rem = 13.6px, 10% = 1.36px, so reduce by ~1.4px = 0.0875rem) */
-  /* New left padding: 0.85rem - 0.0875rem = 0.7625rem ≈ 0.76rem */
-  padding: 0.75rem 0.85rem 0.75rem 0.76rem; /* Equal top/bottom padding to align with book cover */
+  /* New left padding: 0.85rem - 0.0875rem = 0.7625rem */
+  /* Also add negative margin-left to move content closer to cover */
+  padding: 0.75rem 0.85rem 0.75rem 0.7625rem; /* Equal top/bottom padding to align with book cover */
+  margin-left: -0.0875rem; /* Move content 10% closer to cover */
   display: flex;
   flex-direction: column;
 }
