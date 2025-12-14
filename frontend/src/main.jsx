@@ -2,19 +2,20 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
-import App from './App.jsx'
+import ItemsApp from './ItemsApp.jsx'
 import Admin from './Admin.jsx'
 import BooksAdmin from './BooksAdmin.jsx'
-import BooksApp from './BooksApp.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
+import { filmsConfig } from './config/filmsConfig.js'
+import { booksConfig } from './config/booksConfig.js'
 
 // Check if we're on the /books path
 // Handle Vercel rewrites: /books/admin and /films/admin get rewritten, so we check the full URL
 const currentPath = window.location.pathname
 const fullUrl = window.location.href
 // Check multiple ways to detect books path (handles Vercel rewrites)
-const isBooksPath = currentPath.startsWith('/books') || 
-                   fullUrl.includes('/books/') || 
+const isBooksPath = currentPath.startsWith('/books') ||
+                   fullUrl.includes('/books/') ||
                    fullUrl.includes('/books/admin') ||
                    fullUrl.includes('/books?') ||
                    (currentPath === '/admin' && fullUrl.includes('books'))
@@ -27,13 +28,17 @@ const isFilmsPath = currentPath.startsWith('/films') ||
 // Determine basename - prioritize books, then films, default to films
 const basename = isBooksPath ? '/books' : (isFilmsPath ? '/films' : '/films')
 
+// Select config based on path
+const config = isBooksPath ? booksConfig : filmsConfig
+
 // Debug logging
 console.log('Routing debug:', {
   currentPath,
   fullUrl,
   isBooksPath,
   isFilmsPath,
-  basename
+  basename,
+  config: config.type
 })
 
 createRoot(document.getElementById('root')).render(
@@ -41,9 +46,9 @@ createRoot(document.getElementById('root')).render(
     <ErrorBoundary>
       <BrowserRouter basename={basename}>
         <Routes>
-          <Route path="/" element={isBooksPath ? <BooksApp /> : <App />} />
+          <Route path="/" element={<ItemsApp config={config} />} />
           <Route path="/admin" element={isBooksPath ? <BooksAdmin /> : <Admin />} />
-          <Route path="/analytics" element={isBooksPath ? <BooksApp /> : <App />} />
+          <Route path="/analytics" element={<ItemsApp config={config} />} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>

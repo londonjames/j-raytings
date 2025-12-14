@@ -679,6 +679,11 @@ def add_film():
     if not rt_link:
         rt_link = generate_rt_url(data['title'])
 
+    # Auto-calculate score from letter_rating if score not provided
+    score = data.get('score')
+    if not score and data.get('letter_rating'):
+        score = letter_rating_to_score(data.get('letter_rating'))
+
     conn = get_db()
     cursor = conn.cursor()
 
@@ -695,7 +700,7 @@ def add_film():
             data.get('date_seen'),
             data['title'],
             data.get('letter_rating'),
-            data.get('score'),
+            score,
             data.get('year_watched'),
             data.get('location'),
             data.get('format'),
@@ -719,7 +724,7 @@ def add_film():
             data.get('date_seen'),
             data['title'],
             data.get('letter_rating'),
-            data.get('score'),
+            score,
             data.get('year_watched'),
             data.get('location'),
             data.get('format'),

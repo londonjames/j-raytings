@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.box {
+  width: 200px;
+  height: 200px;
+  background: red;
+  margin: 50px;
+}
+.animate {
+  animation: bounce 1s ease-in-out 2;
+}
+</style>
+</head>
+<body>
+<button onclick="document.querySelector('.box').classList.add('animate')">ANIMATE</button>
+<div class="box"></div>
+</body>
+</html>
