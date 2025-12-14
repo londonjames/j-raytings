@@ -732,6 +732,11 @@ body {
   /* Background - Current: #1c1c1c (RGB: 28, 28, 28) */
   background: #1c1c1c;
   padding: 0.5rem 2rem 0.5rem 2rem;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: visible; /* Keep vertical scrolling normal */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  /* Enable horizontal mouse wheel scrolling */
+  -webkit-overflow-scrolling: touch;
 }
 
 .analytics-loading,
@@ -759,11 +764,24 @@ body {
 
 .chart-section {
   margin-bottom: 0.5rem;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  /* Enable horizontal mouse wheel scrolling */
+  cursor: grab;
+}
+
+.chart-section:active {
+  cursor: grabbing;
 }
 
 .chart-container {
   display: flex;
   justify-content: center;
+  min-width: fit-content; /* Prevent shrinking below content width */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  scroll-behavior: smooth;
 }
 
 .filter-type-select {
@@ -1393,7 +1411,33 @@ body {
 
   .chart-container svg {
     width: 100%;
-    max-width: 100%;
+    max-width: none; /* Don't shrink SVG on mobile - allow horizontal scroll */
+    min-width: 1100px; /* Maintain minimum chart width */
+  }
+  
+  .chart-section {
+    /* Ensure horizontal scrolling works on mobile */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+  
+  .chart-section::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .chart-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  
+  .chart-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+  
+  .chart-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
   }
 
   /* Filter mobile optimization */

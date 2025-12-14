@@ -22,18 +22,28 @@ function Analytics() {
         fetch(`${API_URL}/analytics/by-genre`)
       ])
 
+      // Check for errors
+      if (!yearResponse.ok) throw new Error(`Year analytics failed: ${yearResponse.status}`)
+      if (!filmYearResponse.ok) throw new Error(`Film year analytics failed: ${filmYearResponse.status}`)
+      if (!rtResponse.ok) throw new Error(`RT analytics failed: ${rtResponse.status}`)
+      if (!genreResponse.ok) throw new Error(`Genre analytics failed: ${genreResponse.status}`)
+
       const yearAnalytics = await yearResponse.json()
       const filmYearAnalytics = await filmYearResponse.json()
       const rtAnalytics = await rtResponse.json()
       const genreAnalytics = await genreResponse.json()
 
-      setYearData(yearAnalytics)
-      setFilmYearData(filmYearAnalytics)
-      setRtData(rtAnalytics)
-      setGenreData(genreAnalytics)
+      setYearData(Array.isArray(yearAnalytics) ? yearAnalytics : [])
+      setFilmYearData(Array.isArray(filmYearAnalytics) ? filmYearAnalytics : [])
+      setRtData(Array.isArray(rtAnalytics) ? rtAnalytics : [])
+      setGenreData(Array.isArray(genreAnalytics) ? genreAnalytics : [])
       setLoading(false)
     } catch (error) {
       console.error('Error fetching analytics:', error)
+      setYearData([])
+      setFilmYearData([])
+      setRtData([])
+      setGenreData([])
       setLoading(false)
     }
   }
@@ -98,15 +108,16 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   const chartHeight = height - padding.top - padding.bottom
 
   // Get data ranges
-  const counts = data.map(d => d.count)
-  const scores = data.map(d => d.avg_score)
+  const counts = data.map(d => d.count || 0)
+  const scores = data.map(d => d.avg_score || 0)
 
   // For "BY YEAR SEEN", exclude Pre-2006 from max calculation since we cap it at 110
   let maxCount
   if (title === 'BY YEAR SEEN') {
-    maxCount = Math.max(...counts.filter((_, i) => data[i][dataKey] !== 'Pre-2006'))
+    const filteredCounts = counts.filter((_, i) => data[i][dataKey] !== 'Pre-2006')
+    maxCount = filteredCounts.length > 0 ? Math.max(...filteredCounts) : 0
   } else {
-    maxCount = Math.max(...counts)
+    maxCount = counts.length > 0 ? Math.max(...counts) : 0
   }
 
   // Total number of points
@@ -116,11 +127,11 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   let maxCountY
   let countStep
   if (countRange === 'auto') {
-    maxCountY = Math.ceil(maxCount / 20) * 20
+    maxCountY = maxCount > 0 ? Math.ceil(maxCount / 20) * 20 : 20
     countStep = 20
   } else {
-    maxCountY = countRange.max
-    countStep = countRange.step
+    maxCountY = countRange.max || 20
+    countStep = countRange.step || 20
   }
 
   // Scale functions - evenly space all data points
@@ -136,6 +147,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   }
 
   const scaleYScore = (score) => {
+    if (score == null || isNaN(score)) return padding.top + chartHeight // Default to bottom if null/NaN
     const minScore = scoreRange.min
     const maxScore = scoreRange.max
     return padding.top + chartHeight - ((score - minScore) / (maxScore - minScore)) * chartHeight
@@ -151,11 +163,15 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   }).join(' ')
 
   // Generate path for score line
-  const scorePath = data.map((d, i) => {
-    const x = scaleX(i)
-    const y = scaleYScore(d.avg_score)
-    return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
-  }).join(' ')
+  const scorePath = data
+    .filter(d => d.avg_score != null && !isNaN(d.avg_score)) // Filter out null/NaN scores
+    .map((d, i, filteredData) => {
+      const originalIndex = data.indexOf(d)
+      const x = scaleX(originalIndex)
+      const y = scaleYScore(d.avg_score)
+      return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
+    })
+    .join(' ')
 
   // Generate Y-axis ticks for count
   const countTicks = []
@@ -171,9 +187,18 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
       <h2 className="analytics-section-title">{title}</h2>
 
       {/* Chart 1: Total Films */}
-      <div className="chart-section">
+      <div 
+        className="chart-section"
+        onWheel={(e) => {
+          // Enable horizontal scrolling with mouse wheel (when holding Shift or on trackpad)
+          if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            e.preventDefault()
+            e.currentTarget.scrollLeft += e.deltaX || e.deltaY
+          }
+        }}
+      >
         <div className="chart-container">
-          <svg width={width} height={height}>
+          <svg width={width} height={height} style={{ minWidth: width }}>
             {/* Grid lines */}
             {countTicks.map(tick => (
               <line
@@ -289,9 +314,18 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
       </div>
 
       {/* Chart 2: Average Rating */}
-      <div className="chart-section">
+      <div 
+        className="chart-section"
+        onWheel={(e) => {
+          // Enable horizontal scrolling with mouse wheel (when holding Shift or on trackpad)
+          if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            e.preventDefault()
+            e.currentTarget.scrollLeft += e.deltaX || e.deltaY
+          }
+        }}
+      >
         <div className="chart-container">
-          <svg width={width} height={height}>
+          <svg width={width} height={height} style={{ minWidth: width }}>
             {/* Grid lines */}
             {scoreTicks.map(tick => (
               <line

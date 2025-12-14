@@ -52,11 +52,17 @@ function BookAnalytics() {
     return <div className="analytics-loading">Loading analytics...</div>
   }
 
+  // Filter books data to start from 1999 (remove 1995 and 1998)
+  const filteredYearData = yearData.filter(d => d.year >= 1999)
+  
+  // Reverse year data order for books (2025 on right, oldest on left)
+  const reversedYearData = [...filteredYearData].reverse()
+
   return (
     <div className="analytics-container">
       <AnalyticsSection
         title="BY YEAR READ"
-        data={yearData}
+        data={reversedYearData}
         dataKey="year"
         formatLabel={(val) => val}
         scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
@@ -181,9 +187,18 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
       <h2 className="analytics-section-title">{title}</h2>
 
       {/* Chart 1: Total Books */}
-      <div className="chart-section">
+      <div 
+        className="chart-section"
+        onWheel={(e) => {
+          // Enable horizontal scrolling with mouse wheel (when holding Shift or on trackpad)
+          if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            e.preventDefault()
+            e.currentTarget.scrollLeft += e.deltaX || e.deltaY
+          }
+        }}
+      >
         <div className="chart-container">
-          <svg width={width} height={height}>
+          <svg width={width} height={height} style={{ minWidth: width }}>
             {/* Grid lines */}
             {countTicks.map(tick => (
               <line
@@ -293,9 +308,18 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
       </div>
 
       {/* Chart 2: Average Rating */}
-      <div className="chart-section">
+      <div 
+        className="chart-section"
+        onWheel={(e) => {
+          // Enable horizontal scrolling with mouse wheel (when holding Shift or on trackpad)
+          if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            e.preventDefault()
+            e.currentTarget.scrollLeft += e.deltaX || e.deltaY
+          }
+        }}
+      >
         <div className="chart-container">
-          <svg width={width} height={height}>
+          <svg width={width} height={height} style={{ minWidth: width }}>
             {/* Grid lines */}
             {scoreTicks.map(tick => (
               <line
