@@ -8,8 +8,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Background - Current: #1c1c1c (RGB: 28, 28, 28) */
-  /* Options: #1a1a1a (black, RGB: 26), #1f1f1f (RGB: 31), #262626 (RGB: 38), #2d2d2d (RGB: 45) */
+  /* Background - Current: #1f1f1f (RGB: 31, 31, 31) */
+  /* Options: #1a1a1a (black, RGB: 26), #1c1c1c (RGB: 28), #262626 (RGB: 38), #2d2d2d (RGB: 45) */
   background: #1c1c1c;
   color: #e0e0e0;
 }
