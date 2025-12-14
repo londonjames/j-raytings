@@ -58,6 +58,16 @@ function BookAnalytics() {
   // Reverse year data order for books (2025 on right, oldest on left)
   const reversedYearData = [...filteredYearData].reverse()
 
+  // Format category labels for analytics display only (not database)
+  const formatCategoryLabel = (val) => {
+    const categoryMap = {
+      'Non-Fict: Soc.': 'Non-Fict: Society',
+      'Non-Fict: Biz': 'Non-Fict: Business',
+      'Non-Fict: Pol.': 'Non-Fict: Politics'
+    }
+    return categoryMap[val] || val
+  }
+
   return (
     <div className="analytics-container">
       <AnalyticsSection
@@ -73,7 +83,7 @@ function BookAnalytics() {
         title="BY TYPE"
         data={typeData}
         dataKey="type"
-        formatLabel={(val) => val}
+        formatLabel={formatCategoryLabel}
         scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
         countRange="auto"
       />
