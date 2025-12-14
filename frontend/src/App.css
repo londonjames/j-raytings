@@ -2272,8 +2272,8 @@ body {
   gap: 0.3rem; /* Increased gap between Date Seen, Format, and Location for better readability */
   padding-left: 0;
   padding-right: 0.6rem;
-  margin-top: 0.25rem; /* Push details (including Notion note) slightly lower */
-  margin-bottom: 0.5rem; /* Keep some space below Location/Notion note */
+  margin-top: 0.1rem; /* Reduced margin-top to bring "Date Read" closer to gray line */
+  margin-bottom: 0.8rem; /* Increased space below "Notion note" for better breathing room */
   min-height: fit-content; /* Ensure content is always visible */
 }
 
