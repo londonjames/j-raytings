@@ -416,6 +416,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
             {/* Data points and labels */}
             {data.map((d, i) => {
+              if (d.avg_score == null || isNaN(d.avg_score)) return null // Skip null/NaN scores
               const x = scaleX(i)
               const y = scaleYScore(d.avg_score)
               return (
