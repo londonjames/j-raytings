@@ -443,7 +443,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                     )}
                     {book.notion_link ? (
                       <div className="detail-row">
-                        <span className="detail-label">Notion note:</span>
+                        <span className="detail-label">Notion Note:</span>
                         <span className="detail-value">
                           <a href={book.notion_link} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
                             Open
@@ -452,7 +452,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                       </div>
                     ) : (
                       <div className="detail-row">
-                        <span className="detail-label">Notion note:</span>
+                        <span className="detail-label">Notion Note:</span>
                         <span className="detail-value">Sorry, no</span>
                       </div>
                     )}
