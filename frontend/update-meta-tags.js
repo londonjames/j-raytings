@@ -9,14 +9,14 @@ const distDir = path.join(process.cwd(), 'dist');
 const CACHE_VERSION = 'v2';
 
 const filmsMeta = {
-  title: 'Films | All 1700+ I\'ve seen',
+  title: 'Films | 1,700+',
   description: 'Browse my collection of over 1700 films I\'ve watched, each with my own J-Rayting. And if you\'re super geeky, you can filter by Rotten Tomatoes score, Year, genre, and more.',
   image: `https://jamesraybould.me/films-quilt-social.jpg?${CACHE_VERSION}`,
   url: 'https://jamesraybould.me/films'
 };
 
 const booksMeta = {
-  title: 'Books | All 700+ I\'ve read',
+  title: 'Books | 700+',
   description: 'Browse my personal collection of over 700 books I\'ve read, each with my own J-Rayting. And if you\'re super geeky, you can skim my short summaries or even dig into my comprehensive Notion pages with all my Amazon Kindle highlights.',
   image: `https://jamesraybould.me/books-quilt-social.jpg?${CACHE_VERSION}`,
   url: 'https://jamesraybould.me/books'
