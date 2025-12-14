@@ -2109,6 +2109,13 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
+/* Front of card: poster and content side by side */
+.film-card-front {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
 .film-card-back {
   transform: rotateY(180deg);
   background: linear-gradient(135deg, #1c1c1c 0%, #1f1f1f 100%);
@@ -2164,6 +2171,11 @@ body {
   padding-bottom: 0; /* Remove padding-bottom to eliminate space before gray line */
   min-height: fit-content; /* Prevent header from expanding too much */
   flex-shrink: 0; /* Don't shrink header */
+}
+
+/* Move header text content closer to poster by reducing gap further */
+.card-back-header .header-text {
+  margin-left: -0.1rem; /* Move text 10% closer to poster */
 }
 
 .poster-thumbnail {
@@ -2285,6 +2297,7 @@ body {
   margin-top: 0.08rem; /* Further reduced margin-top to bring "Date Read" closer to gray line (20% reduction) */
   margin-bottom: 0.8rem; /* Increased space below "Notion note" for better breathing room */
   min-height: fit-content; /* Ensure content is always visible */
+  margin-left: -0.1rem; /* Move details 10% closer to poster to match header */
 }
 
 .card-back-details.no-data {
