@@ -2510,8 +2510,9 @@ body {
   flex-direction: column;
   gap: 0.75rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+  margin-left: 5%; /* Shift the rows slightly to the right */
+  background: none; /* Remove surrounding box */
+  border-radius: 0;
 }
 
 .author-item {
@@ -2525,7 +2526,7 @@ body {
 
 .author-rank {
   font-weight: 600;
-  color: #ff6b6b; /* Changed from blue to red */
+  color: #ff6b6b; /* Red rank numbers */
   min-width: 2rem;
   flex-shrink: 0;
 }
