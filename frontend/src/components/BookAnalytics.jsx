@@ -479,7 +479,8 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
             {/* Data points */}
             {data.map((d, i) => {
-              if (d.avg_score == null || isNaN(d.avg_score)) return null // Skip null/NaN scores
+              // Skip null/NaN/non-numeric scores
+              if (d.avg_score == null || isNaN(d.avg_score) || typeof d.avg_score !== 'number') return null
               const x = scaleX(i)
               const y = scaleYScore(d.avg_score)
               return (
@@ -493,7 +494,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
                     fontSize="12"
                     fontWeight="600"
                   >
-                    {d.avg_score != null && typeof d.avg_score === 'number' ? d.avg_score.toFixed(1) : 'N/A'}
+                    {d.avg_score.toFixed(1)}
                   </text>
                 </g>
               )
