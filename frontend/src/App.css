@@ -2535,6 +2535,7 @@ body {
   color: #fff;
   flex: 1;
   min-width: 0; /* Allow shrinking if needed */
+  max-width: 40%; /* Limit expansion to bring columns 40% closer */
 }
 
 .author-count {
@@ -2543,6 +2544,7 @@ body {
   min-width: 5rem; /* Fixed width to align all book counts */
   text-align: left;
   flex-shrink: 0;
+  margin-left: -2rem; /* Pull 40% closer to author names */
 }
 
 .author-score {
@@ -2551,6 +2553,7 @@ body {
   min-width: 6rem; /* Fixed width to align all averages */
   text-align: left;
   flex-shrink: 0;
+  margin-left: -1rem; /* Pull 20% closer to author names */
 }
 
 
