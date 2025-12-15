@@ -1651,7 +1651,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: 110px; /* Ensure consistent footer height across cards */
 }
 
 .film-info-container {
@@ -1664,7 +1663,7 @@ body {
 
 /* Ensure rating box is middle-aligned for books */
 .book-content .film-info-container {
-  align-items: flex-start; /* Align to top to allow title/author to grow */
+  align-items: center; /* Center vertically so grade box aligns */
   flex: 1; /* Allow container to grow */
   min-height: 0; /* Allow flex shrinking */
   height: auto; /* Override height: 100% from .film-info-container */
