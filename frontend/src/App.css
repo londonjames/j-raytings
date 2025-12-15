@@ -1650,7 +1650,8 @@ body {
   margin-left: -0.075rem; /* Move content 10% closer to poster */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between; /* Keep consistent spacing top/bottom */
+  min-height: 100px; /* Ensure uniform footer height across cards */
 }
 
 .film-info-container {
