@@ -157,7 +157,7 @@ function BookAnalytics() {
                 <span className="author-name">{author.author}</span>
                 <span className="author-count">{author.count} books</span>
                 {author.avg_score != null && (
-                  <span className="author-score">Avg: {scoreToGrade(Math.round(author.avg_score))}</span>
+                  <span className="author-score">Avg.: {scoreToGrade(Math.round(author.avg_score))}</span>
                 )}
               </div>
             ))}
