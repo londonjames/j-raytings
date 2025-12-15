@@ -73,6 +73,18 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
     return author
   }
 
+  const formatBookTitle = (title) => {
+    if (!title) return ''
+
+    // Check if title ends with ", The" (e.g., "Right Stuff, The")
+    if (title.endsWith(', The')) {
+      // Remove ", The" and add "The " at the beginning
+      return `The ${title.slice(0, -5)}`
+    }
+
+    return title
+  }
+
   // Helper function to format date as "Dec 1, 2025" (3-letter month, day, comma, year)
   const formatDate = (dateRead) => {
     if (!dateRead) return null
@@ -219,7 +231,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                 />
               )}
             <div className="film-row-content">
-              <h3>{book.book_name}</h3>
+              <h3>{formatBookTitle(book.book_name)}</h3>
               {book.author && (
                 <div className="film-row-author">by {formatAuthor(book.author)}</div>
               )}
@@ -311,7 +323,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                     <div className="film-info-left-column book-info-left-column">
                       <div className="book-title-group">
                         <h3 className={`film-title ${book.book_name && book.book_name.length > 25 ? 'film-title-long' : ''}`}>
-                          {book.book_name}
+                          {formatBookTitle(book.book_name)}
                         </h3>
                         {book.author && (
                           <div className="book-author-inline">by {formatAuthor(book.author)}</div>
@@ -376,7 +388,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                     />
                   )}
                   <div className="header-text">
-                    <h3 className="film-title-back">{book.book_name}</h3>
+                    <h3 className="film-title-back">{formatBookTitle(book.book_name)}</h3>
                     {book.author && (
                       <div className="book-author-back">by {formatAuthor(book.author)}</div>
                     )}
