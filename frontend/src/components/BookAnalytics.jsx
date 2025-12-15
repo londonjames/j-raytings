@@ -75,8 +75,56 @@ function BookAnalytics() {
         return author
       }) : []
 
+      // Consolidate book types into collapsed categories
+      const normalizeType = (type) => {
+        if (!type) return 'Unknown'
+        const key = type.toLowerCase().trim()
+        const map = {
+          'fiction': 'Fiction',
+          'fict': 'Fiction',
+          'non-fict: biz': 'Non-Fict: Business',
+          'non-fiction: business': 'Non-Fict: Business',
+          'non-fict: soc.': 'Non-Fict: Society',
+          'non-fiction: social': 'Non-Fict: Society',
+          'non-fict: sport': 'Non-Fict: Sport',
+          'non-fiction: sport': 'Non-Fict: Sport',
+          'non-fict: pol.': 'Non-Fict: Politics',
+          'non-fiction: politics': 'Non-Fict: Politics',
+          'non-fict: other': 'Non-Fict: Other',
+          'non-fict: bio': 'Non-Fict: Other',
+          'non-fiction: bio': 'Non-Fict: Other',
+          'non-fiction': 'Non-Fict: Other',
+          'non-fiction: true crime': 'Non-Fict: Other',
+          'non-fict: truecrime': 'Non-Fict: Other'
+        }
+        return map[key] || type
+      }
+
+      const normalizedTypeData = Array.isArray(typeAnalytics) ? typeAnalytics.map(item => ({
+        ...item,
+        type: normalizeType(item.type)
+      })) : []
+
+      const typeMap = new Map()
+      normalizedTypeData.forEach(item => {
+        const key = item.type || 'Unknown'
+        const count = item.count || 0
+        const avg = item.avg_score
+        if (typeMap.has(key)) {
+          const existing = typeMap.get(key)
+          const newCount = existing.count + count
+          const existingTotal = existing.avg_score != null ? existing.avg_score * existing.count : 0
+          const itemTotal = avg != null ? avg * count : 0
+          const newAvg = newCount > 0 ? (existingTotal + itemTotal) / newCount : null
+          typeMap.set(key, { ...existing, count: newCount, avg_score: newAvg })
+        } else {
+          typeMap.set(key, { ...item })
+        }
+      })
+      const consolidatedTypeData = Array.from(typeMap.values())
+
       setYearData(Array.isArray(yearAnalytics) ? yearAnalytics : [])
-      setTypeData(Array.isArray(typeAnalytics) ? typeAnalytics : [])
+      setTypeData(consolidatedTypeData)
       setFormData(consolidatedFormData)
       setAuthorData(formattedAuthorData)
       setLoading(false)
