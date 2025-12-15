@@ -2525,7 +2525,7 @@ body {
 
 .author-rank {
   font-weight: 600;
-  color: #4a9eff;
+  color: #ff6b6b; /* Changed from blue to red */
   min-width: 2rem;
   flex-shrink: 0;
 }
@@ -2533,24 +2533,23 @@ body {
 .author-name {
   font-weight: 500;
   color: #fff;
-  flex: 0 1 auto; /* Don't grow, allow shrinking */
-  max-width: 30%; /* Limit expansion - brings columns 40% closer */
-  margin-right: 2rem; /* Space after name before book count */
+  flex: 1;
+  min-width: 0; /* Allow shrinking if needed */
+  max-width: 35%; /* Limit expansion to bring columns closer while maintaining alignment */
 }
 
 .author-count {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
-  min-width: 5rem; /* Fixed width to align all book counts */
+  width: 5.5rem; /* Fixed width (not min-width) to ensure alignment */
   text-align: left;
   flex-shrink: 0;
-  margin-right: 1.5rem; /* Space before average (reduced by 20%) */
 }
 
 .author-score {
-  color: #4a9eff; /* Blue to match rank color */
+  color: #4a9eff; /* Blue for average grade */
   font-weight: 500;
-  min-width: 6rem; /* Fixed width to align all averages */
+  width: 7rem; /* Fixed width (not min-width) to ensure alignment */
   text-align: left;
   flex-shrink: 0;
 }
