@@ -83,6 +83,16 @@ function Analytics() {
     return <div className="analytics-loading">Loading analytics...</div>
   }
 
+  // Check if any data has scores over 15 to determine if we need to extend range to 16
+  const allData = [...yearData, ...filmYearData, ...rtData, ...genreData]
+  const maxScore = Math.max(...allData.map(d => d.avg_score || 0).filter(s => s > 0), 15)
+  const needsExtendedRange = maxScore > 15
+  const scoreTicks = needsExtendedRange ? [10, 11, 12, 13, 14, 15, 16] : [10, 11, 12, 13, 14, 15]
+  const scoreMax = needsExtendedRange ? 16 : 15
+  // For RT scores, use extended range if needed but keep min at 8
+  const rtScoreTicks = needsExtendedRange ? [8, 9, 10, 11, 12, 13, 14, 15, 16] : [8, 9, 10, 11, 12, 13, 14, 15]
+  const rtScoreMax = needsExtendedRange ? 16 : 15
+
   return (
     <div className="analytics-container">
       <AnalyticsSection
@@ -90,7 +100,7 @@ function Analytics() {
         data={yearData}
         dataKey="year_watched"
         formatLabel={(val) => val === 'Pre-2006' ? 'Pre-06' : val}
-        scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
+        scoreRange={{ min: 10, max: scoreMax, ticks: scoreTicks }}
         countRange="auto"
       />
 
@@ -99,7 +109,7 @@ function Analytics() {
         data={filmYearData}
         dataKey="decade"
         formatLabel={(val) => val}
-        scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
+        scoreRange={{ min: 10, max: scoreMax, ticks: scoreTicks }}
         countRange={{ max: 500, step: 100 }}
       />
 
@@ -108,7 +118,7 @@ function Analytics() {
         data={rtData}
         dataKey="rt_range"
         formatLabel={(val) => val}
-        scoreRange={{ min: 8, max: 15, ticks: [8, 9, 10, 11, 12, 13, 14, 15] }}
+        scoreRange={{ min: 8, max: rtScoreMax, ticks: rtScoreTicks }}
         countRange={{ max: 500, step: 100 }}
       />
 
@@ -117,7 +127,7 @@ function Analytics() {
         data={genreData}
         dataKey="genre"
         formatLabel={(val) => val}
-        scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
+        scoreRange={{ min: 10, max: scoreMax, ticks: scoreTicks }}
         countRange={{ max: 800, step: 200 }}
       />
     </div>
