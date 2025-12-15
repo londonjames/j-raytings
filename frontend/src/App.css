@@ -2510,7 +2510,7 @@ body {
   flex-direction: column;
   gap: 0.75rem;
   padding: 1rem;
-  margin-left: 5%; /* Shift the rows slightly to the right */
+  margin-left: 6%; /* Shift the rows slightly to the right */
   background: none; /* Remove surrounding box */
   border-radius: 0;
 }
