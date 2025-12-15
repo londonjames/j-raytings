@@ -2544,6 +2544,7 @@ body {
   width: 5.5rem; /* Fixed width (not min-width) to ensure alignment */
   text-align: left;
   flex-shrink: 0;
+  margin-right: 2.5rem; /* Increased gap to roughly double the space before Avg. */
 }
 
 .author-score {
