@@ -59,10 +59,15 @@ function Analytics() {
       if (!rtResponse.ok) console.warn(`RT analytics returned ${rtResponse.status}`)
       if (!genreResponse.ok) console.warn(`Genre analytics returned ${genreResponse.status}`)
 
-      setYearData(Array.isArray(yearAnalytics) ? yearAnalytics : [])
-      setFilmYearData(Array.isArray(filmYearAnalytics) ? filmYearAnalytics : [])
-      setRtData(Array.isArray(rtAnalytics) ? rtAnalytics : [])
-      setGenreData(Array.isArray(genreAnalytics) ? genreAnalytics : [])
+      const yearDataArray = Array.isArray(yearAnalytics) ? yearAnalytics : []
+      const filmYearDataArray = Array.isArray(filmYearAnalytics) ? filmYearAnalytics : []
+      const rtDataArray = Array.isArray(rtAnalytics) ? rtAnalytics : []
+      const genreDataArray = Array.isArray(genreAnalytics) ? genreAnalytics : []
+
+      setYearData(yearDataArray)
+      setFilmYearData(filmYearDataArray)
+      setRtData(rtDataArray)
+      setGenreData(genreDataArray)
       setLoading(false)
     } catch (error) {
       console.error('Error fetching analytics:', error)
@@ -123,11 +128,12 @@ function Analytics() {
 const scoreToGrade = (score) => {
   const gradeMap = {
     10: 'B-',
-    11: 'B',
-    12: 'B/B+',
-    13: 'B+',
-    14: 'B+/A-',
-    15: 'A-'
+    11: 'B/B-',
+    12: 'B',
+    13: 'B/B+',
+    14: 'B+',
+    15: 'B+/A-',
+    16: 'A-'
   }
   return gradeMap[score] || score.toString()
 }

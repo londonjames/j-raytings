@@ -100,6 +100,13 @@ function BookAnalytics() {
   // Reverse year data order for books (2025 on right, oldest on left)
   const reversedYearData = [...filteredYearData].reverse()
 
+  // Check if any data has scores over 15 to determine if we need to extend range to 16
+  const allData = [...reversedYearData, ...typeData, ...formData]
+  const maxScore = Math.max(...allData.map(d => d.avg_score || 0).filter(s => s > 0), 15)
+  const needsExtendedRange = maxScore > 15
+  const scoreTicks = needsExtendedRange ? [10, 11, 12, 13, 14, 15, 16] : [10, 11, 12, 13, 14, 15]
+  const scoreMax = needsExtendedRange ? 16 : 15
+
   // Format category labels for analytics display only (not database)
   const formatCategoryLabel = (val) => {
     const categoryMap = {
@@ -117,7 +124,7 @@ function BookAnalytics() {
         data={reversedYearData}
         dataKey="year"
         formatLabel={(val) => val}
-        scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
+        scoreRange={{ min: 10, max: scoreMax, ticks: scoreTicks }}
         countRange="auto"
       />
 
@@ -126,7 +133,7 @@ function BookAnalytics() {
         data={typeData}
         dataKey="type"
         formatLabel={formatCategoryLabel}
-        scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
+        scoreRange={{ min: 10, max: scoreMax, ticks: scoreTicks }}
         countRange={{ max: 300, step: 50 }}
       />
 
@@ -135,7 +142,7 @@ function BookAnalytics() {
         data={formData}
         dataKey="form"
         formatLabel={(val) => val}
-        scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
+        scoreRange={{ min: 10, max: scoreMax, ticks: scoreTicks }}
         countRange={{ max: 400, step: 50 }}
       />
 
@@ -165,11 +172,12 @@ function BookAnalytics() {
 const scoreToGrade = (score) => {
   const gradeMap = {
     10: 'B-',
-    11: 'B',
-    12: 'B/B+',
-    13: 'B+',
-    14: 'B+/A-',
-    15: 'A-'
+    11: 'B/B-',
+    12: 'B',
+    13: 'B/B+',
+    14: 'B+',
+    15: 'B+/A-',
+    16: 'A-'
   }
   return gradeMap[score] || score.toString()
 }
