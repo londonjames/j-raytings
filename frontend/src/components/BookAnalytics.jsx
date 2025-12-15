@@ -161,6 +161,19 @@ function BookAnalytics() {
   )
 }
 
+// Convert numeric score to letter grade for display
+const scoreToGrade = (score) => {
+  const gradeMap = {
+    10: 'B-',
+    11: 'B',
+    12: 'B/B+',
+    13: 'B+',
+    14: 'B+/A-',
+    15: 'A-'
+  }
+  return gradeMap[score] || score.toString()
+}
+
 function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, countRange }) {
   if (data.length === 0) {
     return null
@@ -431,7 +444,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
                 fontSize="12"
                 alignmentBaseline="middle"
               >
-                {tick}
+                {scoreToGrade(tick)}
               </text>
             ))}
 
