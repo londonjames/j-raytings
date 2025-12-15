@@ -493,7 +493,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
                     fontSize="12"
                     fontWeight="600"
                   >
-                    {d.avg_score.toFixed(1)}
+                    {d.avg_score != null && typeof d.avg_score === 'number' ? d.avg_score.toFixed(1) : 'N/A'}
                   </text>
                 </g>
               )
