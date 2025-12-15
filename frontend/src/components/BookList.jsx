@@ -240,7 +240,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                   <span className="meta-item">{book.year_written}</span>
                 )}
                 {book.pages && (
-                  <span className="meta-item">{book.pages} pg</span>
+                  <span className="meta-item">{book.pages} pages</span>
                 )}
               </div>
             </div>
@@ -334,7 +334,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                           <span className="info-item">{book.year_written}</span>
                         )}
                         {book.pages && (
-                          <span className="info-item">{book.pages} pg</span>
+                          <span className="info-item">{book.pages} pages</span>
                         )}
                       </div>
                     </div>
