@@ -33,7 +33,7 @@ function BookAnalytics() {
       const formAnalytics = await formResponse.json()
       const authorAnalytics = await authorResponse.json()
 
-      // Collapse "kindle" into "Kindle" for form data
+      // Collapse "kindle" variants into "Kindle" for form data
       const normalizedFormData = Array.isArray(formAnalytics) ? formAnalytics.map(item => {
         if (item.form && item.form.toLowerCase() === 'kindle') {
           return { ...item, form: 'Kindle' }
@@ -41,17 +41,22 @@ function BookAnalytics() {
         return item
       }) : []
       
-      // Consolidate Kindle entries if they were separate
+      // Consolidate all form entries (especially Kindle variants)
       const formMap = new Map()
       normalizedFormData.forEach(item => {
         const key = item.form || 'Unknown'
         if (formMap.has(key)) {
+          const existing = formMap.get(key)
+          const newCount = existing.count + (item.count || 0)
+          // Calculate weighted average for avg_score
+          const existingTotal = existing.avg_score != null ? existing.avg_score * existing.count : 0
+          const itemTotal = item.avg_score != null ? item.avg_score * (item.count || 0) : 0
+          const newAvgScore = newCount > 0 ? (existingTotal + itemTotal) / newCount : null
+          
           formMap.set(key, {
-            ...formMap.get(key),
-            count: formMap.get(key).count + (item.count || 0),
-            avg_score: formMap.get(key).avg_score != null && item.avg_score != null
-              ? (formMap.get(key).avg_score * formMap.get(key).count + item.avg_score * (item.count || 0)) / (formMap.get(key).count + (item.count || 0))
-              : formMap.get(key).avg_score || item.avg_score
+            ...existing,
+            count: newCount,
+            avg_score: newAvgScore
           })
         } else {
           formMap.set(key, { ...item })
