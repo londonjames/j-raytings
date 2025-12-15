@@ -2517,7 +2517,7 @@ body {
 .author-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Reduced gap to bring elements closer */
+  gap: 0.5rem;
   padding: 0.75rem;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 4px;
@@ -2527,23 +2527,30 @@ body {
   font-weight: 600;
   color: #4a9eff;
   min-width: 2rem;
+  flex-shrink: 0;
 }
 
 .author-name {
   font-weight: 500;
   color: #fff;
-  margin-right: 1.5rem; /* Add space after name, but not flex: 1 to allow items to stay close */
+  flex: 1;
+  min-width: 0; /* Allow shrinking if needed */
 }
 
 .author-count {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
-  margin-right: 1.5rem; /* Add space after count */
+  min-width: 5rem; /* Fixed width to align all book counts */
+  text-align: left;
+  flex-shrink: 0;
 }
 
 .author-score {
-  color: #4a9eff; /* Changed from red to blue to match rank color */
+  color: #4a9eff; /* Blue to match rank color */
   font-weight: 500;
+  min-width: 6rem; /* Fixed width to align all averages */
+  text-align: left;
+  flex-shrink: 0;
 }
 
 
