@@ -1651,7 +1651,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Keep consistent spacing top/bottom */
-  min-height: 100px; /* Ensure uniform footer height across cards */
+  min-height: 100px; /* Ensure uniform footer height across cards (front view) */
 }
 
 .film-info-container {
