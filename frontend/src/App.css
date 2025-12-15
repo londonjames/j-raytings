@@ -764,12 +764,38 @@ body {
 
 .chart-section {
   margin-bottom: 0.5rem;
-  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling - only shows scrollbar when content overflows */
   overflow-y: visible;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   /* Enable horizontal mouse wheel scrolling */
   cursor: grab;
+  /* Add padding-bottom to move scrollbar lower */
+  padding-bottom: 0.5rem;
+  /* Scrollbar styling - only visible when content overflows */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
+}
+
+/* Webkit scrollbar styling - more visible when needed */
+.chart-section::-webkit-scrollbar {
+  height: 10px; /* Slightly thicker for better visibility */
+}
+
+.chart-section::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.15); /* More visible track */
+  border-radius: 5px;
+  margin: 0 0.5rem; /* Add horizontal margin */
+}
+
+.chart-section::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5); /* More visible thumb */
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for definition */
+}
+
+.chart-section::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7); /* Even more visible on hover */
 }
 
 .chart-section:active {
@@ -1418,26 +1444,8 @@ body {
   .chart-section {
     /* Ensure horizontal scrolling works on mobile */
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  }
-  
-  .chart-section::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  .chart-section::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-  }
-  
-  .chart-section::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-  }
-  
-  .chart-section::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    /* Scrollbar styling matches base styles but may need adjustment for mobile */
+    padding-bottom: 0.5rem; /* Move scrollbar lower on mobile too */
   }
 
   /* Filter mobile optimization */
