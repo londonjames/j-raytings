@@ -4,7 +4,10 @@ Handles reading from and writing to Google Sheets using the Google Sheets API
 """
 import os
 import gspread
+import requests
+import json
 from google.oauth2.service_account import Credentials
+from google.auth.transport.requests import Request as GoogleRequest
 from typing import List, Dict, Optional, Any
 from datetime import datetime, timedelta
 
@@ -76,6 +79,227 @@ def get_sheet(sheet_name: str = None, gid: int = None):
                 return sheet
     
     raise ValueError(f"Sheet not found: {sheet_name or f'gid={gid}'}")
+
+def get_notion_hyperlinks(col_idx: int, start_row: int, end_row: int, gid: int = 2) -> Dict[int, str]:
+    """
+    Extract Notion hyperlinks from a specific column using Google Sheets API
+    Processes in batches to avoid rate limits and API size limits
+    
+    Args:
+        col_idx: Column index (0-based) for "Notes in Notion" column
+        start_row: Starting row index (1-based, after header)
+        end_row: Ending row index (1-based)
+        gid: Sheet ID (gid=2 for "all books")
+    
+    Returns:
+        Dictionary mapping row index (1-based) to Notion link URL
+    """
+    notion_links = {}
+    
+    try:
+        # Get credentials for API request
+        creds_path = os.getenv('GOOGLE_SHEETS_CREDENTIALS')
+        creds_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS_JSON')
+        
+        if creds_json:
+            import json as json_lib
+            creds_info = json_lib.loads(creds_json)
+            creds = Credentials.from_service_account_info(creds_info, scopes=[
+                'https://www.googleapis.com/auth/spreadsheets',
+                'https://www.googleapis.com/auth/drive'
+            ])
+        elif creds_path and os.path.exists(creds_path):
+            creds = Credentials.from_service_account_file(creds_path, scopes=[
+                'https://www.googleapis.com/auth/spreadsheets',
+                'https://www.googleapis.com/auth/drive'
+            ])
+        else:
+            print("Warning: Could not get credentials for hyperlink extraction")
+            return notion_links
+        
+        # Refresh credentials if needed
+        if not creds.valid:
+            creds.refresh(GoogleRequest())
+        
+        # Convert column index to letter (A=0, B=1, etc.)
+        # Handle columns beyond Z (AA, AB, etc.)
+        if col_idx < 26:
+            col_letter = chr(ord('A') + col_idx)
+        else:
+            first_letter = chr(ord('A') + (col_idx // 26) - 1)
+            second_letter = chr(ord('A') + (col_idx % 26))
+            col_letter = first_letter + second_letter
+        
+        # Process in batches of 100 rows to avoid API limits
+        batch_size = 100
+        headers = {
+            'Authorization': f'Bearer {creds.token}',
+            'Content-Type': 'application/json'
+        }
+        
+        for batch_start in range(start_row, end_row + 1, batch_size):
+            batch_end = min(batch_start + batch_size - 1, end_row)
+            range_name = f"'{BOOKS_SHEET_NAME}'!{col_letter}{batch_start}:{col_letter}{batch_end}"
+            
+            # Build API request URL - correct format for Google Sheets API v4
+            url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}"
+            params = {
+                'includeGridData': 'true',
+                'ranges': range_name,
+                'fields': 'sheets.data.rowData.values(hyperlink,textFormatRuns,userEnteredFormat,effectiveValue,formattedValue)'
+            }
+            
+            try:
+                response = requests.get(url, headers=headers, params=params, timeout=30)
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    sheets = data.get('sheets', [])
+                    
+                    for sheet in sheets:
+                        sheet_data = sheet.get('data', [])
+                        for data_range in sheet_data:
+                            row_data = data_range.get('rowData', [])
+                            
+                            for idx, row in enumerate(row_data):
+                                row_idx = batch_start + idx
+                                values = row.get('values', [])
+                                if values and len(values) > 0:
+                                    cell = values[0]
+                                    
+                                    # Check for direct hyperlink
+                                    if 'hyperlink' in cell and cell['hyperlink']:
+                                        notion_links[row_idx] = cell['hyperlink']
+                                        continue
+                                    
+                                    # Check textFormatRuns for hyperlinks (most common location)
+                                    # textFormatRuns can have hyperlinks even when cell value is just "YES"
+                                    text_format_runs = cell.get('textFormatRuns', [])
+                                    if text_format_runs:
+                                        for run in text_format_runs:
+                                            run_format = run.get('format', {})
+                                            # Check multiple possible locations for link
+                                            if 'link' in run_format:
+                                                link_obj = run_format['link']
+                                                if isinstance(link_obj, dict):
+                                                    link_url = link_obj.get('uri', '') or link_obj.get('url', '') or link_obj.get('linkUri', '')
+                                                elif isinstance(link_obj, str):
+                                                    link_url = link_obj
+                                                else:
+                                                    link_url = str(link_obj)
+                                                if link_url and link_url not in ['', 'None']:
+                                                    notion_links[row_idx] = link_url
+                                                    break
+                                            # Also check nested link structure
+                                            if isinstance(run_format, dict):
+                                                for key in ['link', 'hyperlink', 'url']:
+                                                    if key in run_format:
+                                                        link_val = run_format[key]
+                                                        if isinstance(link_val, dict):
+                                                            link_url = link_val.get('uri', '') or link_val.get('url', '')
+                                                        elif isinstance(link_val, str):
+                                                            link_url = link_val
+                                                        else:
+                                                            link_url = str(link_val)
+                                                        if link_url and link_url not in ['', 'None']:
+                                                            notion_links[row_idx] = link_url
+                                                            break
+                                                    if row_idx in notion_links:
+                                                        break
+                                                if row_idx in notion_links:
+                                                    break
+                                    
+                                    # Check userEnteredFormat for hyperlink
+                                    user_format = cell.get('userEnteredFormat', {})
+                                    if user_format and 'link' in user_format:
+                                        link_obj = user_format['link']
+                                        if isinstance(link_obj, dict):
+                                            link_url = link_obj.get('uri', '') or link_obj.get('url', '')
+                                        elif isinstance(link_obj, str):
+                                            link_url = link_obj
+                                        else:
+                                            link_url = str(link_obj)
+                                        if link_url and link_url not in ['', 'None']:
+                                            notion_links[row_idx] = link_url
+                                    
+                                    # Also check if hyperlink is a direct string in the cell
+                                    if 'hyperlink' in cell:
+                                        hyperlink_val = cell['hyperlink']
+                                        if isinstance(hyperlink_val, str) and hyperlink_val:
+                                            notion_links[row_idx] = hyperlink_val
+                                        elif isinstance(hyperlink_val, dict):
+                                            link_url = hyperlink_val.get('uri', '') or hyperlink_val.get('url', '')
+                                            if link_url:
+                                                notion_links[row_idx] = link_url
+                                    
+                                    # Check effectiveValue for HYPERLINK formulas
+                                    effective_value = cell.get('effectiveValue', {})
+                                    if effective_value:
+                                        # Check if it's a formula value with HYPERLINK
+                                        formula_value = effective_value.get('formulaValue', '')
+                                        if formula_value and 'HYPERLINK' in formula_value.upper():
+                                            # Extract URL from HYPERLINK formula: HYPERLINK("url","text")
+                                            import re
+                                            match = re.search(r'HYPERLINK\s*\(\s*"([^"]+)"', formula_value, re.IGNORECASE)
+                                            if match:
+                                                notion_links[row_idx] = match.group(1)
+                elif response.status_code == 429:
+                    print(f"  Rate limit hit, waiting before retrying batch {batch_start}-{batch_end}...")
+                    import time
+                    time.sleep(2)
+                    # Retry once
+                    response = requests.get(url, headers=headers, params=params, timeout=30)
+                    if response.status_code == 200:
+                        # Process response same as above
+                        data = response.json()
+                        sheets = data.get('sheets', [])
+                        for sheet in sheets:
+                            sheet_data = sheet.get('data', [])
+                            for data_range in sheet_data:
+                                row_data = data_range.get('rowData', [])
+                                for idx, row in enumerate(row_data):
+                                    row_idx = batch_start + idx
+                                    values = row.get('values', [])
+                                    if values and len(values) > 0:
+                                        cell = values[0]
+                                        if 'hyperlink' in cell and cell['hyperlink']:
+                                            notion_links[row_idx] = cell['hyperlink']
+                                            continue
+                                        text_format_runs = cell.get('textFormatRuns', [])
+                                        if text_format_runs:
+                                            for run in text_format_runs:
+                                                run_format = run.get('format', {})
+                                                if 'link' in run_format:
+                                                    link_obj = run_format['link']
+                                                    link_url = link_obj.get('uri', '') if isinstance(link_obj, dict) else str(link_obj)
+                                                    if link_url:
+                                                        notion_links[row_idx] = link_url
+                                                        break
+                                        user_format = cell.get('userEnteredFormat', {})
+                                        if 'link' in user_format:
+                                            link_obj = user_format['link']
+                                            link_url = link_obj.get('uri', '') if isinstance(link_obj, dict) else str(link_obj)
+                                            if link_url:
+                                                notion_links[row_idx] = link_url
+                else:
+                    print(f"  Warning: API request failed for batch {batch_start}-{batch_end}: {response.status_code}")
+                    if response.status_code != 200:
+                        print(f"  Response: {response.text[:200]}")
+                
+                # Small delay between batches to avoid rate limits
+                import time
+                time.sleep(0.1)
+                
+            except Exception as e:
+                print(f"  Error processing batch {batch_start}-{batch_end}: {e}")
+                continue
+        
+    except Exception as e:
+        print(f"Warning: Could not retrieve hyperlinks from Notes in Notion column: {e}")
+        import traceback
+        traceback.print_exc()
+    
+    return notion_links
 
 def get_books_data() -> List[Dict[str, Any]]:
     """
@@ -158,7 +382,18 @@ def get_books_data() -> List[Dict[str, Any]]:
                 # Continue with other chunks even if one fails
                 pass
     
-    # Second pass: build book dicts with converted dates
+    # Extract Notion hyperlinks from "Notes in Notion" column
+    notion_col_idx = col_map.get('Notes in Notion', None)
+    notion_links = {}
+    if notion_col_idx is not None:
+        data_start_row = header_row_idx + 2
+        data_end_row = len(all_values)
+        if data_end_row >= data_start_row:
+            print(f"Extracting Notion hyperlinks from column {notion_col_idx} (rows {data_start_row}-{data_end_row})...")
+            notion_links = get_notion_hyperlinks(notion_col_idx, data_start_row, data_end_row, gid=2)
+            print(f"✓ Extracted {len(notion_links)} Notion hyperlinks")
+    
+    # Second pass: build book dicts with converted dates and Notion links
     date_idx = 0
     for row_idx in range(header_row_idx + 2, len(all_values) + 1):
         row = all_values[row_idx - 1]
@@ -178,6 +413,10 @@ def get_books_data() -> List[Dict[str, Any]]:
         # Replace date with converted value if available
         if row_idx in date_values:
             book['Date Read'] = date_values[row_idx]
+        
+        # Add Notion link if available
+        if row_idx in notion_links:
+            book['Notion Link'] = notion_links[row_idx]
         
         books.append(book)
     
