@@ -2533,9 +2533,9 @@ body {
 .author-name {
   font-weight: 500;
   color: #fff;
-  flex: 1;
-  min-width: 0; /* Allow shrinking if needed */
-  max-width: 40%; /* Limit expansion to bring columns 40% closer */
+  flex: 0 1 auto; /* Don't grow, allow shrinking */
+  max-width: 30%; /* Limit expansion - brings columns 40% closer */
+  margin-right: 2rem; /* Space after name before book count */
 }
 
 .author-count {
@@ -2544,7 +2544,7 @@ body {
   min-width: 5rem; /* Fixed width to align all book counts */
   text-align: left;
   flex-shrink: 0;
-  margin-left: -2rem; /* Pull 40% closer to author names */
+  margin-right: 1.5rem; /* Space before average (reduced by 20%) */
 }
 
 .author-score {
@@ -2553,7 +2553,6 @@ body {
   min-width: 6rem; /* Fixed width to align all averages */
   text-align: left;
   flex-shrink: 0;
-  margin-left: -1rem; /* Pull 20% closer to author names */
 }
 
 
