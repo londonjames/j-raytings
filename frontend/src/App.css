@@ -2517,7 +2517,7 @@ body {
 .author-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem; /* Reduced gap to bring elements closer */
   padding: 0.75rem;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 4px;
@@ -2530,18 +2530,19 @@ body {
 }
 
 .author-name {
-  flex: 1;
   font-weight: 500;
   color: #fff;
+  margin-right: 1.5rem; /* Add space after name, but not flex: 1 to allow items to stay close */
 }
 
 .author-count {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
+  margin-right: 1.5rem; /* Add space after count */
 }
 
 .author-score {
-  color: #ff6b6b;
+  color: #4a9eff; /* Changed from red to blue to match rank color */
   font-weight: 500;
 }
 
