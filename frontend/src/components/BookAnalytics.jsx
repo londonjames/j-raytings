@@ -33,10 +33,47 @@ function BookAnalytics() {
       const formAnalytics = await formResponse.json()
       const authorAnalytics = await authorResponse.json()
 
+      // Collapse "kindle" into "Kindle" for form data
+      const normalizedFormData = Array.isArray(formAnalytics) ? formAnalytics.map(item => {
+        if (item.form && item.form.toLowerCase() === 'kindle') {
+          return { ...item, form: 'Kindle' }
+        }
+        return item
+      }) : []
+      
+      // Consolidate Kindle entries if they were separate
+      const formMap = new Map()
+      normalizedFormData.forEach(item => {
+        const key = item.form || 'Unknown'
+        if (formMap.has(key)) {
+          formMap.set(key, {
+            ...formMap.get(key),
+            count: formMap.get(key).count + (item.count || 0),
+            avg_score: formMap.get(key).avg_score != null && item.avg_score != null
+              ? (formMap.get(key).avg_score * formMap.get(key).count + item.avg_score * (item.count || 0)) / (formMap.get(key).count + (item.count || 0))
+              : formMap.get(key).avg_score || item.avg_score
+          })
+        } else {
+          formMap.set(key, { ...item })
+        }
+      })
+      const consolidatedFormData = Array.from(formMap.values())
+
+      // Format author names from "Last, First" to "First Last"
+      const formattedAuthorData = Array.isArray(authorAnalytics) ? authorAnalytics.map(author => {
+        if (author.author && author.author.includes(',')) {
+          const parts = author.author.split(',').map(s => s.trim())
+          if (parts.length === 2) {
+            return { ...author, author: `${parts[1]} ${parts[0]}` }
+          }
+        }
+        return author
+      }) : []
+
       setYearData(Array.isArray(yearAnalytics) ? yearAnalytics : [])
       setTypeData(Array.isArray(typeAnalytics) ? typeAnalytics : [])
-      setFormData(Array.isArray(formAnalytics) ? formAnalytics : [])
-      setAuthorData(Array.isArray(authorAnalytics) ? authorAnalytics : [])
+      setFormData(consolidatedFormData)
+      setAuthorData(formattedAuthorData)
       setLoading(false)
     } catch (error) {
       console.error('Error fetching book analytics:', error)
@@ -85,7 +122,7 @@ function BookAnalytics() {
         dataKey="type"
         formatLabel={formatCategoryLabel}
         scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
-        countRange="auto"
+        countRange={{ max: 300, step: 50 }}
       />
 
       <AnalyticsSection
@@ -94,7 +131,7 @@ function BookAnalytics() {
         dataKey="form"
         formatLabel={(val) => val}
         scoreRange={{ min: 10, max: 15, ticks: [10, 11, 12, 13, 14, 15] }}
-        countRange="auto"
+        countRange={{ max: 400, step: 50 }}
       />
 
       {/* Top Authors - Simple list */}
