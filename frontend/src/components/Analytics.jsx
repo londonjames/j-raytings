@@ -254,7 +254,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
         }}
       >
         <div className="chart-container">
-          <svg width={width} height={height} style={{ minWidth: width }}>
+          <svg width={width} height={height} style={{ minWidth: width, overflow: 'visible' }} viewBox={`-20 0 ${width + 20} ${height}`}>
             {/* Grid lines */}
             {countTicks.map(tick => (
               <line
@@ -381,7 +381,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
         }}
       >
         <div className="chart-container">
-          <svg width={width} height={height} style={{ minWidth: width }}>
+          <svg width={width} height={height} style={{ minWidth: width, overflow: 'visible' }} viewBox={`-20 0 ${width + 20} ${height}`}>
             {/* Grid lines */}
             {scoreTicks.map(tick => (
               <line

@@ -731,7 +731,8 @@ body {
   min-height: 400px;
   /* Background - Current: #1c1c1c (RGB: 28, 28, 28) */
   background: #1c1c1c;
-  padding: 0.5rem 2rem 0.5rem 2rem;
+  /* Increased left padding to prevent Y-axis titles from being cut off */
+  padding: 0.5rem 2rem 0.5rem 3rem;
   overflow-x: auto; /* Enable horizontal scrolling */
   overflow-y: visible; /* Keep vertical scrolling normal */
   scroll-behavior: smooth; /* Smooth scrolling */
@@ -807,7 +808,10 @@ body {
   justify-content: center;
   min-width: fit-content; /* Prevent shrinking below content width */
   overflow-x: auto; /* Enable horizontal scrolling if needed */
+  overflow-y: visible; /* Allow Y-axis titles to extend beyond container */
   scroll-behavior: smooth;
+  /* Add left padding to prevent Y-axis titles from being cut off */
+  padding-left: 1rem;
 }
 
 .filter-type-select {
