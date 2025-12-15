@@ -453,7 +453,7 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                         </span>
                       </div>
                     )}
-                    {book.notion_link ? (
+                    {book.notion_link && (
                       <div className="detail-row">
                         <span className="detail-label">Notion Note:</span>
                         <span className="detail-value">
@@ -461,11 +461,6 @@ function BookList({ books, onEdit, onDelete, viewMode = 'grid' }) {
                             Open
                           </a>
                         </span>
-                      </div>
-                    ) : (
-                      <div className="detail-row">
-                        <span className="detail-label">Notion Note:</span>
-                        <span className="detail-value">Sorry, no</span>
                       </div>
                     )}
                   </div>
