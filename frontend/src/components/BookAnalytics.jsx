@@ -329,13 +329,13 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
             {/* Y-axis title */}
             <text
-              x={padding.left - 45}
+              x={padding.left - 48}
               y={height / 2}
               textAnchor="middle"
               fill="#999"
               fontSize="13"
               fontWeight="500"
-              transform={`rotate(-90, ${padding.left - 45}, ${height / 2})`}
+              transform={`rotate(-90, ${padding.left - 48}, ${height / 2})`}
             >
               Total Books Read
             </text>
@@ -450,13 +450,13 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
             {/* Y-axis title */}
             <text
-              x={padding.left - 45}
+              x={padding.left - 48}
               y={height / 2}
               textAnchor="middle"
               fill="#999"
               fontSize="13"
               fontWeight="500"
-              transform={`rotate(-90, ${padding.left - 45}, ${height / 2})`}
+              transform={`rotate(-90, ${padding.left - 48}, ${height / 2})`}
             >
               Average J-Rayting
             </text>
