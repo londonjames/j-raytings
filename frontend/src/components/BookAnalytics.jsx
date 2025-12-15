@@ -286,11 +286,12 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
   }).join(' ')
 
   const scorePath = data
-    .filter(d => d.avg_score != null && !isNaN(d.avg_score)) // Filter out null/NaN scores
-    .map((d, i, filteredData) => {
-      const originalIndex = data.indexOf(d)
-      const x = scaleX(originalIndex)
-      const y = scaleYScore(d.avg_score)
+    .map(d => ({ ...d, avg_score_num: d.avg_score != null ? Number(d.avg_score) : null }))
+    .filter(d => d.avg_score_num != null && !isNaN(d.avg_score_num)) // Filter out null/NaN scores
+    .map((d, i) => {
+      const originalIndex = data.findIndex(item => item === d || (item[dataKey] === d[dataKey] && item.avg_score == d.avg_score))
+      const x = scaleX(originalIndex !== -1 ? originalIndex : i)
+      const y = scaleYScore(d.avg_score_num)
       return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
     })
     .join(' ')
@@ -527,10 +528,10 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
 
             {/* Data points */}
             {data.map((d, i) => {
-              // Skip null/NaN/non-numeric scores
-              if (d.avg_score == null || isNaN(d.avg_score) || typeof d.avg_score !== 'number') return null
+              const scoreValue = d.avg_score != null ? Number(d.avg_score) : null
+              if (scoreValue == null || isNaN(scoreValue)) return null
               const x = scaleX(i)
-              const y = scaleYScore(d.avg_score)
+              const y = scaleYScore(scoreValue)
               return (
                 <g key={`score-data-${d[dataKey]}`}>
                   <circle cx={x} cy={y} r="4" fill="#ff6b6b" />
@@ -542,7 +543,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
                     fontSize="12"
                     fontWeight="600"
                   >
-                    {d.avg_score.toFixed(1)}
+                    {scoreValue.toFixed(1)}
                   </text>
                 </g>
               )

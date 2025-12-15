@@ -218,13 +218,17 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
     return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
   }).join(' ')
 
-  // Generate path for score line
-  const scorePath = data
-    .filter(d => d.avg_score != null && !isNaN(d.avg_score) && typeof d.avg_score === 'number') // Filter out null/NaN/non-numeric scores
-    .map((d, i, filteredData) => {
-      const originalIndex = data.indexOf(d)
-      const x = scaleX(originalIndex)
-      const y = scaleYScore(d.avg_score)
+  // Normalize scores to numbers and generate path for score line
+  const normalizedScoreData = data.map(d => ({
+    ...d,
+    avg_score_num: d.avg_score != null ? Number(d.avg_score) : null
+  }))
+
+  const scorePath = normalizedScoreData
+    .filter(d => d.avg_score_num != null && !isNaN(d.avg_score_num)) // Filter out null/NaN scores
+    .map((d, i) => {
+      const x = scaleX(i)
+      const y = scaleYScore(d.avg_score_num)
       return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
     })
     .join(' ')
@@ -471,11 +475,11 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
             />
 
             {/* Data points and labels */}
-            {data.map((d, i) => {
-              // Skip null/NaN scores or non-numeric values
-              if (d.avg_score == null || isNaN(d.avg_score) || typeof d.avg_score !== 'number') return null
+            {normalizedScoreData.map((d, i) => {
+              const scoreValue = d.avg_score_num
+              if (scoreValue == null || isNaN(scoreValue)) return null
               const x = scaleX(i)
-              const y = scaleYScore(d.avg_score)
+              const y = scaleYScore(scoreValue)
               return (
                 <g key={`score-data-${d[dataKey]}`}>
                   <circle cx={x} cy={y} r="4" fill="#ff6b6b" />
@@ -487,7 +491,7 @@ function AnalyticsSection({ title, data, dataKey, formatLabel, scoreRange, count
                     fontSize="12"
                     fontWeight="600"
                   >
-                    {d.avg_score != null && typeof d.avg_score === 'number' ? d.avg_score.toFixed(1) : 'N/A'}
+                    {scoreValue.toFixed(1)}
                   </text>
                 </g>
               )
