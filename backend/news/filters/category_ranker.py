@@ -25,7 +25,9 @@ def _enforce_source_diversity(articles: List[Dict], exact_count: int) -> List[Di
         # Combine Hacker News variants
         if 'hacker news' in source.lower():
             hn_count = source_current_counts.get('Hacker News: Front Page', 0) + source_current_counts.get('Hacker News', 0)
-            if hn_count >= 5:
+            # Use the configured cap for Hacker News
+            hn_max = SOURCE_MAX_CAPS.get('Hacker News: Front Page', DEFAULT_SOURCE_MAX)
+            if hn_count >= hn_max:
                 removed_articles.append(article)
                 continue
 
