@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats - Personalized News</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Statistics</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/stats">Stats</a>
+            </nav>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Articles</h3>
+                <div class="stat-value">{{ total }}</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Sources</h3>
+                <div class="stat-value">{{ by_source|length }}</div>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2>Articles by Source</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Count</th>
+                        <th>Avg Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in by_source %}
+                    <tr>
+                        <td>{{ row.source }}</td>
+                        <td>{{ row.count }}</td>
+                        <td>{{ "%.2f"|format(row.avg_score) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats-section">
+            <h2>Recent Activity (Last 7 Days)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Articles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in recent_activity %}
+                    <tr>
+                        <td>{{ row.date }}</td>
+                        <td>{{ row.count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

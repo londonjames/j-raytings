@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Personalized News</title>
+    <link rel="stylesheet" href="/static/style.css?v=2">
+</head>
+<body>
+    <div class="sticky-nav">
+        <div class="container">
+            <div class="nav-bar">
+                <div class="section-buttons">
+                    <a href="/?section=tech" class="section-btn {% if section == 'tech' %}active{% endif %}">
+                        <span class="btn-text-desktop">AI & Tech</span>
+                        <span class="btn-text-mobile">AI</span>
+                    </a>
+                    <a href="/?section=sports" class="section-btn {% if section == 'sports' %}active{% endif %}">
+                        Sport
+                    </a>
+                </div>
+                <form method="get" action="/" class="filter-form">
+                    <input type="hidden" name="section" value="{{ section }}">
+                    <select name="days" class="filter-select">
+                        <option value="1" {% if days == 1 %}selected{% endif %}>24h</option>
+                        <option value="3" {% if days == 3 %}selected{% endif %}>3d</option>
+                        <option value="7" {% if days == 7 %}selected{% endif %}>7d</option>
+                        <option value="30" {% if days == 30 %}selected{% endif %}>30d</option>
+                    </select>
+
+                    <select name="source" class="filter-select">
+                        <option value="">All Sources</option>
+                        {% for src in sources %}
+                        <option value="{{ src }}" {% if selected_source == src %}selected{% endif %}>{{ src }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select name="sort" class="filter-select">
+                        <option value="date_desc" {% if sort_by == 'date_desc' %}selected{% endif %}>Newest</option>
+                        <option value="date_asc" {% if sort_by == 'date_asc' %}selected{% endif %}>Oldest</option>
+                        <option value="score_desc" {% if sort_by == 'score_desc' %}selected{% endif %}>Top Rated</option>
+                    </select>
+
+                    <button type="submit" class="filter-btn">
+                        <span class="btn-text-desktop">Apply</span>
+                        <svg class="btn-icon-mobile" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </button>
+                    <span class="article-count">{{ articles|length }}</span>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+
+        <div class="articles">
+            {% if articles %}
+                {% for article in articles %}
+                <article class="article-card" id="article-{{ article.id }}">
+                    <div class="article-header">
+                        <span class="source">{{ article.source }}</span>
+                    </div>
+                    <h2><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h2>
+                    <p class="summary">{{ (article.ai_summary or article.description)|clean_hn_description|striphtml }}</p>
+                    <div class="article-footer">
+                        <span class="date">{{ article.published_date|format_date }}</span>
+                        <div class="feedback-buttons">
+                            <button class="feedback-btn vote-up {{ 'active' if article.user_feedback == 1 else '' }}"
+                                    onclick="submitFeedback({{ article.id }}, 1)"
+                                    title="Upvote - I like this">
+                                <svg width="16" height="16" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                            </button>
+                            <button class="feedback-btn vote-down {{ 'active' if article.user_feedback == -1 else '' }}"
+                                    onclick="submitFeedback({{ article.id }}, -1)"
+                                    title="Downvote - Not relevant">
+                                <svg width="16" height="16" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                <div class="no-articles">
+                    <p>No articles found matching your criteria.</p>
+                    <p>Try adjusting the filters or run <code>python src/fetch_news.py</code> to fetch new articles.</p>
+                </div>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+
+    <script>
+    function submitFeedback(articleId, rating) {
+        const article = document.getElementById(`article-${articleId}`);
+        const voteUp = article.querySelector('.vote-up');
+        const voteDown = article.querySelector('.vote-down');
+
+        // Check if clicking the same button that's already active (toggle off)
+        const clickedButton = rating === 1 ? voteUp : voteDown;
+        const isAlreadyActive = clickedButton.classList.contains('active');
+
+        // If already active, we're toggling off (set rating to 0)
+        const actualRating = isAlreadyActive ? 0 : rating;
+
+        fetch(`/feedback/${articleId}/${actualRating}`, {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update button states
+                voteUp.classList.remove('active');
+                voteDown.classList.remove('active');
+
+                if (actualRating === 1) {
+                    voteUp.classList.add('active');
+                } else if (actualRating === -1) {
+                    voteDown.classList.add('active');
+                }
+                // If actualRating is 0, both remain inactive (toggled off)
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    </script>
+</body>
+</html>

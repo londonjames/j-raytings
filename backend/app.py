@@ -10,6 +10,10 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
+# Register news blueprint
+from news_routes import news_bp
+app.register_blueprint(news_bp, url_prefix='/curated')
+
 DATABASE = 'films.db'
 
 # Detect if we should use PostgreSQL or SQLite
