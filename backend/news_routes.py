@@ -10,10 +10,10 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'news'))
 from news.config import DB_PATH as NEWS_DB_PATH
 
-news_bp = Blueprint('news', __name__, 
+news_bp = Blueprint('news', __name__,
                    template_folder='news/web/templates',
                    static_folder='news/web/static',
-                   static_url_path='/news/static')
+                   static_url_path='/curated/static')
 
 def get_news_db():
     """Get news database connection"""
