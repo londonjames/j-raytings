@@ -16,15 +16,15 @@
         <div class="container">
             <div class="nav-bar">
                 <div class="section-buttons">
-                    <a href="/?section=tech" class="section-btn {% if section == 'tech' %}active{% endif %}">
+                    <a href="/curated/?section=tech" class="section-btn {% if section == 'tech' %}active{% endif %}">
                         <span class="btn-text-desktop">AI & Tech</span>
                         <span class="btn-text-mobile">AI</span>
                     </a>
-                    <a href="/?section=sports" class="section-btn {% if section == 'sports' %}active{% endif %}">
+                    <a href="/curated/?section=sports" class="section-btn {% if section == 'sports' %}active{% endif %}">
                         Sport
                     </a>
                 </div>
-                <form method="get" action="/" class="filter-form">
+                <form method="get" action="/curated/" class="filter-form">
                     <input type="hidden" name="section" value="{{ section }}">
                     <select name="days" class="filter-select">
                         <option value="1" {% if days == 1 %}selected{% endif %}>24h</option>
