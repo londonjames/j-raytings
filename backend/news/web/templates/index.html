@@ -108,7 +108,7 @@
         // If already active, we're toggling off (set rating to 0)
         const actualRating = isAlreadyActive ? 0 : rating;
 
-        fetch(`/feedback/${articleId}/${actualRating}`, {
+        fetch(`/curated/feedback/${articleId}/${actualRating}`, {
             method: 'POST',
         })
         .then(response => response.json())
