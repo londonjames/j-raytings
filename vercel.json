@@ -3,8 +3,8 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
-      "source": "/curated/:path*",
-      "destination": "https://web-production-01d1.up.railway.app/curated/:path*"
+      "source": "/curated/(.*)",
+      "destination": "https://web-production-01d1.up.railway.app/curated/$1"
     },
     {
       "source": "/curated",
