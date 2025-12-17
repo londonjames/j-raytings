@@ -13,7 +13,9 @@ EMAIL_TO = os.getenv('EMAIL_TO')
 EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 # Database
-DB_PATH = os.getenv('NEWS_DB_PATH', 'news_articles.db')
+# Use absolute path to ensure it's found from any working directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.getenv('NEWS_DB_PATH', os.path.join(BASE_DIR, 'news_articles.db'))
 
 # Scheduling
 DIGEST_TIME = os.getenv('DIGEST_TIME', '08:00')
