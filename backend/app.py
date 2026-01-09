@@ -1691,23 +1691,56 @@ def update_book_field(book_id):
 
 @app.route('/api/analytics/by-year', methods=['GET'])
 def get_analytics_by_year():
-    """Get analytics data grouped by year watched"""
+    """Get analytics data grouped by year watched (uses date_seen as fallback)"""
     conn = get_db()
     if USE_POSTGRES:
         cursor = conn.cursor(cursor_factory=RealDictCursor)
     else:
         cursor = conn.cursor()
 
+    # Use year_watched if available, otherwise extract year from date_seen (YYYY-MM-DD format)
     cursor.execute('''
-        SELECT year_watched, COUNT(*) as count, ROUND(AVG(score), 2) as avg_score
+        SELECT
+            COALESCE(
+                NULLIF(year_watched, ''),
+                CASE
+                    WHEN date_seen IS NOT NULL AND date_seen != '' AND date_seen LIKE '____-__-__'
+                    THEN SUBSTR(date_seen, 1, 4)
+                    ELSE NULL
+                END
+            ) as year_watched,
+            COUNT(*) as count,
+            ROUND(AVG(score), 2) as avg_score
         FROM films
-        WHERE year_watched IS NOT NULL
-        AND year_watched != ''
-        GROUP BY year_watched
+        WHERE (year_watched IS NOT NULL AND year_watched != '')
+           OR (date_seen IS NOT NULL AND date_seen != '' AND date_seen LIKE '____-__-__')
+        GROUP BY 1
+        HAVING COALESCE(
+            NULLIF(year_watched, ''),
+            CASE
+                WHEN date_seen IS NOT NULL AND date_seen != '' AND date_seen LIKE '____-__-__'
+                THEN SUBSTR(date_seen, 1, 4)
+                ELSE NULL
+            END
+        ) IS NOT NULL
         ORDER BY
             CASE
-                WHEN year_watched = 'Pre-2006' THEN 0
-                ELSE CAST(year_watched AS INTEGER)
+                WHEN COALESCE(
+                    NULLIF(year_watched, ''),
+                    CASE
+                        WHEN date_seen IS NOT NULL AND date_seen != '' AND date_seen LIKE '____-__-__'
+                        THEN SUBSTR(date_seen, 1, 4)
+                        ELSE NULL
+                    END
+                ) = 'Pre-2006' THEN 0
+                ELSE CAST(COALESCE(
+                    NULLIF(year_watched, ''),
+                    CASE
+                        WHEN date_seen IS NOT NULL AND date_seen != '' AND date_seen LIKE '____-__-__'
+                        THEN SUBSTR(date_seen, 1, 4)
+                        ELSE NULL
+                    END
+                ) AS INTEGER)
             END
     ''')
     data = [row_to_dict(row) for row in cursor.fetchall()]
