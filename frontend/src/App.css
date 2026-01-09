@@ -1283,10 +1283,40 @@ body {
 /* Film List */
 .film-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   column-gap: 1.2rem;
   row-gap: 1rem;
   align-items: start;
+}
+
+@media (max-width: 2670px) {
+  .film-list {
+    grid-template-columns: repeat(9, 1fr);
+  }
+}
+
+@media (max-width: 2400px) {
+  .film-list {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media (max-width: 2130px) {
+  .film-list {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+@media (max-width: 1860px) {
+  .film-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 1590px) {
+  .film-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 @media (max-width: 1321px) {
