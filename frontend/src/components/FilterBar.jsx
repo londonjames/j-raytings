@@ -324,30 +324,13 @@ function FilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiveFil
     'Pre-1950'
   ]
 
-  // Year seen ranges (for year watched)
-  const yearSeenRanges = [
-    '2025',
-    '2024',
-    '2023',
-    '2022',
-    '2021',
-    '2020',
-    '2019',
-    '2018',
-    '2017',
-    '2016',
-    '2015',
-    '2014',
-    '2013',
-    '2012',
-    '2011',
-    '2010',
-    '2009',
-    '2008',
-    '2007',
-    '2006',
-    'Pre-2006'
-  ]
+  // Year seen ranges (for year watched) - dynamically generated from current year down to 2006
+  const currentYear = new Date().getFullYear()
+  const yearSeenRanges = []
+  for (let year = currentYear; year >= 2006; year--) {
+    yearSeenRanges.push(year.toString())
+  }
+  yearSeenRanges.push('Pre-2006')
 
   // RT score ranges
   const rtRanges = [

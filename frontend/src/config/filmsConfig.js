@@ -157,15 +157,37 @@ export const filmsConfig = {
     })
   },
 
+  // Helper to extract year from date_seen (supports YYYY-MM-DD and MM/DD/YYYY formats)
+  getYearFromDateSeen: (dateSeen) => {
+    if (!dateSeen) return null
+    // YYYY-MM-DD format
+    if (dateSeen.match(/^\d{4}-\d{2}-\d{2}/)) {
+      return dateSeen.substring(0, 4)
+    }
+    // MM/DD/YYYY format
+    if (dateSeen.includes('/')) {
+      const parts = dateSeen.split('/')
+      if (parts.length === 3 && parts[2].length === 4) {
+        return parts[2]
+      }
+    }
+    return null
+  },
+
   applyYearSeenFilter: (items, selectedYears) => {
     return items.filter(item => {
-      if (!item.year_watched) return false
+      // Use year_watched if available, otherwise derive from date_seen
+      let yearValue = item.year_watched
+      if (!yearValue && item.date_seen) {
+        yearValue = filmsConfig.getYearFromDateSeen(item.date_seen)
+      }
+      if (!yearValue) return false
 
       return selectedYears.some(selectedYear => {
         if (selectedYear === 'Pre-2006') {
-          return item.year_watched === 'Pre-2006'
+          return yearValue === 'Pre-2006'
         } else {
-          return item.year_watched === selectedYear
+          return yearValue === selectedYear
         }
       })
     })
