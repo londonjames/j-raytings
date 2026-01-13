@@ -148,7 +148,7 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
     return seasons === 1 ? '1 season' : `${seasons} seasons`
   }
 
-  // IMDB badge component
+  // IMDB badge component - styled like RT (text label + colored score)
   const IMDbBadge = ({ rating, imdbId }) => {
     const badge = (
       <span style={{
@@ -157,16 +157,13 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
         gap: '4px'
       }}>
         <span style={{
-          background: '#F5C518',
-          color: '#000',
-          padding: '1px 4px',
-          borderRadius: '3px',
           fontSize: '0.7rem',
           fontWeight: 700,
           letterSpacing: '-0.5px',
-          fontFamily: 'Arial, sans-serif'
+          fontFamily: 'Arial, sans-serif',
+          color: '#e0e0e0'
         }}>IMDb</span>
-        <span>{rating}</span>
+        <span style={{ color: '#F5C518', fontWeight: 600 }}>{rating}</span>
       </span>
     )
 
