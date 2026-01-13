@@ -48,18 +48,66 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
     })
   }
 
-  // Format years display (e.g., "2008-2013" or "2022-Present")
-  const formatYears = (startYear, endYear, isOngoing) => {
-    if (!startYear) return ''
-    if (isOngoing) return `${startYear}-Present`
-    if (endYear && endYear !== startYear) return `${startYear}-${endYear}`
-    return `${startYear}`
+  // Format years and seasons together (e.g., "2008-2013; 5 seasons")
+  const formatYearsAndSeasons = (startYear, endYear, isOngoing, seasons) => {
+    let yearPart = ''
+    if (startYear) {
+      if (isOngoing) {
+        yearPart = `${startYear}-Present`
+      } else if (endYear && endYear !== startYear) {
+        yearPart = `${startYear}-${endYear}`
+      } else {
+        yearPart = `${startYear}`
+      }
+    }
+
+    let seasonPart = ''
+    if (seasons) {
+      seasonPart = seasons === 1 ? '1 season' : `${seasons} seasons`
+    }
+
+    if (yearPart && seasonPart) {
+      return `${yearPart}; ${seasonPart}`
+    }
+    return yearPart || seasonPart
   }
 
-  // Format seasons display
-  const formatSeasons = (seasons) => {
-    if (!seasons) return ''
-    return seasons === 1 ? '1 season' : `${seasons} seasons`
+  // IMDB badge component
+  const IMDbBadge = ({ rating, imdbId }) => {
+    const badge = (
+      <span style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '4px'
+      }}>
+        <span style={{
+          background: '#F5C518',
+          color: '#000',
+          padding: '1px 4px',
+          borderRadius: '3px',
+          fontSize: '0.7rem',
+          fontWeight: 700,
+          letterSpacing: '-0.5px',
+          fontFamily: 'Arial, sans-serif'
+        }}>IMDb</span>
+        <span>{rating}</span>
+      </span>
+    )
+
+    if (imdbId) {
+      return (
+        <a
+          href={`https://www.imdb.com/title/${imdbId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          {badge}
+        </a>
+      )
+    }
+    return badge
   }
 
   if (viewMode === 'list') {
@@ -84,14 +132,11 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
               <div className="film-row-content">
                 <h3>{show.title}</h3>
                 <div className="film-row-bottom">
-                  {show.start_year && (
-                    <span className="meta-item">{formatYears(show.start_year, show.end_year, show.is_ongoing)}</span>
-                  )}
-                  {show.seasons && (
-                    <span className="meta-item">{formatSeasons(show.seasons)}</span>
+                  {(show.start_year || show.seasons) && (
+                    <span className="meta-item">{formatYearsAndSeasons(show.start_year, show.end_year, show.is_ongoing, show.seasons)}</span>
                   )}
                   {show.imdb_rating && (
-                    <span className="meta-item">IMDB {show.imdb_rating}</span>
+                    <span className="meta-item"><IMDbBadge rating={show.imdb_rating} imdbId={show.imdb_id} /></span>
                   )}
                 </div>
               </div>
@@ -147,14 +192,11 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
                         {show.title}
                       </h3>
                       <div className="film-metadata">
-                        {show.start_year && (
-                          <span className="info-item">{formatYears(show.start_year, show.end_year, show.is_ongoing)}</span>
-                        )}
-                        {show.seasons && (
-                          <span className="info-item">{formatSeasons(show.seasons)}</span>
+                        {(show.start_year || show.seasons) && (
+                          <span className="info-item">{formatYearsAndSeasons(show.start_year, show.end_year, show.is_ongoing, show.seasons)}</span>
                         )}
                         {show.imdb_rating && (
-                          <span className="info-item">IMDB {show.imdb_rating}</span>
+                          <span className="info-item"><IMDbBadge rating={show.imdb_rating} imdbId={show.imdb_id} /></span>
                         )}
                       </div>
                     </div>
@@ -185,8 +227,9 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
                   <div className="header-text">
                     <h3 className="film-title-back">{show.title}</h3>
                     <div className="year-duration">
-                      {show.start_year && <span>{formatYears(show.start_year, show.end_year, show.is_ongoing)}</span>}
-                      {show.seasons && <span className="duration-spacer">{formatSeasons(show.seasons)}</span>}
+                      {(show.start_year || show.seasons) && (
+                        <span>{formatYearsAndSeasons(show.start_year, show.end_year, show.is_ongoing, show.seasons)}</span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -199,18 +242,13 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
                     </div>
                   )}
 
-                  {show.imdb_rating && show.imdb_id && (
+                  {show.imdb_rating && (
                     <div className="metric-item metric-item-rt">
-                      <span className="metric-label">IMDB:</span>
-                      <a
-                        href={`https://www.imdb.com/title/${show.imdb_id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rt-link"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {show.imdb_rating} ↗
-                      </a>
+                      <span className="metric-label"></span>
+                      <span className="metric-value">
+                        <IMDbBadge rating={show.imdb_rating} imdbId={show.imdb_id} />
+                        {show.imdb_id && ' ↗'}
+                      </span>
                     </div>
                   )}
                 </div>
