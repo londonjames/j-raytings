@@ -157,18 +157,10 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
         gap: '4px'
       }}>
         <span style={{
-          fontSize: '0.7rem',
-          fontWeight: 700,
-          letterSpacing: '-0.5px',
           fontFamily: 'Impact, Arial Black, Arial, sans-serif',
-          color: '#e0e0e0'
+          letterSpacing: '-0.5px'
         }}>IMDb</span>
-        <span style={{
-          color: '#F5C518',
-          fontWeight: 700,
-          letterSpacing: '-0.5px',
-          fontFamily: 'Impact, Arial Black, Arial, sans-serif'
-        }}>{rating}</span>
+        <span style={{ color: '#F5C518' }}>{rating}</span>
       </span>
     )
 
