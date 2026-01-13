@@ -99,14 +99,25 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
     })
   }
 
-  // Format years and seasons together (e.g., "2008-2013; 5 seasons") - for front card
+  // Helper to shorten end year if same century (2008-2013 → 2008-13)
+  const shortenEndYear = (startYear, endYear) => {
+    if (!startYear || !endYear) return endYear
+    const startCentury = Math.floor(startYear / 100)
+    const endCentury = Math.floor(endYear / 100)
+    if (startCentury === endCentury) {
+      return String(endYear).slice(-2) // Last 2 digits
+    }
+    return endYear
+  }
+
+  // Format years and seasons together (e.g., "2008-13; 5 seasons") - for front card
   const formatYearsAndSeasons = (startYear, endYear, isOngoing, seasons) => {
     let yearPart = ''
     if (startYear) {
       if (isOngoing) {
         yearPart = `${startYear}-Present`
       } else if (endYear && endYear !== startYear) {
-        yearPart = `${startYear}-${endYear}`
+        yearPart = `${startYear}-${shortenEndYear(startYear, endYear)}`
       } else {
         yearPart = `${startYear}`
       }
@@ -127,7 +138,7 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
   const formatYears = (startYear, endYear, isOngoing) => {
     if (!startYear) return ''
     if (isOngoing) return `${startYear}-Present`
-    if (endYear && endYear !== startYear) return `${startYear}-${endYear}`
+    if (endYear && endYear !== startYear) return `${startYear}-${shortenEndYear(startYear, endYear)}`
     return `${startYear}`
   }
 
@@ -254,7 +265,7 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
                   <div className="film-info-container">
                     <div className="film-info-left-column">
                       <div className="film-title-row">
-                        <h3 className={`film-title ${show.title && show.title.length > 25 ? 'film-title-long' : ''} ${show.watch_providers?.flatrate?.length ? 'has-streaming' : ''}`}>
+                        <h3 className={`film-title ${show.title && show.title.length > 25 ? 'film-title-long' : ''}`}>
                           {show.title}
                         </h3>
                         <StreamingLogos watchProviders={show.watch_providers} maxLogos={1} />

@@ -301,7 +301,7 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                   <div className="film-info-container">
                     <div className="film-info-left-column">
                       <div className="film-title-row">
-                        <h3 className={`film-title ${formatTitle(film.title).length > 25 ? 'film-title-long' : ''} ${film.watch_providers?.flatrate?.length ? 'has-streaming' : ''}`}>
+                        <h3 className={`film-title ${formatTitle(film.title).length > 25 ? 'film-title-long' : ''}`}>
                           {formatTitle(film.title)}
                         </h3>
                         <StreamingLogos watchProviders={film.watch_providers} maxLogos={1} />

@@ -2816,19 +2816,16 @@ body {
 .film-title-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-width: 0; /* Allow flex children to shrink */
+  gap: 6px;
+  flex-wrap: nowrap;
 }
 
 .film-title-row .film-title {
-  flex: 1;
+  flex: 0 1 auto; /* Don't grow, can shrink, auto width based on content */
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.film-title-row .film-title.has-streaming {
-  max-width: calc(100% - 32px); /* Leave room for 1 logo */
+  white-space: nowrap;
 }
 
 .streaming-logos {
@@ -2863,20 +2860,12 @@ body {
     width: 20px;
     height: 20px;
   }
-
-  .film-title-row .film-title.has-streaming {
-    max-width: calc(100% - 28px);
-  }
 }
 
 @media (max-width: 390px) {
   .streaming-logo {
     width: 18px;
     height: 18px;
-  }
-
-  .film-title-row .film-title.has-streaming {
-    max-width: calc(100% - 24px);
   }
 }
 
