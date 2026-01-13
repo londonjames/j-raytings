@@ -2810,6 +2810,77 @@ body {
 }
 
 /* ============================================
+   STREAMING PROVIDER LOGOS
+   ============================================ */
+
+.film-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0; /* Allow flex children to shrink */
+}
+
+.film-title-row .film-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.film-title-row .film-title.has-streaming {
+  max-width: calc(100% - 32px); /* Leave room for 1 logo */
+}
+
+.streaming-logos {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.streaming-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.streaming-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.streaming-logo:hover {
+  transform: scale(1.15);
+}
+
+/* Mobile adjustments for streaming logos */
+@media (max-width: 500px) {
+  .streaming-logo {
+    width: 20px;
+    height: 20px;
+  }
+
+  .film-title-row .film-title.has-streaming {
+    max-width: calc(100% - 28px);
+  }
+}
+
+@media (max-width: 390px) {
+  .streaming-logo {
+    width: 18px;
+    height: 18px;
+  }
+
+  .film-title-row .film-title.has-streaming {
+    max-width: calc(100% - 24px);
+  }
+}
+
+/* ============================================
    SHOWS-SPECIFIC STYLING (IMDB Yellow Theme)
    ============================================ */
 

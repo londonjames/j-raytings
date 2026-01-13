@@ -1,5 +1,56 @@
 import React, { useState, useEffect } from 'react'
 
+// Major streaming providers we want to show (TMDB provider IDs)
+const MAJOR_PROVIDERS = {
+  8: 'Netflix',
+  9: 'Amazon Prime Video',
+  119: 'Amazon Prime Video',
+  1899: 'Max',
+  15: 'Hulu',
+  337: 'Disney+',
+  350: 'Apple TV+',
+  386: 'Peacock',
+  387: 'Peacock Premium',
+  531: 'Paramount+',
+  526: 'AMC+',
+  1825: 'Max Amazon Channel',
+  2100: 'Max'
+}
+
+// StreamingLogos component - shows 1-2 streaming service logos
+const StreamingLogos = ({ watchProviders, maxLogos = 2 }) => {
+  if (!watchProviders?.flatrate?.length) return null
+
+  // Filter to only major providers and limit count
+  const majorProviders = watchProviders.flatrate
+    .filter(p => MAJOR_PROVIDERS[p.id])
+    .slice(0, maxLogos)
+
+  if (majorProviders.length === 0) return null
+
+  return (
+    <div className="streaming-logos" onClick={(e) => e.stopPropagation()}>
+      {majorProviders.map(provider => (
+        <a
+          key={provider.id}
+          href={watchProviders.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`Watch on ${provider.name}`}
+          className="streaming-logo-link"
+        >
+          <img
+            src={provider.logo}
+            alt={provider.name}
+            className="streaming-logo"
+            loading="lazy"
+          />
+        </a>
+      ))}
+    </div>
+  )
+}
+
 function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
   const [loadedImages, setLoadedImages] = useState(new Set())
   const [flippedCards, setFlippedCards] = useState(new Set())
@@ -249,9 +300,12 @@ function FilmList({ films, onEdit, onDelete, viewMode = 'grid' }) {
                 <div className="film-content">
                   <div className="film-info-container">
                     <div className="film-info-left-column">
-                      <h3 className={`film-title ${formatTitle(film.title).length > 25 ? 'film-title-long' : ''}`}>
-                        {formatTitle(film.title)}
-                      </h3>
+                      <div className="film-title-row">
+                        <h3 className={`film-title ${formatTitle(film.title).length > 25 ? 'film-title-long' : ''} ${film.watch_providers?.flatrate?.length ? 'has-streaming' : ''}`}>
+                          {formatTitle(film.title)}
+                        </h3>
+                        <StreamingLogos watchProviders={film.watch_providers} maxLogos={1} />
+                      </div>
                       <div className="film-metadata">
                         {film.release_year && (
                           <span className="info-item">{film.release_year}</span>
