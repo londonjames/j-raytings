@@ -1,0 +1,29 @@
+name: Refresh Watch Providers
+
+on:
+  schedule:
+    # Run every Sunday at 3:00 AM UTC (Saturday 10:00 PM EST)
+    - cron: '0 3 * * 0'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refresh Shows Watch Providers
+        run: |
+          echo "Refreshing watch providers for shows..."
+          response=$(curl -s -X POST "https://web-production-01d1.up.railway.app/api/shows/refresh-providers")
+          echo "Shows response: $response"
+          updated=$(echo $response | jq -r '.updated // 0')
+          failed=$(echo $response | jq -r '.failed // 0')
+          echo "Shows - Updated: $updated, Failed: $failed"
+
+      - name: Refresh Films Watch Providers
+        run: |
+          echo "Refreshing watch providers for films..."
+          response=$(curl -s -X POST "https://web-production-01d1.up.railway.app/api/films/refresh-providers")
+          echo "Films response: $response"
+          updated=$(echo $response | jq -r '.updated // 0')
+          failed=$(echo $response | jq -r '.failed // 0')
+          echo "Films - Updated: $updated, Failed: $failed"
