@@ -1813,6 +1813,17 @@ body {
   text-decoration: underline;
 }
 
+.imdb-score-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.imdb-score-link:hover {
+  text-decoration: underline;
+}
+
 .search-inputs select {
   flex: 1;
   min-width: 150px;

@@ -150,15 +150,11 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
 
   // IMDB badge component - styled like RT (text label + colored score)
   const IMDbBadge = ({ rating, imdbId }) => {
-    const badge = (
-      <span style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '4px'
-      }}>
-        <span>IMDb</span>
+    const content = (
+      <>
+        <span>IMDb</span>{' '}
         <span style={{ color: '#F5C518' }}>{rating}</span>
-      </span>
+      </>
     )
 
     if (imdbId) {
@@ -168,13 +164,13 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          style={{ textDecoration: 'none', color: 'inherit' }}
+          className="imdb-score-link"
         >
-          {badge}
+          {content}
         </a>
       )
     }
-    return badge
+    return <span>{content}</span>
   }
 
   if (viewMode === 'list') {
