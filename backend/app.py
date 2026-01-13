@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 import os
-from tmdb_service import search_movie, get_movie_details
+from tmdb_service import search_movie, get_movie_details, search_tv_show, get_tv_show_details
 import re
 from urllib.parse import urlparse
 import requests
@@ -245,6 +245,110 @@ def init_books_db():
     conn.commit()
     conn.close()
 
+def init_shows_db():
+    """Initialize the shows database"""
+    conn = get_db()
+    cursor = conn.cursor()
+
+    if USE_POSTGRES:
+        # PostgreSQL syntax
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS shows (
+                id SERIAL PRIMARY KEY,
+                title TEXT NOT NULL,
+                start_year INTEGER,
+                end_year INTEGER,
+                is_ongoing BOOLEAN DEFAULT FALSE,
+                seasons INTEGER,
+                episodes INTEGER,
+                j_rayting TEXT,
+                score INTEGER,
+                imdb_rating TEXT,
+                imdb_id TEXT,
+                tmdb_id INTEGER,
+                genres TEXT,
+                poster_url TEXT,
+                details_commentary TEXT,
+                date_watched TEXT,
+                a_grade_rank INTEGER,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+
+        # Add missing columns if they don't exist
+        for column_name, column_type in [
+            ('is_ongoing', 'BOOLEAN DEFAULT FALSE'),
+            ('episodes', 'INTEGER'),
+            ('imdb_rating', 'TEXT'),
+            ('imdb_id', 'TEXT'),
+            ('tmdb_id', 'INTEGER'),
+            ('genres', 'TEXT'),
+            ('poster_url', 'TEXT'),
+            ('details_commentary', 'TEXT'),
+            ('date_watched', 'TEXT'),
+            ('a_grade_rank', 'INTEGER'),
+            ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP')
+        ]:
+            cursor.execute("""
+                SELECT column_name
+                FROM information_schema.columns
+                WHERE table_name='shows' AND column_name=%s
+            """, (column_name,))
+            if not cursor.fetchone():
+                try:
+                    cursor.execute(f'ALTER TABLE shows ADD COLUMN {column_name} {column_type}')
+                    print(f"Added {column_name} column to PostgreSQL shows table")
+                except Exception as e:
+                    print(f"Error adding {column_name} column to shows: {e}")
+    else:
+        # SQLite syntax
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS shows (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                start_year INTEGER,
+                end_year INTEGER,
+                is_ongoing BOOLEAN DEFAULT 0,
+                seasons INTEGER,
+                episodes INTEGER,
+                j_rayting TEXT,
+                score INTEGER,
+                imdb_rating TEXT,
+                imdb_id TEXT,
+                tmdb_id INTEGER,
+                genres TEXT,
+                poster_url TEXT,
+                details_commentary TEXT,
+                date_watched TEXT,
+                a_grade_rank INTEGER,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+
+        # Add missing columns if they don't exist
+        for column_name, column_type in [
+            ('is_ongoing', 'BOOLEAN DEFAULT 0'),
+            ('episodes', 'INTEGER'),
+            ('imdb_rating', 'TEXT'),
+            ('imdb_id', 'TEXT'),
+            ('tmdb_id', 'INTEGER'),
+            ('genres', 'TEXT'),
+            ('poster_url', 'TEXT'),
+            ('details_commentary', 'TEXT'),
+            ('date_watched', 'TEXT'),
+            ('a_grade_rank', 'INTEGER'),
+            ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP')
+        ]:
+            try:
+                cursor.execute(f'ALTER TABLE shows ADD COLUMN {column_name} {column_type}')
+            except:
+                pass
+
+    conn.commit()
+    conn.close()
+
 def simplify_format(format_str):
     """Simplify format to standard categories"""
     if not format_str:
@@ -366,6 +470,11 @@ def book_row_to_dict(row):
     """Convert database row to dictionary for books (works for both SQLite and PostgreSQL)"""
     book_dict = dict(row)
     return book_dict
+
+def show_row_to_dict(row):
+    """Convert database row to dictionary for shows (works for both SQLite and PostgreSQL)"""
+    show_dict = dict(row)
+    return show_dict
 
 @app.route('/api/books', methods=['GET'])
 def get_books():
@@ -1990,6 +2099,470 @@ def get_books_summary():
     conn.close()
     return jsonify(summary)
 
+# ============== SHOWS API ROUTES ==============
+
+def fetch_imdb_rating(imdb_id):
+    """Fetch IMDB rating from OMDb API"""
+    if not imdb_id:
+        return None
+
+    omdb_api_key = os.getenv('OMDB_API_KEY', '4e9616c3')
+    omdb_base_url = 'http://www.omdbapi.com/'
+
+    try:
+        response = requests.get(omdb_base_url, params={
+            'apikey': omdb_api_key,
+            'i': imdb_id
+        }, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+
+        if data.get('Response') == 'True':
+            return data.get('imdbRating')
+        return None
+    except Exception as e:
+        print(f"Error fetching IMDB rating: {e}")
+        return None
+
+@app.route('/api/shows', methods=['GET'])
+def get_shows():
+    """Get all shows with optional search/filter"""
+    search = request.args.get('search', '')
+    genre = request.args.get('genre', '')
+    rating = request.args.get('rating', '')
+
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    placeholder = '%s' if USE_POSTGRES else '?'
+
+    query = 'SELECT * FROM shows WHERE 1=1'
+    params = []
+
+    if search:
+        query += f' AND title LIKE {placeholder}'
+        params.append(f'%{search}%')
+
+    if genre:
+        query += f' AND genres LIKE {placeholder}'
+        params.append(f'%{genre}%')
+
+    if rating:
+        query += f' AND j_rayting = {placeholder}'
+        params.append(rating)
+
+    query += ' ORDER BY id DESC'
+
+    cursor.execute(query, params)
+    shows = [show_row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+
+    return jsonify(shows)
+
+@app.route('/api/shows/<int:show_id>', methods=['GET'])
+def get_show(show_id):
+    """Get a single show by ID"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT * FROM shows WHERE id = %s', (show_id,))
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM shows WHERE id = ?', (show_id,))
+
+    show = cursor.fetchone()
+    conn.close()
+
+    if show is None:
+        return jsonify({'error': 'Show not found'}), 404
+
+    return jsonify(show_row_to_dict(show))
+
+@app.route('/api/shows', methods=['POST'])
+def add_show():
+    """Add a new show with automatic metadata fetching from TMDB"""
+    data = request.get_json()
+
+    required_fields = ['title']
+    if not all(field in data for field in required_fields):
+        return jsonify({'error': 'Missing required fields'}), 400
+
+    # Check for duplicates
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT id, title FROM shows WHERE title = %s', (data['title'],))
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, title FROM shows WHERE title = ?', (data['title'],))
+
+    existing_shows = cursor.fetchall()
+    if existing_shows:
+        conn.close()
+        return jsonify({
+            'duplicate': True,
+            'message': 'A show with this title already exists.',
+            'existing_shows': [dict(s) for s in existing_shows]
+        }), 409
+
+    conn.close()
+
+    # Initialize variables with user-provided data
+    poster_url = data.get('poster_url')
+    start_year = data.get('start_year')
+    end_year = data.get('end_year')
+    is_ongoing = data.get('is_ongoing', False)
+    seasons = data.get('seasons')
+    episodes = data.get('episodes')
+    genres = data.get('genres')
+    imdb_id = data.get('imdb_id')
+    imdb_rating = data.get('imdb_rating')
+    tmdb_id = data.get('tmdb_id')
+    metadata_fetched = False
+
+    # Fetch metadata from TMDB if API key is available
+    if os.getenv('TMDB_API_KEY'):
+        try:
+            show_data = search_tv_show(data['title'], start_year)
+
+            if show_data:
+                tmdb_id = show_data.get('tmdb_id')
+
+                if tmdb_id:
+                    details = get_tv_show_details(tmdb_id)
+                    if details:
+                        if not poster_url:
+                            poster_url = details.get('poster_url')
+                        if not start_year:
+                            start_year = details.get('start_year')
+                        if not end_year and not is_ongoing:
+                            end_year = details.get('end_year')
+                            is_ongoing = details.get('is_ongoing', False)
+                        if not seasons:
+                            seasons = details.get('seasons')
+                        if not episodes:
+                            episodes = details.get('episodes')
+                        if not genres:
+                            genres = details.get('genres')
+                        if not imdb_id:
+                            imdb_id = details.get('imdb_id')
+
+                        metadata_fetched = True
+                        print(f"✓ Fetched metadata for '{data['title']}'")
+        except Exception as e:
+            print(f"Error fetching TMDB data for show: {e}")
+
+    # Fetch IMDB rating if we have an IMDB ID
+    if imdb_id and not imdb_rating:
+        try:
+            imdb_rating = fetch_imdb_rating(imdb_id)
+            if imdb_rating:
+                print(f"✓ Fetched IMDB rating for '{data['title']}': {imdb_rating}")
+        except Exception as e:
+            print(f"Error fetching IMDB rating: {e}")
+
+    # Auto-calculate score from j_rayting
+    score = data.get('score')
+    if not score and data.get('j_rayting'):
+        score = letter_rating_to_score(data.get('j_rayting'))
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    if USE_POSTGRES:
+        cursor.execute('''
+            INSERT INTO shows (
+                title, start_year, end_year, is_ongoing, seasons, episodes,
+                j_rayting, score, imdb_rating, imdb_id, tmdb_id, genres,
+                poster_url, details_commentary, date_watched, a_grade_rank
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING id
+        ''', (
+            data['title'],
+            start_year,
+            end_year,
+            is_ongoing,
+            seasons,
+            episodes,
+            data.get('j_rayting'),
+            score,
+            imdb_rating,
+            imdb_id,
+            tmdb_id,
+            genres,
+            poster_url,
+            data.get('details_commentary'),
+            data.get('date_watched'),
+            data.get('a_grade_rank')
+        ))
+        show_id = cursor.fetchone()[0]
+    else:
+        cursor.execute('''
+            INSERT INTO shows (
+                title, start_year, end_year, is_ongoing, seasons, episodes,
+                j_rayting, score, imdb_rating, imdb_id, tmdb_id, genres,
+                poster_url, details_commentary, date_watched, a_grade_rank
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            data['title'],
+            start_year,
+            end_year,
+            is_ongoing,
+            seasons,
+            episodes,
+            data.get('j_rayting'),
+            score,
+            imdb_rating,
+            imdb_id,
+            tmdb_id,
+            genres,
+            poster_url,
+            data.get('details_commentary'),
+            data.get('date_watched'),
+            data.get('a_grade_rank')
+        ))
+        show_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({
+        'id': show_id,
+        'message': 'Show added successfully',
+        'metadata_fetched': metadata_fetched
+    }), 201
+
+@app.route('/api/shows/<int:show_id>', methods=['PUT'])
+def update_show(show_id):
+    """Update an existing show"""
+    data = request.get_json()
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    updates = []
+    params = []
+
+    allowed_fields = [
+        'title', 'start_year', 'end_year', 'is_ongoing', 'seasons', 'episodes',
+        'j_rayting', 'score', 'imdb_rating', 'imdb_id', 'tmdb_id', 'genres',
+        'poster_url', 'details_commentary', 'date_watched', 'a_grade_rank'
+    ]
+
+    placeholder = '%s' if USE_POSTGRES else '?'
+
+    j_rayting_updated = False
+    score_provided = 'score' in data
+
+    for field in allowed_fields:
+        if field in data:
+            updates.append(f'{field} = {placeholder}')
+            if field == 'j_rayting':
+                j_rayting_updated = True
+            params.append(data[field])
+
+    # Auto-calculate score if j_rayting updated but score not provided
+    if j_rayting_updated and not score_provided:
+        calculated_score = letter_rating_to_score(data.get('j_rayting'))
+        if calculated_score is not None:
+            updates.append(f'score = {placeholder}')
+            params.append(calculated_score)
+
+    if not updates:
+        conn.close()
+        return jsonify({'error': 'No valid fields to update'}), 400
+
+    params.append(show_id)
+    updates.append('updated_at = CURRENT_TIMESTAMP')
+
+    if USE_POSTGRES:
+        query = f'UPDATE shows SET {", ".join(updates)} WHERE id = %s'
+    else:
+        query = f'UPDATE shows SET {", ".join(updates)} WHERE id = ?'
+
+    cursor.execute(query, params)
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        conn.close()
+        return jsonify({'error': 'Show not found'}), 404
+
+    conn.close()
+    return jsonify({'message': 'Show updated successfully'})
+
+@app.route('/api/shows/<int:show_id>', methods=['DELETE'])
+def delete_show(show_id):
+    """Delete a show"""
+    conn = get_db()
+    cursor = conn.cursor()
+
+    if USE_POSTGRES:
+        cursor.execute('DELETE FROM shows WHERE id = %s', (show_id,))
+    else:
+        cursor.execute('DELETE FROM shows WHERE id = ?', (show_id,))
+
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        conn.close()
+        return jsonify({'error': 'Show not found'}), 404
+
+    conn.close()
+    return jsonify({'message': 'Show deleted successfully'})
+
+@app.route('/api/admin/shows/<int:show_id>/field', methods=['PUT'])
+def update_show_field(show_id):
+    """Admin endpoint to update a specific show field"""
+    data = request.get_json()
+    field_name = data.get('field')
+    field_value = data.get('value')
+
+    if not field_name:
+        return jsonify({'error': 'field is required'}), 400
+
+    allowed_fields = [
+        'title', 'start_year', 'end_year', 'is_ongoing', 'seasons', 'episodes',
+        'j_rayting', 'score', 'imdb_rating', 'imdb_id', 'tmdb_id', 'genres',
+        'poster_url', 'details_commentary', 'date_watched', 'a_grade_rank'
+    ]
+
+    if field_name not in allowed_fields:
+        return jsonify({'error': f'Field {field_name} is not allowed'}), 400
+
+    conn = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+
+        if USE_POSTGRES:
+            cursor.execute(f'UPDATE shows SET {field_name} = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s', (field_value, show_id))
+        else:
+            cursor.execute(f'UPDATE shows SET {field_name} = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', (field_value, show_id))
+
+        conn.commit()
+        conn.close()
+        return jsonify({'message': f'{field_name} updated successfully', 'show_id': show_id, 'field': field_name, 'value': field_value})
+    except Exception as e:
+        if conn:
+            conn.close()
+        print(f"Error updating field: {e}")
+        return jsonify({'error': f'Error updating {field_name}: {str(e)}'}), 500
+
+@app.route('/api/analytics/shows/by-year', methods=['GET'])
+def get_shows_analytics_by_year():
+    """Get shows analytics grouped by start year decade"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT
+            CASE
+                WHEN start_year < 1990 THEN 'Pre-1990'
+                ELSE CAST((start_year / 10) * 10 AS TEXT) || 's'
+            END as decade,
+            COUNT(*) as count,
+            ROUND(AVG(score), 2) as avg_score
+        FROM shows
+        WHERE start_year IS NOT NULL
+        GROUP BY decade
+        ORDER BY
+            CASE
+                WHEN decade = 'Pre-1990' THEN 0
+                ELSE CAST(SUBSTR(decade, 1, 4) AS INTEGER)
+            END
+    ''')
+    data = [show_row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return jsonify(data)
+
+@app.route('/api/analytics/shows/by-genre', methods=['GET'])
+def get_shows_analytics_by_genre():
+    """Get shows analytics grouped by genre"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT genres, score
+        FROM shows
+        WHERE genres IS NOT NULL AND genres != ''
+    ''')
+
+    shows_with_genres = cursor.fetchall()
+
+    genre_stats = {}
+    for row in shows_with_genres:
+        row_dict = show_row_to_dict(row)
+        genres = row_dict['genres'].split(', ')
+        score = row_dict['score']
+
+        for genre in genres:
+            genre = genre.strip()
+            if genre not in genre_stats:
+                genre_stats[genre] = {'count': 0, 'scores': []}
+            genre_stats[genre]['count'] += 1
+            if score:
+                genre_stats[genre]['scores'].append(score)
+
+    data = []
+    for genre, stats in genre_stats.items():
+        avg_score = round(sum(stats['scores']) / len(stats['scores']), 2) if stats['scores'] else None
+        data.append({
+            'genre': genre,
+            'count': stats['count'],
+            'avg_score': avg_score
+        })
+
+    data.sort(key=lambda x: x['count'], reverse=True)
+    conn.close()
+    return jsonify(data)
+
+@app.route('/api/analytics/shows/summary', methods=['GET'])
+def get_shows_summary():
+    """Get overall shows summary statistics"""
+    conn = get_db()
+    if USE_POSTGRES:
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT
+            COUNT(*) as total_shows,
+            ROUND(AVG(score), 2) as avg_score,
+            SUM(seasons) as total_seasons,
+            SUM(episodes) as total_episodes,
+            ROUND(AVG(CAST(REPLACE(imdb_rating, '/10', '') AS REAL)), 2) as avg_imdb_rating
+        FROM shows
+    ''')
+
+    result = cursor.fetchone()
+    if USE_POSTGRES:
+        summary = dict(result)
+    else:
+        summary = {
+            'total_shows': result[0],
+            'avg_score': result[1],
+            'total_seasons': result[2],
+            'total_episodes': result[3],
+            'avg_imdb_rating': result[4]
+        }
+
+    conn.close()
+    return jsonify(summary)
+
+# ============== END SHOWS API ROUTES ==============
+
 @app.route('/api/admin/init-db', methods=['POST'])
 def init_database():
     """Initialize database tables (admin only)"""
@@ -2111,6 +2684,7 @@ def import_from_json():
 try:
     init_db()
     init_books_db()
+    init_shows_db()
 except Exception as e:
     print(f"Warning: Database initialization had an issue (this is OK if DB isn't ready yet): {e}")
 

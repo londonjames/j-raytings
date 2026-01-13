@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""
+Seed script to add initial TV shows with A ratings.
+Run this after the backend is running to populate initial data.
+"""
+
+import requests
+import os
+import sys
+
+# Use local API by default, can override with environment variable
+API_URL = os.getenv('API_URL', 'http://localhost:5001/api')
+
+# Initial shows with A ratings
+INITIAL_SHOWS = [
+    {
+        'title': 'Breaking Bad',
+        'j_rayting': 'A',
+        'a_grade_rank': 1
+    },
+    {
+        'title': 'The Wire',
+        'j_rayting': 'A',
+        'a_grade_rank': 2
+    },
+    {
+        'title': 'The Office',  # UK version
+        'j_rayting': 'A',
+        'a_grade_rank': 3,
+        'start_year': 2001  # Helps TMDB find the UK version
+    },
+    {
+        'title': 'The Office',  # US version
+        'j_rayting': 'A',
+        'a_grade_rank': 4,
+        'start_year': 2005  # Helps TMDB find the US version
+    },
+    {
+        'title': 'Fleabag',
+        'j_rayting': 'A',
+        'a_grade_rank': 5
+    },
+    {
+        'title': 'Succession',
+        'j_rayting': 'A',
+        'a_grade_rank': 6
+    },
+    {
+        'title': 'Arrested Development',
+        'j_rayting': 'A',
+        'a_grade_rank': 7
+    }
+]
+
+def seed_shows():
+    """Add initial shows to the database."""
+    print(f"Seeding shows to {API_URL}/shows...")
+    print("-" * 50)
+
+    success_count = 0
+    error_count = 0
+
+    for show in INITIAL_SHOWS:
+        try:
+            response = requests.post(
+                f"{API_URL}/shows",
+                json=show,
+                headers={'Content-Type': 'application/json'},
+                timeout=30  # Longer timeout for TMDB/IMDB fetching
+            )
+
+            if response.status_code == 201:
+                result = response.json()
+                metadata_msg = " (metadata fetched)" if result.get('metadata_fetched') else ""
+                print(f"[OK] Added: {show['title']}{metadata_msg}")
+                success_count += 1
+            elif response.status_code == 409:
+                print(f"[SKIP] Already exists: {show['title']}")
+            else:
+                print(f"[ERROR] Failed to add {show['title']}: {response.status_code} - {response.text}")
+                error_count += 1
+
+        except requests.exceptions.RequestException as e:
+            print(f"[ERROR] Failed to add {show['title']}: {e}")
+            error_count += 1
+
+    print("-" * 50)
+    print(f"Done! Added {success_count} shows, {error_count} errors.")
+
+    if error_count > 0:
+        sys.exit(1)
+
+if __name__ == '__main__':
+    seed_shows()
