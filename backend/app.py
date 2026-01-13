@@ -1325,6 +1325,67 @@ def delete_film(film_id):
     return jsonify({'message': 'Film deleted successfully'})
 
 
+@app.route('/api/films/backfill-tmdb-ids', methods=['POST'])
+def backfill_film_tmdb_ids():
+    """Backfill tmdb_id for all films that don't have one by searching TMDB"""
+    import time
+
+    conn = get_db()
+    if USE_POSTGRES:
+        from psycopg2.extras import RealDictCursor
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT id, title, release_year FROM films WHERE tmdb_id IS NULL')
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, title, release_year FROM films WHERE tmdb_id IS NULL')
+
+    films = cursor.fetchall()
+    conn.close()
+
+    updated = []
+    failed = []
+
+    for i, film in enumerate(films):
+        film_dict = dict(film)
+        film_id = film_dict['id']
+        title = film_dict['title']
+        release_year = film_dict.get('release_year')
+
+        try:
+            result = search_movie(title, release_year)
+            if result and result.get('tmdb_id'):
+                tmdb_id = result['tmdb_id']
+
+                conn = get_db()
+                cursor = conn.cursor()
+                if USE_POSTGRES:
+                    cursor.execute('UPDATE films SET tmdb_id = %s WHERE id = %s', (tmdb_id, film_id))
+                else:
+                    cursor.execute('UPDATE films SET tmdb_id = ? WHERE id = ?', (tmdb_id, film_id))
+                conn.commit()
+                conn.close()
+
+                updated.append({'id': film_id, 'title': title, 'tmdb_id': tmdb_id})
+                print(f"✓ [{i+1}/{len(films)}] Found tmdb_id {tmdb_id} for '{title}'")
+            else:
+                failed.append({'id': film_id, 'title': title, 'reason': 'Not found on TMDB'})
+                print(f"✗ [{i+1}/{len(films)}] Could not find '{title}' on TMDB")
+
+            # Rate limiting - TMDB allows 40 requests per 10 seconds
+            time.sleep(0.25)
+
+        except Exception as e:
+            failed.append({'id': film_id, 'title': title, 'reason': str(e)})
+            print(f"✗ [{i+1}/{len(films)}] Error for '{title}': {e}")
+
+    return jsonify({
+        'updated': len(updated),
+        'failed': len(failed),
+        'updated_films': updated[:20],  # Only return first 20 to keep response small
+        'failed_films': failed[:20]
+    })
+
+
 @app.route('/api/films/refresh-providers', methods=['POST'])
 def refresh_film_providers():
     """Refresh watch providers for all films that have tmdb_id but missing watch_providers"""
