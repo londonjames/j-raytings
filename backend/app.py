@@ -1316,6 +1316,60 @@ def delete_film(film_id):
     conn.close()
     return jsonify({'message': 'Film deleted successfully'})
 
+
+@app.route('/api/films/refresh-providers', methods=['POST'])
+def refresh_film_providers():
+    """Refresh watch providers for all films that have tmdb_id but missing watch_providers"""
+    conn = get_db()
+    if USE_POSTGRES:
+        from psycopg2.extras import RealDictCursor
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT id, title, tmdb_id FROM films WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\')')
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, title, tmdb_id FROM films WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\')')
+
+    films = cursor.fetchall()
+    conn.close()
+
+    updated = []
+    failed = []
+
+    for film in films:
+        film_dict = dict(film)
+        film_id = film_dict['id']
+        title = film_dict['title']
+        tmdb_id = film_dict['tmdb_id']
+
+        try:
+            providers = get_movie_watch_providers(tmdb_id)
+            if providers:
+                watch_providers_json = json.dumps(providers)
+
+                conn = get_db()
+                cursor = conn.cursor()
+                if USE_POSTGRES:
+                    cursor.execute('UPDATE films SET watch_providers = %s WHERE id = %s', (watch_providers_json, film_id))
+                else:
+                    cursor.execute('UPDATE films SET watch_providers = ? WHERE id = ?', (watch_providers_json, film_id))
+                conn.commit()
+                conn.close()
+
+                updated.append({'id': film_id, 'title': title, 'providers': len(providers.get('flatrate', [])) + len(providers.get('rent', [])) + len(providers.get('buy', []))})
+                print(f"✓ Updated watch providers for '{title}'")
+            else:
+                failed.append({'id': film_id, 'title': title, 'reason': 'No providers found'})
+        except Exception as e:
+            failed.append({'id': film_id, 'title': title, 'reason': str(e)})
+            print(f"✗ Failed to update '{title}': {e}")
+
+    return jsonify({
+        'updated': len(updated),
+        'failed': len(failed),
+        'details': {'updated': updated, 'failed': failed}
+    })
+
+
 @app.route('/api/books', methods=['POST'])
 def add_book():
     """Add a new book with automatic metadata fetching from Google Books"""
@@ -2450,6 +2504,60 @@ def delete_show(show_id):
 
     conn.close()
     return jsonify({'message': 'Show deleted successfully'})
+
+
+@app.route('/api/shows/refresh-providers', methods=['POST'])
+def refresh_show_providers():
+    """Refresh watch providers for all shows that have tmdb_id but missing watch_providers"""
+    conn = get_db()
+    if USE_POSTGRES:
+        from psycopg2.extras import RealDictCursor
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute('SELECT id, title, tmdb_id FROM shows WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\')')
+    else:
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, title, tmdb_id FROM shows WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\')')
+
+    shows = cursor.fetchall()
+    conn.close()
+
+    updated = []
+    failed = []
+
+    for show in shows:
+        show_dict = dict(show)
+        show_id = show_dict['id']
+        title = show_dict['title']
+        tmdb_id = show_dict['tmdb_id']
+
+        try:
+            providers = get_tv_watch_providers(tmdb_id)
+            if providers:
+                watch_providers_json = json.dumps(providers)
+
+                conn = get_db()
+                cursor = conn.cursor()
+                if USE_POSTGRES:
+                    cursor.execute('UPDATE shows SET watch_providers = %s WHERE id = %s', (watch_providers_json, show_id))
+                else:
+                    cursor.execute('UPDATE shows SET watch_providers = ? WHERE id = ?', (watch_providers_json, show_id))
+                conn.commit()
+                conn.close()
+
+                updated.append({'id': show_id, 'title': title, 'providers': len(providers.get('flatrate', [])) + len(providers.get('rent', [])) + len(providers.get('buy', []))})
+                print(f"✓ Updated watch providers for '{title}'")
+            else:
+                failed.append({'id': show_id, 'title': title, 'reason': 'No providers found'})
+        except Exception as e:
+            failed.append({'id': show_id, 'title': title, 'reason': str(e)})
+            print(f"✗ Failed to update '{title}': {e}")
+
+    return jsonify({
+        'updated': len(updated),
+        'failed': len(failed),
+        'details': {'updated': updated, 'failed': failed}
+    })
+
 
 @app.route('/api/admin/shows/<int:show_id>/field', methods=['PUT'])
 def update_show_field(show_id):
