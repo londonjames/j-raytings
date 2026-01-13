@@ -156,10 +156,7 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
         alignItems: 'center',
         gap: '4px'
       }}>
-        <span style={{
-          fontFamily: 'Impact, Arial Black, Arial, sans-serif',
-          letterSpacing: '-0.5px'
-        }}>IMDb</span>
+        <span>IMDb</span>
         <span style={{ color: '#F5C518' }}>{rating}</span>
       </span>
     )
