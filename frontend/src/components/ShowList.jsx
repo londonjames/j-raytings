@@ -48,7 +48,7 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
     })
   }
 
-  // Format years and seasons together (e.g., "2008-2013; 5 seasons")
+  // Format years and seasons together (e.g., "2008-2013; 5 seasons") - for front card
   const formatYearsAndSeasons = (startYear, endYear, isOngoing, seasons) => {
     let yearPart = ''
     if (startYear) {
@@ -70,6 +70,20 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
       return `${yearPart}; ${seasonPart}`
     }
     return yearPart || seasonPart
+  }
+
+  // Format years only (for back card)
+  const formatYears = (startYear, endYear, isOngoing) => {
+    if (!startYear) return ''
+    if (isOngoing) return `${startYear}-Present`
+    if (endYear && endYear !== startYear) return `${startYear}-${endYear}`
+    return `${startYear}`
+  }
+
+  // Format seasons only (for back card)
+  const formatSeasons = (seasons) => {
+    if (!seasons) return ''
+    return seasons === 1 ? '1 season' : `${seasons} seasons`
   }
 
   // IMDB badge component
@@ -227,10 +241,13 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
                   <div className="header-text">
                     <h3 className="film-title-back">{show.title}</h3>
                     <div className="year-duration">
-                      {(show.start_year || show.seasons) && (
-                        <span>{formatYearsAndSeasons(show.start_year, show.end_year, show.is_ongoing, show.seasons)}</span>
-                      )}
+                      {show.start_year && <span>{formatYears(show.start_year, show.end_year, show.is_ongoing)}</span>}
                     </div>
+                    {show.seasons && (
+                      <div className="year-duration" style={{ marginTop: '2px' }}>
+                        <span>{formatSeasons(show.seasons)}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -264,12 +281,6 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
                     <div className="detail-row">
                       <span className="detail-label">Episodes:</span>
                       <span className="detail-value">{show.episodes}</span>
-                    </div>
-                  )}
-                  {show.date_watched && (
-                    <div className="detail-row">
-                      <span className="detail-label">Date Watched:</span>
-                      <span className="detail-value">{show.date_watched}</span>
                     </div>
                   )}
                   {show.details_commentary && (
