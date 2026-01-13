@@ -2808,3 +2808,71 @@ body {
   }
 
 }
+
+/* ============================================
+   SHOWS-SPECIFIC STYLING (IMDB Yellow Theme)
+   ============================================ */
+
+/* Back card rating box - IMDB Yellow instead of white */
+.app-shows .metric-value.with-rating-box {
+  background: #F5C518;
+  color: #000;
+}
+
+/* Shows analytics bar chart styling */
+.app-shows .analytics-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.app-shows .chart-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-shows .bar-label {
+  min-width: 80px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.app-shows .bar-container {
+  flex: 1;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.app-shows .bar-container .bar {
+  height: 100%;
+  background: #F5C518;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.app-shows .bar-value {
+  min-width: 30px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Mobile adjustments for shows rating box */
+@media (max-width: 500px) {
+  .app-shows .metric-value.with-rating-box {
+    background: #F5C518;
+    color: #000;
+  }
+}
+
+@media (max-width: 390px) {
+  .app-shows .metric-value.with-rating-box {
+    background: #F5C518;
+    color: #000;
+  }
+}

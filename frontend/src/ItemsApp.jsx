@@ -472,8 +472,8 @@ function ItemsApp({ config }) {
   } : undefined
 
   return (
-    <div 
-      className={`app ${shouldShowFilters ? 'filters-active' : ''} ${filterCountClass}`.trim()}
+    <div
+      className={`app app-${config.type} ${shouldShowFilters ? 'filters-active' : ''} ${filterCountClass}`.trim()}
       style={style}
     >
       <div className="sticky-header">
