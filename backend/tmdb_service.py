@@ -260,3 +260,77 @@ def get_tv_poster_url(title, year=None):
     """Get just the poster URL for a TV show"""
     result = search_tv_show(title, year)
     return result['poster_url'] if result else None
+
+
+# ============================================
+# WATCH PROVIDERS (JustWatch data via TMDB)
+# ============================================
+
+TMDB_LOGO_BASE_URL = 'https://image.tmdb.org/t/p/original'
+
+def get_movie_watch_providers(tmdb_id, country='US'):
+    """Get streaming/rent/buy providers for a movie"""
+    if not TMDB_API_KEY or not tmdb_id:
+        return None
+
+    try:
+        response = requests.get(
+            f'{TMDB_BASE_URL}/movie/{tmdb_id}/watch/providers',
+            params={'api_key': TMDB_API_KEY}
+        )
+        response.raise_for_status()
+        data = response.json()
+
+        results = data.get('results', {}).get(country, {})
+        if not results:
+            return None
+
+        return _format_watch_providers(results)
+    except requests.exceptions.RequestException as e:
+        print(f"Error getting watch providers for movie {tmdb_id}: {e}")
+        return None
+
+
+def get_tv_watch_providers(tmdb_id, country='US'):
+    """Get streaming/rent/buy providers for a TV show"""
+    if not TMDB_API_KEY or not tmdb_id:
+        return None
+
+    try:
+        response = requests.get(
+            f'{TMDB_BASE_URL}/tv/{tmdb_id}/watch/providers',
+            params={'api_key': TMDB_API_KEY}
+        )
+        response.raise_for_status()
+        data = response.json()
+
+        results = data.get('results', {}).get(country, {})
+        if not results:
+            return None
+
+        return _format_watch_providers(results)
+    except requests.exceptions.RequestException as e:
+        print(f"Error getting watch providers for TV show {tmdb_id}: {e}")
+        return None
+
+
+def _format_watch_providers(results):
+    """Format watch provider data into a clean structure"""
+    def format_provider(p):
+        return {
+            'name': p.get('provider_name'),
+            'logo': f"{TMDB_LOGO_BASE_URL}{p.get('logo_path')}" if p.get('logo_path') else None,
+            'id': p.get('provider_id')
+        }
+
+    providers = {
+        'link': results.get('link'),  # JustWatch deep link
+        'flatrate': [format_provider(p) for p in results.get('flatrate', [])],  # Streaming
+        'rent': [format_provider(p) for p in results.get('rent', [])],
+        'buy': [format_provider(p) for p in results.get('buy', [])]
+    }
+
+    # Only return if there's actual data
+    if providers['flatrate'] or providers['rent'] or providers['buy']:
+        return providers
+    return None

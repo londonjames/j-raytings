@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 import os
-from tmdb_service import search_movie, get_movie_details, search_tv_show, get_tv_show_details
+from tmdb_service import search_movie, get_movie_details, search_tv_show, get_tv_show_details, get_movie_watch_providers, get_tv_watch_providers
+import json
 import re
 from urllib.parse import urlparse
 import requests
@@ -90,7 +91,7 @@ def init_db():
                 print(f"Error adding date_seen column: {e}")
         
         # Check and add other missing columns
-        for column_name, column_type in [('genres', 'TEXT'), ('poster_url', 'TEXT'), ('rt_link', 'TEXT'), ('a_grade_rank', 'INTEGER'), ('updated_at', 'TIMESTAMP')]:
+        for column_name, column_type in [('genres', 'TEXT'), ('poster_url', 'TEXT'), ('rt_link', 'TEXT'), ('a_grade_rank', 'INTEGER'), ('updated_at', 'TIMESTAMP'), ('tmdb_id', 'INTEGER'), ('watch_providers', 'TEXT')]:
             cursor.execute("""
                 SELECT column_name 
                 FROM information_schema.columns 
@@ -129,18 +130,11 @@ def init_db():
         ''')
 
         # Add missing columns if they don't exist (for existing SQLite databases)
-        try:
-            cursor.execute('ALTER TABLE films ADD COLUMN genres TEXT')
-        except:
-            pass
-        try:
-            cursor.execute('ALTER TABLE films ADD COLUMN poster_url TEXT')
-        except:
-            pass
-        try:
-            cursor.execute('ALTER TABLE films ADD COLUMN rt_link TEXT')
-        except:
-            pass
+        for col in ['genres TEXT', 'poster_url TEXT', 'rt_link TEXT', 'tmdb_id INTEGER', 'watch_providers TEXT']:
+            try:
+                cursor.execute(f'ALTER TABLE films ADD COLUMN {col}')
+            except:
+                pass
 
     conn.commit()
     conn.close()
@@ -288,7 +282,8 @@ def init_shows_db():
             ('details_commentary', 'TEXT'),
             ('date_watched', 'TEXT'),
             ('a_grade_rank', 'INTEGER'),
-            ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP')
+            ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP'),
+            ('watch_providers', 'TEXT')
         ]:
             cursor.execute("""
                 SELECT column_name
@@ -339,7 +334,8 @@ def init_shows_db():
             ('details_commentary', 'TEXT'),
             ('date_watched', 'TEXT'),
             ('a_grade_rank', 'INTEGER'),
-            ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP')
+            ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP'),
+            ('watch_providers', 'TEXT')
         ]:
             try:
                 cursor.execute(f'ALTER TABLE shows ADD COLUMN {column_name} {column_type}')
@@ -464,6 +460,13 @@ def row_to_dict(row):
     if film_dict.get('location'):
         film_dict['location'] = simplify_location(film_dict['location'])
 
+    # Parse watch_providers JSON if it exists
+    if film_dict.get('watch_providers') and isinstance(film_dict['watch_providers'], str):
+        try:
+            film_dict['watch_providers'] = json.loads(film_dict['watch_providers'])
+        except json.JSONDecodeError:
+            film_dict['watch_providers'] = None
+
     return film_dict
 
 def book_row_to_dict(row):
@@ -474,6 +477,12 @@ def book_row_to_dict(row):
 def show_row_to_dict(row):
     """Convert database row to dictionary for shows (works for both SQLite and PostgreSQL)"""
     show_dict = dict(row)
+    # Parse watch_providers JSON if it exists
+    if show_dict.get('watch_providers') and isinstance(show_dict['watch_providers'], str):
+        try:
+            show_dict['watch_providers'] = json.loads(show_dict['watch_providers'])
+        except json.JSONDecodeError:
+            show_dict['watch_providers'] = None
     return show_dict
 
 @app.route('/api/books', methods=['GET'])
@@ -792,6 +801,17 @@ def add_film():
     if not rt_link:
         rt_link = generate_rt_url(data['title'])
 
+    # Fetch watch providers if we have a TMDB ID
+    watch_providers = None
+    if tmdb_id:
+        try:
+            watch_providers_data = get_movie_watch_providers(tmdb_id)
+            if watch_providers_data:
+                watch_providers = json.dumps(watch_providers_data)
+                print(f"✓ Fetched watch providers for '{data['title']}'")
+        except Exception as e:
+            print(f"Error fetching watch providers: {e}")
+
     # Auto-calculate score from letter_rating if score not provided
     score = data.get('score')
     if not score and data.get('letter_rating'):
@@ -801,12 +821,11 @@ def add_film():
     cursor = conn.cursor()
 
     if USE_POSTGRES:
-        # Don't include a_grade_rank in INSERT for production (column doesn't exist yet)
         cursor.execute('''
             INSERT INTO films (order_number, date_seen, title, letter_rating, score,
                               year_watched, location, format, release_year,
-                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, tmdb_id, watch_providers)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
         ''', (
             data.get('order_number'),
@@ -823,15 +842,17 @@ def add_film():
             data.get('rt_per_minute'),
             poster_url,
             genres,
-            rt_link
+            rt_link,
+            tmdb_id,
+            watch_providers
         ))
         film_id = cursor.fetchone()[0]
     else:
         cursor.execute('''
             INSERT INTO films (order_number, date_seen, title, letter_rating, score,
                               year_watched, location, format, release_year,
-                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, a_grade_rank)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, a_grade_rank, tmdb_id, watch_providers)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             data.get('order_number'),
             data.get('date_seen'),
@@ -848,7 +869,9 @@ def add_film():
             poster_url,
             genres,
             rt_link,
-            data.get('a_grade_rank')
+            data.get('a_grade_rank'),
+            tmdb_id,
+            watch_providers
         ))
         film_id = cursor.lastrowid
 
@@ -2264,6 +2287,17 @@ def add_show():
         except Exception as e:
             print(f"Error fetching IMDB rating: {e}")
 
+    # Fetch watch providers if we have a TMDB ID
+    watch_providers = None
+    if tmdb_id:
+        try:
+            watch_providers_data = get_tv_watch_providers(tmdb_id)
+            if watch_providers_data:
+                watch_providers = json.dumps(watch_providers_data)
+                print(f"✓ Fetched watch providers for '{data['title']}'")
+        except Exception as e:
+            print(f"Error fetching watch providers: {e}")
+
     # Auto-calculate score from j_rayting
     score = data.get('score')
     if not score and data.get('j_rayting'):
@@ -2277,9 +2311,9 @@ def add_show():
             INSERT INTO shows (
                 title, start_year, end_year, is_ongoing, seasons, episodes,
                 j_rayting, score, imdb_rating, imdb_id, tmdb_id, genres,
-                poster_url, details_commentary, date_watched, a_grade_rank
+                poster_url, details_commentary, date_watched, a_grade_rank, watch_providers
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
         ''', (
             data['title'],
@@ -2297,7 +2331,8 @@ def add_show():
             poster_url,
             data.get('details_commentary'),
             data.get('date_watched'),
-            data.get('a_grade_rank')
+            data.get('a_grade_rank'),
+            watch_providers
         ))
         show_id = cursor.fetchone()[0]
     else:
@@ -2305,9 +2340,9 @@ def add_show():
             INSERT INTO shows (
                 title, start_year, end_year, is_ongoing, seasons, episodes,
                 j_rayting, score, imdb_rating, imdb_id, tmdb_id, genres,
-                poster_url, details_commentary, date_watched, a_grade_rank
+                poster_url, details_commentary, date_watched, a_grade_rank, watch_providers
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             data['title'],
             start_year,
@@ -2324,7 +2359,8 @@ def add_show():
             poster_url,
             data.get('details_commentary'),
             data.get('date_watched'),
-            data.get('a_grade_rank')
+            data.get('a_grade_rank'),
+            watch_providers
         ))
         show_id = cursor.lastrowid
 
