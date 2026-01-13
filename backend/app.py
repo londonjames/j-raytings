@@ -1330,14 +1330,22 @@ def backfill_film_tmdb_ids():
     """Backfill tmdb_id for all films that don't have one by searching TMDB"""
     import time
 
+    # Get limit from query params (default 200 to stay under Railway timeout)
+    limit = request.args.get('limit', 200, type=int)
+
+    # First get total remaining count
     conn = get_db()
     if USE_POSTGRES:
         from psycopg2.extras import RealDictCursor
         cursor = conn.cursor(cursor_factory=RealDictCursor)
-        cursor.execute('SELECT id, title, release_year FROM films WHERE tmdb_id IS NULL')
+        cursor.execute('SELECT COUNT(*) as count FROM films WHERE tmdb_id IS NULL')
+        total_remaining = cursor.fetchone()['count']
+        cursor.execute('SELECT id, title, release_year FROM films WHERE tmdb_id IS NULL LIMIT %s', (limit,))
     else:
         cursor = conn.cursor()
-        cursor.execute('SELECT id, title, release_year FROM films WHERE tmdb_id IS NULL')
+        cursor.execute('SELECT COUNT(*) as count FROM films WHERE tmdb_id IS NULL')
+        total_remaining = cursor.fetchone()['count']
+        cursor.execute('SELECT id, title, release_year FROM films WHERE tmdb_id IS NULL LIMIT ?', (limit,))
 
     films = cursor.fetchall()
     conn.close()
@@ -1381,7 +1389,8 @@ def backfill_film_tmdb_ids():
     return jsonify({
         'updated': len(updated),
         'failed': len(failed),
-        'updated_films': updated[:20],  # Only return first 20 to keep response small
+        'total_remaining': total_remaining - len(updated),
+        'updated_films': updated[:20],
         'failed_films': failed[:20]
     })
 
@@ -1389,14 +1398,23 @@ def backfill_film_tmdb_ids():
 @app.route('/api/films/refresh-providers', methods=['POST'])
 def refresh_film_providers():
     """Refresh watch providers for all films that have tmdb_id but missing watch_providers"""
+    import time
+
+    # Get limit from query params (default 200 to stay under Railway timeout)
+    limit = request.args.get('limit', 200, type=int)
+
     conn = get_db()
     if USE_POSTGRES:
         from psycopg2.extras import RealDictCursor
         cursor = conn.cursor(cursor_factory=RealDictCursor)
-        cursor.execute('SELECT id, title, tmdb_id FROM films WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\')')
+        cursor.execute('SELECT COUNT(*) as count FROM films WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\')')
+        total_remaining = cursor.fetchone()['count']
+        cursor.execute('SELECT id, title, tmdb_id FROM films WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\') LIMIT %s', (limit,))
     else:
         cursor = conn.cursor()
-        cursor.execute('SELECT id, title, tmdb_id FROM films WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\')')
+        cursor.execute('SELECT COUNT(*) as count FROM films WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\')')
+        total_remaining = cursor.fetchone()['count']
+        cursor.execute('SELECT id, title, tmdb_id FROM films WHERE tmdb_id IS NOT NULL AND (watch_providers IS NULL OR watch_providers = \'\') LIMIT ?', (limit,))
 
     films = cursor.fetchall()
     conn.close()
@@ -1404,7 +1422,7 @@ def refresh_film_providers():
     updated = []
     failed = []
 
-    for film in films:
+    for i, film in enumerate(films):
         film_dict = dict(film)
         film_id = film_dict['id']
         title = film_dict['title']
@@ -1425,17 +1443,21 @@ def refresh_film_providers():
                 conn.close()
 
                 updated.append({'id': film_id, 'title': title, 'providers': len(providers.get('flatrate', [])) + len(providers.get('rent', [])) + len(providers.get('buy', []))})
-                print(f"✓ Updated watch providers for '{title}'")
+                print(f"✓ [{i+1}/{len(films)}] Updated watch providers for '{title}'")
             else:
                 failed.append({'id': film_id, 'title': title, 'reason': 'No providers found'})
+
+            # Rate limiting
+            time.sleep(0.25)
         except Exception as e:
             failed.append({'id': film_id, 'title': title, 'reason': str(e)})
-            print(f"✗ Failed to update '{title}': {e}")
+            print(f"✗ [{i+1}/{len(films)}] Failed to update '{title}': {e}")
 
     return jsonify({
         'updated': len(updated),
         'failed': len(failed),
-        'details': {'updated': updated, 'failed': failed}
+        'total_remaining': total_remaining - len(updated),
+        'details': {'updated': updated[:20], 'failed': failed[:20]}
     })
 
 
