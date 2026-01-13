@@ -2827,7 +2827,7 @@ body {
 .film-title-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: nowrap;
 }
 
