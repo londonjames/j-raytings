@@ -2854,8 +2854,8 @@ body {
 }
 
 .streaming-logo {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   border-radius: 4px;
   object-fit: contain;
   transition: transform 0.2s ease;
