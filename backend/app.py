@@ -91,7 +91,7 @@ def init_db():
                 print(f"Error adding date_seen column: {e}")
         
         # Check and add other missing columns
-        for column_name, column_type in [('genres', 'TEXT'), ('poster_url', 'TEXT'), ('rt_link', 'TEXT'), ('a_grade_rank', 'INTEGER'), ('updated_at', 'TIMESTAMP'), ('tmdb_id', 'INTEGER'), ('watch_providers', 'TEXT')]:
+        for column_name, column_type in [('genres', 'TEXT'), ('poster_url', 'TEXT'), ('rt_link', 'TEXT'), ('a_grade_rank', 'INTEGER'), ('updated_at', 'TIMESTAMP'), ('tmdb_id', 'INTEGER'), ('watch_providers', 'TEXT'), ('watch_providers_updated_at', 'TIMESTAMP')]:
             cursor.execute("""
                 SELECT column_name 
                 FROM information_schema.columns 
@@ -130,7 +130,7 @@ def init_db():
         ''')
 
         # Add missing columns if they don't exist (for existing SQLite databases)
-        for col in ['genres TEXT', 'poster_url TEXT', 'rt_link TEXT', 'tmdb_id INTEGER', 'watch_providers TEXT']:
+        for col in ['genres TEXT', 'poster_url TEXT', 'rt_link TEXT', 'tmdb_id INTEGER', 'watch_providers TEXT', 'watch_providers_updated_at TIMESTAMP']:
             try:
                 cursor.execute(f'ALTER TABLE films ADD COLUMN {col}')
             except:
@@ -283,7 +283,8 @@ def init_shows_db():
             ('date_watched', 'TEXT'),
             ('a_grade_rank', 'INTEGER'),
             ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP'),
-            ('watch_providers', 'TEXT')
+            ('watch_providers', 'TEXT'),
+            ('watch_providers_updated_at', 'TIMESTAMP')
         ]:
             cursor.execute("""
                 SELECT column_name
@@ -335,7 +336,8 @@ def init_shows_db():
             ('date_watched', 'TEXT'),
             ('a_grade_rank', 'INTEGER'),
             ('updated_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP'),
-            ('watch_providers', 'TEXT')
+            ('watch_providers', 'TEXT'),
+            ('watch_providers_updated_at', 'TIMESTAMP')
         ]:
             try:
                 cursor.execute(f'ALTER TABLE shows ADD COLUMN {column_name} {column_type}')
@@ -820,12 +822,16 @@ def add_film():
     conn = get_db()
     cursor = conn.cursor()
 
+    # Set timestamp if we have watch providers
+    from datetime import datetime
+    watch_providers_updated_at = datetime.utcnow() if watch_providers else None
+
     if USE_POSTGRES:
         cursor.execute('''
             INSERT INTO films (order_number, date_seen, title, letter_rating, score,
                               year_watched, location, format, release_year,
-                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, tmdb_id, watch_providers)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, tmdb_id, watch_providers, watch_providers_updated_at)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
         ''', (
             data.get('order_number'),
@@ -844,15 +850,16 @@ def add_film():
             genres,
             rt_link,
             tmdb_id,
-            watch_providers
+            watch_providers,
+            watch_providers_updated_at
         ))
         film_id = cursor.fetchone()[0]
     else:
         cursor.execute('''
             INSERT INTO films (order_number, date_seen, title, letter_rating, score,
                               year_watched, location, format, release_year,
-                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, a_grade_rank, tmdb_id, watch_providers)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                              rotten_tomatoes, length_minutes, rt_per_minute, poster_url, genres, rt_link, a_grade_rank, tmdb_id, watch_providers, watch_providers_updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             data.get('order_number'),
             data.get('date_seen'),
@@ -871,7 +878,8 @@ def add_film():
             rt_link,
             data.get('a_grade_rank'),
             tmdb_id,
-            watch_providers
+            watch_providers,
+            watch_providers_updated_at
         ))
         film_id = cursor.lastrowid
 
@@ -1349,9 +1357,9 @@ def refresh_film_providers():
                 conn = get_db()
                 cursor = conn.cursor()
                 if USE_POSTGRES:
-                    cursor.execute('UPDATE films SET watch_providers = %s WHERE id = %s', (watch_providers_json, film_id))
+                    cursor.execute('UPDATE films SET watch_providers = %s, watch_providers_updated_at = CURRENT_TIMESTAMP WHERE id = %s', (watch_providers_json, film_id))
                 else:
-                    cursor.execute('UPDATE films SET watch_providers = ? WHERE id = ?', (watch_providers_json, film_id))
+                    cursor.execute('UPDATE films SET watch_providers = ?, watch_providers_updated_at = CURRENT_TIMESTAMP WHERE id = ?', (watch_providers_json, film_id))
                 conn.commit()
                 conn.close()
 
@@ -2357,6 +2365,10 @@ def add_show():
     if not score and data.get('j_rayting'):
         score = letter_rating_to_score(data.get('j_rayting'))
 
+    # Set timestamp if we have watch providers
+    from datetime import datetime
+    watch_providers_updated_at = datetime.utcnow() if watch_providers else None
+
     conn = get_db()
     cursor = conn.cursor()
 
@@ -2365,9 +2377,9 @@ def add_show():
             INSERT INTO shows (
                 title, start_year, end_year, is_ongoing, seasons, episodes,
                 j_rayting, score, imdb_rating, imdb_id, tmdb_id, genres,
-                poster_url, details_commentary, date_watched, a_grade_rank, watch_providers
+                poster_url, details_commentary, date_watched, a_grade_rank, watch_providers, watch_providers_updated_at
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
         ''', (
             data['title'],
@@ -2386,7 +2398,8 @@ def add_show():
             data.get('details_commentary'),
             data.get('date_watched'),
             data.get('a_grade_rank'),
-            watch_providers
+            watch_providers,
+            watch_providers_updated_at
         ))
         show_id = cursor.fetchone()[0]
     else:
@@ -2394,9 +2407,9 @@ def add_show():
             INSERT INTO shows (
                 title, start_year, end_year, is_ongoing, seasons, episodes,
                 j_rayting, score, imdb_rating, imdb_id, tmdb_id, genres,
-                poster_url, details_commentary, date_watched, a_grade_rank, watch_providers
+                poster_url, details_commentary, date_watched, a_grade_rank, watch_providers, watch_providers_updated_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             data['title'],
             start_year,
@@ -2414,7 +2427,8 @@ def add_show():
             data.get('details_commentary'),
             data.get('date_watched'),
             data.get('a_grade_rank'),
-            watch_providers
+            watch_providers,
+            watch_providers_updated_at
         ))
         show_id = cursor.lastrowid
 
@@ -2538,9 +2552,9 @@ def refresh_show_providers():
                 conn = get_db()
                 cursor = conn.cursor()
                 if USE_POSTGRES:
-                    cursor.execute('UPDATE shows SET watch_providers = %s WHERE id = %s', (watch_providers_json, show_id))
+                    cursor.execute('UPDATE shows SET watch_providers = %s, watch_providers_updated_at = CURRENT_TIMESTAMP WHERE id = %s', (watch_providers_json, show_id))
                 else:
-                    cursor.execute('UPDATE shows SET watch_providers = ? WHERE id = ?', (watch_providers_json, show_id))
+                    cursor.execute('UPDATE shows SET watch_providers = ?, watch_providers_updated_at = CURRENT_TIMESTAMP WHERE id = ?', (watch_providers_json, show_id))
                 conn.commit()
                 conn.close()
 
