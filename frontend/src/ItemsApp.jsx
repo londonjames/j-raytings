@@ -39,9 +39,11 @@ function ItemsApp({ config }) {
     const baseUrl = 'https://jamesraybould.me'
     const pageUrl = `${baseUrl}/${config.type}`
     const pageTitle = config.pageTitles.main
-    const description = config.type === 'films' 
+    const description = config.type === 'films'
       ? 'Browse my collection of over 1700 films I\'ve watched, each with my own J-Rayting. And if you\'re super geeky, you can filter by Rotten Tomatoes score, Year, genre, and more.'
-      : 'Browse my personal collection of over 700 books I\'ve read, each with my own J-Rayting. And if you\'re super geeky, you can skim my short summaries or even dig into my comprehensive Notion pages with all my Amazon Kindle highlights.'
+      : config.type === 'books'
+      ? 'Browse my personal collection of over 700 books I\'ve read, each with my own J-Rayting. And if you\'re super geeky, you can skim my short summaries or even dig into my comprehensive Notion pages with all my Amazon Kindle highlights.'
+      : 'Browse my collection of TV shows I\'ve watched, each with my own J-Rayting. Filter by IMDB rating, genre, decade, and read my thoughts on each show.'
     const imageUrl = `${baseUrl}/${config.type}-quilt-social.jpg?v2`
 
     // Helper function to update or create meta tag
@@ -151,28 +153,24 @@ function ItemsApp({ config }) {
   })
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
   
-  // Calculate initial filter count from activeFilter
+  // Calculate initial filter count from activeFilter - dynamic based on config
   const calculateInitialFilterCount = () => {
     let count = 0
-    if (activeFilter.rating?.length > 0) count++
-    if (activeFilter.rt?.length > 0) count++
-    if (activeFilter.year?.length > 0) count++
-    if (activeFilter.yearSeen?.length > 0) count++
-    if (activeFilter.genre?.length > 0) count++
+    Object.keys(activeFilter).forEach(key => {
+      if (activeFilter[key]?.length > 0) count++
+    })
     return count
   }
-  
+
   const [filterCount, setFilterCount] = useState(calculateInitialFilterCount)
   const [filterRows, setFilterRows] = useState(0) // Track actual number of rows when filters wrap
-  
-  // Update filterCount when activeFilter changes - use the same calculation
+
+  // Update filterCount when activeFilter changes - dynamic calculation
   useEffect(() => {
     let count = 0
-    if (activeFilter.rating?.length > 0) count++
-    if (activeFilter.rt?.length > 0) count++
-    if (activeFilter.year?.length > 0) count++
-    if (activeFilter.yearSeen?.length > 0) count++
-    if (activeFilter.genre?.length > 0) count++
+    Object.keys(activeFilter).forEach(key => {
+      if (activeFilter[key]?.length > 0) count++
+    })
     setFilterCount(count)
   }, [activeFilter])
 
@@ -356,6 +354,7 @@ function ItemsApp({ config }) {
           type: config.applyTypeFilter,
           form: config.applyFormFilter,
           author: config.applyAuthorFilter,
+          decade: config.applyDecadeFilter,
         }
 
         const filterFunction = filterFunctionMap[filterType]
@@ -429,14 +428,12 @@ function ItemsApp({ config }) {
     return Object.keys(activeFilter).some(key => activeFilter[key].length > 0)
   }
 
-  // Calculate filter count from activeFilter directly as fallback
+  // Calculate filter count from activeFilter directly as fallback - dynamic
   const calculateFilterCount = () => {
     let count = 0
-    if (activeFilter.rating?.length > 0) count++
-    if (activeFilter.rt?.length > 0) count++
-    if (activeFilter.year?.length > 0) count++
-    if (activeFilter.yearSeen?.length > 0) count++
-    if (activeFilter.genre?.length > 0) count++
+    Object.keys(activeFilter).forEach(key => {
+      if (activeFilter[key]?.length > 0) count++
+    })
     return count
   }
 
@@ -580,7 +577,7 @@ function ItemsApp({ config }) {
           <Analytics />
         ) : filteredItems.length > 0 ? (
           <List
-            {...(config.type === 'films' ? { films: filteredItems } : { books: filteredItems })}
+            {...(config.type === 'films' ? { films: filteredItems } : config.type === 'books' ? { books: filteredItems } : { shows: filteredItems })}
             onEdit={handleEditItem}
             onDelete={handleDeleteItem}
             viewMode={viewMode}
@@ -598,7 +595,7 @@ function ItemsApp({ config }) {
       </div>
       {showForm && (
         <Form
-          {...(config.type === 'films' ? { film: editingItem } : { book: editingItem })}
+          {...(config.type === 'films' ? { film: editingItem } : config.type === 'books' ? { book: editingItem } : { show: editingItem })}
           onSave={handleSaveItem}
           onCancel={() => {
             setShowForm(false)
