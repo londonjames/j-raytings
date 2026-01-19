@@ -169,6 +169,37 @@ INITIAL_SHOWS = [
         'title': 'Extras',
         'j_rayting': 'B+/A-',
         'details_commentary': "A really impressive implementation of a hard-to-land concept; the David Bowie \"silly little fatman\" scene is in my all-time Top 5 favourite tv scenes ever."
+    },
+    {
+        'title': 'Glow',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Got pretty into season 1 and then watched season 2 - was fine - before no longer picking it up again."
+    },
+    {
+        'title': 'No Good Deed',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Solid if unspectacular - a bit like \"Dead To Me,\" a Netflix show that makes you think a bit, laugh a bit, but without providing anything especially memorable."
+    },
+    {
+        'title': 'Flight of the Conchords',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "Such a different show, with regular moments of deep hilarity; wish it had been longer, but a bit like Fleabag and the British Office, it meant there was no let-down or overdue conclusion."
+    },
+    {
+        'title': 'Party of Five',
+        'j_rayting': 'B+',
+        'details_commentary': "I watched as a teenager in England and haven't revisited since, so it falls into a special category of 1990s show that didn't persist."
+    },
+    {
+        'title': 'Ballers',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Could have been called Entourage-Lite, where it had some of the same feeling, but simply wasn't as fun or memorable; partially because the characters didn't resonate."
+    },
+    {
+        'title': 'Crashing',
+        'j_rayting': 'B+',
+        'start_year': 2016,
+        'details_commentary': "Because it's British, I feel as though I haven't discussed this with anybody else and it had zero cultural impact in the US, but I definitely enjoyed it."
     }
 ]
 
