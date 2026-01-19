@@ -149,6 +149,26 @@ INITIAL_SHOWS = [
         'title': 'Parenthood',
         'j_rayting': 'B+',
         'details_commentary': "I'd probably like even more now I have older children; nice mix of heart, drama, and humour, where the Bay Area location didn't hurt."
+    },
+    {
+        'title': 'Master of None',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "Really loved the Aziz Ansari seasons before he got cancelled; a great show in my book."
+    },
+    {
+        'title': 'Episodes',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "I'm a big Matt LeBlanc fan, so this really tickled my funny bone, staying strong through to the dismount."
+    },
+    {
+        'title': 'After Life',
+        'j_rayting': 'B+',
+        'details_commentary': "I like Ricky Gervais quite a bit, so while I prefer Extras and The Office, I also have a soft spot for this show."
+    },
+    {
+        'title': 'Extras',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "A really impressive implementation of a hard-to-land concept; the David Bowie \"silly little fatman\" scene is in my all-time Top 5 favourite tv scenes ever."
     }
 ]
 
