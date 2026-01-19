@@ -342,6 +342,11 @@ ALL_SHOWS = [
         'title': 'The Beast in Me',
         'j_rayting': 'B+',
         'details_commentary': "Very up-and-down, but better than I'd expected, with a few moments of being genuinely on the edge of my seat."
+    },
+    {
+        'title': 'How I Met Your Mother',
+        'j_rayting': 'B/B+',
+        'details_commentary': "I saw in my 40s, 10+ years after the show, so didn't time it quite right. Binged the first few seasons while sick one week, but it didn't captivate me enough to make it through."
     }
 ]
 
