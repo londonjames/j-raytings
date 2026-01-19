@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Seed script to add initial TV shows with A ratings.
+Seed script to add initial TV shows.
 Run this after the backend is running to populate initial data.
+
+Shows are organized by grade (highest first), then alphabetically within each grade.
+Note: Shows starting with "The" are alphabetized by the second word.
 """
 
 import requests
@@ -11,8 +14,11 @@ import sys
 # Use local API by default, can override with environment variable
 API_URL = os.getenv('API_URL', 'http://localhost:5001/api')
 
-# Initial shows with A ratings
+# Shows organized by grade, then alphabetically (The X sorted as X)
 INITIAL_SHOWS = [
+    # ===================
+    # A grade (by rank)
+    # ===================
     {
         'title': 'Breaking Bad',
         'j_rayting': 'A',
@@ -27,13 +33,13 @@ INITIAL_SHOWS = [
         'title': 'The Office',  # UK version
         'j_rayting': 'A',
         'a_grade_rank': 3,
-        'start_year': 2001  # Helps TMDB find the UK version
+        'start_year': 2001
     },
     {
         'title': 'The Office',  # US version
         'j_rayting': 'A',
         'a_grade_rank': 4,
-        'start_year': 2005  # Helps TMDB find the US version
+        'start_year': 2005
     },
     {
         'title': 'Fleabag',
@@ -50,30 +56,34 @@ INITIAL_SHOWS = [
         'j_rayting': 'A',
         'a_grade_rank': 7
     },
-    {
-        'title': 'Silo',
-        'j_rayting': 'B+/A-',
-        'details_commentary': "One rung below my absolute favourites, but a nice blend of thought-provoking and exciting. Just a bit too slow-paced for my tastes."
-    },
-    {
-        'title': 'Stick',
-        'j_rayting': 'B/B+',
-        'details_commentary': "An easy, fun watch that's just a bit too formulaic to \"hit the pin.\" I watched most of it at the gym, which is a perfect environment for it."
-    },
-    {
-        'title': 'Slow Horses',
-        'j_rayting': 'B+/A-',
-        'details_commentary': "A little bit up-and-down - I thought Season 3 was sub-par relatively speaking - but a great cast of characters and Gary Oldman's Jackson Lamb is a nicely familiar \"comfort food,\" pulling it all together."
-    },
-    {
-        'title': 'The Studio',
-        'j_rayting': 'B+',
-        'details_commentary': "A few spectacular scenes - building as the show progresses - and enough cameos to bring back some of Entourage's \"Who will show up next?\""
-    },
+
+    # ===================
+    # B+/A- grade (alphabetical, "The X" sorted as "X")
+    # ===================
     {
         'title': 'Entourage',
         'j_rayting': 'B+/A-',
         'details_commentary': "Some of my highest TV highs - especially in the early seasons, with Johnny Drama - where anytime the plot got more depressing, I found it far less enjoyable."
+    },
+    {
+        'title': 'Episodes',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "I'm a big Matt LeBlanc fan, so this really tickled my funny bone, staying strong through to the dismount."
+    },
+    {
+        'title': 'Extras',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "A really impressive implementation of a hard-to-land concept; the David Bowie \"silly little fatman\" scene is in my all-time Top 5 favourite tv scenes ever."
+    },
+    {
+        'title': 'Flight of the Conchords',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "Such a different show, with regular moments of deep hilarity; wish it had been longer, but a bit like Fleabag and the British Office, it meant there was no let-down or overdue conclusion."
+    },
+    {
+        'title': 'Master of None',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "Really loved the Aziz Ansari seasons before he got cancelled; a great show in my book."
     },
     {
         'title': 'Shrinking',
@@ -81,44 +91,33 @@ INITIAL_SHOWS = [
         'details_commentary': "A bit too depressing sometimes, but the spirit of hope and positivity largely pulls through, with a deft blend of humour and drama."
     },
     {
-        'title': 'Platonic',
-        'j_rayting': 'B/B+',
-        'details_commentary': "Just enough self-sabotage to be annoying, just enough laughs and zaniness for me to continue to enjoy it regardless."
-    },
-    {
-        'title': 'Loot',
-        'j_rayting': 'B/B+',
-        'details_commentary': "I really want to love the show - and I do love Maya Rudolph in general - but I find myself not especially liking the full cast, which makes it less fun. Feels like it it's 2 changes away from being an excellent comedy."
-    },
-    {
-        'title': 'Unstable',
-        'j_rayting': 'B+',
-        'details_commentary': "I've always been a big Rob Lowe fan, so I think I like this more than the average person (it was cancelled after 2 seasons); silly, but warm-hearted (a bit like Rob Lowe's underrated podcast \"Literally\")."
-    },
-    {
-        'title': 'Cobra Kai',
-        'j_rayting': 'B+',
-        'details_commentary': "A hard one to judge because I truly loved Season 1 - one of my favourite series of tv - and then it got progressively worse and worse as it veered further from Johnny and Daniel; I didn't even finish the final season."
-    },
-    {
-        'title': 'Emily in Paris',
-        'j_rayting': 'B-/B',
-        'details_commentary': "Lots of beautiful people and places, but so lightweight and repetitive that I stopped after 3 seasons."
-    },
-    {
-        'title': '13 Reasons Why',
-        'j_rayting': 'B-',
-        'details_commentary': "I'm probably not the right demographic, just didn't work for me at all, so I stopped after a few episodes."
-    },
-    {
-        'title': 'Easy',
-        'j_rayting': 'B/B+',
-        'details_commentary': "I enjoyed some of the plots, but it never sunk its hooks into me enough to have a stronger opinion or enjoyment."
-    },
-    {
         'title': 'Silicon Valley',
         'j_rayting': 'B+/A-',
         'details_commentary': "Responsible for some of my biggest laughs ever; would probably be even more compelling now that we're in the AI age."
+    },
+    {
+        'title': 'Silo',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "One rung below my absolute favourites, but a nice blend of thought-provoking and exciting. Just a bit too slow-paced for my tastes."
+    },
+    {
+        'title': 'Slow Horses',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "A little bit up-and-down - I thought Season 3 was sub-par relatively speaking - but a great cast of characters and Gary Oldman's Jackson Lamb is a nicely familiar \"comfort food,\" pulling it all together."
+    },
+
+    # ===================
+    # B+ grade (alphabetical, "The X" sorted as "X")
+    # ===================
+    {
+        'title': 'After Life',
+        'j_rayting': 'B+',
+        'details_commentary': "I like Ricky Gervais quite a bit, so while I prefer Extras and The Office, I also have a soft spot for this show."
+    },
+    {
+        'title': 'Beverly Hills, 90210',
+        'j_rayting': 'B+',
+        'details_commentary': "I mainly watched in the early 1990s while the show was still set in high school, although kept up with a fair amount of it into college and beyond; very fond of the characters, probably extended 3 or perhaps 5 seasons more than was necessary."
     },
     {
         'title': 'Billions',
@@ -131,69 +130,9 @@ INITIAL_SHOWS = [
         'details_commentary': "I like Hank Moody quite a bit, even though I appreciate his character (literally and figuratively) has some pretty serious gaps; consistently made me laugh."
     },
     {
-        'title': 'Weeds',
-        'j_rayting': 'B/B+',
-        'details_commentary': "Was a top show for me briefly, but it seemed more up-and-down, and I thought the cartel plot was jumping the shark and simply less interesting."
-    },
-    {
-        'title': 'Never Have I Ever',
-        'j_rayting': 'B/B+',
-        'details_commentary': "Really enjoyed the first season - especially the Johnny Mac narrator - where her self-sabotage just got old as they took a good initial idea and continued to extend it beyond what was necessary."
-    },
-    {
-        'title': 'Dexter: New Blood',
-        'j_rayting': 'B-/B',
-        'details_commentary': "Better than seasons 7 and 8 of the original series, but still far from the quality level of the first 4 - even 5 - seasons, so probably not worth the reboot."
-    },
-    {
-        'title': 'Parenthood',
+        'title': 'Cobra Kai',
         'j_rayting': 'B+',
-        'details_commentary': "I'd probably like even more now I have older children; nice mix of heart, drama, and humour, where the Bay Area location didn't hurt."
-    },
-    {
-        'title': 'Master of None',
-        'j_rayting': 'B+/A-',
-        'details_commentary': "Really loved the Aziz Ansari seasons before he got cancelled; a great show in my book."
-    },
-    {
-        'title': 'Episodes',
-        'j_rayting': 'B+/A-',
-        'details_commentary': "I'm a big Matt LeBlanc fan, so this really tickled my funny bone, staying strong through to the dismount."
-    },
-    {
-        'title': 'After Life',
-        'j_rayting': 'B+',
-        'details_commentary': "I like Ricky Gervais quite a bit, so while I prefer Extras and The Office, I also have a soft spot for this show."
-    },
-    {
-        'title': 'Extras',
-        'j_rayting': 'B+/A-',
-        'details_commentary': "A really impressive implementation of a hard-to-land concept; the David Bowie \"silly little fatman\" scene is in my all-time Top 5 favourite tv scenes ever."
-    },
-    {
-        'title': 'Glow',
-        'j_rayting': 'B/B+',
-        'details_commentary': "Got pretty into season 1 and then watched season 2 - was fine - before no longer picking it up again."
-    },
-    {
-        'title': 'No Good Deed',
-        'j_rayting': 'B/B+',
-        'details_commentary': "Solid if unspectacular - a bit like \"Dead To Me,\" a Netflix show that makes you think a bit, laugh a bit, but without providing anything especially memorable."
-    },
-    {
-        'title': 'Flight of the Conchords',
-        'j_rayting': 'B+/A-',
-        'details_commentary': "Such a different show, with regular moments of deep hilarity; wish it had been longer, but a bit like Fleabag and the British Office, it meant there was no let-down or overdue conclusion."
-    },
-    {
-        'title': 'Party of Five',
-        'j_rayting': 'B+',
-        'details_commentary': "I watched as a teenager in England and haven't revisited since, so it falls into a special category of 1990s show that didn't persist."
-    },
-    {
-        'title': 'Ballers',
-        'j_rayting': 'B/B+',
-        'details_commentary': "Could have been called Entourage-Lite, where it had some of the same feeling, but simply wasn't as fun or memorable; partially because the characters didn't resonate."
+        'details_commentary': "A hard one to judge because I truly loved Season 1 - one of my favourite series of tv - and then it got progressively worse and worse as it veered further from Johnny and Daniel; I didn't even finish the final season."
     },
     {
         'title': 'Crashing',
@@ -202,16 +141,104 @@ INITIAL_SHOWS = [
         'details_commentary': "Because it's British, I feel as though I haven't discussed this with anybody else and it had zero cultural impact in the US, but I definitely enjoyed it."
     },
     {
-        'title': 'Beverly Hills, 90210',
+        'title': 'Parenthood',
         'j_rayting': 'B+',
-        'details_commentary': "I mainly watched in the early 1990s while the show was still set in high school, although kept up with a fair amount of it into college and beyond; very fond of the characters, probably extended 3 or perhaps 5 seasons more than was necessary."
+        'details_commentary': "I'd probably like even more now I have older children; nice mix of heart, drama, and humour, where the Bay Area location didn't hurt."
+    },
+    {
+        'title': 'Party of Five',
+        'j_rayting': 'B+',
+        'details_commentary': "I watched as a teenager in England and haven't revisited since, so it falls into a special category of 1990s show that didn't persist."
     },
     {
         'title': 'Saved by the Bell',
         'j_rayting': 'B+',
         'details_commentary': "Arguably the hardest to grade because it was my favourite show aged 13-18, but thankfully my tastes have evolved quite a bit in the past 30 years, and now I find it pretty unwatchable."
+    },
+    {
+        'title': 'The Studio',
+        'j_rayting': 'B+',
+        'details_commentary': "A few spectacular scenes - building as the show progresses - and enough cameos to bring back some of Entourage's \"Who will show up next?\""
+    },
+    {
+        'title': 'Unstable',
+        'j_rayting': 'B+',
+        'details_commentary': "I've always been a big Rob Lowe fan, so I think I like this more than the average person (it was cancelled after 2 seasons); silly, but warm-hearted (a bit like Rob Lowe's underrated podcast \"Literally\")."
+    },
+
+    # ===================
+    # B/B+ grade (alphabetical, "The X" sorted as "X")
+    # ===================
+    {
+        'title': 'Ballers',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Could have been called Entourage-Lite, where it had some of the same feeling, but simply wasn't as fun or memorable; partially because the characters didn't resonate."
+    },
+    {
+        'title': 'Easy',
+        'j_rayting': 'B/B+',
+        'details_commentary': "I enjoyed some of the plots, but it never sunk its hooks into me enough to have a stronger opinion or enjoyment."
+    },
+    {
+        'title': 'Glow',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Got pretty into season 1 and then watched season 2 - was fine - before no longer picking it up again."
+    },
+    {
+        'title': 'Loot',
+        'j_rayting': 'B/B+',
+        'details_commentary': "I really want to love the show - and I do love Maya Rudolph in general - but I find myself not especially liking the full cast, which makes it less fun. Feels like it it's 2 changes away from being an excellent comedy."
+    },
+    {
+        'title': 'Never Have I Ever',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Really enjoyed the first season - especially the Johnny Mac narrator - where her self-sabotage just got old as they took a good initial idea and continued to extend it beyond what was necessary."
+    },
+    {
+        'title': 'No Good Deed',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Solid if unspectacular - a bit like \"Dead To Me,\" a Netflix show that makes you think a bit, laugh a bit, but without providing anything especially memorable."
+    },
+    {
+        'title': 'Platonic',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Just enough self-sabotage to be annoying, just enough laughs and zaniness for me to continue to enjoy it regardless."
+    },
+    {
+        'title': 'Stick',
+        'j_rayting': 'B/B+',
+        'details_commentary': "An easy, fun watch that's just a bit too formulaic to \"hit the pin.\" I watched most of it at the gym, which is a perfect environment for it."
+    },
+    {
+        'title': 'Weeds',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Was a top show for me briefly, but it seemed more up-and-down, and I thought the cartel plot was jumping the shark and simply less interesting."
+    },
+
+    # ===================
+    # B-/B grade (alphabetical)
+    # ===================
+    {
+        'title': 'Dexter: New Blood',
+        'j_rayting': 'B-/B',
+        'details_commentary': "Better than seasons 7 and 8 of the original series, but still far from the quality level of the first 4 - even 5 - seasons, so probably not worth the reboot."
+    },
+    {
+        'title': 'Emily in Paris',
+        'j_rayting': 'B-/B',
+        'details_commentary': "Lots of beautiful people and places, but so lightweight and repetitive that I stopped after 3 seasons."
+    },
+
+    # ===================
+    # B- grade (alphabetical)
+    # ===================
+    {
+        'title': '13 Reasons Why',
+        'j_rayting': 'B-',
+        'details_commentary': "I'm probably not the right demographic, just didn't work for me at all, so I stopped after a few episodes."
     }
 ]
+
 
 def seed_shows():
     """Add initial shows to the database."""
@@ -250,6 +277,7 @@ def seed_shows():
 
     if error_count > 0:
         sys.exit(1)
+
 
 if __name__ == '__main__':
     seed_shows()
