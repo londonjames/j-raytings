@@ -327,6 +327,11 @@ ALL_SHOWS = [
         'title': 'Buffy the Vampire Slayer',
         'j_rayting': 'B',
         'details_commentary': "I watched in my 40s, so pretty far from the target audience. Had its moments, but felt a bit too dated and I didn't especially like the supernatural elements."
+    },
+    {
+        'title': 'Adolescence',
+        'j_rayting': 'A-',
+        'details_commentary': "The opposite of uplifting, but it certainly makes you feel. Amazing acting, one camera shot per episode, and a weighty topic, especially for the dad of an 11-year-old boy (at the time of viewing)."
     }
 ]
 
