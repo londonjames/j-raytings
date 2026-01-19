@@ -134,6 +134,21 @@ INITIAL_SHOWS = [
         'title': 'Weeds',
         'j_rayting': 'B/B+',
         'details_commentary': "Was a top show for me briefly, but it seemed more up-and-down, and I thought the cartel plot was jumping the shark and simply less interesting."
+    },
+    {
+        'title': 'Never Have I Ever',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Really enjoyed the first season - especially the Johnny Mac narrator - where her self-sabotage just got old as they took a good initial idea and continued to extend it beyond what was necessary."
+    },
+    {
+        'title': 'Dexter: New Blood',
+        'j_rayting': 'B-/B',
+        'details_commentary': "Better than seasons 7 and 8 of the original series, but still far from the quality level of the first 4 - even 5 - seasons, so probably not worth the reboot."
+    },
+    {
+        'title': 'Parenthood',
+        'j_rayting': 'B+',
+        'details_commentary': "I'd probably like even more now I have older children; nice mix of heart, drama, and humour, where the Bay Area location didn't hurt."
     }
 ]
 
