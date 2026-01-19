@@ -332,6 +332,11 @@ ALL_SHOWS = [
         'title': 'Adolescence',
         'j_rayting': 'A-',
         'details_commentary': "The opposite of uplifting, but it certainly makes you feel. Amazing acting, one camera shot per episode, and a weighty topic, especially for the dad of an 11-year-old boy (at the time of viewing)."
+    },
+    {
+        'title': 'Bridgerton',
+        'j_rayting': 'B-',
+        'details_commentary': "I don't know what all the fuss was about - lightweight plots and less sexy than I'd expected - so jumped ship after Season 1."
     }
 ]
 
