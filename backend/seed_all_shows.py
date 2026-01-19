@@ -282,6 +282,36 @@ ALL_SHOWS = [
         'title': 'Happy Days',
         'j_rayting': 'B+',
         'details_commentary': "A bit hard to judge because I did the majority of my watching aged 10-15, but there's a reason it's such an iconic show."
+    },
+    {
+        'title': 'Saturday Night Live',
+        'j_rayting': 'B+',
+        'details_commentary': "Not always consistent, but the highs create as much joy as just about anything else. I LOVE the 40-year and 50-years specials because of the nostalgia they provide."
+    },
+    {
+        'title': 'Roseanne',
+        'j_rayting': 'B+',
+        'details_commentary': "A bit like Cheers, I'm reacting to my pre-teen and teen reactions, but was a key part of my Friday nights growing up."
+    },
+    {
+        'title': 'Freaks and Geeks',
+        'j_rayting': 'B+',
+        'details_commentary': "I watched after it had become a cult show - with most of its cast having moved on to bigger and better things - but I'm a sucker for a thoughtful high school show, so enjoyed quite a bit."
+    },
+    {
+        'title': '30 Rock',
+        'j_rayting': 'B+',
+        'details_commentary': "The episode with Alec Baldwin impersonating Tracy Morgan's dad might be my favourite scene of TV ever; the rest was generally good, but a bit more up-and-down."
+    },
+    {
+        'title': 'Frasier',
+        'j_rayting': 'B+',
+        'details_commentary': "I mainly watched as a kid, so likely missed most of the references, but alongside Cheers, will always have a special place in my heart."
+    },
+    {
+        'title': 'The Golden Girls',
+        'j_rayting': 'B+',
+        'details_commentary': "Watched with my mum as a kid, so looking back I have mainly a nostalgic reaction, but I remember it was both ground-breaking and clever."
     }
 ]
 
