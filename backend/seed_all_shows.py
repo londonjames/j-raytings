@@ -18,7 +18,7 @@ ALL_SHOWS = [
     {
         'title': 'Breaking Bad',
         'j_rayting': 'A',
-        'details_commentary': "Starts slow. Season one isn't great, and even season two has its moments. But then it builds to probably my favorite show of all time across seasons three, especially season four, and also season five. Love this show."
+        'details_commentary': "Starts slow. Season one isn't great, and even season two has its moments. But then it builds to probably my favourite show of all time across seasons three, especially season four, and also season five. Love this show."
     },
     {
         'title': 'Succession',
@@ -29,7 +29,7 @@ ALL_SHOWS = [
         'title': 'The Office (UK)',
         'start_year': 2001,
         'j_rayting': 'A',
-        'details_commentary': "If you like slightly uncomfortable humor, it doesn't get anything better than British Office."
+        'details_commentary': "If you like slightly uncomfortable humour, it doesn't get anything better than British Office."
     },
     {
         'title': 'A Man on the Inside',
@@ -49,12 +49,12 @@ ALL_SHOWS = [
     {
         'title': 'The Wire',
         'j_rayting': 'A',
-        'details_commentary': "About as good as TV gets. I think season four might be my favorite TV series ever. Note, season four, Breaking Bad, and season four of Dexter might be the next competitors. So there's something odd about season fours. Not the most uplifting show, but if you don't mind a bit of depressing-ness, you're going to like this show. By the way, Season 2 is quite poor. 1 is great, 3 is great, 4 is great, 5 is good too, but 2 is poor, so just be aware of that."
+        'details_commentary': "About as good as TV gets. I think season four might be my favourite TV series ever. Note, season four, Breaking Bad, and season four of Dexter might be the next competitors. So there's something odd about season fours. Not the most uplifting show, but if you don't mind a bit of depressing-ness, you're going to like this show. By the way, Season 2 is quite poor. 1 is great, 3 is great, 4 is great, 5 is good too, but 2 is poor, so just be aware of that."
     },
     {
         'title': 'Mad Men',
         'j_rayting': 'B+',
-        'details_commentary': "Definitely a great show. Although oddly enough, I never watched the final season. So I can only give so high a rating for a show where I decided for whatever reason not to watch the final season. I've never gotten back to it. I probably will watch it at some point, but my absolute favorite shows, I would be knocking them off in a day. Mad Men last season, I haven't knocked off in a decade."
+        'details_commentary': "Definitely a great show. Although oddly enough, I never watched the final season. So I can only give so high a rating for a show where I decided for whatever reason not to watch the final season. I've never gotten back to it. I probably will watch it at some point, but my absolute favourite shows, I would be knocking them off in a day. Mad Men last season, I haven't knocked off in a decade."
     },
     {
         'title': 'Stranger Things',
@@ -80,7 +80,7 @@ ALL_SHOWS = [
         'title': 'The Office (US)',
         'start_year': 2005,
         'j_rayting': 'A',
-        'details_commentary': "My favorite show to re-watch, where I would say I watch between 10 and 20 episodes a year, in random circumstances, maybe on the plane, or if I'm just feeling like something mindless to do in the background, especially seasons 2 through 6 or 7, it's just incredible. Mainly funny, occasionally uncomfortably funny, but feels like apple pie or whatever phrase you want to use for just feeling comfort and familiarity."
+        'details_commentary': "My favourite show to re-watch, where I would say I watch between 10 and 20 episodes a year, in random circumstances, maybe on the plane, or if I'm just feeling like something mindless to do in the background, especially seasons 2 through 6 or 7, it's just incredible. Mainly funny, occasionally uncomfortably funny, but feels like apple pie or whatever phrase you want to use for just feeling comfort and familiarity."
     },
     {
         'title': 'Fleabag',
@@ -130,12 +130,12 @@ ALL_SHOWS = [
     {
         'title': 'Ozark',
         'j_rayting': 'B+',
-        'details_commentary': "Never quite hit the peaks of my favorite shows, but certainly was something I watched straight through. Actually, I watched as soon as the seasons were released, and I thought it held up pretty well given that the premise seemed hard to keep going for five seasons."
+        'details_commentary': "Never quite hit the peaks of my favourite shows, but certainly was something I watched straight through. Actually, I watched as soon as the seasons were released, and I thought it held up pretty well given that the premise seemed hard to keep going for five seasons."
     },
     {
         'title': 'Friends',
         'j_rayting': 'A-',
-        'details_commentary': "An odd one because I find it almost unwatchable these days. I've tried rewatching it in the last decade and can't bring myself to do it. I'll occasionally watch clips on YouTube, but in the 90s and early 2000s, it was my favorite show. So it's kind of an odd one where I'm looking back much less favorably now than I experienced it live."
+        'details_commentary': "An odd one because I find it almost unwatchable these days. I've tried rewatching it in the last decade and can't bring myself to do it. I'll occasionally watch clips on YouTube, but in the 90s and early 2000s, it was my favourite show. So it's kind of an odd one where I'm looking back much less favourably now than I experienced it live."
     },
     {
         'title': 'Homeland',
@@ -171,7 +171,7 @@ ALL_SHOWS = [
     {
         'title': 'Community',
         'j_rayting': 'B+',
-        'details_commentary': "At one point, it was must-see TV for me, but like a lot of shows, the momentum of trying to keep doing season after season seemed to wear off a little bit. And so it went from one of my favorite shows to a show I liked, and I'm not sure I actually finished watching the final seasons or not."
+        'details_commentary': "At one point, it was must-see TV for me, but like a lot of shows, the momentum of trying to keep doing season after season seemed to wear off a little bit. And so it went from one of my favourite shows to a show I liked, and I'm not sure I actually finished watching the final seasons or not."
     },
     {
         'title': 'Barry',
@@ -267,6 +267,16 @@ ALL_SHOWS = [
         'title': 'Orange Is the New Black',
         'j_rayting': 'B',
         'details_commentary': "A little bit like a lot of Netflix shows—comes out of the gate strong where I enjoyed season one, and I think I'd given up by the end of season two. It wasn't bad, it just wasn't as good, and there's so much alternative programming at this point."
+    },
+    {
+        'title': 'The Fresh Prince of Bel-Air',
+        'j_rayting': 'A-',
+        'details_commentary': "My favourite show as a teenager; and, even today, it's aged relatively well; twice a year when I'm sitting in a hotel room flipping channel, I'm always happy to see if Fresh Prince is on and I get to take a trip back 25 years."
+    },
+    {
+        'title': 'The Wonder Years',
+        'j_rayting': 'A-',
+        'details_commentary': "I was almost exactly the same age as Kevin - Fred Savage was the year above me at Stanford - so it hit extra hard, with its blend of nostalgia, drama, and humour."
     }
 ]
 
