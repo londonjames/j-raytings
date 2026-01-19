@@ -124,6 +124,16 @@ INITIAL_SHOWS = [
         'title': 'Billions',
         'j_rayting': 'B+',
         'details_commentary': "Some moments I loved - who doesn't love ultra rich bravado - but I progressively lost interest and bailed after Season 3 or 4."
+    },
+    {
+        'title': 'Californication',
+        'j_rayting': 'B+',
+        'details_commentary': "I like Hank Moody quite a bit, even though I appreciate his character (literally and figuratively) has some pretty serious gaps; consistently made me laugh."
+    },
+    {
+        'title': 'Weeds',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Was a top show for me briefly, but it seemed more up-and-down, and I thought the cartel plot was jumping the shark and simply less interesting."
     }
 ]
 
