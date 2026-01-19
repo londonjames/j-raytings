@@ -200,6 +200,11 @@ INITIAL_SHOWS = [
         'j_rayting': 'B+',
         'start_year': 2016,
         'details_commentary': "Because it's British, I feel as though I haven't discussed this with anybody else and it had zero cultural impact in the US, but I definitely enjoyed it."
+    },
+    {
+        'title': 'Beverly Hills, 90210',
+        'j_rayting': 'B+',
+        'details_commentary': "I mainly watched in the early 1990s while the show was still set in high school, although kept up with a fair amount of it into college and beyond; very fond of the characters, probably extended 3 or perhaps 5 seasons more than was necessary."
     }
 ]
 
