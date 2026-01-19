@@ -140,7 +140,7 @@ function ShowAdminPanel({ onLogout }) {
 
   const formatYears = (startYear, endYear, isOngoing) => {
     if (!startYear) return ''
-    if (isOngoing) return `${startYear}-Present`
+    if (isOngoing) return `${startYear}-pres.`
     if (endYear && endYear !== startYear) return `${startYear}-${endYear}`
     return `${startYear}`
   }

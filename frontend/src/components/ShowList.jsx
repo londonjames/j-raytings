@@ -115,7 +115,7 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
     let yearPart = ''
     if (startYear) {
       if (isOngoing) {
-        yearPart = `${startYear}-Present`
+        yearPart = `${startYear}-pres.`
       } else if (endYear && endYear !== startYear) {
         yearPart = `${startYear}-${shortenEndYear(startYear, endYear)}`
       } else {
@@ -137,7 +137,7 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
   // Format years only (for back card)
   const formatYears = (startYear, endYear, isOngoing) => {
     if (!startYear) return ''
-    if (isOngoing) return `${startYear}-Present`
+    if (isOngoing) return `${startYear}-pres.`
     if (endYear && endYear !== startYear) return `${startYear}-${shortenEndYear(startYear, endYear)}`
     return `${startYear}`
   }
