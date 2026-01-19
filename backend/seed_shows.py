@@ -64,6 +64,16 @@ INITIAL_SHOWS = [
         'title': 'Slow Horses',
         'j_rayting': 'B+/A-',
         'details_commentary': "A little bit up-and-down - I thought Season 3 was sub-par relatively speaking - but a great cast of characters and Gary Oldman's Jackson Lamb is a nicely familiar \"comfort food,\" pulling it all together."
+    },
+    {
+        'title': 'The Studio',
+        'j_rayting': 'B+',
+        'details_commentary': "A few spectacular scenes - building as the show progresses - and enough cameos to bring back some of Entourage's \"Who will show up next?\""
+    },
+    {
+        'title': 'Entourage',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "Some of my highest TV highs - especially in the early seasons, with Johnny Drama - where anytime the plot got more depressing, I found it far less enjoyable."
     }
 ]
 
