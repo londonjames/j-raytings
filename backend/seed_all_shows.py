@@ -347,6 +347,11 @@ ALL_SHOWS = [
         'title': 'How I Met Your Mother',
         'j_rayting': 'B/B+',
         'details_commentary': "I saw in my 40s, 10+ years after the show, so didn't time it quite right. Binged the first few seasons while sick one week, but it didn't captivate me enough to make it through."
+    },
+    {
+        'title': 'The Chair',
+        'j_rayting': 'B/B+',
+        'details_commentary': "A bit disappointed they didn't continue it, since New England academics are in my sweet spot for interests."
     }
 ]
 
