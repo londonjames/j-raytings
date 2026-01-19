@@ -89,6 +89,11 @@ INITIAL_SHOWS = [
         'title': 'Loot',
         'j_rayting': 'B/B+',
         'details_commentary': "I really want to love the show - and I do love Maya Rudolph in general - but I find myself not especially liking the full cast, which makes it less fun. Feels like it it's 2 changes away from being an excellent comedy."
+    },
+    {
+        'title': 'Unstable',
+        'j_rayting': 'B+',
+        'details_commentary': "I've always been a big Rob Lowe fan, so I think I like this more than the average person (it was cancelled after 2 seasons); silly, but warm-hearted (a bit like Rob Lowe's underrated podcast \"Literally\")."
     }
 ]
 
