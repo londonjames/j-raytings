@@ -74,6 +74,16 @@ INITIAL_SHOWS = [
         'title': 'Entourage',
         'j_rayting': 'B+/A-',
         'details_commentary': "Some of my highest TV highs - especially in the early seasons, with Johnny Drama - where anytime the plot got more depressing, I found it far less enjoyable."
+    },
+    {
+        'title': 'Shrinking',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "A bit too depressing sometimes, but the spirit of hope and positivity largely pulls through, with a deft blend of humour and drama."
+    },
+    {
+        'title': 'Platonic',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Just enough self-sabotage to be annoying, just enough laughs and zaniness for me to continue to enjoy it regardless."
     }
 ]
 
