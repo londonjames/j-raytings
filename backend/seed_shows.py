@@ -94,6 +94,21 @@ INITIAL_SHOWS = [
         'title': 'Unstable',
         'j_rayting': 'B+',
         'details_commentary': "I've always been a big Rob Lowe fan, so I think I like this more than the average person (it was cancelled after 2 seasons); silly, but warm-hearted (a bit like Rob Lowe's underrated podcast \"Literally\")."
+    },
+    {
+        'title': 'Cobra Kai',
+        'j_rayting': 'B+',
+        'details_commentary': "A hard one to judge because I truly loved Season 1 - one of my favourite series of tv - and then it got progressively worse and worse as it veered further from Johnny and Daniel; I didn't even finish the final season."
+    },
+    {
+        'title': 'Emily in Paris',
+        'j_rayting': 'B-/B',
+        'details_commentary': "Lots of beautiful people and places, but so lightweight and repetitive that I stopped after 3 seasons."
+    },
+    {
+        'title': '13 Reasons Why',
+        'j_rayting': 'B-',
+        'details_commentary': "I'm probably not the right demographic, just didn't work for me at all, so I stopped after a few episodes."
     }
 ]
 
