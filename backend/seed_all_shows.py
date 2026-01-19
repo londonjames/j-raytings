@@ -277,6 +277,11 @@ ALL_SHOWS = [
         'title': 'The Wonder Years',
         'j_rayting': 'A-',
         'details_commentary': "I was almost exactly the same age as Kevin - Fred Savage was the year above me at Stanford - so it hit extra hard, with its blend of nostalgia, drama, and humour."
+    },
+    {
+        'title': 'Happy Days',
+        'j_rayting': 'B+',
+        'details_commentary': "A bit hard to judge because I did the majority of my watching aged 10-15, but there's a reason it's such an iconic show."
     }
 ]
 
