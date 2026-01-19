@@ -337,6 +337,11 @@ ALL_SHOWS = [
         'title': 'Bridgerton',
         'j_rayting': 'B-',
         'details_commentary': "I don't know what all the fuss was about - lightweight plots and less sexy than I'd expected - so jumped ship after Season 1."
+    },
+    {
+        'title': 'The Beast in Me',
+        'j_rayting': 'B+',
+        'details_commentary': "Very up-and-down, but better than I'd expected, with a few moments of being genuinely on the edge of my seat."
     }
 ]
 
