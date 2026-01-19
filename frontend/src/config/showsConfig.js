@@ -43,6 +43,7 @@ export const showsConfig = {
     rating: [],
     genre: [],
     decade: [],
+    imdb: [],
   },
 
   // Empty state messages
@@ -119,6 +120,24 @@ export const showsConfig = {
           const decadeStart = parseInt(decade)
           return year >= decadeStart && year < decadeStart + 10
         }
+      })
+    })
+  },
+
+  applyImdbFilter: (items, selectedImdbRanges) => {
+    return items.filter(item => {
+      if (!item.imdb_rating) return false
+      const rating = parseFloat(item.imdb_rating)
+      if (isNaN(rating)) return false
+
+      return selectedImdbRanges.some(range => {
+        if (range === '≥9.0') return rating >= 9.0
+        if (range === '8.0-8.9') return rating >= 8.0 && rating < 9.0
+        if (range === '7.0-7.9') return rating >= 7.0 && rating < 8.0
+        if (range === '6.0-6.9') return rating >= 6.0 && rating < 7.0
+        if (range === '5.0-5.9') return rating >= 5.0 && rating < 6.0
+        if (range === '<5.0') return rating < 5.0
+        return false
       })
     })
   },
