@@ -352,6 +352,21 @@ ALL_SHOWS = [
         'title': 'The Chair',
         'j_rayting': 'B/B+',
         'details_commentary': "A bit disappointed they didn't continue it, since New England academics are in my sweet spot for interests."
+    },
+    {
+        'title': 'New Girl',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Got pretty into it initially, but lost my interest over time. Slightly surprising given how much I liked most of the characters and cast."
+    },
+    {
+        'title': 'Scrubs',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "I've gone through phases of rewatching Scrubs because it makes me happy, mixing in just enough depth to keep it more than just a surface level show. Excellent use of guest stars."
+    },
+    {
+        'title': 'House',
+        'j_rayting': 'B/B+',
+        'details_commentary': "Never watched regularly, but have seen enough to opine. I'm probably overweighting the medical comparison, but I thought Scrubs was both funnier and with more depth."
     }
 ]
 
