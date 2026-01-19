@@ -114,6 +114,11 @@ INITIAL_SHOWS = [
         'title': 'Easy',
         'j_rayting': 'B/B+',
         'details_commentary': "I enjoyed some of the plots, but it never sunk its hooks into me enough to have a stronger opinion or enjoyment."
+    },
+    {
+        'title': 'Silicon Valley',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "Responsible for some of my biggest laughs ever; would probably be even more compelling now that we're in the AI age."
     }
 ]
 
