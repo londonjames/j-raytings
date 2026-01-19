@@ -322,6 +322,11 @@ ALL_SHOWS = [
         'title': 'The Sex Lives of College Girls',
         'j_rayting': 'B+',
         'details_commentary': "I'm not the demographic, but I'm always a sucker for elite college settings, and the first two seasons kept the momentum pretty smoothly between silly and more serious topics."
+    },
+    {
+        'title': 'Buffy the Vampire Slayer',
+        'j_rayting': 'B',
+        'details_commentary': "I watched in my 40s, so pretty far from the target audience. Had its moments, but felt a bit too dated and I didn't especially like the supernatural elements."
     }
 ]
 
