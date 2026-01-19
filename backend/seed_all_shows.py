@@ -312,6 +312,16 @@ ALL_SHOWS = [
         'title': 'The Golden Girls',
         'j_rayting': 'B+',
         'details_commentary': "Watched with my mum as a kid, so looking back I have mainly a nostalgic reaction, but I remember it was both ground-breaking and clever."
+    },
+    {
+        'title': 'Atypical',
+        'j_rayting': 'B',
+        'details_commentary': "Nice blend of humour and drama, where it felt like it was looking to manufacture drama one season at a time versus having a well thought-out overall arc; stopped somewhere in season 3 or 4."
+    },
+    {
+        'title': 'The Sex Lives of College Girls',
+        'j_rayting': 'B+',
+        'details_commentary': "I'm not the demographic, but I'm always a sucker for elite college settings, and the first two seasons kept the momentum pretty smoothly between silly and more serious topics."
     }
 ]
 
