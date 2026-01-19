@@ -28,7 +28,7 @@ ALL_SHOWS = [
     {
         'title': 'The Office (UK)',
         'start_year': 2001,
-        'j_rayting': 'A',
+        'j_rayting': 'A/A+',
         'details_commentary': "If you like slightly uncomfortable humour, it doesn't get anything better than British Office."
     },
     {
@@ -79,7 +79,7 @@ ALL_SHOWS = [
     {
         'title': 'The Office (US)',
         'start_year': 2005,
-        'j_rayting': 'A',
+        'j_rayting': 'A-/A',
         'details_commentary': "My favourite show to re-watch, where I would say I watch between 10 and 20 episodes a year, in random circumstances, maybe on the plane, or if I'm just feeling like something mindless to do in the background, especially seasons 2 through 6 or 7, it's just incredible. Mainly funny, occasionally uncomfortably funny, but feels like apple pie or whatever phrase you want to use for just feeling comfort and familiarity."
     },
     {
