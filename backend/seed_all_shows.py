@@ -17,7 +17,7 @@ ALL_SHOWS = [
     # From ChatGPT Transcript
     {
         'title': 'Breaking Bad',
-        'j_rayting': 'A',
+        'j_rayting': 'A/A+',
         'details_commentary': "Starts slow. Season one isn't great, and even season two has its moments. But then it builds to probably my favourite show of all time across seasons three, especially season four, and also season five. Love this show."
     },
     {
@@ -48,22 +48,22 @@ ALL_SHOWS = [
     },
     {
         'title': 'The Wire',
-        'j_rayting': 'A',
+        'j_rayting': 'A/A+',
         'details_commentary': "About as good as TV gets. I think season four might be my favourite TV series ever. Note, season four, Breaking Bad, and season four of Dexter might be the next competitors. So there's something odd about season fours. Not the most uplifting show, but if you don't mind a bit of depressing-ness, you're going to like this show. By the way, Season 2 is quite poor. 1 is great, 3 is great, 4 is great, 5 is good too, but 2 is poor, so just be aware of that."
     },
     {
         'title': 'Mad Men',
-        'j_rayting': 'B+',
+        'j_rayting': 'B+/A-',
         'details_commentary': "Definitely a great show. Although oddly enough, I never watched the final season. So I can only give so high a rating for a show where I decided for whatever reason not to watch the final season. I've never gotten back to it. I probably will watch it at some point, but my absolute favourite shows, I would be knocking them off in a day. Mad Men last season, I haven't knocked off in a decade."
     },
     {
         'title': 'Stranger Things',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Really liked the first season. I think I watched through seasons three, perhaps, but got less and less interesting to me with occasional moments of hilarity. As it got more and more dark and less and less 80s, I lost interest. Therefore, I haven't watched the final, I think, seasons four and five."
     },
     {
         'title': 'The West Wing',
-        'j_rayting': 'A-',
+        'j_rayting': 'A-/A',
         'details_commentary': "Watched it in 2023, so well after it was actually shown and still held up. Oddly enough, I watched it in a cold soak. I was training for swimming, so I watched every episode in 53 degree water, getting progressively more and more freezing. So very odd environment for it, but especially seasons one through four, it's really, really good. And even the later seasons, when Aaron Sorkin departs, are still pretty solid."
     },
     {
@@ -89,12 +89,12 @@ ALL_SHOWS = [
     },
     {
         'title': 'The Marvelous Mrs. Maisel',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Liked it, think I watched the first two seasons but then didn't watch season three and much of the season four, so didn't hit me to the point where I felt I had to go back to it, and maybe I should."
     },
     {
         'title': 'Ted Lasso',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Like everyone, I really enjoyed season 1. I thought season 2, or maybe season 2 and 3, I can't remember if there's 2 or 3 seasons, not as good, where I like the general feel-goodness of the show, but it got less and less compelling to me. It felt to me like I should have exited after season 1."
     },
     {
@@ -104,7 +104,7 @@ ALL_SHOWS = [
     },
     {
         'title': 'Arrested Development',
-        'j_rayting': 'A-',
+        'j_rayting': 'A-/A',
         'details_commentary': "Such a different show versus pretty much everything else where the highs on Arrested Development are about as laugh-out-loud funny and laugh-out-loud clever as I've seen on TV. A bit inconsistent here and there. I can't remember if I watched the final shows on Netflix or not, but one of my all-time top 20, possibly top 10."
     },
     {
@@ -114,7 +114,7 @@ ALL_SHOWS = [
     },
     {
         'title': 'The Good Place',
-        'j_rayting': 'B+',
+        'j_rayting': 'B+/A-',
         'details_commentary': "Odd one because I love season one, I think I even love season two, but I don't think I've actually finished the whole show for no reason other than life getting in the way. But there's nothing pulling me back to go finish it, which is a bit odd given I love Ted Danson, I like Kristen Bell, and I like the show overall. So maybe one to go back to."
     },
     {
@@ -124,17 +124,17 @@ ALL_SHOWS = [
     },
     {
         'title': 'Westworld',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Got swept away in season one like everyone else. Think I watched season two. No idea what happened after that. I'm not even sure how many seasons there were. Something about the later seasons didn't hit me."
     },
     {
         'title': 'Ozark',
-        'j_rayting': 'B+',
+        'j_rayting': 'B+/A-',
         'details_commentary': "Never quite hit the peaks of my favourite shows, but certainly was something I watched straight through. Actually, I watched as soon as the seasons were released, and I thought it held up pretty well given that the premise seemed hard to keep going for five seasons."
     },
     {
         'title': 'Friends',
-        'j_rayting': 'A-',
+        'j_rayting': 'A-/A',
         'details_commentary': "An odd one because I find it almost unwatchable these days. I've tried rewatching it in the last decade and can't bring myself to do it. I'll occasionally watch clips on YouTube, but in the 90s and early 2000s, it was my favourite show. So it's kind of an odd one where I'm looking back much less favourably now than I experienced it live."
     },
     {
@@ -149,18 +149,18 @@ ALL_SHOWS = [
     },
     {
         'title': 'The Good Wife',
-        'j_rayting': 'B+',
+        'j_rayting': 'B+/A-',
         'details_commentary': "Got very into it around season three and four, but can't remember if I even finished the entire show—I think I did. Fun, good performances, not completely preposterous. Few twists here and there. Quite good."
     },
     # From Perplexity Transcript
     {
         'title': 'Game of Thrones',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Watched the first two, maybe into the first three seasons, and it never quite hooked me. There were moments of real highs, like the end of season one, but overall it didn't hook me like it hooked almost everybody else, and I haven't watched most of the show and probably won't."
     },
     {
         'title': 'True Detective',
-        'j_rayting': 'B+',
+        'j_rayting': 'B+/A-',
         'details_commentary': "First season's straight A-, second season more like a B. Never watched the Jodie Foster one, but definitely had moments in season one, especially toward the end of the season, where it was must-see TV and was really intrigued by where it was going. So, highly recommend season one."
     },
     {
@@ -175,7 +175,7 @@ ALL_SHOWS = [
     },
     {
         'title': 'Barry',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Partially was a challenge around expectations. I thought it was going to be funny, where the first season I liked more because it was funny. As it got darker and darker and darker, I found the show much harder to watch. I think there were four seasons, and I ended at the end of season three. It just— all the fun was gone, and it just became plain dark. Maybe I should have reset my expectations, but I much preferred the fun, silliness almost, of season one than the increasing darkness of the last seasons, and I have no intention of watching season four."
     },
     {
@@ -190,27 +190,27 @@ ALL_SHOWS = [
     },
     {
         'title': 'Dead to Me',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "They have to keep making it up as they're going, and it gets more and more implausible and less and less enjoyable. Not bad overall, but probably could have stopped after season one."
     },
     {
         'title': 'Severance',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Interesting because I haven't finished season two, but the speed it's taken me to get through the middle of season two and obviously season one has been much slower than you'd expect. I don't dislike the show, but I'm mainly watching because the plaudits are so high that I'm supposed to like the show, but so far I don't, and I don't think I will."
     },
     {
         'title': 'White Lotus',
-        'j_rayting': 'B+',
+        'j_rayting': 'B+/A-',
         'details_commentary': "Haven't watched season three yet, but really enjoyed seasons one and two, probably even more so season two, where the characters, the cleverness and silliness in combination, and just the overall brevity mean they're all really fun."
     },
     {
         'title': 'Friday Night Lights',
-        'j_rayting': 'B+',
+        'j_rayting': 'B+/A-',
         'details_commentary': "Binged the whole thing fairly quickly. Think it was season two that was bad, but overall pretty impressive job of going through different phases of the team while keeping the through-line of the coach and his wife. Highly recommend."
     },
     {
         'title': 'Sex Education',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "First season fairly good, especially given it's so novel, but as it gets progressively more and more graphic and more and more it feels like they're just adding stuff on, I lost interest. So I think I stopped somewhere in either late season three or maybe the middle of season four, can't remember, but I haven't finished it yet. And won't."
     },
     {
@@ -245,12 +245,12 @@ ALL_SHOWS = [
     },
     {
         'title': 'Bodyguard',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Has moments of terror and excitement, a few twists you didn't see coming, but overall never gets beyond kind of a solid show."
     },
     {
         'title': 'Narcos',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Pretty captivating from the get-go, especially the first season and maybe even through season two. But once Escobar exited the show, my interest started to wane and I stopped somewhere in season 3."
     },
     {
@@ -265,7 +265,7 @@ ALL_SHOWS = [
     },
     {
         'title': 'Orange Is the New Black',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "A little bit like a lot of Netflix shows—comes out of the gate strong where I enjoyed season one, and I think I'd given up by the end of season two. It wasn't bad, it just wasn't as good, and there's so much alternative programming at this point."
     },
     {
@@ -275,7 +275,7 @@ ALL_SHOWS = [
     },
     {
         'title': 'The Wonder Years',
-        'j_rayting': 'A-',
+        'j_rayting': 'A-/A',
         'details_commentary': "I was almost exactly the same age as Kevin - Fred Savage was the year above me at Stanford - so it hit extra hard, with its blend of nostalgia, drama, and humour."
     },
     {
@@ -295,7 +295,7 @@ ALL_SHOWS = [
     },
     {
         'title': 'Freaks and Geeks',
-        'j_rayting': 'B+',
+        'j_rayting': 'B+/A-',
         'details_commentary': "I watched after it had become a cult show - with most of its cast having moved on to bigger and better things - but I'm a sucker for a thoughtful high school show, so enjoyed quite a bit."
     },
     {
@@ -315,7 +315,7 @@ ALL_SHOWS = [
     },
     {
         'title': 'Atypical',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "Nice blend of humour and drama, where it felt like it was looking to manufacture drama one season at a time versus having a well thought-out overall arc; stopped somewhere in season 3 or 4."
     },
     {
@@ -325,12 +325,12 @@ ALL_SHOWS = [
     },
     {
         'title': 'Buffy the Vampire Slayer',
-        'j_rayting': 'B',
+        'j_rayting': 'B/B+',
         'details_commentary': "I watched in my 40s, so pretty far from the target audience. Had its moments, but felt a bit too dated and I didn't especially like the supernatural elements."
     },
     {
         'title': 'Adolescence',
-        'j_rayting': 'A-',
+        'j_rayting': 'A-/A',
         'details_commentary': "The opposite of uplifting, but it certainly makes you feel. Amazing acting, one camera shot per episode, and a weighty topic, especially for the dad of an 11-year-old boy (at the time of viewing)."
     },
     {
