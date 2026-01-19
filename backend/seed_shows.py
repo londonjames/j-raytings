@@ -109,6 +109,11 @@ INITIAL_SHOWS = [
         'title': '13 Reasons Why',
         'j_rayting': 'B-',
         'details_commentary': "I'm probably not the right demographic, just didn't work for me at all, so I stopped after a few episodes."
+    },
+    {
+        'title': 'Easy',
+        'j_rayting': 'B/B+',
+        'details_commentary': "I enjoyed some of the plots, but it never sunk its hooks into me enough to have a stronger opinion or enjoyment."
     }
 ]
 
