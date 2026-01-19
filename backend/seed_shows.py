@@ -49,6 +49,21 @@ INITIAL_SHOWS = [
         'title': 'Arrested Development',
         'j_rayting': 'A',
         'a_grade_rank': 7
+    },
+    {
+        'title': 'Silo',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "One rung below my absolute favourites, but a nice blend of thought-provoking and exciting. Just a bit too slow-paced for my tastes."
+    },
+    {
+        'title': 'Stick',
+        'j_rayting': 'B/B+',
+        'details_commentary': "An easy, fun watch that's just a bit too formulaic to \"hit the pin.\" I watched most of it at the gym, which is a perfect environment for it."
+    },
+    {
+        'title': 'Slow Horses',
+        'j_rayting': 'B+/A-',
+        'details_commentary': "A little bit up-and-down - I thought Season 3 was sub-par relatively speaking - but a great cast of characters and Gary Oldman's Jackson Lamb is a nicely familiar \"comfort food,\" pulling it all together."
     }
 ]
 
