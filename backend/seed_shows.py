@@ -119,6 +119,11 @@ INITIAL_SHOWS = [
         'title': 'Silicon Valley',
         'j_rayting': 'B+/A-',
         'details_commentary': "Responsible for some of my biggest laughs ever; would probably be even more compelling now that we're in the AI age."
+    },
+    {
+        'title': 'Billions',
+        'j_rayting': 'B+',
+        'details_commentary': "Some moments I loved - who doesn't love ultra rich bravado - but I progressively lost interest and bailed after Season 3 or 4."
     }
 ]
 
