@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
       "source": "/curated/:path*",
       "destination": "https://web-production-01d1.up.railway.app/curated/:path*"
     },
