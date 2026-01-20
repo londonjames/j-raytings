@@ -1731,6 +1731,11 @@ body {
   flex-wrap: wrap;
 }
 
+.film-metadata-row {
+  display: block;
+  width: 100%;
+}
+
 /* Tighter spacing on iPad to prevent squishing when ratings are longer (A/A+, A-) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .film-metadata {

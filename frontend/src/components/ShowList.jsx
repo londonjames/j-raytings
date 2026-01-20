@@ -257,14 +257,16 @@ function ShowList({ shows, onEdit, onDelete, viewMode = 'grid' }) {
                         </h3>
                         <StreamingLogos watchProviders={show.watch_providers} maxLogos={1} />
                       </div>
-                      <div className="film-metadata">
-                        {(show.start_year || show.seasons) && (
+                      {(show.start_year || show.seasons) && (
+                        <div className="film-metadata-row">
                           <span className="info-item">{formatYearsAndSeasons(show.start_year, show.end_year, show.is_ongoing, show.seasons)}</span>
-                        )}
-                        {show.imdb_rating && (
+                        </div>
+                      )}
+                      {show.imdb_rating && (
+                        <div className="film-metadata-row">
                           <span className="info-item"><IMDbBadge rating={show.imdb_rating} imdbId={show.imdb_id} /></span>
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
                     {show.j_rayting && (
                       <div className="rating-box">
