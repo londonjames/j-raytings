@@ -22,6 +22,13 @@ const booksMeta = {
   url: 'https://jamesraybould.me/books'
 };
 
+const showsMeta = {
+  title: 'Shows | James Raybould',
+  description: 'Browse my collection of 100+ TV series I\'ve watched, with my own J-Raytings. And if you\'re super geeky, you can skim my short summaries, too.',
+  image: `https://jamesraybould.me/films-quilt-social.jpg?${CACHE_VERSION}`,
+  url: 'https://jamesraybould.me/shows'
+};
+
 function updateMetaTags(filePath, meta) {
   if (!fs.existsSync(filePath)) {
     console.log(`File not found: ${filePath}`);
@@ -72,6 +79,10 @@ updateMetaTags(filmsPath, filmsMeta);
 // Update books.html
 const booksPath = path.join(distDir, 'books.html');
 updateMetaTags(booksPath, booksMeta);
+
+// Update shows.html
+const showsPath = path.join(distDir, 'shows.html');
+updateMetaTags(showsPath, showsMeta);
 
 console.log('Meta tags updated successfully!');
 
