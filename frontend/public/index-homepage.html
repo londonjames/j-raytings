@@ -321,50 +321,46 @@
             }
         }
         
-        /* Mobile: Start with background and title visible, images hidden */
-        /* Using max-width as more reliable than (hover: none) */
-        @media (max-width: 1024px) {
-            /* On mobile/tablet, hide images initially - they'll be revealed via scroll */
-            /* Using a class approach - JS will add 'mobile-revealed' class */
-            .tile-image {
-                opacity: 0;
-                visibility: hidden;
-                transform: scale(1);
-            }
-            
-            .tile-background {
-                opacity: 1;
-            }
-            
-            .tile-title {
-                opacity: 1;
-            }
-            
-            /* When JS adds this class, show the image */
-            .tile.mobile-revealed .tile-image {
-                opacity: 1 !important;
-                visibility: visible !important;
-                transition: opacity 0.8s ease;
-            }
-            
-            .tile.mobile-revealed .tile-background {
-                opacity: 0 !important;
-                transition: opacity 0.8s ease;
-            }
-            
-            .tile.mobile-revealed .tile-title {
-                opacity: 0 !important;
-                transition: opacity 0.8s ease;
-            }
-            
-            /* Keep Coming Soon titles always visible */
-            .tile--coming-soon .tile-background {
-                opacity: 1;
-            }
-            
-            .tile--coming-soon .tile-title {
-                opacity: 1;
-            }
+        /* Touch devices: Start with background and title visible, images hidden */
+        /* JS will add 'touch-device' class to body on touch-only devices */
+        body.touch-device .tile-image {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1);
+        }
+
+        body.touch-device .tile-background {
+            opacity: 1;
+        }
+
+        body.touch-device .tile-title {
+            opacity: 1;
+        }
+
+        /* When JS adds this class, show the image */
+        body.touch-device .tile.mobile-revealed .tile-image {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: opacity 0.8s ease;
+        }
+
+        body.touch-device .tile.mobile-revealed .tile-background {
+            opacity: 0 !important;
+            transition: opacity 0.8s ease;
+        }
+
+        body.touch-device .tile.mobile-revealed .tile-title {
+            opacity: 0 !important;
+            transition: opacity 0.8s ease;
+        }
+
+        /* Keep Coming Soon titles always visible */
+        body.touch-device .tile--coming-soon .tile-background {
+            opacity: 1;
+        }
+
+        body.touch-device .tile--coming-soon .tile-title {
+            opacity: 1;
         }
     </style>
 </head>
@@ -488,22 +484,27 @@
                 }
             }, 100);
             
-            // Mobile scroll reveal: Show quilt images as user scrolls down
-            // Each tile reveals individually when it reaches 40% from the top of viewport
-            // Only activate on screens <= 1024px (mobile/tablet)
-            if (window.innerWidth <= 1024) {
+            // Detect touch-only devices (no mouse/hover capability)
+            // This checks if the device has coarse pointer (touch) and no hover
+            const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+            if (isTouchDevice) {
+                // Add class to body for CSS targeting
+                document.body.classList.add('touch-device');
+
+                // Mobile scroll reveal: Show quilt images as user scrolls down
+                // Each tile reveals individually when it reaches threshold from top of viewport
                 const tiles = document.querySelectorAll('.tile:not(.tile--coming-soon)');
-                
+
                 const revealTiles = () => {
                     const windowHeight = window.innerHeight;
                     // Each tile reveals when its TOP reaches 25% from the top of viewport
-                    // Lower percentage = more scrolling required before reveal
                     const revealThreshold = windowHeight * 0.25;
-                    
+
                     tiles.forEach(tile => {
                         const rect = tile.getBoundingClientRect();
                         const tileTop = rect.top;
-                        
+
                         // If this specific tile's top has scrolled above the threshold, reveal it
                         if (tileTop < revealThreshold) {
                             tile.classList.add('mobile-revealed');
@@ -511,7 +512,7 @@
                         // Once revealed, stay revealed (don't remove class)
                     });
                 };
-                
+
                 // Update on scroll with throttling
                 let ticking = false;
                 window.addEventListener('scroll', () => {
@@ -523,7 +524,7 @@
                         ticking = true;
                     }
                 }, { passive: true });
-                
+
                 // Also check on resize
                 window.addEventListener('resize', revealTiles, { passive: true });
             }
