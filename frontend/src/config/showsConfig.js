@@ -2,7 +2,6 @@ import ShowList from '../components/ShowList'
 import ShowForm from '../components/ShowForm'
 import ShowSortBar from '../components/ShowSortBar'
 import ShowFilterBar from '../components/ShowFilterBar'
-import ShowAnalytics from '../components/ShowAnalytics'
 
 export const showsConfig = {
   // Basic metadata
@@ -20,7 +19,6 @@ export const showsConfig = {
     searchTerm: 'showsSearchTerm',
     activeFilter: 'showsActiveFilter',
     sortConfig: 'showsSortConfig',
-    showAnalytics: 'showsShowAnalytics',
   },
 
   // Page titles
@@ -35,7 +33,7 @@ export const showsConfig = {
     Form: ShowForm,
     SortBar: ShowSortBar,
     FilterBar: ShowFilterBar,
-    Analytics: ShowAnalytics,
+    Analytics: null,
   },
 
   // Filter configuration
