@@ -355,6 +355,7 @@ function ItemsApp({ config }) {
           form: config.applyFormFilter,
           author: config.applyAuthorFilter,
           decade: config.applyDecadeFilter,
+          imdb: config.applyImdbFilter,
         }
 
         const filterFunction = filterFunctionMap[filterType]

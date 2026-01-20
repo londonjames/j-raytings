@@ -5,7 +5,8 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
   const [openDropdowns, setOpenDropdowns] = useState({
     rating: false,
     genre: false,
-    decade: false
+    decade: false,
+    imdb: false
   })
   const dropdownRef = useRef(null)
   const filterWrapperRef = useRef(null)
@@ -13,7 +14,8 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
   const [activeFilters, setActiveFilters] = useState({
     rating: false,
     genre: false,
-    decade: false
+    decade: false,
+    imdb: false
   })
   const [selectedFilters, setSelectedFilters] = useState(() => {
     const saved = localStorage.getItem('showsActiveFilter')
@@ -22,13 +24,15 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
       return {
         rating: parsedFilters.rating || [],
         genre: parsedFilters.genre || [],
-        decade: parsedFilters.decade || []
+        decade: parsedFilters.decade || [],
+        imdb: parsedFilters.imdb || []
       }
     }
     return {
       rating: [],
       genre: [],
-      decade: []
+      decade: [],
+      imdb: []
     }
   })
 
@@ -38,7 +42,8 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
       setActiveFilters({
         rating: propActiveFilter.rating?.length > 0 || false,
         genre: propActiveFilter.genre?.length > 0 || false,
-        decade: propActiveFilter.decade?.length > 0 || false
+        decade: propActiveFilter.decade?.length > 0 || false,
+        imdb: propActiveFilter.imdb?.length > 0 || false
       })
     }
   }, [propActiveFilter])
@@ -50,19 +55,21 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
       const fullFilters = {
         rating: parsedFilters.rating || [],
         genre: parsedFilters.genre || [],
-        decade: parsedFilters.decade || []
+        decade: parsedFilters.decade || [],
+        imdb: parsedFilters.imdb || []
       }
       setSelectedFilters(fullFilters)
       setActiveFilters({
         rating: fullFilters.rating.length > 0,
         genre: fullFilters.genre.length > 0,
-        decade: fullFilters.decade.length > 0
+        decade: fullFilters.decade.length > 0,
+        imdb: fullFilters.imdb.length > 0
       })
     }
   }, [])
 
   const hasActiveFilters = () => {
-    return activeFilters.rating || activeFilters.genre || activeFilters.decade
+    return activeFilters.rating || activeFilters.genre || activeFilters.decade || activeFilters.imdb
   }
 
   const countActiveFilters = () => {
@@ -70,6 +77,7 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
     if (activeFilters.rating) count++
     if (activeFilters.genre) count++
     if (activeFilters.decade) count++
+    if (activeFilters.imdb) count++
     return count
   }
 
@@ -129,7 +137,7 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
         target.closest('.clear-all-filters-btn')
 
       if (!clickedOnFilterElement) {
-        setOpenDropdowns({ rating: false, genre: false, decade: false })
+        setOpenDropdowns({ rating: false, genre: false, decade: false, imdb: false })
         setShowMainDropdown(false)
       }
     }
@@ -154,7 +162,7 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
     if (e) e.stopPropagation()
     setOpenDropdowns(prev => {
       const isCurrentlyOpen = prev[type]
-      const allClosed = { rating: false, genre: false, decade: false }
+      const allClosed = { rating: false, genre: false, decade: false, imdb: false }
       return { ...allClosed, [type]: !isCurrentlyOpen }
     })
   }
@@ -171,15 +179,16 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
   }
 
   const handleClear = () => {
-    setSelectedFilters({ rating: [], genre: [], decade: [] })
-    setActiveFilters({ rating: false, genre: false, decade: false })
-    onFilterChange({ rating: [], genre: [], decade: [] })
+    setSelectedFilters({ rating: [], genre: [], decade: [], imdb: [] })
+    setActiveFilters({ rating: false, genre: false, decade: false, imdb: false })
+    onFilterChange({ rating: [], genre: [], decade: [], imdb: [] })
   }
 
   const hasSelectedValues = () => {
     return selectedFilters.rating.length > 0 ||
            selectedFilters.genre.length > 0 ||
-           selectedFilters.decade.length > 0
+           selectedFilters.decade.length > 0 ||
+           selectedFilters.imdb.length > 0
   }
 
   const ratingOptions = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D']
@@ -190,6 +199,8 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
   ]
 
   const decadeOptions = ['2020s', '2010s', '2000s', '1990s', 'Pre-1990']
+
+  const imdbOptions = ['>9.0', '8.0-8.9', '7.0-7.9', '6.0-6.9', '5.0-5.9', '<5']
 
   return (
     <div ref={dropdownRef} style={{ display: 'contents' }}>
@@ -218,7 +229,7 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
               className="filter-add-option"
               onClick={() => {
                 setActiveFilters(prev => ({ ...prev, rating: true }))
-                setOpenDropdowns({ rating: true, genre: false, decade: false })
+                setOpenDropdowns({ rating: true, genre: false, decade: false, imdb: false })
                 setShowMainDropdown(false)
               }}
             >
@@ -227,8 +238,18 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
             <button
               className="filter-add-option"
               onClick={() => {
+                setActiveFilters(prev => ({ ...prev, imdb: true }))
+                setOpenDropdowns({ rating: false, genre: false, decade: false, imdb: true })
+                setShowMainDropdown(false)
+              }}
+            >
+              By IMDB Rating
+            </button>
+            <button
+              className="filter-add-option"
+              onClick={() => {
                 setActiveFilters(prev => ({ ...prev, genre: true }))
-                setOpenDropdowns({ rating: false, genre: true, decade: false })
+                setOpenDropdowns({ rating: false, genre: true, decade: false, imdb: false })
                 setShowMainDropdown(false)
               }}
             >
@@ -238,7 +259,7 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
               className="filter-add-option"
               onClick={() => {
                 setActiveFilters(prev => ({ ...prev, decade: true }))
-                setOpenDropdowns({ rating: false, genre: false, decade: true })
+                setOpenDropdowns({ rating: false, genre: false, decade: true, imdb: false })
                 setShowMainDropdown(false)
               }}
             >
@@ -267,6 +288,29 @@ function ShowFilterBar({ onFilterChange, activeFilter: propActiveFilter, onActiv
                           className="filter-checkbox"
                         />
                         <span>{rating}</span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {activeFilters.imdb && (
+              <div className="filter-dropdown">
+                <button className="filter-type-button active" onClick={(e) => toggleDropdown('imdb', e)}>
+                  By IMDB Rating ({selectedFilters.imdb.length})
+                </button>
+                {openDropdowns.imdb && (
+                  <div className="filter-checkbox-dropdown">
+                    {imdbOptions.map(range => (
+                      <label key={range} className="filter-checkbox-label">
+                        <input
+                          type="checkbox"
+                          checked={selectedFilters.imdb.includes(range)}
+                          onChange={() => handleValueToggle('imdb', range)}
+                          className="filter-checkbox"
+                        />
+                        <span>{range}</span>
                       </label>
                     ))}
                   </div>

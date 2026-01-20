@@ -39,6 +39,7 @@ export const showsConfig = {
   // Filter configuration
   filterFields: {
     rating: [],
+    imdb: [],
     genre: [],
     decade: [],
   },
@@ -117,6 +118,23 @@ export const showsConfig = {
           const decadeStart = parseInt(decade)
           return year >= decadeStart && year < decadeStart + 10
         }
+      })
+    })
+  },
+
+  applyImdbFilter: (items, selectedRanges) => {
+    return items.filter(item => {
+      if (!item.imdb_rating) return false
+      const rating = parseFloat(item.imdb_rating)
+
+      return selectedRanges.some(range => {
+        if (range === '>9.0') return rating > 9.0
+        if (range === '8.0-8.9') return rating >= 8.0 && rating <= 8.9
+        if (range === '7.0-7.9') return rating >= 7.0 && rating <= 7.9
+        if (range === '6.0-6.9') return rating >= 6.0 && rating <= 6.9
+        if (range === '5.0-5.9') return rating >= 5.0 && rating <= 5.9
+        if (range === '<5') return rating < 5.0
+        return false
       })
     })
   },
