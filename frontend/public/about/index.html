@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | James Raybould</title>
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jamesraybould.me/about" />
+    <meta property="og:title" content="About | James Raybould" />
+    <meta property="og:description" content="About James Raybould" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://jamesraybould.me/about" />
+    <meta name="twitter:title" content="About | James Raybould" />
+    <meta name="twitter:description" content="About James Raybould" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            background: #1c1c1c;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #1c1c1c;
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Hide React app root if it exists */
+        #root {
+            display: none !important;
+        }
+
+        header {
+            padding: 24px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .site-name:hover {
+            opacity: 0.6;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .linkedin-link {
+            display: inline-block;
+            line-height: 0;
+        }
+
+        .linkedin-link img {
+            height: 18px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .about-content {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 16px 20px;
+            }
+
+            .site-name {
+                font-size: 0.75rem;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            .about-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="site-name">JAMES RAYBOULD</a>
+        <div class="nav-links">
+            <a href="https://www.linkedin.com/in/raybould" target="_blank" rel="noopener noreferrer" class="linkedin-link">
+                <img src="/linkedin-logo.png" alt="LinkedIn" />
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="about-content">
+            <p>Yes, I've built out a comprehensive website, but I haven't taken the time to write myself a bio. Coming soon.</p>
+        </div>
+    </main>
+</body>
+</html>
