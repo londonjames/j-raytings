@@ -3,6 +3,10 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
+      "source": "/geo/:path*",
+      "destination": "https://geo-five-phi.vercel.app/geo/:path*"
+    },
+    {
       "source": "/curated/(.*)",
       "destination": "https://web-production-01d1.up.railway.app/curated/$1"
     },
